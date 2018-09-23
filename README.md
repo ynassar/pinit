@@ -1,1 +1,1 @@
-# PinIt
+# pinit
