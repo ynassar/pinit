@@ -1,6 +1,7 @@
-from pinit.proto import login_pb2_grpc
+from proto import login_pb2_grpc
+from proto import login_pb2
 
-class LoginServer(login_pb2_grpc.AuthenticationServiceServicer):
+class LoginService(login_pb2_grpc.AuthenticationServiceServicer):
     """TODO: Add docstring."""
 
     def Login(self, login_request, context):

@@ -1,1 +1,0 @@
-python3 -m grpc_tools.protoc -I pinit/proto --python_out=pinit/proto --grpc_python_out=pinit/proto pinit/proto/*.proto
