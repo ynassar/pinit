@@ -3,5 +3,4 @@
 
 **/*_pb2.py
 **/*_pb2_grpc.py
-./*_proto
 **/__pycache__

@@ -1,5 +1,5 @@
-from login_proto import login_pb2_grpc
-from login_proto import login_pb2
+from proto.login import login_pb2_grpc
+from proto.login import login_pb2
 
 class LoginService(login_pb2_grpc.AuthenticationServiceServicer):
     """TODO: Add docstring."""

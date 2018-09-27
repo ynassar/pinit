@@ -4,7 +4,7 @@ import time
 
 from concurrent import futures
 from backend import login_service
-from login_proto import login_pb2_grpc
+from proto.login import login_pb2_grpc
 
 _ONE_DAY_IN_SECONDS = 60*60*24
 
