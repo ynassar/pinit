@@ -12,13 +12,20 @@ echo "Installing project-wide dependencies..."
 if [[ -f /etc/debian_version ]]
 then
     sudo dpkg -s python3 > /dev/null || sudo apt-get -qq install python3
-    sudo dpkg -s python3 > /dev/null || sudo apt-get -qq install python3-pip
+    sudo dpkg -s python3-pip > /dev/null || sudo apt-get -qq install python3-pip
+    sudo dpkg -s mongodb > /dev/null || sudo apt-get -qq install mongodb
 else
     echo "Warning: Detected a non Debian-based operating system and was unable to 
     install dependencies using apt-get. Attempting to proceed normally assuming python3 and 
     pip3 are already installed."
 fi
+
 pip3 install virtualenv --quiet
+
+if [[ ! -d .db ]]
+then
+    mkdir .db
+fi
 
 # Create a backend virtual environment, if it does not already exist.
 if [[ ! -d .env/backend ]]
