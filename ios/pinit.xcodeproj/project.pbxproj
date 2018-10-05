@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		372022702167AF5B00602B53 /* CustomTextfield.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3720226F2167AF5B00602B53 /* CustomTextfield.swift */; };
+		3775A06721640ACD00ABEF54 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3775A06621640ACD00ABEF54 /* LoginView.swift */; };
+		3775A06B21650B5D00ABEF54 /* Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3775A0692165012200ABEF54 /* Constraints.swift */; };
 		377FDB8D2161A17200991FAA /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377FDB8C2161A17200991FAA /* LoginViewController.swift */; };
 		377FDB8F2161A19400991FAA /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377FDB8E2161A19400991FAA /* RegisterViewController.swift */; };
 		37EEA7E7215B962500BF3839 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EEA7E6215B962500BF3839 /* AppDelegate.swift */; };
@@ -25,6 +28,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3720226F2167AF5B00602B53 /* CustomTextfield.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextfield.swift; sourceTree = "<group>"; };
+		3775A06621640ACD00ABEF54 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		3775A0692165012200ABEF54 /* Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constraints.swift; sourceTree = "<group>"; };
 		377FDB8C2161A17200991FAA /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		377FDB8E2161A19400991FAA /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		37EEA7E3215B962500BF3839 /* pinit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pinit.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -54,11 +60,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3775A0682165009700ABEF54 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				3775A0692165012200ABEF54 /* Constraints.swift */,
+				3720226F2167AF5B00602B53 /* CustomTextfield.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
 		377FDB872161405200991FAA /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
 				377FDB8C2161A17200991FAA /* LoginViewController.swift */,
 				377FDB8E2161A19400991FAA /* RegisterViewController.swift */,
+				3775A06621640ACD00ABEF54 /* LoginView.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -87,6 +103,7 @@
 				37EEA7E6215B962500BF3839 /* AppDelegate.swift */,
 				37EEA7ED215B962800BF3839 /* Assets.xcassets */,
 				37EEA7F2215B962800BF3839 /* Info.plist */,
+				3775A0682165009700ABEF54 /* Shared */,
 				377FDB872161405200991FAA /* Authentication */,
 			);
 			path = pinit;
@@ -200,8 +217,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3775A06B21650B5D00ABEF54 /* Constraints.swift in Sources */,
+				372022702167AF5B00602B53 /* CustomTextfield.swift in Sources */,
 				377FDB8D2161A17200991FAA /* LoginViewController.swift in Sources */,
 				37EEA7E7215B962500BF3839 /* AppDelegate.swift in Sources */,
+				3775A06721640ACD00ABEF54 /* LoginView.swift in Sources */,
 				377FDB8F2161A19400991FAA /* RegisterViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
