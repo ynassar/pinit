@@ -10,6 +10,8 @@
 		372022702167AF5B00602B53 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3720226F2167AF5B00602B53 /* CustomTextField.swift */; };
 		376985B9216834DE006FF550 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376985B8216834DE006FF550 /* Constants.swift */; };
 		376985BB216A8CDB006FF550 /* AuthenticationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376985BA216A8CDB006FF550 /* AuthenticationView.swift */; };
+		376985C0216A97C8006FF550 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377FDB8E2161A19400991FAA /* RegisterViewController.swift */; };
+		376985C1216A97C8006FF550 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376985BC216A8CE3006FF550 /* RegisterView.swift */; };
 		3775A06721640ACD00ABEF54 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3775A06621640ACD00ABEF54 /* LoginView.swift */; };
 		3775A06B21650B5D00ABEF54 /* Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3775A0692165012200ABEF54 /* Constraints.swift */; };
 		377FDB8D2161A17200991FAA /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377FDB8C2161A17200991FAA /* LoginViewController.swift */; };
@@ -224,6 +226,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				376985C0216A97C8006FF550 /* RegisterViewController.swift in Sources */,
+				376985C1216A97C8006FF550 /* RegisterView.swift in Sources */,
 				3775A06B21650B5D00ABEF54 /* Constraints.swift in Sources */,
 				372022702167AF5B00602B53 /* CustomTextField.swift in Sources */,
 				377FDB8D2161A17200991FAA /* LoginViewController.swift in Sources */,
