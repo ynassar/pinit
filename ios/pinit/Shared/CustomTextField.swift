@@ -1,7 +1,7 @@
 import UIKit
 
 /// Custom Textfield with left and right padding for the text inside
-class CustomTextfield : UITextField {
+class CustomTextField : UITextField {
     
     let padding = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 5)
     

@@ -2,7 +2,8 @@ import UIKit
 
 extension UIView {
     
-    public func centerViewHorizontalyToSuperView() -> Self {
+    /// Center the view horizontally in reference to its superview
+    public func addCenterXConstraint() -> Self {
         let adjustedView = self
         self.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint(item: adjustedView,
@@ -15,7 +16,8 @@ extension UIView {
         return adjustedView
     }
     
-    public func centerViewVerticallyToSuperView() -> Self {
+    /// Center the view vertically in reference to its superview
+    public func addCenterYConstraint() -> Self {
         let adjustedView = self
         self.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint(item: adjustedView,
@@ -28,6 +30,8 @@ extension UIView {
         return adjustedView
     }
     
+    /// Width constraint that set the width of the view as a percentage
+    /// (value of the `multiplier`) relative to the `relativeView`
     public func addWidthConstraint(relativeView: UIView, multipler: CGFloat) -> Self {
         let adjustedView = self
         self.translatesAutoresizingMaskIntoConstraints = false
@@ -41,6 +45,23 @@ extension UIView {
         return adjustedView
     }
     
+    /// Height constraint that set the height of the view as a percentage
+    /// (value of the `multiplier`) relative to the `relativeView`
+    public func addHeightConstraint(relativeView: UIView, multipler: CGFloat) -> Self {
+        let adjustedView = self
+        adjustedView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint(item: adjustedView,
+                           attribute: .height,
+                           relatedBy: .equal,
+                           toItem: relativeView,
+                           attribute: .height,
+                           multiplier: multipler,
+                           constant: 0).isActive = true
+        return adjustedView
+    }
+
+    /// Get the ratio between the height and the width to adjust the height
+    /// in case of a change in the value of the width from a constraint.
     public func keepHeightAspectRatio() -> Self {
         let adjustedView = self
         self.translatesAutoresizingMaskIntoConstraints = false
@@ -55,6 +76,8 @@ extension UIView {
         return adjustedView
     }
     
+    /// Get the ratio between the height and the width to adjust the width
+    /// in case of a change in the value of the height from a constraint.
     public func keepWidthAspectRatio() -> Self {
         let adjustedView = self
         self.translatesAutoresizingMaskIntoConstraints = false
@@ -69,19 +92,7 @@ extension UIView {
         return adjustedView
     }
     
-    public func addHeightConstraint(relativeView: UIView, multipler: CGFloat) -> Self {
-        let adjustedView = self
-        adjustedView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint(item: adjustedView,
-                           attribute: .height,
-                           relatedBy: .equal,
-                           toItem: relativeView,
-                           attribute: .height,
-                           multiplier: multipler,
-                           constant: 0).isActive = true
-        return adjustedView
-    }
-
+    /// Set the top of the view with respect to any `attribute` of a second `relativeView`
     public func addTopConstraint(
         relativeView: UIView,
         attribute: NSLayoutAttribute,

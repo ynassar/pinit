@@ -6,23 +6,24 @@ class LoginViewController : UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         loginView = LoginView()
-    
-        self.view.backgroundColor = .white
         self.view.addSubview(loginView)
+        self.view.backgroundColor = .white
         
         let loginViewTopHeight = self.view.frame.size.height / 4
         
         loginView = self.loginView
-            .centerViewHorizontalyToSuperView()
+            .addCenterXConstraint()
             .addWidthConstraint(relativeView: self.view, multipler: 0.9)
             .addHeightConstraint(relativeView: self.view, multipler: 0.6)
-            .addTopConstraint(relativeView: self.view, attribute: .top, constant: loginViewTopHeight)
+            .addTopConstraint(
+                relativeView: self.view,
+                attribute: .top,
+                constant: loginViewTopHeight)
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        loginView.adjustViews()
+        loginView.updateView()
     }
     
 }

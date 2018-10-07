@@ -1,39 +1,39 @@
 import UIKit
 
-class LoginView : UIView {
+/// The `LoginView` is responsible for logging in the app using the
+/// correct username and password. 
+class LoginView : AuthenticationView {
     
-    var usernameTextField: CustomTextfield
+    /// The username text field.
+    var usernameTextField: CustomTextField
     
-    var passwordTextFiled: CustomTextfield
+    /// The password text field.
+    var passwordTextFiled: CustomTextField
     
+    /// The button used to login.
     var loginButton: UIButton
     
+    /// The sign up label which is selected to go to `SignUpView`.
     var signUpLabel: UILabel
     
-    var pinitLogo: UIImageView
     
+    /// The initializer of the `LoginView` which creates the subviews and add them.
     init () {
-        usernameTextField = CustomTextfield(frame: CGRect.zero)
-        passwordTextFiled = CustomTextfield(frame: CGRect.zero)
+        usernameTextField = CustomTextField(frame: CGRect.zero)
+        passwordTextFiled = CustomTextField(frame: CGRect.zero)
         loginButton = UIButton(frame: CGRect.zero)
         signUpLabel = UILabel(frame: CGRect.zero)
-        pinitLogo = UIImageView(image: UIImage(named: "pinitIcon"))
         super.init(frame: CGRect.zero)
         
-        self.addSubview(pinitLogo)
         self.addSubview(usernameTextField)
         self.addSubview(passwordTextFiled)
         self.addSubview(loginButton)
         self.addSubview(signUpLabel)
-        
-        pinitLogo = pinitLogo
-            .centerViewHorizontalyToSuperView()
-            .addHeightConstraint(relativeView: self, multipler: 0.15)
-            .keepWidthAspectRatio()
-            .addTopConstraint(relativeView: self, attribute: .top, constant: 10)
     }
     
-    public func adjustViews() {
+    /// Updating the subviews after making sure that the `LoginView` itself
+    /// has been set its contraints. Called after the view appears.
+    public func updateView() {
         let spacing = self.frame.size.height * 0.05
         usernameTextField = customizeTextfields(textfield: usernameTextField)
         passwordTextFiled = customizeTextfields(textfield: passwordTextFiled)
@@ -41,15 +41,16 @@ class LoginView : UIView {
         usernameTextField.placeholder = "Username"
         passwordTextFiled.placeholder = "Password"
         passwordTextFiled.isSecureTextEntry = true
-        loginButton.backgroundColor = UIColor(red:0.20, green:0.74, blue:0.83, alpha:1.0)
+        
+        loginButton.backgroundColor = PinitColors.blue
         loginButton.layer.cornerRadius = 10
         loginButton.setTitle("Login", for: .normal)
         
         signUpLabel.text = "Don't have an account? Sign Up"
-        signUpLabel.textColor = UIColor(red:0.24, green:0.60, blue:0.93, alpha:1.0)
+        signUpLabel.textColor = PinitColors.linkBlue
         signUpLabel.textAlignment = .center
         signUpLabel.adjustsFontSizeToFitWidth = true
-
+        
         usernameTextField = usernameTextField.addTopConstraint(
             relativeView: pinitLogo,
             attribute: .bottom,
@@ -61,7 +62,7 @@ class LoginView : UIView {
             constant: spacing)
         
         loginButton = loginButton
-            .centerViewHorizontalyToSuperView()
+            .addCenterXConstraint()
             .addWidthConstraint(relativeView: self, multipler: 1)
             .addHeightConstraint(relativeView: self, multipler: 0.1)
             .addTopConstraint(
@@ -70,26 +71,12 @@ class LoginView : UIView {
                 constant: spacing)
         
         signUpLabel = signUpLabel
-            .centerViewHorizontalyToSuperView()
+            .addCenterXConstraint()
             .addWidthConstraint(relativeView: self, multipler: 0.6)
             .addTopConstraint(
                 relativeView: loginButton,
                 attribute: .bottom,
                 constant: spacing)
-        
-    }
-    
-    private func customizeTextfields(textfield: CustomTextfield) -> CustomTextfield {
-        let adjustedTextfield = textfield
-            .centerViewHorizontalyToSuperView()
-            .addWidthConstraint(relativeView: self, multipler: 1)
-            .addHeightConstraint(relativeView: self, multipler: 0.1)
-        adjustedTextfield.layer.cornerRadius = 10
-        adjustedTextfield.backgroundColor = UIColor(red:0.98, green:0.98, blue:0.98, alpha:1.0)
-        adjustedTextfield.layer.borderWidth = 0.5
-        adjustedTextfield.layer.borderColor =
-            UIColor(red:0.60, green:0.69, blue:0.27, alpha:1.0).cgColor
-        return adjustedTextfield
     }
     
     required init?(coder aDecoder: NSCoder) {
