@@ -44,9 +44,9 @@ class AuthenticationView : UIView {
         let adjustedLabel = label
             .addCenterXConstraint()
             .addWidthConstraint(relativeView: self, multipler: 0.6)
-        signUpLabel.textColor = PinitColors.linkBlue
-        signUpLabel.textAlignment = .center
-        signUpLabel.adjustsFontSizeToFitWidth = true
+        label.textColor = PinitColors.linkBlue
+        label.textAlignment = .center
+        label.adjustsFontSizeToFitWidth = true
         return adjustedLabel
     }
     

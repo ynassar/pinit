@@ -10,11 +10,9 @@
 		372022702167AF5B00602B53 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3720226F2167AF5B00602B53 /* CustomTextField.swift */; };
 		376985B9216834DE006FF550 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376985B8216834DE006FF550 /* Constants.swift */; };
 		376985BB216A8CDB006FF550 /* AuthenticationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376985BA216A8CDB006FF550 /* AuthenticationView.swift */; };
-		376985BD216A8CE3006FF550 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376985BC216A8CE3006FF550 /* RegisterView.swift */; };
 		3775A06721640ACD00ABEF54 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3775A06621640ACD00ABEF54 /* LoginView.swift */; };
 		3775A06B21650B5D00ABEF54 /* Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3775A0692165012200ABEF54 /* Constraints.swift */; };
 		377FDB8D2161A17200991FAA /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377FDB8C2161A17200991FAA /* LoginViewController.swift */; };
-		377FDB8F2161A19400991FAA /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377FDB8E2161A19400991FAA /* RegisterViewController.swift */; };
 		37EEA7E7215B962500BF3839 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EEA7E6215B962500BF3839 /* AppDelegate.swift */; };
 		37EEA7EE215B962800BF3839 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37EEA7ED215B962800BF3839 /* Assets.xcassets */; };
 		37EEA7FC215B962800BF3839 /* pinitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EEA7FB215B962800BF3839 /* pinitTests.swift */; };
@@ -227,13 +225,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				3775A06B21650B5D00ABEF54 /* Constraints.swift in Sources */,
-				376985BD216A8CE3006FF550 /* RegisterView.swift in Sources */,
 				372022702167AF5B00602B53 /* CustomTextField.swift in Sources */,
 				377FDB8D2161A17200991FAA /* LoginViewController.swift in Sources */,
 				37EEA7E7215B962500BF3839 /* AppDelegate.swift in Sources */,
 				376985BB216A8CDB006FF550 /* AuthenticationView.swift in Sources */,
 				3775A06721640ACD00ABEF54 /* LoginView.swift in Sources */,
-				377FDB8F2161A19400991FAA /* RegisterViewController.swift in Sources */,
 				376985B9216834DE006FF550 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
