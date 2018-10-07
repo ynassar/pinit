@@ -13,7 +13,7 @@ class LoginView : AuthenticationView {
     /// The button used to login.
     var loginButton: UIButton
     
-    /// The sign up label which is selected to go to `SignUpView`.
+    /// The sign up label when selected directs the user to `RegisterView`.
     var signUpLabel: UILabel
     
     
@@ -37,19 +37,16 @@ class LoginView : AuthenticationView {
         let spacing = self.frame.size.height * 0.05
         usernameTextField = customizeTextfields(textfield: usernameTextField)
         passwordTextFiled = customizeTextfields(textfield: passwordTextFiled)
+        loginButton = customizeButton(button: loginButton)
+        signUpLabel = customizeLinkLabel(label: signUpLabel)
         
         usernameTextField.placeholder = "Username"
         passwordTextFiled.placeholder = "Password"
         passwordTextFiled.isSecureTextEntry = true
         
-        loginButton.backgroundColor = PinitColors.blue
-        loginButton.layer.cornerRadius = 10
         loginButton.setTitle("Login", for: .normal)
         
         signUpLabel.text = "Don't have an account? Sign Up"
-        signUpLabel.textColor = PinitColors.linkBlue
-        signUpLabel.textAlignment = .center
-        signUpLabel.adjustsFontSizeToFitWidth = true
         
         usernameTextField = usernameTextField.addTopConstraint(
             relativeView: pinitLogo,
@@ -62,9 +59,6 @@ class LoginView : AuthenticationView {
             constant: spacing)
         
         loginButton = loginButton
-            .addCenterXConstraint()
-            .addWidthConstraint(relativeView: self, multipler: 1)
-            .addHeightConstraint(relativeView: self, multipler: 0.1)
             .addTopConstraint(
                 relativeView: passwordTextFiled,
                 attribute: .bottom,

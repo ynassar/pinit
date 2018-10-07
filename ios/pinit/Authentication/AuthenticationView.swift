@@ -30,6 +30,26 @@ class AuthenticationView : UIView {
         return adjustedTextfield
     }
     
+    internal func customizeButton(button: UIButton) -> UIButton {
+        let adjustedButton = button
+            .addCenterXConstraint()
+            .addWidthConstraint(relativeView: self, multipler: 1)
+            .addHeightConstraint(relativeView: self, multipler: 0.1)
+        adjustedButton.backgroundColor = PinitColors.blue
+        adjustedButton.layer.cornerRadius = 10
+        return adjustedButton
+    }
+    
+    internal func customizeLinkLabel(label: UILabel) -> UILabel {
+        let adjustedLabel = label
+            .addCenterXConstraint()
+            .addWidthConstraint(relativeView: self, multipler: 0.6)
+        signUpLabel.textColor = PinitColors.linkBlue
+        signUpLabel.textAlignment = .center
+        signUpLabel.adjustsFontSizeToFitWidth = true
+        return adjustedLabel
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
