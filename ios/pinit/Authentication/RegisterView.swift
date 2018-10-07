@@ -9,20 +9,19 @@ class RegisterView : AuthenticationView {
     
     /// The password text field.
     var passwordTextFiled: CustomTextField
-    
+
     /// The confrim password text field.
     var confrimPasswordTextFiled: CustomTextField
-    
+
     /// The username text field.
     var emailTextField: CustomTextField
-    
+
     /// The button used to login.
     var registerButton: UIButton
-    
+
     /// The sign in label when selected directs the user to `LoginView`.
     var signInLabel: UILabel
-    
-    
+
     /// The initializer of the `RegisterView` which creates the subviews and add them.
     init () {
         usernameTextField = CustomTextField(frame: CGRect.zero)
@@ -50,6 +49,9 @@ class RegisterView : AuthenticationView {
         confrimPasswordTextFiled = customizeTextfields(textfield: confrimPasswordTextFiled)
         emailTextField = customizeTextfields(textfield: emailTextField)
         
+        registerButton = customizeButton(button: registerButton)
+        signInLabel = customizeLinkLabel(label: signInLabel)
+        
         usernameTextField.placeholder = "Username"
         passwordTextFiled.placeholder = "Password"
         confrimPasswordTextFiled.placeholder = "Confirm Password"
@@ -59,19 +61,19 @@ class RegisterView : AuthenticationView {
         confrimPasswordTextFiled.isSecureTextEntry = true
         
         registerButton.setTitle("Register", for: .normal)
-        
+
         signInLabel.text = "Already have an account? Sign In"
-        
+
         usernameTextField = usernameTextField.addTopConstraint(
             relativeView: pinitLogo,
             attribute: .bottom,
             constant: spacing)
-        
+
         passwordTextFiled = passwordTextFiled.addTopConstraint(
             relativeView: usernameTextField,
             attribute: .bottom,
             constant: spacing)
-        
+
         confrimPasswordTextFiled = confrimPasswordTextFiled.addTopConstraint(
             relativeView: passwordTextFiled,
             attribute: .bottom,

@@ -10,12 +10,12 @@ class RegisterViewController : UIViewController {
         self.view.addSubview(registerView)
         self.view.backgroundColor = .white
         
-        let loginViewTopHeight = self.view.frame.size.height / 3
+        let loginViewTopHeight = self.view.frame.size.height / 4
         
         registerView = self.registerView
             .addCenterXConstraint()
             .addWidthConstraint(relativeView: self.view, multipler: 0.9)
-            .addHeightConstraint(relativeView: self.view, multipler: 0.6)
+            .addHeightConstraint(relativeView: self.view, multipler: 0.5)
             .addTopConstraint(
                 relativeView: self.view,
                 attribute: .top,
