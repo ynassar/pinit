@@ -7,4 +7,4 @@
 **/__pycache__
 
 ros_ws/devel
-ros_ws/build
+ros_ws/**/build
