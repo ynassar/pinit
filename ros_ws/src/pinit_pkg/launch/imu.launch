@@ -1,0 +1,17 @@
+<launch>
+
+    <arg name="pkg" default="pinit_pkg"/>
+
+    <node pkg="$(arg pkg)"
+          type="imu_raw"
+          name="imu_raw"/>
+
+    <node name="imu_filter_node"
+          pkg="imu_filter_madgwick"
+          type="imu_filter_node"
+          output="screen">
+
+        <param name="use_mag" value="false"/>
+    </node>
+
+</launch>
