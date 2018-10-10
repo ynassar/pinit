@@ -8,8 +8,6 @@
           name="tf_laser_frame"
           args="-0.04 0 0 0 0 0 base_link laser_frame 100"/>
 
-    <include file="$(eval find(pkg) + '/launch/lidar.launch')"></include>
-
     <node name="map"
           pkg="gmapping"
           type="slam_gmapping"
@@ -20,6 +18,7 @@
         <param name="angularUpdate" value="0.2"/>
     </node>
 
-    <include file = "$(find ca_driver)/launch/create_2.launch"></include>
+    <include file="$(eval find(pkg) + '/launch/create_2.launch')"></include>
+    <include file="$(eval find(pkg) + '/launch/lidar.launch')"></include>
 
 </launch>
