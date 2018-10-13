@@ -7,6 +7,7 @@
           type="static_transform_publisher"
           name="tf_laser_frame"
           args="-0.04 0 0 0 0 0 base_link laser_frame 100"/>
+          
 
     <node name="map"
           pkg="gmapping"
@@ -16,8 +17,18 @@
         <param name="map_update_interval" value="0.5"/>
         <param name="linearUpdate" value="0.25"/>
         <param name="angularUpdate" value="0.2"/>
+        <param name="delta" value="0.1"/>
     </node>
 
+    <node name="map"
+          pkg="gmapping"
+          type="slam_gmapping"
+          output="screen">
+        <param name="minimumScore" value="50"/>
+        <param name="map_update_interval" value="0.5"/>
+        <param name="linearUpdate" value="0.25"/>
+        <param name="angularUpdate" value="0.2"/>
+        <param name="delta" value="0.1"/>
     <include file="$(eval find(pkg) + '/launch/create_2.launch')"></include>
     <include file="$(eval find(pkg) + '/launch/lidar.launch')"></include>
 
