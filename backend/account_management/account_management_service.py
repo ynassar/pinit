@@ -23,7 +23,7 @@ class AccountManagementService(account_management_pb2_grpc.AccountManagementServ
         """
         email = request.email
         username = request.username
-        password_hash = bcrypt.hashpw(request.password, bcrypt.gensalt())
+        password_hash = bcrypt.hashpw(request.password.encode('utf-8'), bcrypt.gensalt())
 
         new_user = user.User(email=email, username=username, password_hash=password_hash)
         try:
