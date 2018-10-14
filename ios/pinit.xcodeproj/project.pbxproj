@@ -8,6 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		372022702167AF5B00602B53 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3720226F2167AF5B00602B53 /* CustomTextField.swift */; };
+		373639CC217248A300EBD383 /* BoringSSL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 373C1282216F9ED4003D7CBB /* BoringSSL.framework */; };
+		373639CD217248A300EBD383 /* BoringSSL.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 373C1282216F9ED4003D7CBB /* BoringSSL.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		373639D0217248A300EBD383 /* SwiftGRPC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 373C1286216F9ED4003D7CBB /* SwiftGRPC.framework */; };
+		373639D1217248A300EBD383 /* SwiftGRPC.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 373C1286216F9ED4003D7CBB /* SwiftGRPC.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		373639D4217248A300EBD383 /* SwiftProtobuf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 373C1288216F9ED4003D7CBB /* SwiftProtobuf.framework */; };
+		373639D5217248A300EBD383 /* SwiftProtobuf.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 373C1288216F9ED4003D7CBB /* SwiftProtobuf.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		373639D8217248A300EBD383 /* CgRPC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 373C1284216F9ED4003D7CBB /* CgRPC.framework */; };
+		373639D9217248A300EBD383 /* CgRPC.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 373C1284216F9ED4003D7CBB /* CgRPC.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		373C12A0216FA275003D7CBB /* account_management.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373C129B216FA275003D7CBB /* account_management.grpc.swift */; };
+		373C12A1216FA275003D7CBB /* account_management.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373C129C216FA275003D7CBB /* account_management.pb.swift */; };
+		373C12A2216FA275003D7CBB /* login.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373C129E216FA275003D7CBB /* login.grpc.swift */; };
+		373C12A3216FA275003D7CBB /* login.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373C129F216FA275003D7CBB /* login.pb.swift */; };
 		376985B9216834DE006FF550 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376985B8216834DE006FF550 /* Constants.swift */; };
 		376985BB216A8CDB006FF550 /* AuthenticationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376985BA216A8CDB006FF550 /* AuthenticationView.swift */; };
 		376985C0216A97C8006FF550 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377FDB8E2161A19400991FAA /* RegisterViewController.swift */; };
@@ -21,6 +33,62 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		373639CE217248A300EBD383 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 373C127A216F9ED3003D7CBB /* SwiftGRPC-Carthage.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = "SwiftGRPC::BoringSSL";
+			remoteInfo = BoringSSL;
+		};
+		373639D2217248A300EBD383 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 373C127A216F9ED3003D7CBB /* SwiftGRPC-Carthage.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = "SwiftGRPC::SwiftGRPC";
+			remoteInfo = SwiftGRPC;
+		};
+		373639D6217248A300EBD383 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 373C127A216F9ED3003D7CBB /* SwiftGRPC-Carthage.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = "SwiftProtobuf::SwiftProtobuf";
+			remoteInfo = SwiftProtobuf;
+		};
+		373639DA217248A300EBD383 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 373C127A216F9ED3003D7CBB /* SwiftGRPC-Carthage.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = "SwiftGRPC::CgRPC";
+			remoteInfo = CgRPC;
+		};
+		373C1281216F9ED4003D7CBB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 373C127A216F9ED3003D7CBB /* SwiftGRPC-Carthage.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = "SwiftGRPC::BoringSSL::Product";
+			remoteInfo = BoringSSL;
+		};
+		373C1283216F9ED4003D7CBB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 373C127A216F9ED3003D7CBB /* SwiftGRPC-Carthage.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = "SwiftGRPC::CgRPC::Product";
+			remoteInfo = CgRPC;
+		};
+		373C1285216F9ED4003D7CBB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 373C127A216F9ED3003D7CBB /* SwiftGRPC-Carthage.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = "SwiftGRPC::SwiftGRPC::Product";
+			remoteInfo = SwiftGRPC;
+		};
+		373C1287216F9ED4003D7CBB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 373C127A216F9ED3003D7CBB /* SwiftGRPC-Carthage.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = "SwiftProtobuf::SwiftProtobuf::Product";
+			remoteInfo = SwiftProtobuf;
+		};
 		37EEA7F8215B962800BF3839 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 37EEA7DB215B962400BF3839 /* Project object */;
@@ -30,8 +98,30 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		373639DC217248A300EBD383 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				373639D1217248A300EBD383 /* SwiftGRPC.framework in Embed Frameworks */,
+				373639D5217248A300EBD383 /* SwiftProtobuf.framework in Embed Frameworks */,
+				373639D9217248A300EBD383 /* CgRPC.framework in Embed Frameworks */,
+				373639CD217248A300EBD383 /* BoringSSL.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		3720226F2167AF5B00602B53 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		373C127A216F9ED3003D7CBB /* SwiftGRPC-Carthage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "SwiftGRPC-Carthage.xcodeproj"; path = "../../grpc-swift/SwiftGRPC-Carthage.xcodeproj"; sourceTree = "<group>"; };
+		373C129B216FA275003D7CBB /* account_management.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = account_management.grpc.swift; sourceTree = "<group>"; };
+		373C129C216FA275003D7CBB /* account_management.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = account_management.pb.swift; sourceTree = "<group>"; };
+		373C129E216FA275003D7CBB /* login.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = login.grpc.swift; sourceTree = "<group>"; };
+		373C129F216FA275003D7CBB /* login.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = login.pb.swift; sourceTree = "<group>"; };
 		376985B8216834DE006FF550 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		376985BA216A8CDB006FF550 /* AuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationView.swift; sourceTree = "<group>"; };
 		376985BC216A8CE3006FF550 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
@@ -53,6 +143,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				373639D0217248A300EBD383 /* SwiftGRPC.framework in Frameworks */,
+				373639D4217248A300EBD383 /* SwiftProtobuf.framework in Frameworks */,
+				373639D8217248A300EBD383 /* CgRPC.framework in Frameworks */,
+				373639CC217248A300EBD383 /* BoringSSL.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -66,6 +160,51 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		373C1234216E8A63003D7CBB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		373C127B216F9ED3003D7CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				373C1282216F9ED4003D7CBB /* BoringSSL.framework */,
+				373C1284216F9ED4003D7CBB /* CgRPC.framework */,
+				373C1286216F9ED4003D7CBB /* SwiftGRPC.framework */,
+				373C1288216F9ED4003D7CBB /* SwiftProtobuf.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		373C1299216FA275003D7CBB /* genfiles */ = {
+			isa = PBXGroup;
+			children = (
+				373C129A216FA275003D7CBB /* account_management */,
+				373C129D216FA275003D7CBB /* login */,
+			);
+			path = genfiles;
+			sourceTree = "<group>";
+		};
+		373C129A216FA275003D7CBB /* account_management */ = {
+			isa = PBXGroup;
+			children = (
+				373C129B216FA275003D7CBB /* account_management.grpc.swift */,
+				373C129C216FA275003D7CBB /* account_management.pb.swift */,
+			);
+			path = account_management;
+			sourceTree = "<group>";
+		};
+		373C129D216FA275003D7CBB /* login */ = {
+			isa = PBXGroup;
+			children = (
+				373C129E216FA275003D7CBB /* login.grpc.swift */,
+				373C129F216FA275003D7CBB /* login.pb.swift */,
+			);
+			path = login;
+			sourceTree = "<group>";
+		};
 		3775A0682165009700ABEF54 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
@@ -91,9 +230,12 @@
 		37EEA7DA215B962400BF3839 = {
 			isa = PBXGroup;
 			children = (
+				373C1299216FA275003D7CBB /* genfiles */,
+				373C127A216F9ED3003D7CBB /* SwiftGRPC-Carthage.xcodeproj */,
 				37EEA7E5215B962500BF3839 /* pinit */,
 				37EEA7FA215B962800BF3839 /* pinitTests */,
 				37EEA7E4215B962500BF3839 /* Products */,
+				373C1234216E8A63003D7CBB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -137,10 +279,15 @@
 				37EEA7DF215B962500BF3839 /* Sources */,
 				37EEA7E0215B962500BF3839 /* Frameworks */,
 				37EEA7E1215B962500BF3839 /* Resources */,
+				373639DC217248A300EBD383 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				373639CF217248A300EBD383 /* PBXTargetDependency */,
+				373639D3217248A300EBD383 /* PBXTargetDependency */,
+				373639D7217248A300EBD383 /* PBXTargetDependency */,
+				373639DB217248A300EBD383 /* PBXTargetDependency */,
 			);
 			name = pinit;
 			productName = pinit;
@@ -195,6 +342,12 @@
 			mainGroup = 37EEA7DA215B962400BF3839;
 			productRefGroup = 37EEA7E4215B962500BF3839 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 373C127B216F9ED3003D7CBB /* Products */;
+					ProjectRef = 373C127A216F9ED3003D7CBB /* SwiftGRPC-Carthage.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				37EEA7E2215B962500BF3839 /* pinit */,
@@ -202,6 +355,37 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		373C1282216F9ED4003D7CBB /* BoringSSL.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = BoringSSL.framework;
+			remoteRef = 373C1281216F9ED4003D7CBB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		373C1284216F9ED4003D7CBB /* CgRPC.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = CgRPC.framework;
+			remoteRef = 373C1283216F9ED4003D7CBB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		373C1286216F9ED4003D7CBB /* SwiftGRPC.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SwiftGRPC.framework;
+			remoteRef = 373C1285216F9ED4003D7CBB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		373C1288216F9ED4003D7CBB /* SwiftProtobuf.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SwiftProtobuf.framework;
+			remoteRef = 373C1287216F9ED4003D7CBB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		37EEA7E1215B962500BF3839 /* Resources */ = {
@@ -226,14 +410,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				373C12A3216FA275003D7CBB /* login.pb.swift in Sources */,
 				376985C0216A97C8006FF550 /* RegisterViewController.swift in Sources */,
 				376985C1216A97C8006FF550 /* RegisterView.swift in Sources */,
 				3775A06B21650B5D00ABEF54 /* Constraints.swift in Sources */,
+				373C12A1216FA275003D7CBB /* account_management.pb.swift in Sources */,
+				373C12A0216FA275003D7CBB /* account_management.grpc.swift in Sources */,
 				372022702167AF5B00602B53 /* CustomTextField.swift in Sources */,
 				377FDB8D2161A17200991FAA /* LoginViewController.swift in Sources */,
 				37EEA7E7215B962500BF3839 /* AppDelegate.swift in Sources */,
 				376985BB216A8CDB006FF550 /* AuthenticationView.swift in Sources */,
 				3775A06721640ACD00ABEF54 /* LoginView.swift in Sources */,
+				373C12A2216FA275003D7CBB /* login.grpc.swift in Sources */,
 				376985B9216834DE006FF550 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -249,6 +437,26 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		373639CF217248A300EBD383 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BoringSSL;
+			targetProxy = 373639CE217248A300EBD383 /* PBXContainerItemProxy */;
+		};
+		373639D3217248A300EBD383 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SwiftGRPC;
+			targetProxy = 373639D2217248A300EBD383 /* PBXContainerItemProxy */;
+		};
+		373639D7217248A300EBD383 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SwiftProtobuf;
+			targetProxy = 373639D6217248A300EBD383 /* PBXContainerItemProxy */;
+		};
+		373639DB217248A300EBD383 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = CgRPC;
+			targetProxy = 373639DA217248A300EBD383 /* PBXContainerItemProxy */;
+		};
 		37EEA7F9215B962800BF3839 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 37EEA7E2215B962500BF3839 /* pinit */;
@@ -374,9 +582,12 @@
 		37EEA801215B962800BF3839 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = CVQJFHTR9T;
+				ENABLE_BITCODE = NO;
+				HEADER_SEARCH_PATHS = "/Users/faridaeid/Desktop/Desktop/University/Fall18/Thesis2/grpc-swift/Sources/CgRPC/include";
 				INFOPLIST_FILE = pinit/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -384,7 +595,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = faridaeid.github.pinit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -392,9 +603,12 @@
 		37EEA802215B962800BF3839 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = CVQJFHTR9T;
+				ENABLE_BITCODE = NO;
+				HEADER_SEARCH_PATHS = "/Users/faridaeid/Desktop/Desktop/University/Fall18/Thesis2/grpc-swift/Sources/CgRPC/include";
 				INFOPLIST_FILE = pinit/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -402,7 +616,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = faridaeid.github.pinit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -422,7 +636,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = faridaeid.github.pinitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/pinit.app/pinit";
 			};
@@ -443,7 +657,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = faridaeid.github.pinitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/pinit.app/pinit";
 			};

@@ -18,4 +18,6 @@ struct PinitConstants {
     
     static public let cornerRadius: CGFloat = 10.0
     
+    static public let authernticationFontSize: CGFloat = 12.0
+    
 }

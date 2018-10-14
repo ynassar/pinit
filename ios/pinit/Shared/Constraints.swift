@@ -95,7 +95,7 @@ extension UIView {
     /// Set the top of the view with respect to any `attribute` of a second `relativeView`
     public func addTopConstraint(
         relativeView: UIView,
-        attribute: NSLayoutAttribute,
+        attribute: NSLayoutConstraint.Attribute,
         constant: CGFloat
     ) -> Self {
         let adjustedView = self
