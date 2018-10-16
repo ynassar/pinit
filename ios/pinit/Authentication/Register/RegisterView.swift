@@ -2,7 +2,7 @@ import UIKit
 
 /// The `RegisterView` is responsible for registering in the app creating
 /// a general user account.
-class RegisterView : AuthenticationView {
+class RegisterView : AuthenticationView, UITextFieldDelegate {
     
     /// The username text field.
     public var usernameTextField: CustomTextField
@@ -100,6 +100,5 @@ class RegisterView : AuthenticationView {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
 }
 

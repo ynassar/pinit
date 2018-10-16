@@ -10,7 +10,7 @@ class LoginViewController : UIViewController  {
         
         self.view.addSubview(loginView)
         self.view.backgroundColor = .white
-        
+                
         let tapAnywhere = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
         self.view.addGestureRecognizer(tapAnywhere)
         
@@ -28,20 +28,18 @@ class LoginViewController : UIViewController  {
         loginView.signUpLabel.addGestureRecognizer(tap)
         loginView.signUpLabel.isUserInteractionEnabled = true
         
+        loginView.loginButton.addTarget(
+            self,
+            action: #selector(self.loginInButtonClick),
+            for: .touchUpInside)
+        
     }
     
-    @objc
-    private func dismissKeyboard() {
+    @objc private func dismissKeyboard() {
         self.view.endEditing(true)
     }
     
-    @objc
-    func signUpLabelTap(sender: UITapGestureRecognizer) {
-        let registerViewController = RegisterViewController()
-        if let navigationController = self.navigationController {
-            navigationController.pushViewController(registerViewController, animated: true)
-         }
-        
+    @objc private func loginInButtonClick() {
 //        let accountClient = AccountManagementServiceServiceClient(
 //            address: "localhost:50051",
 //            secure: false,
@@ -53,11 +51,16 @@ class LoginViewController : UIViewController  {
 //            registerRequest.password = "testpassword"
 //            registerRequest.email = "yousefnassar@aucegypt.edu"
 //            let registerReposone = try accountClient.register(registerRequest)
-//            print("dd")
 //        } catch {
 //
 //        }
-        
+    }
+    
+    @objc private func signUpLabelTap(sender: UITapGestureRecognizer) {
+        let registerViewController = RegisterViewController()
+        if let navigationController = self.navigationController {
+            navigationController.pushViewController(registerViewController, animated: true)
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
