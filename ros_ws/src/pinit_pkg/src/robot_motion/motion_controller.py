@@ -13,18 +13,18 @@ class MotionController:
         self.node_name = 'motion_controller'
         self.topic_name = 'cmd_vel'
         self.vel_linear = 0
-        self.vel_linear_max = 0.5
+        self.vel_linear_max = 0.4
         self.vel_linear_min = -0.5
         self.vel_angular = 0
-        self.vel_angular_max = 4.25
-        self.vel_angular_min = -4.25
-        self.acceleration_steps = 2
+        self.vel_angular_max = 2.25
+        self.vel_angular_min = -2.25
+        self.acceleration_steps = 1000
         self.vel_pub = rospy.Publisher(self.topic_name, 
                                         Twist,
                                         queue_size=10)
     
     
-    class MOTION_DIRECTION(Enum):
+    class DIRECTION(Enum):
         FORWARD = 0
         BACKWARD = 1
         LEFT = 2
@@ -62,24 +62,24 @@ class MotionController:
     def get_speeds(self, direction):    
         linear = []
         angular = []
-        if(direction == self.MOTION_DIRECTION.FORWARD):
+        if(direction == self.DIRECTION.FORWARD):
             linear = self.to_range(0, self.vel_linear_max, self.acceleration_steps)
             angular = self.to_range(0, 0, self.acceleration_steps)
-        elif(direction == self.MOTION_DIRECTION.BACKWARD):
+        elif(direction == self.DIRECTION.BACKWARD):
             linear = self.to_range(0, self.vel_linear_min, self.acceleration_steps)
             angular = self.to_range(0, 0, self.acceleration_steps)
-        elif(direction == self.MOTION_DIRECTION.RIGHT):
+        elif(direction == self.DIRECTION.RIGHT):
             linear = self.to_range(0, 0, self.acceleration_steps)
             angular = self.to_range(0, self.vel_angular_max, self.acceleration_steps)
-        elif(direction == self.MOTION_DIRECTION.LEFT):
+        elif(direction == self.DIRECTION.LEFT):
             linear = self.to_range(0, 0, self.acceleration_steps)
             angular = self.to_range(0, self.vel_angular_min, self.acceleration_steps)
-        elif(direction == self.MOTION_DIRECTION.STOP):
+        elif(direction == self.DIRECTION.STOP):
             linear = self.to_range(self.vel_linear, 0, self.acceleration_steps)
             angular = self.to_range(self.vel_angular, 0, self.acceleration_steps)
         else:
             raise ValueError("Unknown motion direction. Check \
-                            MotionController.MOTION_DIRECTION")
+                            MotionController.DIRECTION")
         
         return linear, angular
           
