@@ -8,7 +8,7 @@ from backend.ros import ros_communication_service
 from concurrent import futures
 from proto.ros import ros_pb2_grpc
 
-flags.DEFINE_integer("port", 50051, "The port on which to run the server.")
+flags.DEFINE_integer("port", 50052, "The port on which to run the server.")
 
 FLAGS = flags.FLAGS
 
