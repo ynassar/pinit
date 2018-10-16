@@ -30,4 +30,8 @@ class AccountManagementService(account_management_pb2_grpc.AccountManagementServ
             new_user.save()
         except mongoengine.NotUniqueError:
             context.set_code(grpc.StatusCode.ALREADY_EXISTS)
+            context.set_details("Username or Email already exists.")
+        except mongoengine.ValidationError as validation_error:
+            context.set_code(grpc.StatusCode.INVALID_ARGUMENT)
+            context.set_details(validation_error.message)
         return account_management_pb2.RegisterResponse()
