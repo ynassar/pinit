@@ -5,22 +5,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    var navigationController: UINavigationController?
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
        
         // Create a new window for the window property that comes
         // standard on the AppDelegate class. The UIWindow is where
         // all the views and view controllers will appear.
         window = UIWindow(frame: UIScreen.main.bounds)
         
-        // Create a view instance of the LoginViewController.
-        let loginViewController = LoginViewController()
+        if let window = window {
+            let loginViewController = LoginViewController()
+            navigationController = UINavigationController(rootViewController: loginViewController)
+            navigationController?.isNavigationBarHidden = true
+            window.rootViewController = navigationController
+            window.makeKeyAndVisible()
+        }
         
-        // Set the initial ViewController to our intstance.
-        window?.rootViewController = loginViewController
-        
-        // Present the window
-        window?.makeKeyAndVisible()
         return true
     }
 

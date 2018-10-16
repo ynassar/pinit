@@ -5,16 +5,16 @@ import UIKit
 class LoginView : AuthenticationView {
     
     /// The username text field.
-    var usernameTextField: CustomTextField
+    public var usernameTextField: CustomTextField
     
     /// The password text field.
-    var passwordTextFiled: CustomTextField
+    public var passwordTextFiled: CustomTextField
     
     /// The button used to login.
-    var loginButton: UIButton
+    public var loginButton: UIButton
     
     /// The sign up label when selected directs the user to `RegisterView`.
-    var signUpLabel: UILabel
+    public var signUpLabel: UILabel
     
     
     /// The initializer of the `LoginView` which creates the subviews and add them.

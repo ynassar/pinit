@@ -2,25 +2,25 @@ import UIKit
 
 /// The `RegisterView` is responsible for registering in the app creating
 /// a general user account.
-class RegisterView : AuthenticationView {
+class RegisterView : AuthenticationView, UITextFieldDelegate {
     
     /// The username text field.
-    var usernameTextField: CustomTextField
+    public var usernameTextField: CustomTextField
     
     /// The password text field.
-    var passwordTextFiled: CustomTextField
+    public var passwordTextFiled: CustomTextField
 
     /// The confrim password text field.
-    var confrimPasswordTextFiled: CustomTextField
+    public var confrimPasswordTextFiled: CustomTextField
 
     /// The username text field.
-    var emailTextField: CustomTextField
+    public var emailTextField: CustomTextField
 
     /// The button used to login.
-    var registerButton: UIButton
+    public var registerButton: UIButton
 
     /// The sign in label when selected directs the user to `LoginView`.
-    var signInLabel: UILabel
+    public var signInLabel: UILabel
 
     /// The initializer of the `RegisterView` which creates the subviews and add them.
     init () {
@@ -100,6 +100,5 @@ class RegisterView : AuthenticationView {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
 }
 

@@ -9,7 +9,7 @@ class AuthenticationView : UIView {
         pinitLogo = UIImageView(image: UIImage(named: "pinitIcon"))
         super.init(frame: frame)
         self.addSubview(pinitLogo)
-        
+    
         pinitLogo = pinitLogo
             .addCenterXConstraint()
             .addHeightConstraint(relativeView: self, multipler: 0.15)
@@ -27,6 +27,8 @@ class AuthenticationView : UIView {
         adjustedTextfield.backgroundColor = PinitColors.gray
         adjustedTextfield.layer.borderWidth = 0.5
         adjustedTextfield.layer.borderColor = PinitColors.borderGreen.cgColor
+        adjustedTextfield.font = adjustedTextfield.font?
+            .withSize(PinitConstants.authernticationFontSize)
         return adjustedTextfield
     }
     
@@ -37,6 +39,8 @@ class AuthenticationView : UIView {
             .addHeightConstraint(relativeView: self, multipler: 0.1)
         adjustedButton.backgroundColor = PinitColors.blue
         adjustedButton.layer.cornerRadius = 10
+        adjustedButton.titleLabel?.font = adjustedButton.titleLabel?.font
+            .withSize(PinitConstants.authernticationFontSize)
         return adjustedButton
     }
     
@@ -47,6 +51,8 @@ class AuthenticationView : UIView {
         label.textColor = PinitColors.linkBlue
         label.textAlignment = .center
         label.adjustsFontSizeToFitWidth = true
+        adjustedLabel.font = adjustedLabel.font
+            .withSize(PinitConstants.authernticationFontSize)
         return adjustedLabel
     }
     
