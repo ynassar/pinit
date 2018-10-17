@@ -7,6 +7,12 @@ from proto.account_management import account_management_pb2_grpc
 
 from backend.models import user
 
+class UsernameOrEmailAlreadyExists(Exception):
+    pass
+
+class InvalidRegistrationParameters(Exception):
+    pass
+
 class AccountManagementService(account_management_pb2_grpc.AccountManagementServiceServicer):
 
     def __init__(self):
@@ -31,7 +37,9 @@ class AccountManagementService(account_management_pb2_grpc.AccountManagementServ
         except mongoengine.NotUniqueError:
             context.set_code(grpc.StatusCode.ALREADY_EXISTS)
             context.set_details("Username or Email already exists.")
+            raise UsernameOrEmailAlreadyExists()
         except mongoengine.ValidationError as validation_error:
             context.set_code(grpc.StatusCode.INVALID_ARGUMENT)
             context.set_details(validation_error.message)
+            raise InvalidRegistrationParameters()
         return account_management_pb2.RegisterResponse()
