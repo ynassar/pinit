@@ -4,10 +4,11 @@
 
 
 source install.sh > /dev/null
-source .env/backend/bin/activate
 source run_codegen.sh > /dev/null
 
 export PYTHONPATH=$PYTHONPATH:$PWD
+
+source .env/backend/bin/activate
 
 printf "\n\n------------------ Starting Servers ------------------\n\n"
 
