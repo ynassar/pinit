@@ -5,8 +5,18 @@ service RosService{
     rpc SendMovement(MappingRequest) returns (MappingResponse){} 
 }
 
+message RawMap{
+    float resolution = 1;
+    uint32 height = 2;
+    uint32 width = 3;
+    repeated uint32 data = 4;
+}
+
 message RosToServerCommunication{
     string robot_name = 1; // An identifier for the ros node to send requests to.
+    oneof communication{
+        RawMap raw_map = 2;
+    }
 }
 
 message ServerToRosMappingRequest{
