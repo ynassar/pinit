@@ -39,6 +39,3 @@ source .env/backend/bin/activate
 echo "Installing backend python dependencies..."
 pip3 install -r backend/requirements.txt --quiet
 deactivate > /dev/null
-
-# Add the project root directory to PYTHONPATH to enable use of imports from root.
-export PYTHONPATH=$PWD
