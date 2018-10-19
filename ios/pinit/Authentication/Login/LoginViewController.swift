@@ -19,9 +19,10 @@ class LoginViewController : UIViewController  {
             .addCenterXConstraint()
             .addWidthConstraint(relativeView: self.view, multipler: 0.9)
             .addHeightConstraint(relativeView: self.view, multipler: 0.5)
-            .addTopConstraint(
+            .setConstraintWithConstant(
+                selfAttribute: .top,
                 relativeView: self.view,
-                attribute: .top,
+                relativeAttribute: .top,
                 constant: loginViewTopHeight)
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.signUpLabelTap(sender:)))

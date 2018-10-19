@@ -29,16 +29,19 @@ class RegisterViewController : UIViewController, RegisterServerDelegate, UITextF
         let tapAnywhere = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
         self.view.addGestureRecognizer(tapAnywhere)
         
-        let loginViewTopHeight = self.view.frame.size.height / 4
+        let topHeight = self.view.frame.size.height / 4
         
         registerView = self.registerView
             .addCenterXConstraint()
             .addWidthConstraint(relativeView: self.view, multipler: 0.9)
             .addHeightConstraint(relativeView: self.view, multipler: 0.4)
-            .addTopConstraint(
+            .setConstraintWithConstant(
+                selfAttribute: .top,
                 relativeView: self.view,
-                attribute: .top,
-                constant: loginViewTopHeight)
+                relativeAttribute: .top,
+                constant: topHeight)
+        
+        
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.signInLabelTap(sender:)))
         registerView.signInLabel.addGestureRecognizer(tap)
