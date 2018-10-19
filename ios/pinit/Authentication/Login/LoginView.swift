@@ -48,28 +48,34 @@ class LoginView : AuthenticationView {
         
         signUpLabel.text = "Don't have an account? Sign Up"
         
-        usernameTextField = usernameTextField.addTopConstraint(
-            relativeView: pinitLogo,
-            attribute: .bottom,
-            constant: spacing)
+        usernameTextField = usernameTextField
+            .setConstraintWithConstant(
+                selfAttribute: .top,
+                relativeView: pinitLogo,
+                relativeAttribute: .bottom,
+                constant: spacing)
         
-        passwordTextFiled = passwordTextFiled.addTopConstraint(
-            relativeView: usernameTextField,
-            attribute: .bottom,
-            constant: spacing)
+        passwordTextFiled = passwordTextFiled
+            .setConstraintWithConstant(
+                selfAttribute: .top,
+                relativeView: usernameTextField,
+                relativeAttribute: .bottom,
+                constant: spacing)
         
         loginButton = loginButton
-            .addTopConstraint(
+            .setConstraintWithConstant(
+                selfAttribute: .top,
                 relativeView: passwordTextFiled,
-                attribute: .bottom,
+                relativeAttribute: .bottom,
                 constant: spacing)
         
         signUpLabel = signUpLabel
             .addCenterXConstraint()
             .addWidthConstraint(relativeView: self, multipler: 0.6)
-            .addTopConstraint(
+            .setConstraintWithConstant(
+                selfAttribute: .top,
                 relativeView: loginButton,
-                attribute: .bottom,
+                relativeAttribute: .bottom,
                 constant: spacing)
     }
     

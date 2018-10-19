@@ -6,7 +6,7 @@ public class RegisterServer {
     
     func sendRequest(request: RegisterRequest) {
         let accountClient = AccountManagementServiceServiceClient(
-            address: PinitConstants.serverAddress,
+            address: PinitConstants.authenticationServerAddress,
             secure: false,
             arguments: [])
 

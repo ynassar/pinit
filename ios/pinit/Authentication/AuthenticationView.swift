@@ -14,7 +14,11 @@ class AuthenticationView : UIView {
             .addCenterXConstraint()
             .addHeightConstraint(relativeView: self, multipler: 0.15)
             .keepWidthAspectRatio()
-            .addTopConstraint(relativeView: self, attribute: .top, constant: 10)
+            .setConstraintWithConstant(
+                selfAttribute: .top,
+                relativeView: self,
+                relativeAttribute: .top,
+                constant: 10)
         
     }
     
