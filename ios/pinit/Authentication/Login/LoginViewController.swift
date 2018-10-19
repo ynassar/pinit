@@ -40,20 +40,11 @@ class LoginViewController : UIViewController  {
     }
     
     @objc private func loginInButtonClick() {
-//        let accountClient = AccountManagementServiceServiceClient(
-//            address: "localhost:50051",
-//            secure: false,
-//            arguments: [])
-//
-//        do {
-//            var registerRequest = RegisterRequest()
-//            registerRequest.username = "yousefnassar"
-//            registerRequest.password = "testpassword"
-//            registerRequest.email = "yousefnassar@aucegypt.edu"
-//            let registerReposone = try accountClient.register(registerRequest)
-//        } catch {
-//
-//        }
+        let pinitOwnerViewController = PinitOwnerViewController()
+        if let navigationController = self.navigationController {
+            navigationController.popToRootViewController(animated: true)
+            navigationController.pushViewController(pinitOwnerViewController, animated: true)
+        }
     }
     
     @objc private func signUpLabelTap(sender: UITapGestureRecognizer) {

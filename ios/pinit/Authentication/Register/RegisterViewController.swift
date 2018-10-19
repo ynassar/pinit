@@ -17,10 +17,14 @@ class RegisterViewController : UIViewController, RegisterServerDelegate, UITextF
         
         registerServer.delegate = self
         
-        registerView.usernameTextField.addTarget(self, action: #selector(self.textFieldEditChange(_:)), for: .editingChanged)
-        registerView.passwordTextFiled.addTarget(self, action: #selector(self.textFieldEditChange(_:)), for: .editingChanged)
-        registerView.confrimPasswordTextFiled.addTarget(self, action: #selector(self.textFieldEditChange(_:)), for: .editingChanged)
-        registerView.emailTextField.addTarget(self, action: #selector(self.textFieldEditChange(_:)), for: .editingChanged)
+        registerView.usernameTextField
+            .addTargetForEditingChange(action: #selector(self.textFieldEditChange(_:)))
+        registerView.passwordTextFiled
+            .addTargetForEditingChange(action: #selector(self.textFieldEditChange(_:)))
+        registerView.confrimPasswordTextFiled
+            .addTargetForEditingChange(action: #selector(self.textFieldEditChange(_:)))
+        registerView.emailTextField
+            .addTargetForEditingChange(action: #selector(self.textFieldEditChange(_:)))
         
         let tapAnywhere = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
         self.view.addGestureRecognizer(tapAnywhere)
@@ -61,7 +65,7 @@ class RegisterViewController : UIViewController, RegisterServerDelegate, UITextF
         }
     }
     
-    @objc func textFieldEditChange(_ textField: UITextField) {
+    @objc private func textFieldEditChange(_ textField: UITextField) {
         if registerView.usernameTextField.hasText
             && registerView.passwordTextFiled.hasText
             && registerView.confrimPasswordTextFiled.hasText
@@ -102,5 +106,16 @@ class RegisterViewController : UIViewController, RegisterServerDelegate, UITextF
             preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
+    }
+}
+
+fileprivate extension UITextField {
+    
+    fileprivate func addTargetForEditingChange(action: Selector) {
+        self.addTarget(
+            self,
+            action: action,
+            for: .editingChanged)
+    
     }
 }
