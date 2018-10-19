@@ -31,6 +31,7 @@ message ServerToRosMappingRequest{
         BACKWARD = 1;
         RIGHT = 2;
         LEFT = 3;
+        STOP = 4;
     }
     MappingRequestType request_type = 1;
     Direction direction = 2;
