@@ -1,9 +1,11 @@
 #!/usr/bin/env python
 
 from concurrent import futures
-from queue import Queue
+from Queue import Queue
 from enum import Enum
+import threading
 import time
+import multiprocessing
 
 import numpy as np
 
@@ -13,24 +15,6 @@ from geometry_msgs.msg import Vector3
 
 class MotionController():
 
-    def __init__(self):
-
-        self.node_name = 'motion_controller'
-        self.topic_name = 'cmd_vel'
-        self.vel_linear = 0
-        self.vel_linear_max = 0.4
-        self.vel_linear_min = -0.5
-        self.vel_angular = 0
-        self.vel_angular_max = 2.25
-        self.vel_angular_min = -2.25
-        self.acceleration_steps = 1000
-        self.vel_queue = Queue()
-        self.vel_pub = rospy.Publisher(self.topic_name,
-                                       Twist,
-                                       queue_size=10)
-
-        self.init_publisher_loop()
-
     class RobotDirection(Enum):
         FORWARD = 0
         BACKWARD = 1
@@ -39,25 +23,92 @@ class MotionController():
         STOP = 4
 
 
+    def __init__(self):
+
+        self.node_name = 'motion_controller'
+        self.topic_name = 'cmd_vel'
+        self.vel_linear = 0
+        self.vel_angular = 0
+        self.robot_direction = self.RobotDirection.STOP
+        self.direction_lock = None
+        self.vel_linear_range = (-0.5, 0.5)
+        self.vel_angular_range = (-2.25, 2.25)
+        self.acceleration_steps = 200
+        self.vel_linear_increment = (abs(self.vel_linear_range[0] -
+                                        self.vel_linear_range[1]) /
+                                     self.acceleration_steps)
+        self.vel_angular_increment = (abs(self.vel_angular_range[0] -
+                                          self.vel_angular_range[1]) /
+                                      self.acceleration_steps)
+        self.thread_executor = None
+        self.vel_pub = rospy.Publisher(self.topic_name,
+                                       Twist,
+                                       queue_size=10)
+
+        self.init_publisher_loop()
+
+
     def init_node(self):
         rospy.init_node(self.node_name, anonymous=True)
 
 
     def init_publisher_loop(self):
-       executor = futures.ThreadPoolExecutor(max_workers=1)
-       executor.submit(self.publisher_loop)
+       self.thread_executor = threading.Thread(target=self.publisher_loop)
+       self.thread_executor.start()
+       self.direction_lock = threading.Lock()
+       print("publisher loop init")
 
 
     def publisher_loop(self):
         while True:
-            time.sleep(0.1)
-            try:
-                vel = self.vel_queue.get_nowait()
-                self.vel_linear = vel[0]
-                self.vel_angular = vel[1]
-                self.publish()
-            except Queue.Empty:
-                self.publish()
+            time.sleep(0.01)
+            linear = self.vel_linear
+            angular = self.vel_angular
+            self.direction_lock.acquire()
+            direction = self.robot_direction
+            self.direction_lock.release()
+            if(direction == self.RobotDirection.FORWARD):
+                linear = linear + self.vel_linear_increment
+                linear = min(linear, self.vel_linear_range[1])
+                print "direction = forward"
+            elif(direction == self.RobotDirection.BACKWARD):
+                linear = linear - self.vel_linear_increment
+                linear = max(linear, self.vel_linear_range[0])
+                print "direction = backward"
+            elif(direction == self.RobotDirection.LEFT):
+                angular = angular + self.vel_angular_increment
+                angular = min(angular, self.vel_angular_range[1])
+                print "direction = right"
+            elif(direction == self.RobotDirection.RIGHT):
+                angular = angular - self.vel_angular_increment
+                angular = max(angular, self.vel_angular_range[0])
+                print "direction = left"
+            elif(direction == self.RobotDirection.STOP):
+                if linear > 0:
+                    linear = linear - self.vel_linear_increment
+                    linear = max(linear, 0)
+                elif linear < 0:
+                    linear = linear + self.vel_linear_increment
+                    linear = min(linear, 0)
+                else:
+                    linear = linear
+                if angular > 0:
+                    angular = linear - self.vel_angular_increment
+                    angular = max(linear, 0)
+                elif angular < 0:
+                    angular = linear + self.vel_angular_increment
+                    angular = min(linear, 0)
+                else:
+                    angular = angular
+
+            else:
+                print("Unknown motion direction. Check \
+                                 MotionController.RobotDirection")
+
+            self.vel_linear = linear
+            self.vel_angular = angular
+            self.publish()
+        print "wtf"
 
 
     def to_range(self, start, end):
@@ -75,41 +126,11 @@ class MotionController():
 
 
     def move(self, direction):
-        vel_linear, vel_angular = self.get_speeds(direction)
-        n = len(vel_linear)
-        for i in range(n):
-            vel_linear = vel_linear[i]
-            vel_angular = vel_angular[i]
-            vel = (vel_linear, vel_angular)
-            self.vel_queue.put(vel)
-
-
-    def get_speeds(self, direction):
-        linear = []
-        angular = []
-        if(direction == self.RobotDirection.FORWARD):
-            linear = self.to_range(0, self.vel_linear_max)
-            angular = self.to_range(self.vel_angular, 0)
-        elif(direction == self.RobotDirection.BACKWARD):
-            linear = self.to_range(0, self.vel_linear_min)
-            angular = self.to_range(self.vel_angular, 0)
-        elif(direction == self.RobotDirection.RIGHT):
-            linear = self.to_range(self.vel_linear, 0)
-            angular = self.to_range(0, self.vel_angular_max)
-        elif(direction == self.RobotDirection.LEFT):
-            linear = self.to_range(self.vel_linear, 0)
-            angular = self.to_range(0, self.vel_angular_min)
-        elif(direction == self.RobotDirection.STOP):
-            linear = self.to_range(self.vel_linear, 0)
-            angular = self.to_range(self.vel_angular, 0)
-        else:
-            raise ValueError("Unknown motion direction. Check \
-                              MotionController.RobotDirection")
-
-        return linear, angular
+        self.direction_lock.acquire()
+        self.robot_direction = direction
+        self.direction_lock.release()
 
 
 
 if __name__ == '__main__':
     controller = MotionController()
-    controller.init_node()
