@@ -93,75 +93,39 @@ extension UIView {
     }
     
     /// Set the top of the view with respect to any `attribute` of a second `relativeView`
-    public func addTopConstraint(
+    public func setConstraintWithConstant(
+        selfAttribute: NSLayoutConstraint.Attribute,
         relativeView: UIView,
-        attribute: NSLayoutConstraint.Attribute,
+        relativeAttribute: NSLayoutConstraint.Attribute,
         constant: CGFloat
+        ) -> Self {
+        let adjustedView = self
+        adjustedView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint(item: adjustedView,
+                           attribute: selfAttribute,
+                           relatedBy: .equal,
+                           toItem: relativeView,
+                           attribute: relativeAttribute,
+                           multiplier: 1.0,
+                           constant: constant).isActive = true
+        return adjustedView
+    }
+    
+    /// Set the top of the view with respect to any `attribute` of a second `relativeView`
+    public func setEqualConstraint(
+        selfAttribute: NSLayoutConstraint.Attribute,
+        relativeView: UIView,
+        relativeAttribute: NSLayoutConstraint.Attribute
     ) -> Self {
         let adjustedView = self
         adjustedView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint(item: adjustedView,
-                           attribute: .top,
+                           attribute: selfAttribute,
                            relatedBy: .equal,
                            toItem: relativeView,
-                           attribute: attribute,
+                           attribute: relativeAttribute,
                            multiplier: 1.0,
-                           constant: constant).isActive = true
+                           constant: 0).isActive = true
         return adjustedView
     }
-    
-    /// Set the right of the view with respect to any `attribute` of a second `relativeView`
-    public func addRightConstraint(
-        relativeView: UIView,
-        attribute: NSLayoutConstraint.Attribute,
-        constant: CGFloat
-        ) -> Self {
-        let adjustedView = self
-        adjustedView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint(item: adjustedView,
-                           attribute: .right,
-                           relatedBy: .equal,
-                           toItem: relativeView,
-                           attribute: attribute,
-                           multiplier: 1.0,
-                           constant: constant).isActive = true
-        return adjustedView
-    }
-    
-    /// Set the left of the view with respect to any `attribute` of a second `relativeView`
-    public func addLeftConstraint(
-        relativeView: UIView,
-        attribute: NSLayoutConstraint.Attribute,
-        constant: CGFloat
-        ) -> Self {
-        let adjustedView = self
-        adjustedView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint(item: adjustedView,
-                           attribute: .left,
-                           relatedBy: .equal,
-                           toItem: relativeView,
-                           attribute: attribute,
-                           multiplier: 1.0,
-                           constant: constant).isActive = true
-        return adjustedView
-    }
-    
-    /// Set the bottom of the view with respect to any `attribute` of a second `relativeView`
-    public func addBottomConstraint(
-        relativeView: UIView,
-        attribute: NSLayoutConstraint.Attribute,
-        constant: CGFloat
-        ) -> Self {
-        let adjustedView = self
-        adjustedView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint(item: adjustedView,
-                           attribute: .bottom,
-                           relatedBy: .equal,
-                           toItem: relativeView,
-                           attribute: attribute,
-                           multiplier: 1.0,
-                           constant: constant).isActive = true
-        return adjustedView
-    }
-    
 }

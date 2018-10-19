@@ -64,37 +64,47 @@ class RegisterView : AuthenticationView, UITextFieldDelegate {
 
         signInLabel.text = "Already have an account? Sign In"
 
-        usernameTextField = usernameTextField.addTopConstraint(
-            relativeView: pinitLogo,
-            attribute: .bottom,
-            constant: spacing)
+        usernameTextField = usernameTextField
+            .setConstraintWithConstant(
+                selfAttribute: .top,
+                relativeView: pinitLogo,
+                relativeAttribute: .bottom,
+                constant: spacing)
 
-        passwordTextFiled = passwordTextFiled.addTopConstraint(
-            relativeView: usernameTextField,
-            attribute: .bottom,
-            constant: spacing)
+        passwordTextFiled = passwordTextFiled
+            .setConstraintWithConstant(
+                selfAttribute: .top,
+                relativeView: usernameTextField,
+                relativeAttribute: .bottom,
+                constant: spacing)
 
-        confrimPasswordTextFiled = confrimPasswordTextFiled.addTopConstraint(
-            relativeView: passwordTextFiled,
-            attribute: .bottom,
-            constant: spacing)
+        confrimPasswordTextFiled = confrimPasswordTextFiled
+            .setConstraintWithConstant(
+                selfAttribute: .top,
+                relativeView: passwordTextFiled,
+                relativeAttribute: .bottom,
+                constant: spacing)
         
-        emailTextField = emailTextField.addTopConstraint(
-            relativeView: confrimPasswordTextFiled,
-            attribute: .bottom,
-            constant: spacing)
+        emailTextField = emailTextField
+            .setConstraintWithConstant(
+                selfAttribute: .top,
+                relativeView: confrimPasswordTextFiled,
+                relativeAttribute: .bottom,
+                constant: spacing)
         
         registerButton = registerButton
-            .addTopConstraint(
+            .setConstraintWithConstant(
+                selfAttribute: .top,
                 relativeView: emailTextField,
-                attribute: .bottom,
+                relativeAttribute: .bottom,
                 constant: spacing)
         
         signInLabel = signInLabel
-            .addTopConstraint(
+            .setConstraintWithConstant(
+                selfAttribute: .top,
                 relativeView: registerButton,
-                attribute: .bottom,
-                constant: spacing)
+                relativeAttribute: .bottom,
+                constant: spacing)        
     }
     
     required init?(coder aDecoder: NSCoder) {
