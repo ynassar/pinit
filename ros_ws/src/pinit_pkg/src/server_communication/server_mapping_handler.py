@@ -7,6 +7,7 @@ from ros_ws.src.pinit_pkg.src.robot_motion.motion_controller import MotionContro
 
 import roslaunch
 import rospy
+import rospkg
 
 
 
@@ -15,13 +16,15 @@ class ServerMappingHandler():
     class RobotState(Enum):
         IDLE = 1
         MAPPING = 2
+        MOVING_AND_MAPPING = 3
 
 
     def __init__(self):
 
         self.motion_controller = MotionController()
         self.current_state = self.RobotState.IDLE
-        self.launch_file_path = ""
+        self.launch_file_path = rospkg.RosPack().get_path('pinit_pkg') + \
+            "/launch/gmapping_launch.launch"
         self.launch = None
         self.transitions = None
 
@@ -33,10 +36,14 @@ class ServerMappingHandler():
         self.transitions = {
             self.RobotState.MAPPING :
             [self.RobotState.IDLE,
-             self.RobotState.MAPPING],
+             self.RobotState.MOVING_AND_MAPPING],
             self.RobotState.IDLE:
             [self.RobotState.MAPPING,
-             self.RobotState.IDLE]
+             self.RobotState.MOVING_AND_MAPPING,
+             self.RobotState.IDLE],
+            self.RobotState.MOVING_AND_MAPPING :
+            [self.RobotState.IDLE,
+             self.RobotState.MOVING_AND_MAPPING]
         }
 
 
@@ -89,5 +96,5 @@ class ServerMappingHandler():
 
     def move(self, direction):
         """moves the robot by publishing to /cmd_vel"""
-        self.goto_state(self.RobotState.MAPPING)
+        self.goto_state(self.RobotState.MOVING_AND_MAPPING)
         self.motion_controller.move(direction)
