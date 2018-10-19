@@ -1,8 +1,13 @@
 #!/usr/bin/env python
 
-import rospy
-import numpy as np
+from concurrent import futures
+from queue import Queue
 from enum import Enum
+import time
+
+import numpy as np
+
+import rospy
 from geometry_msgs.msg import Twist
 from geometry_msgs.msg import Vector3
 
@@ -19,10 +24,12 @@ class MotionController():
         self.vel_angular_max = 2.25
         self.vel_angular_min = -2.25
         self.acceleration_steps = 1000
+        self.vel_queue = Queue()
         self.vel_pub = rospy.Publisher(self.topic_name,
                                        Twist,
                                        queue_size=10)
 
+        self.init_publisher_loop()
 
     class RobotDirection(Enum):
         FORWARD = 0
@@ -36,10 +43,27 @@ class MotionController():
         rospy.init_node(self.node_name, anonymous=True)
 
 
-    def to_range(self, start, end, n):
-        """returns a fixed list with n elements between start and end"""
+    def init_publisher_loop(self):
+       executor = futures.ThreadPoolExecutor(max_workers=1)
+       executor.submit(self.publisher_loop)
 
-        return np.linspace(start, end, n)
+
+    def publisher_loop(self):
+        while True:
+            time.sleep(0.1)
+            try:
+                vel = self.vel_queue.get_nowait()
+                self.vel_linear = vel[0]
+                self.vel_angular = vel[1]
+                self.publish()
+            except Queue.Empty:
+                self.publish()
+
+
+    def to_range(self, start, end):
+        """returns a fixed list with length=self.acceleration_steps elements between start and end"""
+
+        return np.linspace(start, end, self.acceleration_steps)
 
 
     def publish(self):
@@ -54,29 +78,30 @@ class MotionController():
         vel_linear, vel_angular = self.get_speeds(direction)
         n = len(vel_linear)
         for i in range(n):
-            self.vel_linear = vel_linear[i]
-            self.vel_angular = vel_angular[i]
-            self.publish()
+            vel_linear = vel_linear[i]
+            vel_angular = vel_angular[i]
+            vel = (vel_linear, vel_angular)
+            self.vel_queue.put(vel)
 
 
     def get_speeds(self, direction):
         linear = []
         angular = []
         if(direction == self.RobotDirection.FORWARD):
-            linear = self.to_range(0, self.vel_linear_max, self.acceleration_steps)
-            angular = self.to_range(0, 0, self.acceleration_steps)
+            linear = self.to_range(0, self.vel_linear_max)
+            angular = self.to_range(self.vel_angular, 0)
         elif(direction == self.RobotDirection.BACKWARD):
-            linear = self.to_range(0, self.vel_linear_min, self.acceleration_steps)
-            angular = self.to_range(0, 0, self.acceleration_steps)
+            linear = self.to_range(0, self.vel_linear_min)
+            angular = self.to_range(self.vel_angular, 0)
         elif(direction == self.RobotDirection.RIGHT):
-            linear = self.to_range(0, 0, self.acceleration_steps)
-            angular = self.to_range(0, self.vel_angular_max, self.acceleration_steps)
+            linear = self.to_range(self.vel_linear, 0)
+            angular = self.to_range(0, self.vel_angular_max)
         elif(direction == self.RobotDirection.LEFT):
-            linear = self.to_range(0, 0, self.acceleration_steps)
-            angular = self.to_range(0, self.vel_angular_min, self.acceleration_steps)
+            linear = self.to_range(self.vel_linear, 0)
+            angular = self.to_range(0, self.vel_angular_min)
         elif(direction == self.RobotDirection.STOP):
-            linear = self.to_range(self.vel_linear, 0, self.acceleration_steps)
-            angular = self.to_range(self.vel_angular, 0, self.acceleration_steps)
+            linear = self.to_range(self.vel_linear, 0)
+            angular = self.to_range(self.vel_angular, 0)
         else:
             raise ValueError("Unknown motion direction. Check \
                               MotionController.RobotDirection")
