@@ -2,28 +2,28 @@ import UIKit
 
 extension UIView {
     
-    /// Center the view horizontally in reference to its superview
-    public func addCenterXConstraint() -> Self {
+    /// Center the view horizontally in reference to another view superview
+    public func addCenterXConstraint(relativeView: UIView) -> Self {
         let adjustedView = self
         self.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint(item: adjustedView,
                            attribute: .centerX,
                            relatedBy: .equal,
-                           toItem: adjustedView.superview,
+                           toItem: relativeView,
                            attribute: .centerX,
                            multiplier: 1.0,
                            constant: 0).isActive = true
         return adjustedView
     }
     
-    /// Center the view vertically in reference to its superview
-    public func addCenterYConstraint() -> Self {
+    /// Center the view vertically in reference to another view
+    public func addCenterYConstraint(relativeView: UIView) -> Self {
         let adjustedView = self
         self.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint(item: adjustedView,
                            attribute: .centerY,
                            relatedBy: .equal,
-                           toItem: adjustedView.superview,
+                           toItem: relativeView,
                            attribute: .centerY,
                            multiplier: 1.0,
                            constant: 0).isActive = true
