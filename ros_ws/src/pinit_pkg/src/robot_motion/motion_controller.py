@@ -31,7 +31,7 @@ class MotionController():
         self.direction_lock = None
         self.vel_linear_range = (-0.5, 0.5)
         self.vel_angular_range = (-2.25, 2.25)
-        self.acceleration_steps = 200
+        self.acceleration_steps = 100
         self.vel_linear_increment = (abs(self.vel_linear_range[0] -
                                         self.vel_linear_range[1]) /
                                      self.acceleration_steps)
@@ -87,11 +87,11 @@ class MotionController():
                 else:
                     linear = linear
                 if angular > 0:
-                    angular = linear - self.vel_angular_increment
-                    angular = max(linear, 0)
+                    angular = angular - self.vel_angular_increment
+                    angular = max(angular, 0)
                 elif angular < 0:
-                    angular = linear + self.vel_angular_increment
-                    angular = min(linear, 0)
+                    angular = angular + self.vel_angular_increment
+                    angular = min(angular, 0)
                 else:
                     angular = angular
 
