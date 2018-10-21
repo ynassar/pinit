@@ -9,7 +9,7 @@ message RawMap{
     float resolution = 1;
     uint32 height = 2;
     uint32 width = 3;
-    repeated uint32 data = 4;
+    repeated int32 data = 4;
 }
 
 message RosToServerCommunication{

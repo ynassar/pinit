@@ -6,7 +6,7 @@ from absl import flags
 from proto.ros import ros_pb2_grpc
 from proto.ros import ros_pb2
 
-flags.DEFINE_integer("port", 50051, "The port to connect to on localhost.")
+flags.DEFINE_integer("port", 50052, "The port to connect to on localhost.")
 FLAGS = flags.FLAGS
 
 def main(argv):
