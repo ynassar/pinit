@@ -14,7 +14,7 @@ python3 -m grpc_tools.protoc -I proto/ros \
 # Run 2to3 to fix auto-generated imports.
 2to3 ./proto -w -n > /dev/null --fix=import
 
-if [[ -x protoc-gen-swift ]] && [[ -x protoc-gen-swiftgrpc ]]
+if [[ -x "$(command -v protoc-gen-swift)" ]] && [[ -x "$(command -v protoc-gen-swiftgrpc)" ]]
 then
     echo "Swift protobuf compiler detected. Generating swift code."
     protoc --swift_out=ios/genfiles/account_management --swiftgrpc_out=ios/genfiles/account_management --proto_path=proto/account_management proto/account_management/*.proto
