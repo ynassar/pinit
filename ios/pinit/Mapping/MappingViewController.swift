@@ -13,9 +13,7 @@ class MappingViewController: TabBarNavigationController,  MappingServerDelegate 
     /// The server which sends all the requests related to mapping.
     var mappingServer = MappingServer()
     
-    /// The `MappingRequest` being sent to the `MappingServer` which could be
-    /// reused by all the functions called by the different arrow controls.
-    var mappingDirectionRequest = MappingRequest()
+    var saveMappingButton: UIButton!
     
     /// The function is responsible for adding the targets to the different control buttons,
     /// one for button hold and the other for release. Also adding the different views in the
@@ -29,16 +27,29 @@ class MappingViewController: TabBarNavigationController,  MappingServerDelegate 
         self.view.addSubview(mappingView)
         
         mappingServer.delegate = self
+        mappingControlsView.disableControls()
+        mappingView.disableMapView()
         
-        mappingDirectionRequest.robotName = "nemo"
-        var serverToRosMappingRequest = ServerToRosMappingRequest()
-        serverToRosMappingRequest.requestType = .direction
-        mappingDirectionRequest.mappingRequest = serverToRosMappingRequest
+        let startMappingButton = UIButton(frame: CGRect.zero)
+        startMappingButton.setImage(UIImage(named: "startMapping"), for: .normal)
+        startMappingButton.addTarget(self, action: #selector(self.startMappingClick), for: .touchDown)
+
+        saveMappingButton = UIButton(frame: CGRect.zero)
+        saveMappingButton.setImage(UIImage(named: "saveMapping"), for: .normal)
+        saveMappingButton.addTarget(self, action: #selector(self.saveMappingClick), for: .touchDown)
+        saveMappingButton.disableButton()
+        
+
+        self.navbar.topItem?.rightBarButtonItems = [
+            UIBarButtonItem(customView: startMappingButton),
+            UIBarButtonItem(customView: saveMappingButton)
+        ]
+
         
         let spacing = self.view.frame.size.height * 0.02
 
         mappingView = self.mappingView
-            .addCenterXConstraint()
+            .addCenterXConstraint(relativeView: self.view)
             .addWidthConstraint(relativeView: self.view, multipler: 1.0)
             .setConstraintWithConstant(selfAttribute: .top,
                                        relativeView: self.navbar,
@@ -50,7 +61,7 @@ class MappingViewController: TabBarNavigationController,  MappingServerDelegate 
                                        constant: -spacing)
         
         mappingControlsView = self.mappingControlsView
-            .addCenterXConstraint()
+            .addCenterXConstraint(relativeView: self.view)
             .addWidthConstraint(relativeView: self.view, multipler: 0.6)
             .addHeightConstraint(relativeView: self.view, multipler: 0.25)
             .setConstraintWithConstant(selfAttribute: .bottom,
@@ -81,51 +92,42 @@ class MappingViewController: TabBarNavigationController,  MappingServerDelegate 
         
         mappingControlsView.moveBackwardButton.addTarget(
             self, action:  #selector(self.stopMovemenetClick), for: .touchUpInside)
-        
-        mappingView.startMappingButton.addTarget(
-            self, action:  #selector(self.startMappingClick), for: .touchDown)
+
     }
     
     /// Function that sends a request to the `MapServer` to move the robot forward.
     @objc private func moveForwardButtonClick() {
-        mappingDirectionRequest.mappingRequest.direction = .forward
-        mappingServer.sendMovementRequest(mappingRequest: mappingDirectionRequest)
+        mappingServer.moveRobotForward()
     }
     
     /// Function that sends a request to the `MapServer` to move the robot right.
     @objc private func moveRightButtonClick() {
-        mappingDirectionRequest.mappingRequest.direction = .right
-        mappingServer.sendMovementRequest(mappingRequest: mappingDirectionRequest)
+        mappingServer.moveRobotRight()
     }
     
     /// Function that sends a request to the `MapServer` to move the robot left.
     @objc private func moveLeftButtonClick() {
-        mappingDirectionRequest.mappingRequest.direction = .left
-        mappingServer.sendMovementRequest(mappingRequest: mappingDirectionRequest)
+        mappingServer.moveRobotLeft()
     }
     
     /// Function that sends a request to the `MapServer` to move the robot backwards.
     @objc private func moveBackwardButtonClick() {
-        mappingDirectionRequest.mappingRequest.direction = .backward
-        mappingServer.sendMovementRequest(mappingRequest: mappingDirectionRequest)
+        mappingServer.moveRobotBackward()
     }
     
     /// Function that sends a request to the `MapServer` to stop the robot.
     @objc private func stopMovemenetClick() {
-        mappingDirectionRequest.mappingRequest.direction = .stop
-        mappingServer.sendMovementRequest(mappingRequest: mappingDirectionRequest)
+        mappingServer.moveRobotStop()
     }
     
     /// Function that sends a request to the `MapServer` start mapping and eventually
     /// enabling the controls and start creating the map.
     @objc private func startMappingClick() {
-        print("startMapping")
-        var startMappingRequest = MappingRequest()
-        startMappingRequest.robotName = "nemo"
-        var serverToRosMappingRequest = ServerToRosMappingRequest()
-        serverToRosMappingRequest.requestType = .startMapping
-        startMappingRequest.mappingRequest = serverToRosMappingRequest
-        mappingServer.startMappingRequest(mappingRequest: startMappingRequest)
+        mappingServer.startMappingRequest()
+    }
+    
+    @objc public func saveMappingClick() {
+        mappingServer.saveMappingRequest()
     }
     
     /// Function responsible for handling any error that comes from the `MapServer` after
@@ -138,6 +140,20 @@ class MappingViewController: TabBarNavigationController,  MappingServerDelegate 
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
         
+    }
+    
+    func mapSaveConfirmation() {
+        let alert = UIAlertController(
+            title: "Map Saved",
+            message: nil,
+            preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func mapStartConfirmation() {
+        mappingControlsView.enableControls()
+        saveMappingButton.enableButton()
     }
     
     override func viewDidAppear(_ animated: Bool) {

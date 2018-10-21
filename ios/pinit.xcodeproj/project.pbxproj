@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		372022702167AF5B00602B53 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3720226F2167AF5B00602B53 /* CustomTextField.swift */; };
+		3723BC27217CBB2A00B378F9 /* account_management.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3723BC1F217CBB2A00B378F9 /* account_management.grpc.swift */; };
+		3723BC28217CBB2A00B378F9 /* account_management.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3723BC20217CBB2A00B378F9 /* account_management.pb.swift */; };
+		3723BC29217CBB2A00B378F9 /* ros.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3723BC22217CBB2A00B378F9 /* ros.grpc.swift */; };
+		3723BC2A217CBB2A00B378F9 /* ros.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3723BC23217CBB2A00B378F9 /* ros.pb.swift */; };
+		3723BC2B217CBB2A00B378F9 /* login.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3723BC25217CBB2A00B378F9 /* login.grpc.swift */; };
+		3723BC2C217CBB2A00B378F9 /* login.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3723BC26217CBB2A00B378F9 /* login.pb.swift */; };
 		37352731217A217700602046 /* MappingControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3735272E217A217700602046 /* MappingControlsView.swift */; };
 		37352732217A217700602046 /* MappingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3735272F217A217700602046 /* MappingView.swift */; };
 		37352733217A217700602046 /* MappingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37352730217A217700602046 /* MappingViewController.swift */; };
@@ -15,12 +21,6 @@
 		37352738217A217F00602046 /* PinitOwnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37352736217A217F00602046 /* PinitOwnerViewController.swift */; };
 		3735273B217A218700602046 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3735273A217A218700602046 /* SettingsViewController.swift */; };
 		3735273D217A303100602046 /* MappingServerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3735273C217A303100602046 /* MappingServerDelegate.swift */; };
-		37352748217A3EE100602046 /* account_management.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37352740217A3EE100602046 /* account_management.grpc.swift */; };
-		37352749217A3EE100602046 /* account_management.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37352741217A3EE100602046 /* account_management.pb.swift */; };
-		3735274A217A3EE100602046 /* ros.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37352743217A3EE100602046 /* ros.grpc.swift */; };
-		3735274B217A3EE100602046 /* ros.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37352744217A3EE100602046 /* ros.pb.swift */; };
-		3735274C217A3EE100602046 /* login.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37352746217A3EE100602046 /* login.grpc.swift */; };
-		3735274D217A3EE100602046 /* login.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37352747217A3EE100602046 /* login.pb.swift */; };
 		3735274F217B498500602046 /* TabBarNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3735274E217B498500602046 /* TabBarNavigationController.swift */; };
 		373639CC217248A300EBD383 /* BoringSSL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 373C1282216F9ED4003D7CBB /* BoringSSL.framework */; };
 		373639CD217248A300EBD383 /* BoringSSL.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 373C1282216F9ED4003D7CBB /* BoringSSL.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -132,6 +132,12 @@
 
 /* Begin PBXFileReference section */
 		3720226F2167AF5B00602B53 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		3723BC1F217CBB2A00B378F9 /* account_management.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = account_management.grpc.swift; sourceTree = "<group>"; };
+		3723BC20217CBB2A00B378F9 /* account_management.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = account_management.pb.swift; sourceTree = "<group>"; };
+		3723BC22217CBB2A00B378F9 /* ros.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ros.grpc.swift; sourceTree = "<group>"; };
+		3723BC23217CBB2A00B378F9 /* ros.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ros.pb.swift; sourceTree = "<group>"; };
+		3723BC25217CBB2A00B378F9 /* login.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = login.grpc.swift; sourceTree = "<group>"; };
+		3723BC26217CBB2A00B378F9 /* login.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = login.pb.swift; sourceTree = "<group>"; };
 		3735272E217A217700602046 /* MappingControlsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MappingControlsView.swift; sourceTree = "<group>"; };
 		3735272F217A217700602046 /* MappingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MappingView.swift; sourceTree = "<group>"; };
 		37352730217A217700602046 /* MappingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MappingViewController.swift; sourceTree = "<group>"; };
@@ -139,12 +145,6 @@
 		37352736217A217F00602046 /* PinitOwnerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinitOwnerViewController.swift; sourceTree = "<group>"; };
 		3735273A217A218700602046 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		3735273C217A303100602046 /* MappingServerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MappingServerDelegate.swift; sourceTree = "<group>"; };
-		37352740217A3EE100602046 /* account_management.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = account_management.grpc.swift; sourceTree = "<group>"; };
-		37352741217A3EE100602046 /* account_management.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = account_management.pb.swift; sourceTree = "<group>"; };
-		37352743217A3EE100602046 /* ros.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ros.grpc.swift; sourceTree = "<group>"; };
-		37352744217A3EE100602046 /* ros.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ros.pb.swift; sourceTree = "<group>"; };
-		37352746217A3EE100602046 /* login.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = login.grpc.swift; sourceTree = "<group>"; };
-		37352747217A3EE100602046 /* login.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = login.pb.swift; sourceTree = "<group>"; };
 		3735274E217B498500602046 /* TabBarNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarNavigationController.swift; sourceTree = "<group>"; };
 		37363A0A21761C3300EBD383 /* UIButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
 		37363A0E21761F1100EBD383 /* RegisterServerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterServerDelegate.swift; sourceTree = "<group>"; };
@@ -190,6 +190,43 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3723BC1D217CBB2A00B378F9 /* genfiles */ = {
+			isa = PBXGroup;
+			children = (
+				3723BC1E217CBB2A00B378F9 /* account_management */,
+				3723BC21217CBB2A00B378F9 /* ros */,
+				3723BC24217CBB2A00B378F9 /* login */,
+			);
+			path = genfiles;
+			sourceTree = "<group>";
+		};
+		3723BC1E217CBB2A00B378F9 /* account_management */ = {
+			isa = PBXGroup;
+			children = (
+				3723BC1F217CBB2A00B378F9 /* account_management.grpc.swift */,
+				3723BC20217CBB2A00B378F9 /* account_management.pb.swift */,
+			);
+			path = account_management;
+			sourceTree = "<group>";
+		};
+		3723BC21217CBB2A00B378F9 /* ros */ = {
+			isa = PBXGroup;
+			children = (
+				3723BC22217CBB2A00B378F9 /* ros.grpc.swift */,
+				3723BC23217CBB2A00B378F9 /* ros.pb.swift */,
+			);
+			path = ros;
+			sourceTree = "<group>";
+		};
+		3723BC24217CBB2A00B378F9 /* login */ = {
+			isa = PBXGroup;
+			children = (
+				3723BC25217CBB2A00B378F9 /* login.grpc.swift */,
+				3723BC26217CBB2A00B378F9 /* login.pb.swift */,
+			);
+			path = login;
+			sourceTree = "<group>";
+		};
 		3735272D217A217700602046 /* Mapping */ = {
 			isa = PBXGroup;
 			children = (
@@ -216,43 +253,6 @@
 				3735273A217A218700602046 /* SettingsViewController.swift */,
 			);
 			path = Settings;
-			sourceTree = "<group>";
-		};
-		3735273E217A3EE100602046 /* genfiles */ = {
-			isa = PBXGroup;
-			children = (
-				3735273F217A3EE100602046 /* account_management */,
-				37352742217A3EE100602046 /* ros */,
-				37352745217A3EE100602046 /* login */,
-			);
-			path = genfiles;
-			sourceTree = "<group>";
-		};
-		3735273F217A3EE100602046 /* account_management */ = {
-			isa = PBXGroup;
-			children = (
-				37352740217A3EE100602046 /* account_management.grpc.swift */,
-				37352741217A3EE100602046 /* account_management.pb.swift */,
-			);
-			path = account_management;
-			sourceTree = "<group>";
-		};
-		37352742217A3EE100602046 /* ros */ = {
-			isa = PBXGroup;
-			children = (
-				37352743217A3EE100602046 /* ros.grpc.swift */,
-				37352744217A3EE100602046 /* ros.pb.swift */,
-			);
-			path = ros;
-			sourceTree = "<group>";
-		};
-		37352745217A3EE100602046 /* login */ = {
-			isa = PBXGroup;
-			children = (
-				37352746217A3EE100602046 /* login.grpc.swift */,
-				37352747217A3EE100602046 /* login.pb.swift */,
-			);
-			path = login;
 			sourceTree = "<group>";
 		};
 		37363A0C21761F1100EBD383 /* Authentication */ = {
@@ -320,7 +320,7 @@
 		37EEA7DA215B962400BF3839 = {
 			isa = PBXGroup;
 			children = (
-				3735273E217A3EE100602046 /* genfiles */,
+				3723BC1D217CBB2A00B378F9 /* genfiles */,
 				373C127A216F9ED3003D7CBB /* SwiftGRPC-Carthage.xcodeproj */,
 				37EEA7E5215B962500BF3839 /* pinit */,
 				37EEA7FA215B962800BF3839 /* pinitTests */,
@@ -504,28 +504,28 @@
 			buildActionMask = 2147483647;
 			files = (
 				37363A1721761F1100EBD383 /* RegisterView.swift in Sources */,
-				3735274B217A3EE100602046 /* ros.pb.swift in Sources */,
-				37352748217A3EE100602046 /* account_management.grpc.swift in Sources */,
 				37352737217A217F00602046 /* MappingServer.swift in Sources */,
 				3775A06B21650B5D00ABEF54 /* Constraints.swift in Sources */,
+				3723BC2A217CBB2A00B378F9 /* ros.pb.swift in Sources */,
 				37352732217A217700602046 /* MappingView.swift in Sources */,
 				37363A1E21761F2200EBD383 /* LoginServerDelegate.swift in Sources */,
 				37363A1B21761F1100EBD383 /* LoginView.swift in Sources */,
 				37363A1821761F1100EBD383 /* RegisterServer.swift in Sources */,
-				37352749217A3EE100602046 /* account_management.pb.swift in Sources */,
+				3723BC28217CBB2A00B378F9 /* account_management.pb.swift in Sources */,
 				37352733217A217700602046 /* MappingViewController.swift in Sources */,
 				37363A1621761F1100EBD383 /* RegisterServerDelegate.swift in Sources */,
+				3723BC29217CBB2A00B378F9 /* ros.grpc.swift in Sources */,
 				37352731217A217700602046 /* MappingControlsView.swift in Sources */,
 				372022702167AF5B00602B53 /* CustomTextField.swift in Sources */,
 				3735273D217A303100602046 /* MappingServerDelegate.swift in Sources */,
 				37363A2021761F3400EBD383 /* LoginServer.swift in Sources */,
-				3735274A217A3EE100602046 /* ros.grpc.swift in Sources */,
+				3723BC2B217CBB2A00B378F9 /* login.grpc.swift in Sources */,
+				3723BC27217CBB2A00B378F9 /* account_management.grpc.swift in Sources */,
 				37EEA7E7215B962500BF3839 /* AppDelegate.swift in Sources */,
 				37352738217A217F00602046 /* PinitOwnerViewController.swift in Sources */,
 				37363A0B21761C3300EBD383 /* UIButtonExtension.swift in Sources */,
-				3735274D217A3EE100602046 /* login.pb.swift in Sources */,
-				3735274C217A3EE100602046 /* login.grpc.swift in Sources */,
 				37363A1A21761F1100EBD383 /* AuthenticationView.swift in Sources */,
+				3723BC2C217CBB2A00B378F9 /* login.pb.swift in Sources */,
 				37363A1C21761F1100EBD383 /* LoginViewController.swift in Sources */,
 				37363A1921761F1100EBD383 /* RegisterViewController.swift in Sources */,
 				3735273B217A218700602046 /* SettingsViewController.swift in Sources */,

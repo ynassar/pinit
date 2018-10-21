@@ -70,7 +70,7 @@ class LoginView : AuthenticationView {
                 constant: spacing)
         
         signUpLabel = signUpLabel
-            .addCenterXConstraint()
+            .addCenterXConstraint(relativeView: self)
             .addWidthConstraint(relativeView: self, multipler: 0.6)
             .setConstraintWithConstant(
                 selfAttribute: .top,

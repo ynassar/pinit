@@ -38,7 +38,7 @@ class MappingControlsView: UIView {
         moveBackwardButton.setImage(UIImage(named: "moveBackwardIcon"), for: .normal)
 
         moveForwardButton = moveForwardButton
-            .addCenterXConstraint()
+            .addCenterXConstraint(relativeView: self)
             .addWidthConstraint(relativeView: self, multipler: 0.25)
             .addHeightConstraint(relativeView: self, multipler: 0.35)
             .setConstraintWithConstant(selfAttribute: .top,
@@ -47,7 +47,7 @@ class MappingControlsView: UIView {
                                        constant: 0)
         
         moveRightButton = moveRightButton
-            .addCenterYConstraint()
+            .addCenterYConstraint(relativeView: self)
             .setEqualConstraint(selfAttribute: .height,
                                 relativeView: moveForwardButton,
                                 relativeAttribute: .width)
@@ -60,7 +60,7 @@ class MappingControlsView: UIView {
                                        constant: 0)
         
         moveLeftButton = moveLeftButton
-            .addCenterYConstraint()
+            .addCenterYConstraint(relativeView: self)
             .setEqualConstraint(selfAttribute: .height,
                                 relativeView: moveForwardButton,
                                 relativeAttribute: .width)
@@ -73,7 +73,7 @@ class MappingControlsView: UIView {
                                        constant: 0)
         
         moveBackwardButton = moveBackwardButton
-            .addCenterXConstraint()
+            .addCenterXConstraint(relativeView: self)
             .addWidthConstraint(relativeView: self, multipler: 0.25)
             .addHeightConstraint(relativeView: self, multipler: 0.35)
             .setConstraintWithConstant(selfAttribute: .bottom,
@@ -81,6 +81,20 @@ class MappingControlsView: UIView {
                                        relativeAttribute: .bottom,
                                        constant: 0)
         
+    }
+    
+    public func disableControls() {
+        moveForwardButton.disableButton()
+        moveRightButton.disableButton()
+        moveLeftButton.disableButton()
+        moveBackwardButton.disableButton()
+    }
+    
+    public func enableControls() {
+        moveForwardButton.enableButton()
+        moveRightButton.enableButton()
+        moveLeftButton.enableButton()
+        moveBackwardButton.enableButton()
     }
     
     required init?(coder aDecoder: NSCoder) {
