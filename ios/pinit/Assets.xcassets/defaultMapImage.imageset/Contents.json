@@ -2,12 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "pinit_logo.png",
+      "filename" : "defaultMapImage.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "pinit_logo-1.png",
+      "filename" : "defaultMapImage-1.png",
       "scale" : "2x"
     },
     {
