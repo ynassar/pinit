@@ -24,8 +24,7 @@ struct PinitConstants {
     
     static public let robotServerAddress = "localhost:50052"
     
-    static public let tempRobotServerAddress = "10.40.54.241:50052"
-
-
+    static public let tempRobotServerAddress = "10.40.37.149:50052"
     
+    static public let navigationBarHeight: CGFloat = 44.0
 }
