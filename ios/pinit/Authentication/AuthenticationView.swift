@@ -11,7 +11,7 @@ class AuthenticationView : UIView {
         self.addSubview(pinitLogo)
     
         pinitLogo = pinitLogo
-            .addCenterXConstraint()
+            .addCenterXConstraint(relativeView: self)
             .addHeightConstraint(relativeView: self, multipler: 0.15)
             .keepWidthAspectRatio()
             .setConstraintWithConstant(
@@ -24,7 +24,7 @@ class AuthenticationView : UIView {
     
     internal func customizeTextfields(textfield: CustomTextField) -> CustomTextField {
         let adjustedTextfield = textfield
-            .addCenterXConstraint()
+            .addCenterXConstraint(relativeView: self)
             .addWidthConstraint(relativeView: self, multipler: 1)
             .addHeightConstraint(relativeView: self, multipler: 0.1)
         adjustedTextfield.layer.cornerRadius = PinitConstants.cornerRadius
@@ -38,7 +38,7 @@ class AuthenticationView : UIView {
     
     internal func customizeButton(button: UIButton) -> UIButton {
         let adjustedButton = button
-            .addCenterXConstraint()
+            .addCenterXConstraint(relativeView: self)
             .addWidthConstraint(relativeView: self, multipler: 1)
             .addHeightConstraint(relativeView: self, multipler: 0.1)
         adjustedButton.backgroundColor = PinitColors.blue
@@ -50,7 +50,7 @@ class AuthenticationView : UIView {
     
     internal func customizeLinkLabel(label: UILabel) -> UILabel {
         let adjustedLabel = label
-            .addCenterXConstraint()
+            .addCenterXConstraint(relativeView: self)
             .addWidthConstraint(relativeView: self, multipler: 0.6)
         label.textColor = PinitColors.linkBlue
         label.textAlignment = .center
