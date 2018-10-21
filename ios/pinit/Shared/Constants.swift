@@ -20,6 +20,12 @@ struct PinitConstants {
     
     static public let authernticationFontSize: CGFloat = 12.0
     
-    static public let serverAddress = "localhost:50051"
+    static public let authenticationServerAddress = "localhost:50051"
+    
+    static public let robotServerAddress = "localhost:50052"
+    
+    static public let tempRobotServerAddress = "10.40.54.241:50052"
+
+
     
 }
