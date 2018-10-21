@@ -32,7 +32,7 @@ class RegisterViewController : UIViewController, RegisterServerDelegate, UITextF
         let topHeight = self.view.frame.size.height / 4
         
         registerView = self.registerView
-            .addCenterXConstraint()
+            .addCenterXConstraint(relativeView: self.view)
             .addWidthConstraint(relativeView: self.view, multipler: 0.9)
             .addHeightConstraint(relativeView: self.view, multipler: 0.4)
             .setConstraintWithConstant(
