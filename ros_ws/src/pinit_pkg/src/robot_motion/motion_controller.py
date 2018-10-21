@@ -1,11 +1,9 @@
 #!/usr/bin/env python
 
 from concurrent import futures
-from Queue import Queue
 from enum import Enum
 import threading
 import time
-import multiprocessing
 
 import numpy as np
 
@@ -56,7 +54,7 @@ class MotionController():
        self.thread_executor = threading.Thread(target=self.publisher_loop)
        self.thread_executor.start()
        self.direction_lock = threading.Lock()
-       print("publisher loop init")
+       rospy.loginfo("velocity publisher loop init")
 
 
     def publisher_loop(self):
@@ -70,19 +68,15 @@ class MotionController():
             if(direction == self.RobotDirection.FORWARD):
                 linear = linear + self.vel_linear_increment
                 linear = min(linear, self.vel_linear_range[1])
-                print "direction = forward"
             elif(direction == self.RobotDirection.BACKWARD):
                 linear = linear - self.vel_linear_increment
                 linear = max(linear, self.vel_linear_range[0])
-                print "direction = backward"
             elif(direction == self.RobotDirection.LEFT):
                 angular = angular + self.vel_angular_increment
                 angular = min(angular, self.vel_angular_range[1])
-                print "direction = right"
             elif(direction == self.RobotDirection.RIGHT):
                 angular = angular - self.vel_angular_increment
                 angular = max(angular, self.vel_angular_range[0])
-                print "direction = left"
             elif(direction == self.RobotDirection.STOP):
                 if linear > 0:
                     linear = linear - self.vel_linear_increment
@@ -102,19 +96,12 @@ class MotionController():
                     angular = angular
 
             else:
-                print("Unknown motion direction. Check \
+                rospy.logwarn("Unknown motion direction. Check \
                                  MotionController.RobotDirection")
 
             self.vel_linear = linear
             self.vel_angular = angular
             self.publish()
-        print "wtf"
-
-
-    def to_range(self, start, end):
-        """returns a fixed list with length=self.acceleration_steps elements between start and end"""
-
-        return np.linspace(start, end, self.acceleration_steps)
 
 
     def publish(self):
@@ -129,6 +116,7 @@ class MotionController():
         self.direction_lock.acquire()
         self.robot_direction = direction
         self.direction_lock.release()
+        rospy.loginfo("direction set" + str(direction))
 
 
 
