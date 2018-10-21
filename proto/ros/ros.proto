@@ -9,7 +9,7 @@ message RawMap{
     float resolution = 1;
     uint32 height = 2;
     uint32 width = 3;
-    repeated int32 data = 4;
+    bytes data = 4; // Should contain a byte-encoded uint8 numpy array.
 }
 
 message RosToServerCommunication{

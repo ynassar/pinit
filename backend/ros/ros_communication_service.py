@@ -24,15 +24,9 @@ class RosService(ros_pb2_grpc.RosServiceServicer):
                 map_data = request.raw_map.data
                 map_height = request.raw_map.height
                 map_width = request.raw_map.width
-                map_array = (np.array(map_data).
-                reshape(map_height, map_width) * 255)
-                _, buffer = cv2.imencode('.jpg', map_array)
-                b64_map = base64.b64encode(buffer)
-                map = map_model.Map(robot_name=robot_name,
-                                    b64_image=b64_map,
-                                    resolution=request.raw_map.resolution)
-                map.save()
-
+                map_array = np.frombuffer(map_data, dtype='uint8').reshape(map_height, map_width)
+                print(map_array)
+                
     def Communicate(self, request_iterator, context):
         first_request = next(request_iterator)
         robot_name = first_request.robot_name
