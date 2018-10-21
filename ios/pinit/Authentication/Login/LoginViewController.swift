@@ -16,7 +16,7 @@ class LoginViewController : UIViewController  {
         
         let loginViewTopHeight = self.view.frame.size.height / 4
         loginView = self.loginView
-            .addCenterXConstraint()
+            .addCenterXConstraint(relativeView: self.view)
             .addWidthConstraint(relativeView: self.view, multipler: 0.9)
             .addHeightConstraint(relativeView: self.view, multipler: 0.5)
             .setConstraintWithConstant(
