@@ -8,6 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		372022702167AF5B00602B53 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3720226F2167AF5B00602B53 /* CustomTextField.swift */; };
+		37352731217A217700602046 /* MappingControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3735272E217A217700602046 /* MappingControlsView.swift */; };
+		37352732217A217700602046 /* MappingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3735272F217A217700602046 /* MappingView.swift */; };
+		37352733217A217700602046 /* MappingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37352730217A217700602046 /* MappingViewController.swift */; };
+		37352737217A217F00602046 /* MappingServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37352735217A217F00602046 /* MappingServer.swift */; };
+		37352738217A217F00602046 /* PinitOwnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37352736217A217F00602046 /* PinitOwnerViewController.swift */; };
+		3735273B217A218700602046 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3735273A217A218700602046 /* SettingsViewController.swift */; };
+		3735273D217A303100602046 /* MappingServerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3735273C217A303100602046 /* MappingServerDelegate.swift */; };
+		37352748217A3EE100602046 /* account_management.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37352740217A3EE100602046 /* account_management.grpc.swift */; };
+		37352749217A3EE100602046 /* account_management.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37352741217A3EE100602046 /* account_management.pb.swift */; };
+		3735274A217A3EE100602046 /* ros.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37352743217A3EE100602046 /* ros.grpc.swift */; };
+		3735274B217A3EE100602046 /* ros.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37352744217A3EE100602046 /* ros.pb.swift */; };
+		3735274C217A3EE100602046 /* login.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37352746217A3EE100602046 /* login.grpc.swift */; };
+		3735274D217A3EE100602046 /* login.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37352747217A3EE100602046 /* login.pb.swift */; };
+		3735274F217B498500602046 /* TabBarNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3735274E217B498500602046 /* TabBarNavigationController.swift */; };
 		373639CC217248A300EBD383 /* BoringSSL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 373C1282216F9ED4003D7CBB /* BoringSSL.framework */; };
 		373639CD217248A300EBD383 /* BoringSSL.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 373C1282216F9ED4003D7CBB /* BoringSSL.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		373639D0217248A300EBD383 /* SwiftGRPC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 373C1286216F9ED4003D7CBB /* SwiftGRPC.framework */; };
@@ -26,18 +40,6 @@
 		37363A1C21761F1100EBD383 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37363A1521761F1100EBD383 /* LoginViewController.swift */; };
 		37363A1E21761F2200EBD383 /* LoginServerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37363A1D21761F2200EBD383 /* LoginServerDelegate.swift */; };
 		37363A2021761F3400EBD383 /* LoginServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37363A1F21761F3400EBD383 /* LoginServer.swift */; };
-		37363A252176305000EBD383 /* ros.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37363A232176305000EBD383 /* ros.grpc.swift */; };
-		37363A262176305100EBD383 /* ros.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37363A242176305000EBD383 /* ros.pb.swift */; };
-		37363A292176339800EBD383 /* PinitOwnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37363A282176339800EBD383 /* PinitOwnerViewController.swift */; };
-		37363A2D2176347000EBD383 /* MappingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37363A2C2176347000EBD383 /* MappingViewController.swift */; };
-		37363A2F2176347B00EBD383 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37363A2E2176347B00EBD383 /* SettingsViewController.swift */; };
-		37363A312176521500EBD383 /* MappingServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37363A302176521500EBD383 /* MappingServer.swift */; };
-		37363A332176540600EBD383 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37363A322176540600EBD383 /* MapView.swift */; };
-		37363A3521769B5700EBD383 /* MappingControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37363A3421769B5700EBD383 /* MappingControlsView.swift */; };
-		373C12A0216FA275003D7CBB /* account_management.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373C129B216FA275003D7CBB /* account_management.grpc.swift */; };
-		373C12A1216FA275003D7CBB /* account_management.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373C129C216FA275003D7CBB /* account_management.pb.swift */; };
-		373C12A2216FA275003D7CBB /* login.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373C129E216FA275003D7CBB /* login.grpc.swift */; };
-		373C12A3216FA275003D7CBB /* login.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373C129F216FA275003D7CBB /* login.pb.swift */; };
 		376985B9216834DE006FF550 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376985B8216834DE006FF550 /* Constants.swift */; };
 		3775A06B21650B5D00ABEF54 /* Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3775A0692165012200ABEF54 /* Constraints.swift */; };
 		37EEA7E7215B962500BF3839 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EEA7E6215B962500BF3839 /* AppDelegate.swift */; };
@@ -130,6 +132,20 @@
 
 /* Begin PBXFileReference section */
 		3720226F2167AF5B00602B53 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		3735272E217A217700602046 /* MappingControlsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MappingControlsView.swift; sourceTree = "<group>"; };
+		3735272F217A217700602046 /* MappingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MappingView.swift; sourceTree = "<group>"; };
+		37352730217A217700602046 /* MappingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MappingViewController.swift; sourceTree = "<group>"; };
+		37352735217A217F00602046 /* MappingServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MappingServer.swift; sourceTree = "<group>"; };
+		37352736217A217F00602046 /* PinitOwnerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinitOwnerViewController.swift; sourceTree = "<group>"; };
+		3735273A217A218700602046 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		3735273C217A303100602046 /* MappingServerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MappingServerDelegate.swift; sourceTree = "<group>"; };
+		37352740217A3EE100602046 /* account_management.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = account_management.grpc.swift; sourceTree = "<group>"; };
+		37352741217A3EE100602046 /* account_management.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = account_management.pb.swift; sourceTree = "<group>"; };
+		37352743217A3EE100602046 /* ros.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ros.grpc.swift; sourceTree = "<group>"; };
+		37352744217A3EE100602046 /* ros.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ros.pb.swift; sourceTree = "<group>"; };
+		37352746217A3EE100602046 /* login.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = login.grpc.swift; sourceTree = "<group>"; };
+		37352747217A3EE100602046 /* login.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = login.pb.swift; sourceTree = "<group>"; };
+		3735274E217B498500602046 /* TabBarNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarNavigationController.swift; sourceTree = "<group>"; };
 		37363A0A21761C3300EBD383 /* UIButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
 		37363A0E21761F1100EBD383 /* RegisterServerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterServerDelegate.swift; sourceTree = "<group>"; };
 		37363A0F21761F1100EBD383 /* RegisterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
@@ -140,19 +156,7 @@
 		37363A1521761F1100EBD383 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		37363A1D21761F2200EBD383 /* LoginServerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginServerDelegate.swift; sourceTree = "<group>"; };
 		37363A1F21761F3400EBD383 /* LoginServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginServer.swift; sourceTree = "<group>"; };
-		37363A232176305000EBD383 /* ros.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ros.grpc.swift; sourceTree = "<group>"; };
-		37363A242176305000EBD383 /* ros.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ros.pb.swift; sourceTree = "<group>"; };
-		37363A282176339800EBD383 /* PinitOwnerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinitOwnerViewController.swift; sourceTree = "<group>"; };
-		37363A2C2176347000EBD383 /* MappingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MappingViewController.swift; sourceTree = "<group>"; };
-		37363A2E2176347B00EBD383 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		37363A302176521500EBD383 /* MappingServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MappingServer.swift; sourceTree = "<group>"; };
-		37363A322176540600EBD383 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
-		37363A3421769B5700EBD383 /* MappingControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MappingControlsView.swift; sourceTree = "<group>"; };
 		373C127A216F9ED3003D7CBB /* SwiftGRPC-Carthage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "SwiftGRPC-Carthage.xcodeproj"; path = "../../grpc-swift/SwiftGRPC-Carthage.xcodeproj"; sourceTree = "<group>"; };
-		373C129B216FA275003D7CBB /* account_management.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = account_management.grpc.swift; sourceTree = "<group>"; };
-		373C129C216FA275003D7CBB /* account_management.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = account_management.pb.swift; sourceTree = "<group>"; };
-		373C129E216FA275003D7CBB /* login.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = login.grpc.swift; sourceTree = "<group>"; };
-		373C129F216FA275003D7CBB /* login.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = login.pb.swift; sourceTree = "<group>"; };
 		376985B8216834DE006FF550 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		3775A0692165012200ABEF54 /* Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constraints.swift; sourceTree = "<group>"; };
 		37EEA7E3215B962500BF3839 /* pinit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pinit.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -186,6 +190,71 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3735272D217A217700602046 /* Mapping */ = {
+			isa = PBXGroup;
+			children = (
+				3735272E217A217700602046 /* MappingControlsView.swift */,
+				3735272F217A217700602046 /* MappingView.swift */,
+				37352730217A217700602046 /* MappingViewController.swift */,
+			);
+			path = Mapping;
+			sourceTree = "<group>";
+		};
+		37352734217A217F00602046 /* PinitOwner */ = {
+			isa = PBXGroup;
+			children = (
+				37352735217A217F00602046 /* MappingServer.swift */,
+				3735273C217A303100602046 /* MappingServerDelegate.swift */,
+				37352736217A217F00602046 /* PinitOwnerViewController.swift */,
+			);
+			path = PinitOwner;
+			sourceTree = "<group>";
+		};
+		37352739217A218700602046 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				3735273A217A218700602046 /* SettingsViewController.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		3735273E217A3EE100602046 /* genfiles */ = {
+			isa = PBXGroup;
+			children = (
+				3735273F217A3EE100602046 /* account_management */,
+				37352742217A3EE100602046 /* ros */,
+				37352745217A3EE100602046 /* login */,
+			);
+			path = genfiles;
+			sourceTree = "<group>";
+		};
+		3735273F217A3EE100602046 /* account_management */ = {
+			isa = PBXGroup;
+			children = (
+				37352740217A3EE100602046 /* account_management.grpc.swift */,
+				37352741217A3EE100602046 /* account_management.pb.swift */,
+			);
+			path = account_management;
+			sourceTree = "<group>";
+		};
+		37352742217A3EE100602046 /* ros */ = {
+			isa = PBXGroup;
+			children = (
+				37352743217A3EE100602046 /* ros.grpc.swift */,
+				37352744217A3EE100602046 /* ros.pb.swift */,
+			);
+			path = ros;
+			sourceTree = "<group>";
+		};
+		37352745217A3EE100602046 /* login */ = {
+			isa = PBXGroup;
+			children = (
+				37352746217A3EE100602046 /* login.grpc.swift */,
+				37352747217A3EE100602046 /* login.pb.swift */,
+			);
+			path = login;
+			sourceTree = "<group>";
+		};
 		37363A0C21761F1100EBD383 /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
@@ -218,43 +287,6 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
-		37363A222176305000EBD383 /* ros */ = {
-			isa = PBXGroup;
-			children = (
-				37363A232176305000EBD383 /* ros.grpc.swift */,
-				37363A242176305000EBD383 /* ros.pb.swift */,
-			);
-			name = ros;
-			path = genfiles/ros;
-			sourceTree = SOURCE_ROOT;
-		};
-		37363A272176337900EBD383 /* PinitOwner */ = {
-			isa = PBXGroup;
-			children = (
-				37363A282176339800EBD383 /* PinitOwnerViewController.swift */,
-				37363A302176521500EBD383 /* MappingServer.swift */,
-			);
-			path = PinitOwner;
-			sourceTree = "<group>";
-		};
-		37363A2A2176345900EBD383 /* Settings */ = {
-			isa = PBXGroup;
-			children = (
-				37363A2E2176347B00EBD383 /* SettingsViewController.swift */,
-			);
-			path = Settings;
-			sourceTree = "<group>";
-		};
-		37363A2B2176346500EBD383 /* Mapping */ = {
-			isa = PBXGroup;
-			children = (
-				37363A2C2176347000EBD383 /* MappingViewController.swift */,
-				37363A322176540600EBD383 /* MapView.swift */,
-				37363A3421769B5700EBD383 /* MappingControlsView.swift */,
-			);
-			path = Mapping;
-			sourceTree = "<group>";
-		};
 		373C1234216E8A63003D7CBB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -273,34 +305,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		373C1299216FA275003D7CBB /* genfiles */ = {
-			isa = PBXGroup;
-			children = (
-				37363A222176305000EBD383 /* ros */,
-				373C129A216FA275003D7CBB /* account_management */,
-				373C129D216FA275003D7CBB /* login */,
-			);
-			path = genfiles;
-			sourceTree = "<group>";
-		};
-		373C129A216FA275003D7CBB /* account_management */ = {
-			isa = PBXGroup;
-			children = (
-				373C129B216FA275003D7CBB /* account_management.grpc.swift */,
-				373C129C216FA275003D7CBB /* account_management.pb.swift */,
-			);
-			path = account_management;
-			sourceTree = "<group>";
-		};
-		373C129D216FA275003D7CBB /* login */ = {
-			isa = PBXGroup;
-			children = (
-				373C129E216FA275003D7CBB /* login.grpc.swift */,
-				373C129F216FA275003D7CBB /* login.pb.swift */,
-			);
-			path = login;
-			sourceTree = "<group>";
-		};
 		3775A0682165009700ABEF54 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
@@ -308,6 +312,7 @@
 				376985B8216834DE006FF550 /* Constants.swift */,
 				3720226F2167AF5B00602B53 /* CustomTextField.swift */,
 				37363A0A21761C3300EBD383 /* UIButtonExtension.swift */,
+				3735274E217B498500602046 /* TabBarNavigationController.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -315,7 +320,7 @@
 		37EEA7DA215B962400BF3839 = {
 			isa = PBXGroup;
 			children = (
-				373C1299216FA275003D7CBB /* genfiles */,
+				3735273E217A3EE100602046 /* genfiles */,
 				373C127A216F9ED3003D7CBB /* SwiftGRPC-Carthage.xcodeproj */,
 				37EEA7E5215B962500BF3839 /* pinit */,
 				37EEA7FA215B962800BF3839 /* pinitTests */,
@@ -339,9 +344,9 @@
 				37EEA7E6215B962500BF3839 /* AppDelegate.swift */,
 				37EEA7ED215B962800BF3839 /* Assets.xcassets */,
 				37EEA7F2215B962800BF3839 /* Info.plist */,
-				37363A2B2176346500EBD383 /* Mapping */,
-				37363A2A2176345900EBD383 /* Settings */,
-				37363A272176337900EBD383 /* PinitOwner */,
+				37352739217A218700602046 /* Settings */,
+				37352734217A217F00602046 /* PinitOwner */,
+				3735272D217A217700602046 /* Mapping */,
 				37363A0C21761F1100EBD383 /* Authentication */,
 				3775A0682165009700ABEF54 /* Shared */,
 			);
@@ -499,30 +504,32 @@
 			buildActionMask = 2147483647;
 			files = (
 				37363A1721761F1100EBD383 /* RegisterView.swift in Sources */,
-				37363A312176521500EBD383 /* MappingServer.swift in Sources */,
-				373C12A3216FA275003D7CBB /* login.pb.swift in Sources */,
-				37363A292176339800EBD383 /* PinitOwnerViewController.swift in Sources */,
-				37363A3521769B5700EBD383 /* MappingControlsView.swift in Sources */,
-				37363A2D2176347000EBD383 /* MappingViewController.swift in Sources */,
+				3735274B217A3EE100602046 /* ros.pb.swift in Sources */,
+				37352748217A3EE100602046 /* account_management.grpc.swift in Sources */,
+				37352737217A217F00602046 /* MappingServer.swift in Sources */,
 				3775A06B21650B5D00ABEF54 /* Constraints.swift in Sources */,
+				37352732217A217700602046 /* MappingView.swift in Sources */,
 				37363A1E21761F2200EBD383 /* LoginServerDelegate.swift in Sources */,
 				37363A1B21761F1100EBD383 /* LoginView.swift in Sources */,
 				37363A1821761F1100EBD383 /* RegisterServer.swift in Sources */,
+				37352749217A3EE100602046 /* account_management.pb.swift in Sources */,
+				37352733217A217700602046 /* MappingViewController.swift in Sources */,
 				37363A1621761F1100EBD383 /* RegisterServerDelegate.swift in Sources */,
-				373C12A1216FA275003D7CBB /* account_management.pb.swift in Sources */,
-				373C12A0216FA275003D7CBB /* account_management.grpc.swift in Sources */,
+				37352731217A217700602046 /* MappingControlsView.swift in Sources */,
 				372022702167AF5B00602B53 /* CustomTextField.swift in Sources */,
+				3735273D217A303100602046 /* MappingServerDelegate.swift in Sources */,
 				37363A2021761F3400EBD383 /* LoginServer.swift in Sources */,
-				37363A262176305100EBD383 /* ros.pb.swift in Sources */,
+				3735274A217A3EE100602046 /* ros.grpc.swift in Sources */,
 				37EEA7E7215B962500BF3839 /* AppDelegate.swift in Sources */,
-				37363A2F2176347B00EBD383 /* SettingsViewController.swift in Sources */,
+				37352738217A217F00602046 /* PinitOwnerViewController.swift in Sources */,
 				37363A0B21761C3300EBD383 /* UIButtonExtension.swift in Sources */,
+				3735274D217A3EE100602046 /* login.pb.swift in Sources */,
+				3735274C217A3EE100602046 /* login.grpc.swift in Sources */,
 				37363A1A21761F1100EBD383 /* AuthenticationView.swift in Sources */,
 				37363A1C21761F1100EBD383 /* LoginViewController.swift in Sources */,
 				37363A1921761F1100EBD383 /* RegisterViewController.swift in Sources */,
-				37363A252176305000EBD383 /* ros.grpc.swift in Sources */,
-				37363A332176540600EBD383 /* MapView.swift in Sources */,
-				373C12A2216FA275003D7CBB /* login.grpc.swift in Sources */,
+				3735273B217A218700602046 /* SettingsViewController.swift in Sources */,
+				3735274F217B498500602046 /* TabBarNavigationController.swift in Sources */,
 				376985B9216834DE006FF550 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
