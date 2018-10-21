@@ -15,6 +15,7 @@ FLAGS = flags.FLAGS
 _ONE_DAY_IN_SECONDS = 60*60*24
 
 def main(argv):
+    mongoengine.connect('local_ros')
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
     ros_pb2_grpc.add_RosServiceServicer_to_server(
         ros_communication_service.RosService(), server)
