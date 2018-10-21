@@ -35,13 +35,19 @@ class MappingViewController: TabBarNavigationController,  MappingServerDelegate 
         serverToRosMappingRequest.requestType = .direction
         mappingDirectionRequest.mappingRequest = serverToRosMappingRequest
         
+        let spacing = self.view.frame.size.height * 0.02
+
         mappingView = self.mappingView
             .addCenterXConstraint()
-            .setConstraintWithConstant(selfAttribute: .top, relativeView: self.navbar, relativeAttribute: .bottom, constant: 0)
             .addWidthConstraint(relativeView: self.view, multipler: 1.0)
-            .setConstraintWithConstant(selfAttribute: .bottom, relativeView: mappingControlsView, relativeAttribute: .top, constant: 0)
-        
-        let spacing = self.view.frame.size.height * 0.05
+            .setConstraintWithConstant(selfAttribute: .top,
+                                       relativeView: self.navbar,
+                                       relativeAttribute: .bottom,
+                                       constant: 0)
+            .setConstraintWithConstant(selfAttribute: .bottom,
+                                       relativeView: mappingControlsView,
+                                       relativeAttribute: .top,
+                                       constant: -spacing)
         
         mappingControlsView = self.mappingControlsView
             .addCenterXConstraint()
