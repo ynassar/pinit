@@ -31,7 +31,7 @@ class MotionController():
         self.direction_lock = None
         self.vel_linear_range = (-0.5, 0.5)
         self.vel_angular_range = (-2.25, 2.25)
-        self.acceleration_steps = 100
+        self.acceleration_steps = 50
         self.vel_linear_increment = (abs(self.vel_linear_range[0] -
                                         self.vel_linear_range[1]) /
                                      self.acceleration_steps)
@@ -58,8 +58,8 @@ class MotionController():
 
 
     def publisher_loop(self):
-        while True:
-            time.sleep(0.01)
+        while not rospy.is_shutdown():
+            rospy.sleep(0.01)
             linear = self.vel_linear
             angular = self.vel_angular
             self.direction_lock.acquire()
