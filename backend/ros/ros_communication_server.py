@@ -1,11 +1,14 @@
+"""A server application for RosCommunicationService."""
+import time
+
+from concurrent import futures
+
 import grpc
 import mongoengine
-import time
 
 from absl import flags
 from absl import app
 from backend.ros import ros_communication_service
-from concurrent import futures
 from proto.ros import ros_pb2_grpc
 
 flags.DEFINE_integer("port", 50052, "The port on which to run the server.")
@@ -14,7 +17,8 @@ FLAGS = flags.FLAGS
 
 _ONE_DAY_IN_SECONDS = 60*60*24
 
-def main(argv):
+def main(_):
+    """Runs the server."""
     mongoengine.connect('local_ros')
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
     ros_pb2_grpc.add_RosServiceServicer_to_server(
