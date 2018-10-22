@@ -4,18 +4,26 @@ public class RegisterServer {
     
     var delegate: RegisterServerDelegate?
     
-    func sendRequest(request: RegisterRequest) {
+    func registerWithCredentials(
+        username: String,
+        password: String,
+        email: String
+    ) {
         let accountClient = AccountManagementServiceServiceClient(
             address: PinitConstants.authenticationServerAddress,
             secure: false,
             arguments: [])
+        
+        var registerRequest = RegisterRequest()
+        registerRequest.username = username
+        registerRequest.password = password
+        registerRequest.email = email
 
         do {
-            let registerResponse = try accountClient.register(request)
-            delegate?.didRegisterSuccessfully(self)
-            print("response")
+            let registerResponse = try accountClient.register(registerRequest)
+            delegate?.didRegisterSuccessfully()
         } catch {
-            print("in catch")
+            delegate?.didRegisterErrorOccur(errorMessage: "SignUp Failed")
         }
     }
 }
