@@ -47,7 +47,7 @@ class RosService(ros_pb2_grpc.RosServiceServicer):
                 map_array = np.frombuffer(map_data, dtype='uint8').reshape(map_height, map_width)
                 image_array = RenderToArray(map_array)
                 _, encoded_image = cv2.imencode('.jpg', image_array)
-                b64_image = str(base64.b64encode(encoded_image))
+                b64_image = base64.b64encode(encoded_image).decode('utf-8')
                 map_model.Map.objects(robot_name=robot_name).update_one(
                     upsert=True,
                     set__resolution=request.raw_map.resolution,
