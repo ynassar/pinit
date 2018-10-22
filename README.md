@@ -7,10 +7,10 @@
 [ros_source]:https://github.com/ynassar/pinit/tree/master/ros_ws
 
 pinit is a platform for autonomous guidance and waypoint navigation in a pre-mapped environment. Three main components are provided:
-    1. A server application, which responds to navigation and mapping requests by forwarding them onto the appropriate robot. The server application also handles tasks such as storing user and map data, 
+    * A server application, which responds to navigation and mapping requests by forwarding them onto the appropriate robot. The server application also handles tasks such as storing user and map data, 
     as well as translating data produced by the robot into a format usable by the application.
-    2. A mobile application client that provides a user interface to the application.
-    3. A ROS package that implements the mapping and navigation functionalities.
+    * A mobile application client that provides a user interface to the application.
+    * A ROS package that implements the mapping and navigation functionalities.
 
 ## Server
 
