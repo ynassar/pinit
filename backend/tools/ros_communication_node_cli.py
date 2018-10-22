@@ -1,5 +1,6 @@
 import grpc
 
+import numpy as np
 import time
 
 from absl import app
@@ -18,11 +19,11 @@ def GenerateRequest():
         resolution=1,
         height=5,
         width=5,
-        data=[0,0,0,0,0,
-              0,1,1,1,0,
-              0,1,0,1,0,
-              0,1,1,1,0,
-              0,0,0,0,0]
+        data=np.array([0,0,0,0,0,
+              0,101,101,101,0,
+              0,101,0,101,0,
+              0,101,101,101,0,
+              0,0,0,0,0], dtype='uint8').tobytes()
     ))
 
 
