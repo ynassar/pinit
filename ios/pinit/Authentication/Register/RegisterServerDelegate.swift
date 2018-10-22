@@ -3,7 +3,7 @@ import UIKit
 
 protocol RegisterServerDelegate {
     
-    func didRegisterSuccessfully(_ sender: RegisterServer)
+    func didRegisterSuccessfully()
     
-    func didRegisterErrorOccur(_ sender: RegisterServer)
+    func didRegisterErrorOccur(errorMessage: String)
 }

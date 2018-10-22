@@ -1,9 +1,24 @@
-//
-//  LoginServer.swift
-//  pinit
-//
-//  Created by Farida Eid on 10/16/18.
-//  Copyright © 2018 Farida Eid. All rights reserved.
-//
+import UIKit
 
-import Foundation
+public class LoginServer {
+    
+    var delegate: LoginServerDelegate?
+    
+    func loginWithCredentials(username: String, password: String) {
+        let accountClient = AuthenticationServiceServiceClient(
+            address: PinitConstants.authenticationServerAddress,
+            secure: false,
+            arguments: [])
+        
+        var loginRequest = LoginRequest()
+        loginRequest.username = username
+        loginRequest.password = password
+        
+        do {
+            let loginResponse = try accountClient.login(loginRequest)
+            delegate?.didLoginSuccessfully()
+        } catch {
+            delegate?.didLoginErrorOccur(errorMessage: "Can't login")
+        }
+    }
+}

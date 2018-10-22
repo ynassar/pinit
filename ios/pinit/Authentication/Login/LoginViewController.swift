@@ -1,18 +1,25 @@
 import UIKit
 
-class LoginViewController : UIViewController  {
-    
+class LoginViewController : UIViewController, LoginServerDelegate  {
+
     var loginView: LoginView!
+    
+    var loginServer: LoginServer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         loginView = LoginView()
-        
+        loginServer = LoginServer()
         self.view.addSubview(loginView)
         self.view.backgroundColor = .white
+        
+        loginServer.delegate = self
                 
         let tapAnywhere = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
         self.view.addGestureRecognizer(tapAnywhere)
+        
+        loginView.usernameTextField.addTarget(self, action: #selector(self.textFieldEditChange), for: .editingChanged)
+        loginView.passwordTextFiled.addTarget(self, action: #selector(self.textFieldEditChange), for: .editingChanged)
         
         let loginViewTopHeight = self.view.frame.size.height / 4
         loginView = self.loginView
@@ -41,11 +48,9 @@ class LoginViewController : UIViewController  {
     }
     
     @objc private func loginInButtonClick() {
-        let pinitOwnerViewController = PinitOwnerViewController()
-        if let navigationController = self.navigationController {
-            navigationController.popToRootViewController(animated: true)
-            navigationController.pushViewController(pinitOwnerViewController, animated: true)
-        }
+        loginServer.loginWithCredentials(
+            username: loginView.usernameTextField.text!,
+            password: loginView.passwordTextFiled.text!)
     }
     
     @objc private func signUpLabelTap(sender: UITapGestureRecognizer) {
@@ -55,10 +60,34 @@ class LoginViewController : UIViewController  {
         }
     }
     
+    @objc private func textFieldEditChange() {
+        if loginView.usernameTextField.hasText
+            && loginView.passwordTextFiled.hasText {
+            loginView.loginButton.enableButton()
+        } else {
+            loginView.loginButton.disableButton()
+        }
+    }
+    
+    func didLoginSuccessfully() {
+        let pinitOwnerViewController = PinitOwnerViewController()
+        if let navigationController = self.navigationController {
+            navigationController.popToRootViewController(animated: true)
+            navigationController.pushViewController(pinitOwnerViewController, animated: true)
+        }
+    }
+    
+    func didLoginErrorOccur(errorMessage: String) {
+        let alert = UIAlertController(
+            title: "Error Occured",
+            message: errorMessage,
+            preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         loginView.updateView()
     }
-    
 }
-

@@ -1,7 +1,7 @@
 import UIKit
 import CgRPC
 
-class RegisterViewController : UIViewController, RegisterServerDelegate, UITextFieldDelegate {
+class RegisterViewController : UIViewController, RegisterServerDelegate {
 
     var registerView: RegisterView!
     
@@ -17,14 +17,10 @@ class RegisterViewController : UIViewController, RegisterServerDelegate, UITextF
         
         registerServer.delegate = self
         
-        registerView.usernameTextField
-            .addTargetForEditingChange(action: #selector(self.textFieldEditChange(_:)))
-        registerView.passwordTextFiled
-            .addTargetForEditingChange(action: #selector(self.textFieldEditChange(_:)))
-        registerView.confrimPasswordTextFiled
-            .addTargetForEditingChange(action: #selector(self.textFieldEditChange(_:)))
-        registerView.emailTextField
-            .addTargetForEditingChange(action: #selector(self.textFieldEditChange(_:)))
+        registerView.usernameTextField.addTarget(self, action: #selector(self.textFieldEditChange), for: .editingChanged)
+        registerView.passwordTextFiled.addTarget(self, action: #selector(self.textFieldEditChange), for: .editingChanged)
+        registerView.confrimPasswordTextFiled.addTarget(self, action: #selector(self.textFieldEditChange), for: .editingChanged)
+        registerView.emailTextField.addTarget(self, action: #selector(self.textFieldEditChange), for: .editingChanged)
         
         let tapAnywhere = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
         self.view.addGestureRecognizer(tapAnywhere)
@@ -60,15 +56,14 @@ class RegisterViewController : UIViewController, RegisterServerDelegate, UITextF
                 title: "Error Message",
                 message: "PLease type the same passwords twice.")
         } else {
-            var registerRequest = RegisterRequest()
-            registerRequest.username = registerView.usernameTextField.text!
-            registerRequest.password = registerView.passwordTextFiled.text!
-            registerRequest.email = registerView.emailTextField.text!
-            registerServer.sendRequest(request: registerRequest)
+            registerServer.registerWithCredentials(
+                username: registerView.usernameTextField.text!,
+                password: registerView.passwordTextFiled.text!,
+                email:  registerView.emailTextField.text!)
         }
     }
     
-    @objc private func textFieldEditChange(_ textField: UITextField) {
+    @objc private func textFieldEditChange() {
         if registerView.usernameTextField.hasText
             && registerView.passwordTextFiled.hasText
             && registerView.confrimPasswordTextFiled.hasText
@@ -79,12 +74,20 @@ class RegisterViewController : UIViewController, RegisterServerDelegate, UITextF
         }
     }
     
-    func didRegisterSuccessfully(_ sender: RegisterServer) {
-        print("Register Done")
+    func didRegisterSuccessfully() {
+        if let navigationController = self.navigationController {
+            let loginViewController = navigationController.viewControllers[0]
+            navigationController.popToViewController(loginViewController, animated: true)
+        }
     }
     
-    func didRegisterErrorOccur(_ sender: RegisterServer) {
-        print("Raising Error")
+    func didRegisterErrorOccur(errorMessage: String) {
+        let alert = UIAlertController(
+            title: "Error Occured",
+            message: errorMessage,
+            preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
     
     @objc private func dismissKeyboard() {
@@ -109,16 +112,5 @@ class RegisterViewController : UIViewController, RegisterServerDelegate, UITextF
             preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
-    }
-}
-
-fileprivate extension UITextField {
-    
-    fileprivate func addTargetForEditingChange(action: Selector) {
-        self.addTarget(
-            self,
-            action: action,
-            for: .editingChanged)
-    
     }
 }
