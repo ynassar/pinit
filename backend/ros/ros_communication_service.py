@@ -6,6 +6,7 @@ import queue
 import cv2
 import grpc
 import numpy as np
+import mongoengine
 
 from backend.models import map as map_model
 from proto.ros import ros_pb2_grpc
@@ -18,6 +19,9 @@ UNKNOWN_VALUE = 0
 HIGH_CONFIDENCE_COLOR = 0
 LOW_CONFIDENCE_COLOR = 255
 UNKNOWN_COLOR = 127
+
+class NoMapFound(Exception):
+    pass
 
 
 def RenderToArray(occupancy_grid_array):
@@ -77,3 +81,13 @@ class RosService(ros_pb2_grpc.RosServiceServicer):
                 mapping_request=request.mapping_request
             ))
             return ros_pb2.MappingResponse()
+
+    def GetMapImage(self, request, context):
+        map = map_model.Map.objects.get(robot_name = request.robot_name)
+        try:
+            return ros_pb2.MapImage(resolution=map.resolution, encoded_image=map.b64_image)
+        except mongoengine.DoesNotExist:
+            raise NoMapFound()
+
+    def GetMapImageStream(self, request, context):
+        raise NotImplementedError("GetMapImageStream() is not yet implemented.")
