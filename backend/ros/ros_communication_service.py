@@ -1,13 +1,11 @@
+"""Implements a service for ROS-related communications."""
 import base64
+import threading
+import queue
+
 import cv2
 import grpc
 import numpy as np
-import matplotlib.pyplot as plt
-import threading
-import time
-import queue
-
-from concurrent import futures
 
 from backend.models import map as map_model
 from proto.ros import ros_pb2_grpc
@@ -23,6 +21,7 @@ UNKNOWN_COLOR = 127
 
 
 def RenderToArray(occupancy_grid_array):
+    """Returns a numpy array representing a rendering of an occupancy grid."""
     image = occupancy_grid_array.copy()
     low_confidence_mask = occupancy_grid_array == LOW_CONFIDENCE_VALUE
     high_confidence_mask = occupancy_grid_array == HIGH_CONFIDENCE_VALUE
@@ -34,10 +33,12 @@ def RenderToArray(occupancy_grid_array):
 
 
 class RosService(ros_pb2_grpc.RosServiceServicer):
+    """A servicer for the RosService, which implements RPCs related to ROS communication."""
     def __init__(self):
         self._robot_name_to_queue = {}
 
     def HandleRosData(self, request_iterator, robot_name):
+        """Handles messages passed from the ROS communication node to the server."""
         for request in request_iterator:
             if request.HasField("raw_map"):
                 map_data = request.raw_map.data
@@ -48,10 +49,10 @@ class RosService(ros_pb2_grpc.RosServiceServicer):
                 _, encoded_image = cv2.imencode('.jpg', image_array)
                 b64_image = str(base64.b64encode(encoded_image))
                 map_model.Map.objects(robot_name=robot_name).update_one(
-                    upsert=True, 
+                    upsert=True,
                     set__resolution=request.raw_map.resolution,
                     set__b64_image=b64_image)
-                
+
     def Communicate(self, request_iterator, context):
         first_request = next(request_iterator)
         robot_name = first_request.robot_name
@@ -62,7 +63,7 @@ class RosService(ros_pb2_grpc.RosServiceServicer):
         if robot_name not in self._robot_name_to_queue:
             self._robot_name_to_queue[robot_name] = queue.Queue()
         communication_queue = self._robot_name_to_queue[robot_name]
-        for communication in iter(communication_queue.get, None): 
+        for communication in iter(communication_queue.get, None):
             # Iterate forever, only ROS node can terminate connection.
             yield communication
 
@@ -73,6 +74,6 @@ class RosService(ros_pb2_grpc.RosServiceServicer):
         else:
             communication_queue = self._robot_name_to_queue[request.robot_name]
             communication_queue.put(ros_pb2.ServerToRosCommunication(
-                mapping_request = request.mapping_request
+                mapping_request=request.mapping_request
             ))
             return ros_pb2.MappingResponse()
