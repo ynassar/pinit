@@ -2,6 +2,7 @@ import base64
 import cv2
 import grpc
 import numpy as np
+import matplotlib.pyplot as plt
 import threading
 import time
 import queue
@@ -12,6 +13,24 @@ from backend.models import map as map_model
 from proto.ros import ros_pb2_grpc
 from proto.ros import ros_pb2
 
+LOW_CONFIDENCE_VALUE = 1
+HIGH_CONFIDENCE_VALUE = 101
+UNKNOWN_VALUE = 0
+
+HIGH_CONFIDENCE_COLOR = 0
+LOW_CONFIDENCE_COLOR = 255
+UNKNOWN_COLOR = 127
+
+
+def RenderToArray(occupancy_grid_array):
+    image = occupancy_grid_array.copy()
+    low_confidence_mask = occupancy_grid_array == LOW_CONFIDENCE_VALUE
+    high_confidence_mask = occupancy_grid_array == HIGH_CONFIDENCE_VALUE
+    unknown_mask = occupancy_grid_array == UNKNOWN_VALUE
+    image[low_confidence_mask] = LOW_CONFIDENCE_COLOR
+    image[high_confidence_mask] = HIGH_CONFIDENCE_COLOR
+    image[unknown_mask] = UNKNOWN_COLOR
+    return image
 
 
 class RosService(ros_pb2_grpc.RosServiceServicer):
@@ -25,7 +44,13 @@ class RosService(ros_pb2_grpc.RosServiceServicer):
                 map_height = request.raw_map.height
                 map_width = request.raw_map.width
                 map_array = np.frombuffer(map_data, dtype='uint8').reshape(map_height, map_width)
-                print(map_array)
+                image_array = RenderToArray(map_array)
+                _, encoded_image = cv2.imencode('.jpg', image_array)
+                b64_image = str(base64.b64encode(encoded_image))
+                map_model.Map.objects(robot_name=robot_name).update_one(
+                    upsert=True, 
+                    set__resolution=request.raw_map.resolution,
+                    set__b64_image=b64_image)
                 
     def Communicate(self, request_iterator, context):
         first_request = next(request_iterator)
