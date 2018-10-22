@@ -3,6 +3,17 @@ syntax = "proto3";
 service RosService{
     rpc Communicate(stream RosToServerCommunication) returns (stream ServerToRosCommunication){}
     rpc SendMovement(MappingRequest) returns (MappingResponse){} 
+    rpc GetMapImage(GetMapRequest) returns (MapImage) {}
+    rpc GetMapImageStream(GetMapRequest) returns (stream MapImage) {}
+}
+
+message GetMapRequest{
+    string robot_name = 1;
+}
+
+message MapImage{
+    float resolution = 1;
+    string encoded_image = 2;
 }
 
 message RawMap{
