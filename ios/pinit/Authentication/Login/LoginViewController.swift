@@ -14,6 +14,7 @@ class LoginViewController : UIViewController, LoginServerDelegate  {
         self.view.backgroundColor = .white
         
         loginServer.delegate = self
+        loginView.loginButton.disableButton()
                 
         let tapAnywhere = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
         self.view.addGestureRecognizer(tapAnywhere)

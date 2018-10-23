@@ -1,6 +1,7 @@
 import UIKit
 import SwiftGRPC
 import SwiftProtobuf
+import Foundation
 
 /// The server responsible for sending requests to the gRPC server related to the
 /// mapping features.
@@ -76,6 +77,26 @@ public class MappingServer {
             let message = error.localizedDescription.description
             delegate?.didMappingErrorOccur("Couldn't Save the map")
         }
+    }
+    
+    public func mapImageRequestAsynchronous() {
+        
+        var getMapRequest = GetMapRequest()
+        getMapRequest.robotName = "nemo"
+        
+        let _ = Timer.scheduledTimer(withTimeInterval: 3, repeats: true, block: {
+            _ in
+            do {
+                let mapResponse = try self.mappingClient.getMapImage(getMapRequest)
+                let dataDecoded : Data = Data(base64Encoded: mapResponse.encodedImage, options: .ignoreUnknownCharacters)!
+                let decodedImage = UIImage(data: dataDecoded)
+                if let mapImage = decodedImage {
+                    self.delegate?.mapImageUpdate(newImage: mapImage)
+                }
+            } catch {
+            }
+        })
+        
     }
 
 }

@@ -12,3 +12,14 @@ extension UIButton {
         self.alpha = 0.5
     }
 }
+
+extension UIBarButtonItem {
+    
+    func enableButton() {
+        self.isEnabled = true
+    }
+    
+    func disableButton() {
+        self.isEnabled = false
+    }
+}

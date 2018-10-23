@@ -12,4 +12,6 @@ protocol MappingServerDelegate {
     func mapSaveConfirmation()
     
     func mapStartConfirmation()
+    
+    func mapImageUpdate(newImage: UIImage)
 }

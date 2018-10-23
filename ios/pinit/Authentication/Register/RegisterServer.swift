@@ -10,7 +10,7 @@ public class RegisterServer {
         email: String
     ) {
         let accountClient = AccountManagementServiceServiceClient(
-            address: PinitConstants.authenticationServerAddress,
+            address: PinitConstants.tempAuthenticationServerAddress,
             secure: false,
             arguments: [])
         

@@ -6,7 +6,7 @@ public class LoginServer {
     
     func loginWithCredentials(username: String, password: String) {
         let accountClient = AuthenticationServiceServiceClient(
-            address: PinitConstants.authenticationServerAddress,
+            address: PinitConstants.tempAuthenticationServerAddress,
             secure: false,
             arguments: [])
         

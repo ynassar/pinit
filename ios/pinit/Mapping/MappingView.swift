@@ -4,22 +4,22 @@ import UIKit
 /// the imageview of the mapping image updated periodically.
 class MappingView: UIView, UIScrollViewDelegate {
     
-    var mapImage: UIImageView!
+    var defaultMapImage: UIImageView!
     
     var scrollImage: UIScrollView!
     
     /// Initializer of the `MappingView`.
     init() {
-        mapImage = UIImageView(image: UIImage(named: "defaultMapImage"))
+        defaultMapImage = UIImageView(image: UIImage(named: "defaultMapImage"))
         scrollImage = UIScrollView(frame: CGRect.zero)
         super.init(frame: CGRect.zero)
         scrollImage.delegate = self
-        self.addSubview(mapImage)
+        self.addSubview(defaultMapImage)
         self.addSubview(scrollImage)
         
         scrollImage.minimumZoomScale = 1.0
         scrollImage.maximumZoomScale = 6.0
-        scrollImage.addSubview(mapImage)
+        scrollImage.addSubview(defaultMapImage)
     }
     
     /// Update the view by adding the constraints to make sure that the frame width
@@ -40,12 +40,11 @@ class MappingView: UIView, UIScrollViewDelegate {
                                        relativeAttribute: .bottom,
                                        constant: 0)
         
-        mapImage = mapImage
+        defaultMapImage = defaultMapImage
             .addCenterXConstraint(relativeView: scrollImage)
             .addCenterYConstraint(relativeView: scrollImage)
-            .addWidthConstraint(relativeView: scrollImage, multipler: 0.2)
+            .addWidthConstraint(relativeView: scrollImage, multipler: 1.0)
             .keepHeightAspectRatio()
-        
     }
     
     public func disableMapView() {
@@ -55,10 +54,9 @@ class MappingView: UIView, UIScrollViewDelegate {
     public func enableMapView() {
         scrollImage.isScrollEnabled = true
     }
-
     
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
-        return mapImage
+        return defaultMapImage
     }
     
     required init?(coder aDecoder: NSCoder) {

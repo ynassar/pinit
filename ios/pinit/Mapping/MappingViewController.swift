@@ -13,7 +13,7 @@ class MappingViewController: TabBarNavigationController,  MappingServerDelegate 
     /// The server which sends all the requests related to mapping.
     var mappingServer = MappingServer()
     
-    var saveMappingButton: UIButton!
+    var saveMappingButtonItem: UIBarButtonItem!
     
     /// The function is responsible for adding the targets to the different control buttons,
     /// one for button hold and the other for release. Also adding the different views in the
@@ -27,6 +27,7 @@ class MappingViewController: TabBarNavigationController,  MappingServerDelegate 
         self.view.addSubview(mappingView)
         
         mappingServer.delegate = self
+        
         mappingControlsView.disableControls()
         mappingView.disableMapView()
         
@@ -34,16 +35,17 @@ class MappingViewController: TabBarNavigationController,  MappingServerDelegate 
         startMappingButton.setImage(UIImage(named: "startMapping"), for: .normal)
         startMappingButton.addTarget(self, action: #selector(self.startMappingClick), for: .touchDown)
 
-        saveMappingButton = UIButton(frame: CGRect.zero)
+        let saveMappingButton = UIButton(frame: CGRect.zero)
         saveMappingButton.setImage(UIImage(named: "saveMapping"), for: .normal)
         saveMappingButton.addTarget(self, action: #selector(self.saveMappingClick), for: .touchDown)
-        saveMappingButton.disableButton()
-        
+        saveMappingButtonItem = UIBarButtonItem(customView: saveMappingButton)
 
         self.navbar.topItem?.rightBarButtonItems = [
             UIBarButtonItem(customView: startMappingButton),
             UIBarButtonItem(customView: saveMappingButton)
         ]
+        
+        saveMappingButtonItem.disableButton()
 
         
         let spacing = self.view.frame.size.height * 0.02
@@ -153,12 +155,18 @@ class MappingViewController: TabBarNavigationController,  MappingServerDelegate 
     
     func mapStartConfirmation() {
         mappingControlsView.enableControls()
-        saveMappingButton.enableButton()
+        saveMappingButtonItem.enableButton()
+        mappingServer.mapImageRequestAsynchronous()
+    }
+    
+    func mapImageUpdate(newImage: UIImage) {
+        mappingView.defaultMapImage.image = newImage
     }
     
     override func viewDidAppear(_ animated: Bool) {
         mappingControlsView.updateView()
         mappingView.updateView()
+        mappingView.enableMapView()
     }
     
     override func didReceiveMemoryWarning() {
