@@ -23,6 +23,8 @@ UNKNOWN_COLOR = 127
 class NoMapFound(Exception):
     pass
 
+class RobotNotConnected(Exception):
+    pass
 
 def RenderToArray(occupancy_grid_array):
     """Returns a numpy array representing a rendering of an occupancy grid."""
@@ -75,8 +77,11 @@ class RosService(ros_pb2_grpc.RosServiceServicer):
         if request.robot_name not in self._robot_name_to_queue:
             context.set_code(grpc.StatusCode.NOT_FOUND)
             context.set_details("Specified robot not connected.")
+            raise RobotNotConnected()
         else:
             communication_queue = self._robot_name_to_queue[request.robot_name]
+            if request.mapping_request.request_type == ros_pb2.ServerToRosMappingRequest.START_MAPPING:
+                map_model.Map.objects(robot_name = request.robot_name).delete()
             communication_queue.put(ros_pb2.ServerToRosCommunication(
                 mapping_request=request.mapping_request
             ))
