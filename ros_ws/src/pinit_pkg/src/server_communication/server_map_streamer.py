@@ -11,6 +11,7 @@ from nav_msgs.msg import OccupancyGrid
 
 
 class ServerMapStreamer():
+    """Fetches the map and sends to server"""
 
     def __init__(self, queue):
         self.communication_queue = queue
@@ -22,14 +23,31 @@ class ServerMapStreamer():
                          self.map_callback)
 
 
-    def encode(self,list_of_ints):
+    def encode(self, list_of_ints):
+        """Encodes an int list
+
+        Args:
+            list_of_ints: An int list
+
+        Returns:
+            A unit8 numpy list
+        """
+
         return (np.array(list_of_ints) + 1).astype('uint8').tobytes()
 
 
     def map_callback(self, occupancy_grid):
+        """Queues the map for the server
+
+        Args:
+            None
+
+        Returns:
+            None
+        """
+
         metadata = occupancy_grid.info
         map_raw_data = occupancy_grid.data
-        print metadata
         map_raw_data_encoded = self.encode(map_raw_data)
 
         self.map_grpc = ros_pb2.RosToServerCommunication(
