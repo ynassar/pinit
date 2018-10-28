@@ -14,6 +14,7 @@ import rospy
 
 
 class ServerHandler():
+
     """Handles all communication with the server"""
 
     def __init__(self):
@@ -26,6 +27,8 @@ class ServerHandler():
 
         self.mapping_hanlder = ServerMappingHandler()
         self.map_streamer = ServerMapStreamer(self.communication_queue)
+        #TODO move map streamer to ServerMappingHandler
+        # to be able to stop and start streaming
 
         self.main_loop()
 
