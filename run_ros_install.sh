@@ -15,16 +15,16 @@ ros_setup_packages=(
 echo "Installing ros base packages..."
 sudo apt-get install -qq -y ${ros_setup_packages[@]}
 
-source /opt/ros/kinetic/setup.bash
 
 echo "Other ros initilizations..."
+source /opt/ros/kinetic/setup.bash
 sudo rosdep init
 rosdep update
 
 echo "source /opt/ros/kinetic/setup.bash" >> ~/.bashrc
 
 echo "Installing ros messages..."
-sudo apt install -q -y ros-kinetic-common-msgs
+sudo apt install -qq -y ros-kinetic-common-msgs
 
 echo "Installing ros dependancy packages"
 rosdep install --from-paths ros_ws/src -i -y
