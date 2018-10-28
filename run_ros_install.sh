@@ -23,17 +23,6 @@ rosdep update
 
 echo "source /opt/ros/kinetic/setup.bash" >> ~/.bashrc
 
-imu_packages=(
-	"libi2c-dev"
-	"libeigen3-dev"
-	"libboost-program-options-dev"
-	"ros-kinetic-imu-tools"
-)
-
-
-echo "Installing imu dependancies..."
-sudo apt-get install -q -y ${imu_packages[@]}
-
 echo "Installing ros messages..."
 sudo apt install -q -y ros-kinetic-common-msgs
 
