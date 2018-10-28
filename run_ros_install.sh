@@ -37,4 +37,13 @@ sudo apt-get install -q -y ${imu_packages[@]}
 echo "Installing ros messages..."
 sudo apt install -q -y ros-kinetic-common-msgs
 
+echo "Installing ros dependancy packages"
+rosdep install --from-paths ros_ws/src -i -y
+
+echo "Building ros package.."
+cd ros_ws
+catkin_make
+
+
 echo "Done!"
+
