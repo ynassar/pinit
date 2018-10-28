@@ -11,6 +11,8 @@ from nav_msgs.msg import OccupancyGrid
 
 
 class ServerMapStreamer():
+    #TODO start and stop mapping streaming the map programatically
+
     """Fetches the map and sends to server"""
 
     def __init__(self, queue):
