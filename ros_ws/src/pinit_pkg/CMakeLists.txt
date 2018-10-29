@@ -149,11 +149,9 @@ include_directories(
 ## same as for the library above
 # add_dependencies(${PROJECT_NAME}_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
-add_executable(imu_raw src/imu/minimu9-ahrs.cpp src/imu/i2c_bus.cpp src/imu/l3g.cpp src/imu/lis3mdl.cpp src/imu/lsm6.cpp src/imu/lsm303.cpp src/imu/minimu9.cpp src/imu/prog_options.cpp)
 
 ## Specify libraries to link a library or executable target against
 
-target_link_libraries(imu_raw ${Boost_LIBRARIES} ${catkin_LIBRARIES})
 
 #target_link_libraries(imu_raw ${Boost_LIBRARIES} )
 
