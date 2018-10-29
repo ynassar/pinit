@@ -7,16 +7,15 @@ from proto.ros import ros_pb2
 from ros_ws.src.pinit_pkg.src.robot_motion.motion_controller import MotionController
 
 import roslaunch
-
-
 import rospy
 import rospkg
 
 
-
 class ServerMappingHandler():
+    """Handles server mapping requests"""
 
     class RobotState(Enum):
+        """An enum for robot mapping states"""
         IDLE = 1
         MAPPING = 2
         MOVING_AND_MAPPING = 3
@@ -35,22 +34,37 @@ class ServerMappingHandler():
 
 
     def init_valid_transitions(self):
-        """initializes a dictionary of state transitions"""
+        """Initializes a dictionary of state transitions
+
+        Args:
+            None
+
+        Returns:
+            None
+        """
         self.transitions = {
             self.RobotState.MAPPING :
-                                    [self.RobotState.IDLE,
-                                    self.RobotState.MOVING_AND_MAPPING],
+            [self.RobotState.IDLE,
+             self.RobotState.MOVING_AND_MAPPING],
             self.RobotState.IDLE:
-                                    [self.RobotState.MAPPING,
-                                    self.RobotState.IDLE],
+            [self.RobotState.MAPPING,
+             self.RobotState.IDLE],
             self.RobotState.MOVING_AND_MAPPING :
-                                    [self.RobotState.IDLE,
-                                    self.RobotState.MOVING_AND_MAPPING]
+            [self.RobotState.IDLE,
+             self.RobotState.MOVING_AND_MAPPING]
         }
 
 
     def handle_request(self, request):
-        """handle grpcs mapping_request"""
+        """A big switch for different mapping_request messages
+
+        Args:
+            None
+
+        Returns:
+            None
+        """
+
         request_type = request.request_type
         direction = request.direction
         if request_type == ros_pb2.ServerToRosMappingRequest.START_MAPPING:
@@ -71,7 +85,15 @@ class ServerMappingHandler():
 
 
     def goto_state(self, state):
-        """transistion to another state if valid"""
+        """Transistion to another state
+
+        Args:
+            state: the state which the robot attempts to transition to
+
+        Returns:
+            True or False if transition is successfull
+        """
+
         valid_transitions = self.transitions[self.current_state]
         success = False
 
@@ -86,7 +108,15 @@ class ServerMappingHandler():
 
 
     def start_mapping(self):
-        """starts ros mapping launch file"""
+        """Start ros mapping nodes and #TODO streams the map
+
+        Args:
+            None
+
+        Returns:
+            None
+        """
+
         if (self.goto_state(self.RobotState.MAPPING)):
             uuid = roslaunch.rlutil.get_or_generate_uuid(None, False)
             roslaunch.configure_logging(uuid)
@@ -97,17 +127,28 @@ class ServerMappingHandler():
 
 
     def stop_mapping(self):
-        """kills ros mapping launch file"""
+        """Stop ros mapping nodes and #TODO stop streaming the map
+
+        Args:
+            None
+
+        Returns:
+            None
+        """
+
         if self.goto_state(self.RobotState.IDLE):
             self.launch.shutdown()
 
 
     def move(self, direction):
-        """moves the robot by publishing to /cmd_vel"""
+        """Move the robot in a specific direction
+
+        Args:
+            direction: The direction of motion
+
+        Returns:
+            None
+        """
+
         if self.goto_state(self.RobotState.MOVING_AND_MAPPING):
             self.motion_controller.move(direction)
-
-
-if __name__ == '__main__':
-    t = ServerMappingHandler()
-    t.start_mapping()
