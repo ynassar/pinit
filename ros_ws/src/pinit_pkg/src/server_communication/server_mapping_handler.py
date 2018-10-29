@@ -4,7 +4,7 @@ from enum import Enum
 from proto.ros import ros_pb2_grpc
 from proto.ros import ros_pb2
 
-from ros_ws.src.pinit_pkg.src.robot_motion.motion_controller import MotionController
+from robot_motion.motion_controller import MotionController
 
 import roslaunch
 import rospy
