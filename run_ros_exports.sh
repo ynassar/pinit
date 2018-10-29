@@ -23,5 +23,10 @@ echo "Done!"
 echo "Exporting PYTHONPATH..."
 export PYTHONPATH=$PYTHONPATH:${PWD}
 export PYTHONPATH=$PYTHONPATH:${PWD}/ros_ws/src/pinit_pkg/src
+
+echo "Creating __init__.py for python2 .."
+rospkg_source_path=${PWD}/ros_ws/src/pinit_pkg/src
+find ${rospkg_source_path} -type d -exec touch {}/__init__.py \;
+
 echo "Done!"
 
