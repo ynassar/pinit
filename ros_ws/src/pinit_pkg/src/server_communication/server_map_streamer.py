@@ -39,7 +39,7 @@ class ServerMapStreamer():
 
 
     def map_callback(self, occupancy_grid):
-        """Queue the map in the server main queue"
+        """Queue the map in the server main queue
 
         Args:
             None
