@@ -50,14 +50,14 @@ class ServerHandler():
 
 
     def stub_callback(self):
-        """Responds back to server
+        """Respond back to server
 
         Args:
             None
 
         Yields:
             RosToServerCommunication message with the robot name
-            then pops messages from the communication_queue
+            then pops messages from the server communication_queue
         """
 
         yield ros_pb2.RosToServerCommunication(robot_name=self.robot_name)

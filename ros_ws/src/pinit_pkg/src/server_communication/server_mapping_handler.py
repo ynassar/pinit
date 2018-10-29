@@ -34,7 +34,7 @@ class ServerMappingHandler():
 
 
     def init_valid_transitions(self):
-        """initializes a dictionary of state transitions
+        """Initializes a dictionary of state transitions
 
         Args:
             None
@@ -56,7 +56,7 @@ class ServerMappingHandler():
 
 
     def handle_request(self, request):
-        """a big switch for different mapping_request messages
+        """A big switch for different mapping_request messages
 
         Args:
             None
@@ -85,7 +85,7 @@ class ServerMappingHandler():
 
 
     def goto_state(self, state):
-        """transistion to another state
+        """Transistion to another state
 
         Args:
             state: the state which the robot attempts to transition to
@@ -108,7 +108,7 @@ class ServerMappingHandler():
 
 
     def start_mapping(self):
-        """starts ros mapping launch file
+        """Start ros mapping nodes and #TODO streams the map
 
         Args:
             None
@@ -127,7 +127,7 @@ class ServerMappingHandler():
 
 
     def stop_mapping(self):
-        """kills ros mapping launch file
+        """Stop ros mapping nodes and #TODO stop streaming the map
 
         Args:
             None
@@ -141,7 +141,7 @@ class ServerMappingHandler():
 
 
     def move(self, direction):
-        """Moves the robot in specific direction
+        """Move the robot in a specific direction
 
         Args:
             direction: The direction of motion

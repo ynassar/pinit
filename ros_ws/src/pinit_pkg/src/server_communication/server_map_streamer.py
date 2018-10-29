@@ -13,7 +13,7 @@ from nav_msgs.msg import OccupancyGrid
 class ServerMapStreamer():
     #TODO start and stop mapping streaming the map programatically
 
-    """Fetches the map and sends to server"""
+    """Fetch the map and send it to the server"""
 
     def __init__(self, queue):
         self.communication_queue = queue
@@ -26,20 +26,20 @@ class ServerMapStreamer():
 
 
     def encode(self, list_of_ints):
-        """Encodes an int list
+        """Encode an int list
 
         Args:
             list_of_ints: An int list
 
         Returns:
-            A unit8 numpy list
+            A uint8 numpy list
         """
 
         return (np.array(list_of_ints) + 1).astype('uint8').tobytes()
 
 
     def map_callback(self, occupancy_grid):
-        """Queues the map for the server
+        """Queue the map in the server main queue"
 
         Args:
             None
