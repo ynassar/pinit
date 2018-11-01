@@ -2,7 +2,10 @@
   <master auto="start"/>
 
   <!-- Run the map server -->
-  <node name="map_server" pkg="map_server" type="map_server" args="/home/nvidia/thesis_lab_naw.pgm 0.1"/>
+  <!-- Note: avoid using maps pgm as it doesn't set map origin correctly -->
+  <!-- use yamls instead the contain the map origin -->
+  <!-- in the future we will be fetching the map from the server, so it won't matter then -->
+  <node name="map_server" pkg="map_server" type="map_server" args="/home/nvidia/map.yaml"/>
 
   <!--- Run AMCL -->
   <include file="$(find amcl)/examples/amcl_diff.launch" />
