@@ -20,7 +20,7 @@ class LoginViewController : UIViewController, LoginServerDelegate  {
         self.view.addGestureRecognizer(tapAnywhere)
         
         loginView.usernameTextField.addTarget(self, action: #selector(self.textFieldEditChange), for: .editingChanged)
-        loginView.passwordTextFiled.addTarget(self, action: #selector(self.textFieldEditChange), for: .editingChanged)
+        loginView.passwordTextField.addTarget(self, action: #selector(self.textFieldEditChange), for: .editingChanged)
         
         let loginViewTopHeight = self.view.frame.size.height / 4
         loginView = self.loginView
@@ -51,7 +51,7 @@ class LoginViewController : UIViewController, LoginServerDelegate  {
     @objc private func loginInButtonClick() {
         loginServer.loginWithCredentials(
             username: loginView.usernameTextField.text!,
-            password: loginView.passwordTextFiled.text!)
+            password: loginView.passwordTextField.text!)
     }
     
     @objc private func signUpLabelTap(sender: UITapGestureRecognizer) {
@@ -63,7 +63,7 @@ class LoginViewController : UIViewController, LoginServerDelegate  {
     
     @objc private func textFieldEditChange() {
         if loginView.usernameTextField.hasText
-            && loginView.passwordTextFiled.hasText {
+            && loginView.passwordTextField.hasText {
             loginView.loginButton.enableButton()
         } else {
             loginView.loginButton.disableButton()

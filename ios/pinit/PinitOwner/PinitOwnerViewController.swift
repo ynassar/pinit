@@ -24,12 +24,16 @@ class PinitOwnerViewController: UITabBarController, UITabBarControllerDelegate {
         self.tabBar.barTintColor = .white
         self.tabBar.backgroundColor = .white
         
+        // Tab for mapping screen responsible for creating the map, adding different locations,
+        // moving the robot aroung during the process and finally saving the map.
         let mappingBarItem = UITabBarItem(
             title: nil,
             image: UIImage(named: "MapIcon"),
             selectedImage: nil)
         mappingViewController.tabBarItem = mappingBarItem
         
+        // Tab for settings which has options like changing password, logging out and enabling
+        // or disabling notifications. 
         let settingsBarItem = UITabBarItem(
             title: nil,
             image: UIImage(named: "SettingsIcon"),

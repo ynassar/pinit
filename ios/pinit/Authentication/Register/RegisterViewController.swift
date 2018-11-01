@@ -18,8 +18,8 @@ class RegisterViewController : UIViewController, RegisterServerDelegate {
         registerServer.delegate = self
         
         registerView.usernameTextField.addTarget(self, action: #selector(self.textFieldEditChange), for: .editingChanged)
-        registerView.passwordTextFiled.addTarget(self, action: #selector(self.textFieldEditChange), for: .editingChanged)
-        registerView.confrimPasswordTextFiled.addTarget(self, action: #selector(self.textFieldEditChange), for: .editingChanged)
+        registerView.passwordTextField.addTarget(self, action: #selector(self.textFieldEditChange), for: .editingChanged)
+        registerView.confrimPasswordTextField.addTarget(self, action: #selector(self.textFieldEditChange), for: .editingChanged)
         registerView.emailTextField.addTarget(self, action: #selector(self.textFieldEditChange), for: .editingChanged)
         
         let tapAnywhere = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
@@ -50,23 +50,23 @@ class RegisterViewController : UIViewController, RegisterServerDelegate {
     }
     
     @objc private func regiserButtonClick() {
-        if (registerView.passwordTextFiled.text! !=
-            registerView.confrimPasswordTextFiled.text!) {
+        if (registerView.passwordTextField.text! !=
+            registerView.confrimPasswordTextField.text!) {
             self.showAlertMessage(
                 title: "Error Message",
                 message: "PLease type the same passwords twice.")
         } else {
             registerServer.registerWithCredentials(
                 username: registerView.usernameTextField.text!,
-                password: registerView.passwordTextFiled.text!,
+                password: registerView.passwordTextField.text!,
                 email:  registerView.emailTextField.text!)
         }
     }
     
     @objc private func textFieldEditChange() {
         if registerView.usernameTextField.hasText
-            && registerView.passwordTextFiled.hasText
-            && registerView.confrimPasswordTextFiled.hasText
+            && registerView.passwordTextField.hasText
+            && registerView.confrimPasswordTextField.hasText
             && registerView.emailTextField.hasText {
             registerView.registerButton.enableButton()
         } else {

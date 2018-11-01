@@ -28,6 +28,7 @@ public class MappingServer {
         mappingRequest.mappingRequest = serverToRosMappingRequest
     }
     
+    /// Private function responsible foe sending the direction mapping request to the GRPC server.
     private func sendMovement(direction: ServerToRosMappingRequest.Direction) {
         mappingRequest.mappingRequest.requestType = .direction
         mappingRequest.mappingRequest.direction = direction
@@ -38,26 +39,32 @@ public class MappingServer {
         }
     }
     
+    /// Function to move the robot in the direction `forward`.
     public func moveRobotForward() {
         sendMovement(direction: .forward)
     }
     
+    /// Function to move the robot in the direction `right`.
     public func moveRobotRight() {
         sendMovement(direction: .right)
     }
     
+    /// Function to move the robot in the direction `left`.
     public func moveRobotLeft() {
         sendMovement(direction: .left)
     }
     
+    /// Function to move the robot in the direction `backward`.
     public func moveRobotBackward() {
         sendMovement(direction: .backward)
     }
     
+    /// Function to move the robot in the direction `stop`.
     public func moveRobotStop() {
         sendMovement(direction: .stop)
     }
     
+    /// Function to send the `MappingRequest` to start mapping.
     public func startMappingRequest() {
         mappingRequest.mappingRequest.requestType = .startMapping
         do {
@@ -68,6 +75,8 @@ public class MappingServer {
         } 
     }
     
+    /// Function to send the `MappingRequest` to stop mapping and saving the map on the robot
+    /// or on the GRPC server.
     public func saveMappingRequest() {
         mappingRequest.mappingRequest.requestType = .stopMapping
         do {
@@ -79,8 +88,10 @@ public class MappingServer {
         }
     }
     
+    /// Function to send a `MappingRequest` every 3 seconds requesting the lastest version
+    /// of the map saved in the GRPC server database and when fetched, it's sent back
+    /// to the delegate view controller to do the appropriate changes.
     public func mapImageRequestAsynchronous() {
-        
         var getMapRequest = GetMapRequest()
         getMapRequest.robotName = "nemo"
         
