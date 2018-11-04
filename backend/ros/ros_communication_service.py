@@ -58,7 +58,9 @@ class RosService(ros_pb2_grpc.RosServiceServicer):
                     upsert=True,
                     set__resolution=request.raw_map.resolution,
                     set__b64_image=b64_image,
-                    set__raw_map=map_data.decode('utf-8'))
+                    set__raw_map=map_data.decode('utf-8'),
+                    set__height=map_height,
+                    set__width=map_width)
 
     def Communicate(self, request_iterator, context):
         first_request = next(request_iterator)
@@ -89,11 +91,21 @@ class RosService(ros_pb2_grpc.RosServiceServicer):
             return ros_pb2.MappingResponse()
 
     def GetMapImage(self, request, context):
-        map = map_model.Map.objects.get(robot_name = request.robot_name)
         try:
+            map = map_model.Map.objects.get(robot_name = request.robot_name)
             return ros_pb2.MapImage(resolution=map.resolution, encoded_image=map.b64_image)
         except mongoengine.DoesNotExist:
             raise NoMapFound()
-
+    
+    def GetRawMap(self, request, context):
+        try:
+            map = map_model.Map.objects.get(robot_name = request.robot_name)
+            return ros_pb2.RawMap(resolution=map.resolution, 
+                                  height=map.height,
+                                  width=map.width,
+                                  data=map.raw_map.encode('utf-8'))
+        except mongoengine.DoesNotExist:
+            raise NoMapFound()
+    
     def GetMapImageStream(self, request, context):
         raise NotImplementedError("GetMapImageStream() is not yet implemented.")
