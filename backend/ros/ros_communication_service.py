@@ -57,7 +57,8 @@ class RosService(ros_pb2_grpc.RosServiceServicer):
                 map_model.Map.objects(robot_name=robot_name).update_one(
                     upsert=True,
                     set__resolution=request.raw_map.resolution,
-                    set__b64_image=b64_image)
+                    set__b64_image=b64_image,
+                    set__raw_map=map_data.decode('utf-8'))
 
     def Communicate(self, request_iterator, context):
         first_request = next(request_iterator)
