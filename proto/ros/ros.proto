@@ -4,6 +4,7 @@ service RosService{
     rpc Communicate(stream RosToServerCommunication) returns (stream ServerToRosCommunication){}
     rpc SendMovement(MappingRequest) returns (MappingResponse){} 
     rpc GetMapImage(GetMapRequest) returns (MapImage) {}
+    rpc GetRawMap(GetMapRequest) returns (RawMap) {}
     rpc GetMapImageStream(GetMapRequest) returns (stream MapImage) {}
 }
 
