@@ -106,6 +106,3 @@ class RosService(ros_pb2_grpc.RosServiceServicer):
                                   data=map.raw_map.encode('utf-8'))
         except mongoengine.DoesNotExist:
             raise NoMapFound()
-    
-    def GetMapImageStream(self, request, context):
-        raise NotImplementedError("GetMapImageStream() is not yet implemented.")
