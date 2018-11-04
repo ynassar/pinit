@@ -10,6 +10,7 @@ from geometry_msgs.msg import Twist
 from geometry_msgs.msg import Vector3
 
 class MotionController():
+    """Handles the robot, iCreate, velocity"""
 
     class RobotDirection(Enum):
         FORWARD = 0
@@ -45,10 +46,28 @@ class MotionController():
 
 
     def init_node(self):
+        """Initialize the class as a ros node
+
+        Args:
+            None
+
+        Returns:
+            None
+        """
+
         rospy.init_node(self.node_name, anonymous=True)
 
 
     def init_vel_loop(self):
+        """Start a separate thread to publish velocities
+
+        Args:
+            None
+
+        Returns:
+            None
+        """
+
         self.thread_executor = threading.Thread(target=self.vel_loop)
         self.thread_executor.start()
         self.direction_lock = threading.Lock()
@@ -56,20 +75,47 @@ class MotionController():
 
 
     def accelerate_linear(self, vel):
-        vel = vel + self.vel_linear_increment
-        vel = min(vel, self.vel_linear_range[1])
+        """Accelerate linear velocity
 
-        return vel
+        Args:
+            vel: the velocity to be accelerated
+
+        Returns:
+            accelerated_vel: the velocity after acceleration
+        """
+
+        accelerated_vel = vel + self.vel_linear_increment
+        accelerated_vel = min(accelerated_vel, self.vel_linear_range[1])
+
+        return accelerated_vel
 
 
     def decelerate_linear(self, vel):
-        vel = vel - self.vel_linear_increment
-        vel = max(vel, self.vel_linear_range[0])
+        """Decelerate linear velocity
 
-        return vel
+        Args:
+            vel: the velocity to be decelerated
+
+        Returns:
+            decelerated_vel: the velocity after deceleration
+        """
+
+        decelerated_vel = vel - self.vel_linear_increment
+        decelerated_vel = max(decelerated_vel, self.vel_linear_range[0])
+
+        return decelerated_vel
 
 
     def vel_loop(self):
+        """Change the velocity based on robot direction
+
+        Args:
+            None
+
+        Returns:
+            None
+        """
+
         while not rospy.is_shutdown():
             rospy.sleep(0.01)
             linear = self.vel_linear
@@ -104,6 +150,15 @@ class MotionController():
 
 
     def publish(self):
+        """Publish to the robot velocity topic
+
+        Args:
+            None
+
+        Returns:
+            None
+        """
+
         angular = Vector3(0, 0, self.vel_angular)
         linear = Vector3(self.vel_linear, 0, 0)
         msg = Twist(linear, angular)
@@ -112,6 +167,15 @@ class MotionController():
 
 
     def move(self, direction):
+        """Set the robot direction
+
+        Args:
+            direction: new direction of the robot
+
+        Returns:
+            None
+        """
+
         self.direction_lock.acquire()
         self.robot_direction = direction
         self.direction_lock.release()
