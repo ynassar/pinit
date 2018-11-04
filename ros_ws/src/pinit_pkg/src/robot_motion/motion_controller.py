@@ -1,9 +1,7 @@
 #!/usr/bin/env python
 
-from concurrent import futures
 from enum import Enum
 import threading
-import time
 
 import numpy as np
 
@@ -33,7 +31,7 @@ class MotionController():
         self.vel_angular_range = (-1.25, 1.25)
         self.acceleration_steps = 80
         self.vel_linear_increment = (abs(self.vel_linear_range[0] -
-                                        self.vel_linear_range[1]) /
+                                         self.vel_linear_range[1]) /
                                      self.acceleration_steps)
         self.vel_angular_increment = (abs(self.vel_angular_range[0] -
                                           self.vel_angular_range[1]) /
@@ -43,21 +41,35 @@ class MotionController():
                                        Twist,
                                        queue_size=10)
 
-        self.init_publisher_loop()
+        self.init_vel_loop()
 
 
     def init_node(self):
         rospy.init_node(self.node_name, anonymous=True)
 
 
-    def init_publisher_loop(self):
-       self.thread_executor = threading.Thread(target=self.publisher_loop)
-       self.thread_executor.start()
-       self.direction_lock = threading.Lock()
-       rospy.loginfo("velocity publisher loop init")
+    def init_vel_loop(self):
+        self.thread_executor = threading.Thread(target=self.vel_loop)
+        self.thread_executor.start()
+        self.direction_lock = threading.Lock()
+        rospy.loginfo("velocity publisher loop init")
 
 
-    def publisher_loop(self):
+    def accelerate_linear(self, vel):
+        vel = vel + self.vel_linear_increment
+        vel = min(vel, self.vel_linear_range[1])
+
+        return vel
+
+
+    def decelerate_linear(self, vel):
+        vel = vel - self.vel_linear_increment
+        vel = max(vel, self.vel_linear_range[0])
+
+        return vel
+
+
+    def vel_loop(self):
         while not rospy.is_shutdown():
             rospy.sleep(0.01)
             linear = self.vel_linear
@@ -65,40 +77,23 @@ class MotionController():
             self.direction_lock.acquire()
             direction = self.robot_direction
             self.direction_lock.release()
-            if(direction == self.RobotDirection.FORWARD):
-                linear = linear + self.vel_linear_increment
-                linear = min(linear, self.vel_linear_range[1])
-            elif(direction == self.RobotDirection.BACKWARD):
-                linear = linear - self.vel_linear_increment
-                linear = max(linear, self.vel_linear_range[0])
-            elif(direction == self.RobotDirection.LEFT):
-#                angular = angular + self.vel_angular_increment
-#                angular = min(angular, self.vel_angular_range[1])
+            if direction == self.RobotDirection.FORWARD:
+                linear = self.accelerate_linear(linear)
+            elif direction == self.RobotDirection.BACKWARD:
+                linear = self.decelerate_linear(linear)
+            elif direction == self.RobotDirection.LEFT:
                 angular = self.vel_angular_range[1]
-            elif(direction == self.RobotDirection.RIGHT):
-#                angular = angular - self.vel_angular_increment
-#                angular = max(angular, self.vel_angular_range[0])
+            elif direction == self.RobotDirection.RIGHT:
                 angular = self.vel_angular_range[0]
-            elif(direction == self.RobotDirection.STOP):
+            elif direction == self.RobotDirection.STOP:
                 angular = 0
                 if linear > 0:
-                    linear = linear - self.vel_linear_increment
-                    linear = max(linear, 0)
+                    linear = self.decelerate_linear(linear)
                 elif linear < 0:
-                    linear = linear + self.vel_linear_increment
-                    linear = min(linear, 0)
+                    linear = self.accelerate_linear(linear)
                 else:
                     linear = linear
-#                if angular > 0:
-#                    angular = angular - self.vel_angular_increment
-#                    angular = max(angular, 0)
-#                elif angular < 0:
-#                    angular = angular + self.vel_angular_increment
-#                    angular = min(angular, 0)
-#                else:
-#                    angular = angular
-
-
+                    angular = angular
             else:
                 rospy.logwarn("Unknown motion direction. Check \
                                  MotionController.RobotDirection")
