@@ -19,7 +19,7 @@ Todos for the robot.
     * The robot navigates to the destination.
     
 
-### Suggested high level list of methods to be implemented:
+### Suggested list of high level methods to be implemented:
 
 - [ ] `void set_global_origin(coordinates global)`
 - [ ] `coordinates get_global_origin()`
