@@ -20,9 +20,11 @@ Todos for the robot.
     
 
 ### Suggested high level list of methods to be implemented:
-`- [ ] void set_global_origin(coordinates global)`
-- [ ] `coordinates get_global_origin()`
-- [ ] `coordinates global_to_local(coordinates global)`
-- [ ] `void set_destination(coordinates destination)`
-- [ ] `void update_robot_status(robot_status status)`
-- [ ] `void start_nav_stack()`
+```
+- [ ] void set_global_origin(coordinates global)
+- [ ] coordinates get_global_origin()
+- [ ] coordinates global_to_local(coordinates global)
+- [ ] void set_destination(coordinates destination)
+- [ ] void update_robot_status(robot_status status)
+- [ ] void start_nav_stack()`
+```
