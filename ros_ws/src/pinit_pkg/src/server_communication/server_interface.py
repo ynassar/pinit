@@ -25,13 +25,8 @@ class ServerHandler():
         self.init_node()
         self.communication_queue = Queue()
 
-        self.mapping_hanlder = ServerMappingHandler()
-        self.map_streamer = ServerMapStreamer(self.communication_queue)
-        #TODO move map streamer to ServerMappingHandler
-        # to be able to stop and start streaming
-
+        self.mapping_hanlder = ServerMappingHandler(self.communication_queue)
         self.main_loop()
-
 
 
     def init_node(self):

@@ -1,10 +1,12 @@
 #!/usr/bin/env python
 
+from Queue import Queue
 from enum import Enum
 from proto.ros import ros_pb2_grpc
 from proto.ros import ros_pb2
 
 from robot_motion.motion_controller import MotionController
+from server_map_streamer import ServerMapStreamer
 
 import roslaunch
 import rospy
@@ -21,8 +23,10 @@ class ServerMappingHandler():
         MOVING_AND_MAPPING = 3
 
 
-    def __init__(self):
+    def __init__(self, queue):
 
+        self.communication_queue = queue
+        self.map_streamer = ServerMapStreamer(self.communication_queue)
         self.motion_controller = MotionController()
         self.current_state = self.RobotState.IDLE
         self.launch_file_path = rospkg.RosPack().get_path('pinit_pkg') + \
@@ -55,6 +59,29 @@ class ServerMappingHandler():
         }
 
 
+    def goto_state(self, state):
+        """Transistion to another state
+
+        Args:
+            state: the state which the robot attempts to transition to
+
+        Returns:
+            True or False if transition is successfull
+        """
+
+        valid_transitions = self.transitions[self.current_state]
+        success = False
+
+        if state in valid_transitions:
+            self.current_state = state
+            success = True
+        else:
+            print("Warning invalid state transistion")
+            success = False
+
+        return success
+
+
     def handle_request(self, request):
         """A big switch for different mapping_request messages
 
@@ -84,27 +111,18 @@ class ServerMappingHandler():
                 self.move(MotionController.RobotDirection.STOP)
 
 
-    def goto_state(self, state):
-        """Transistion to another state
+    def move(self, direction):
+        """Move the robot in a specific direction
 
         Args:
-            state: the state which the robot attempts to transition to
+            direction: The direction of motion
 
         Returns:
-            True or False if transition is successfull
+            None
         """
 
-        valid_transitions = self.transitions[self.current_state]
-        success = False
-
-        if state in valid_transitions:
-            self.current_state = state
-            success = True
-        else:
-            print("Warning invalid state transistion")
-            success = False
-
-        return success
+        if self.goto_state(self.RobotState.MOVING_AND_MAPPING):
+            self.motion_controller.move(direction)
 
 
     def start_mapping(self):
@@ -124,6 +142,7 @@ class ServerMappingHandler():
             [self.launch_file_path])
 
             self.launch.start()
+            self.map_streamer.start_stream()
 
 
     def stop_mapping(self):
@@ -138,17 +157,4 @@ class ServerMappingHandler():
 
         if self.goto_state(self.RobotState.IDLE):
             self.launch.shutdown()
-
-
-    def move(self, direction):
-        """Move the robot in a specific direction
-
-        Args:
-            direction: The direction of motion
-
-        Returns:
-            None
-        """
-
-        if self.goto_state(self.RobotState.MOVING_AND_MAPPING):
-            self.motion_controller.move(direction)
+            self.map_streamer.stop_stream()
