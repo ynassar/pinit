@@ -3,11 +3,20 @@
 import numpy as np
 
 
+class GPS_Point():
 
-def get_vector(long1, lat1, long2, lat2):
+    def __init__(self, long, lat):
+        self.long = long
+        self.lat = lat
+
+
+
+def get_vector(p1, p2):
     """Calculate the vector between two gps coordinates
-    
+
     Args:
+        p1: first gps coordinates
+        p2: second gps coordinate
         long1: first coordinate longitude in radians
         lat1: first coordinate latitude in radians
         long2: second coordinate longitude in radians
@@ -18,6 +27,11 @@ def get_vector(long1, lat1, long2, lat2):
         theta: the bearing from one point to another
         #TODO figure out where the bearing start from
     """
+
+    long1 = p1.long
+    lat1 = p1.lat
+    long2 = p2.long
+    lat2 = p2.lat
 
     R = 6378137
     # R = 6371000
@@ -48,7 +62,7 @@ if __name__=='__main__':
     long1 = np.radians(long1)
     long2 = np.radians(long2)
 
-    v = get_vector(long1, lat1, long2, lat2)
+    v = get_vector(GPS_Point(long=long1, lat=lat1), GPS_Point(long=long2, lat=lat2))
     print v[0] / 1000
     bearing = np.degrees(v[1])
     bearing = (bearing + 360) % 360
