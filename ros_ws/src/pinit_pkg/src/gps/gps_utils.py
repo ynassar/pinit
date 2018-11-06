@@ -2,12 +2,7 @@
 
 import numpy as np
 
-
-class GPS_Point():
-
-    def __init__(self, long, lat):
-        self.long = long
-        self.lat = lat
+from gps.gps_controller import GpsPoint
 
 
 
@@ -58,7 +53,7 @@ if __name__=='__main__':
     long1 = np.radians(long1)
     long2 = np.radians(long2)
 
-    v = get_vector(GPS_Point(long=long1, lat=lat1), GPS_Point(long=long2, lat=lat2))
+    v = get_vector(GpsPoint(long=long1, lat=lat1), GpsPoint(long=long2, lat=lat2))
     print v[0] / 1000
     bearing = np.degrees(v[1])
     bearing = (bearing + 360) % 360

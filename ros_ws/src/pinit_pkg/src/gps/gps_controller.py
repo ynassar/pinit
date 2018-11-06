@@ -6,7 +6,16 @@ import math
 from sensor_msgs.msg import NavSatFix
 import roslaunch
 
-class GPS_Controller():
+
+class GpsPoint():
+
+    def __init__(self, long, lat):
+        self.long = long
+        self.lat = lat
+
+
+
+class GpsController():
     
     def __init__(self):
         self.node_name = "gps_controller"
@@ -47,11 +56,15 @@ class GPS_Controller():
         self.launch.shutdown()
         self.longitude = None
         self.latitude = None
-        return longitude, latitude
+
+        point = GpsPoint()
+        point.lat = latitude
+        point.long = longitude
+        return point
 
 if __name__ == '__main__':
     try:
-        controller = GPS_Controller()
+        controller = GpsController()
         controller.init_node()
         coordinates = controller.get_coordinates()
         print coordinates
