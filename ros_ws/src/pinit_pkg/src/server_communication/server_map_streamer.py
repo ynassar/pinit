@@ -70,6 +70,7 @@ class ServerMapStreamer():
                 data=map_raw_data_encoded))
 
         self.communication_queue.put(self.map_grpc)
+        rospy.loginfo("Sending map to server...")
 
 
     def encode(self, list_of_ints):
