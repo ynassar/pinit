@@ -19,11 +19,11 @@ class ServerMapStreamer():
         self.map_topic_name = "map"
         self.map_grpc = None
         self.subscriber = None
-        self.global_coordinates = None
+        self.global_origin = None
 
 
     def start_stream(self):
-        """Start listenning and streaming the mapping
+        """Start listenning and streaming the mapping and gets global reference
 
         Args:
             None
@@ -32,13 +32,23 @@ class ServerMapStreamer():
             None
         """
 
+        self.fetch_global_origin() #This should block until we receive gps coordinates
         self.subscriber = rospy.Subscriber(self.map_topic_name,
                                            OccupancyGrid,
                                            self.map_callback)
 
 
-    def set_global_coordinates(self):
-        self.global_coordinates = GpsController().get_coordinates()
+    def fetch_global_origin(self):
+        """Fetch the map global origin
+
+        Args:
+            None
+
+        Returns:
+            None
+        """
+
+        self.global_origin = GpsController().get_coordinates()
 
 
     def stop_stream(self):
@@ -57,6 +67,7 @@ class ServerMapStreamer():
     def map_callback(self, occupancy_grid):
         """Queue the map in the server main queue
 
+
         Args:
             None
 
@@ -69,8 +80,8 @@ class ServerMapStreamer():
         map_raw_data_encoded = self.encode(map_raw_data)
 
         gps_coordinates_msg = ros_pb2.GpsCoordinates(
-            longitude=self.global_coordinates.long,
-            latitude=self.global_coordinates.lat)
+            longitude=self.global_origin.long,
+            latitude=self.global_origin.lat)
 
         self.map_grpc = ros_pb2.RosToServerCommunication(
             raw_map=ros_pb2.RawMap(
