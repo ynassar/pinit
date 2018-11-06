@@ -4,7 +4,25 @@ service RosService{
     rpc Communicate(stream RosToServerCommunication) returns (stream ServerToRosCommunication){}
     rpc SendMovement(MappingRequest) returns (MappingResponse){} 
     rpc GetMapImage(GetMapRequest) returns (MapImage) {}
-    rpc GetMapImageStream(GetMapRequest) returns (stream MapImage) {}
+    rpc GetRawMap(GetMapRequest) returns (RawMap) {}
+}
+
+message GpsCoordinates{
+    float longitude = 1;
+    float latitude = 2;
+}
+
+message LocalMapPose{
+    int32 row = 1;
+    int32 column = 2;
+    float angle = 3;
+}
+
+message RobotNavigationRequest{
+    oneof destination{
+        LocalMapPose pose = 1;
+        GpsCoordinates coordinates = 2;
+    }
 }
 
 message GetMapRequest{
@@ -21,13 +39,26 @@ message RawMap{
     uint32 height = 2;
     uint32 width = 3;
     bytes data = 4; // Should contain a byte-encoded uint8 numpy array.
+    GpsCoordinates origin = 5;
 }
 
 message RosToServerCommunication{
     string robot_name = 1; // An identifier for the ros node to send requests to.
     oneof communication{
         RawMap raw_map = 2;
+        LocalMapPose robot_pose = 3;
+        RobotStatusUpdate status_update = 4;
     }
+}
+
+message RobotStatusUpdate{
+    enum Status{
+        MAPPING = 0;
+        IDLE = 1;
+        EN_ROUTE = 2;
+        ERROR = 3;
+    }
+    Status status_update = 1;
 }
 
 message ServerToRosMappingRequest{
@@ -51,6 +82,7 @@ message ServerToRosMappingRequest{
 message ServerToRosCommunication{
     oneof communication{
         ServerToRosMappingRequest mapping_request = 1;
+        RobotNavigationRequest navigation_request = 2;
     }
 }
 
