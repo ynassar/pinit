@@ -17,10 +17,6 @@ def get_vector(p1, p2):
     Args:
         p1: first gps coordinates
         p2: second gps coordinate
-        long1: first coordinate longitude in radians
-        lat1: first coordinate latitude in radians
-        long2: second coordinate longitude in radians
-        lat2: second coordinate latitude in radians
 
     Returns:
         d: distance between the two points in meters
