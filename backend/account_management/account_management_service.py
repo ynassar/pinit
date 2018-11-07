@@ -31,7 +31,10 @@ class AccountManagementService(account_management_pb2_grpc.AccountManagementServ
         username = request.username
         password_hash = bcrypt.hashpw(request.password.encode('utf-8'), bcrypt.gensalt())
 
-        new_user = user.User(email=email, username=username, password_hash=password_hash)
+        new_user = user.User(email=email, 
+                             username=username,
+                             password_hash=password_hash,
+                             is_owner=False)
         try:
             new_user.save()
         except mongoengine.NotUniqueError:

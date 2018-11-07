@@ -26,7 +26,13 @@ class AuthenticationService(login_pb2_grpc.AuthenticationServiceServicer):
             context.set_details("No user found with the given details.")
             raise NoSuchUser()
         if bcrypt.checkpw(request.password.encode('utf-8'), user.password_hash.encode('utf-8')):
-            token = jwt.encode({'username':user.username}, self._rsa_key)
+            jwt_data = {
+                'username':user.username,
+                'is_owner':user.is_owner
+            }
+            if user.is_owner:
+                jwt_data['owned_robot'] = user.owned_robot
+            token = jwt.encode(jwt_data, self._rsa_key)
             return login_pb2.LoginResponse(token=token)
         else:
             context.set_code(grpc.StatusCode.INVALID_ARGUMENT)
