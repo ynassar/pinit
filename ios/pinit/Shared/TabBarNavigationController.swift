@@ -1,9 +1,14 @@
 import UIKit
 
+/// `TabBarNavigationController` is a parent view controller to any controller that requires a
+/// navigation bar.
 class TabBarNavigationController : UIViewController {
     
+    /// The navigation bar added on the top of the view controller.
     var navbar: UINavigationBar!
   
+    /// Function to add the navigation bar with the apporpriate height along as adjusting its
+    /// title and button colors. =
     override func viewDidLoad() {
         super.viewDidLoad()
         

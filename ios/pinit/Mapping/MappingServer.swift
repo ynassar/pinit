@@ -10,9 +10,10 @@ public class MappingServer {
     /// The client that has the interface of methods used to make different requests.
     var mappingClient: RosServiceServiceClient
     
-    /// The delegate to notify when needed.
+    /// The delegate to notify when the `MappingServer` methods resturn any meaningful results.
     var delegate: MappingServerDelegate?
     
+    /// An initialized mapping request with the robot name for all the methods of `MappingServer` to use. 
     var mappingRequest: MappingRequest!
     
     /// Initializer of the `MappingServer`.
@@ -24,7 +25,7 @@ public class MappingServer {
         
         mappingRequest = MappingRequest()
         mappingRequest.robotName = "nemo"
-        var serverToRosMappingRequest = ServerToRosMappingRequest()
+        let serverToRosMappingRequest = ServerToRosMappingRequest()
         mappingRequest.mappingRequest = serverToRosMappingRequest
     }
     

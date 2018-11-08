@@ -46,7 +46,6 @@ class MappingViewController: TabBarNavigationController,  MappingServerDelegate 
         mappingView.disableMapView()
         saveMappingButtonItem.disableButton()
 
-        
         let spacing = self.view.frame.size.height * 0.02
 
         mappingView = self.mappingView
@@ -127,6 +126,7 @@ class MappingViewController: TabBarNavigationController,  MappingServerDelegate 
         mappingServer.startMappingRequest()
     }
     
+    /// Function that sends a request to the `MapServer` to save the map.
     @objc public func saveMappingClick() {
         mappingServer.saveMappingRequest()
     }
@@ -169,7 +169,9 @@ class MappingViewController: TabBarNavigationController,  MappingServerDelegate 
         mappingView.mapImage.image = newImage
     }
     
+    /// Function responsible for updaing the views if needed when the main view appears.
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         mappingControlsView.updateView()
         mappingView.updateView()
         mappingView.enableMapView()
