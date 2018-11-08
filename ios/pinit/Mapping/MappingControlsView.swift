@@ -83,6 +83,7 @@ class MappingControlsView: UIView {
         
     }
     
+    /// Function to disable all the control buttons.
     public func disableControls() {
         moveForwardButton.disableButton()
         moveRightButton.disableButton()
@@ -90,6 +91,7 @@ class MappingControlsView: UIView {
         moveBackwardButton.disableButton()
     }
     
+    /// Function to enable all the control buttons. 
     public func enableControls() {
         moveForwardButton.enableButton()
         moveRightButton.enableButton()

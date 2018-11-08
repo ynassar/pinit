@@ -4,22 +4,22 @@ import UIKit
 /// the imageview of the mapping image updated periodically.
 class MappingView: UIView, UIScrollViewDelegate {
     
-    var defaultMapImage: UIImageView!
+    var mapImage: UIImageView!
     
     var scrollImage: UIScrollView!
     
     /// Initializer of the `MappingView`.
     init() {
-        defaultMapImage = UIImageView(image: UIImage(named: "defaultMapImage"))
+        mapImage = UIImageView(image: UIImage(named: "defaultMapImage"))
         scrollImage = UIScrollView(frame: CGRect.zero)
         super.init(frame: CGRect.zero)
         scrollImage.delegate = self
-        self.addSubview(defaultMapImage)
+        self.addSubview(mapImage)
         self.addSubview(scrollImage)
         
         scrollImage.minimumZoomScale = 1.0
         scrollImage.maximumZoomScale = 6.0
-        scrollImage.addSubview(defaultMapImage)
+        scrollImage.addSubview(mapImage)
     }
     
     /// Update the view by adding the constraints to make sure that the frame width
@@ -40,23 +40,22 @@ class MappingView: UIView, UIScrollViewDelegate {
                                        relativeAttribute: .bottom,
                                        constant: 0)
         
-        defaultMapImage = defaultMapImage
+        mapImage = mapImage
             .addCenterXConstraint(relativeView: scrollImage)
             .addCenterYConstraint(relativeView: scrollImage)
             .addWidthConstraint(relativeView: scrollImage, multipler: 1.0)
             .keepHeightAspectRatio()
     }
     
+    /// Function to disable the `scrollImage` from the ability to zoom in and out
+    /// using fingers gestures.
     public func disableMapView() {
         scrollImage.isScrollEnabled = false
     }
     
+    /// Function to enable the `scrollImage` to zoom in and out using fingers gestures.
     public func enableMapView() {
         scrollImage.isScrollEnabled = true
-    }
-    
-    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
-        return defaultMapImage
     }
     
     required init?(coder aDecoder: NSCoder) {
