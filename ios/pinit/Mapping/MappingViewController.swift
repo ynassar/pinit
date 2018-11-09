@@ -15,6 +15,8 @@ class MappingViewController: TabBarNavigationController,  MappingServerDelegate 
     
     var saveMappingButtonItem: UIBarButtonItem!
     
+    var addLocationButtonItem: UIBarButtonItem!
+
     /// The function is responsible for adding the targets to the different control buttons,
     /// one for button hold and the other for release. Also adding the different views in the
     /// view covering the entire screen.
@@ -35,16 +37,26 @@ class MappingViewController: TabBarNavigationController,  MappingServerDelegate 
         let saveMappingButton = UIButton(frame: CGRect.zero)
         saveMappingButton.setImage(UIImage(named: "saveMapping"), for: .normal)
         saveMappingButton.addTarget(self, action: #selector(self.saveMappingClick), for: .touchDown)
-        saveMappingButtonItem = UIBarButtonItem(customView: saveMappingButton)
+        self.saveMappingButtonItem = UIBarButtonItem(customView: saveMappingButton)
+    
+        let addLocationButton = UIButton(frame: CGRect.zero)
+        addLocationButton.setImage(UIImage(named: "plusIcon"), for: .normal)
+        addLocationButton.addTarget(self, action: #selector(self.addLocationClick), for: .touchDown)
+        self.addLocationButtonItem = UIBarButtonItem(customView: addLocationButton)
 
         self.navbar.topItem?.rightBarButtonItems = [
             UIBarButtonItem(customView: startMappingButton),
-            UIBarButtonItem(customView: saveMappingButton)
+            self.addLocationButtonItem
+        ]
+        
+        self.navbar.topItem?.leftBarButtonItems = [
+            self.saveMappingButtonItem
         ]
         
         mappingControlsView.disableControls()
         mappingView.disableMapView()
         saveMappingButtonItem.disableButton()
+        //addLocationButtonItem.disableButton()
 
         let spacing = self.view.frame.size.height * 0.02
 
@@ -131,6 +143,19 @@ class MappingViewController: TabBarNavigationController,  MappingServerDelegate 
         mappingServer.saveMappingRequest()
     }
     
+    /// Function that navigates to the `AddLocation` screen.
+    @objc public func addLocationClick() {
+        let transition = CATransition()
+        transition.duration = 0.3
+        transition.type = CATransitionType.push
+        transition.subtype = CATransitionSubtype.fromTop
+        let addLocationViewController = AddLocationViewController()
+        if let navigationController = self.navigationController {
+            navigationController.view.layer.add(transition, forKey: kCATransition)
+            navigationController.pushViewController(addLocationViewController, animated: false)
+        }
+    }
+    
     /// Function responsible for handling any error that comes from the `MapServer` after
     /// sending a request.
     func didMappingErrorOccur(_ errorMessage: String) {
@@ -153,6 +178,7 @@ class MappingViewController: TabBarNavigationController,  MappingServerDelegate 
         self.present(alert, animated: true, completion: nil)
         mappingControlsView.disableControls()
         saveMappingButtonItem.disableButton()
+        //addLocationButtonItem.disableButton()
     }
     
     /// Function responsible for enable the different UI elements including the controls
@@ -160,6 +186,7 @@ class MappingViewController: TabBarNavigationController,  MappingServerDelegate 
     func mapStartConfirmation() {
         mappingControlsView.enableControls()
         saveMappingButtonItem.enableButton()
+        addLocationButtonItem.enableButton()
         mappingServer.mapImageRequestAsynchronous()
     }
     
