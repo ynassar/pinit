@@ -45,34 +45,6 @@ class PoseListener():
         return pose_msg
 
 
-    def run(self):
-        rospy.init_node('pose_publisher')
-        listener = tf.TransformListener()
-        pub = rospy.Publisher('Pose', PoseStamped, queue_size=10);
-        rate = rospy.Rate(10)
-
-        while not rospy.is_shutdown():
-            try:
-                (translation, rotation) = listener.lookupTransform('map', 'base_link', rospy.Time(0))
-                print "trans: ", translation
-                print "rot: ", rotation
-                pose = PoseStamped()
-                pose.pose.position.x = translation[0]
-                pose.pose.position.y = translation[1]
-                pose.pose.position.z = translation[2]
-                pose.pose.orientation.x = rotation[0]
-                pose.pose.orientation.y = rotation[1]
-                pose.pose.orientation.z = rotation[2]
-                pose.pose.orientation.w = rotation[3]
-                pose.header.stamp = rospy.Time.now()
-                pose.header.frame_id = 'map'
-                pub.publish(pose)
-            except (tf.LookupException, tf.ConnectivityException, tf.ExtrapolationException):
-                continue
-
-            rate.sleep()
-
-
 
 def PoseListenerFactory():
     tf_listener = tf.TransformListener()
