@@ -1,7 +1,6 @@
-import grpc
-import sys
 import numpy as np
 
+import grpc
 from proto.ros import ros_pb2_grpc
 from proto.ros import ros_pb2
 
@@ -19,24 +18,35 @@ class ServerMapStreamer():
         self.communication_queue = queue
         self.map_topic_name = "map"
         self.map_grpc = None
-
-        rospy.Subscriber(self.map_topic_name,
-                         OccupancyGrid,
-                         self.map_callback)
+        self.subscriber = None
 
 
-    def encode(self, list_of_ints):
-        """Encode an int list
+    def start_stream(self):
+        """Start listenning and streaming the mapping
 
         Args:
-            list_of_ints: An int list
+            None
 
         Returns:
-            A uint8 numpy list
+            None
         """
 
-        return (np.array(list_of_ints) + 1).astype('uint8').tobytes()
+        self.subscriber = rospy.Subscriber(self.map_topic_name,
+                                           OccupancyGrid,
+                                           self.map_callback)
 
+
+    def stop_stream(self):
+        """Stops listenning and streaming the map
+
+        Args:
+            None
+
+        Returns:
+            None
+        """
+
+        self.subscriber.unregister()
 
     def map_callback(self, occupancy_grid):
         """Queue the map in the server main queue
@@ -60,3 +70,17 @@ class ServerMapStreamer():
                 data=map_raw_data_encoded))
 
         self.communication_queue.put(self.map_grpc)
+        rospy.loginfo("Sending map to server...")
+
+
+    def encode(self, list_of_ints):
+        """Encode an int list
+
+        Args:
+            list_of_ints: An int list
+
+        Returns:
+            A uint8 numpy list
+        """
+
+        return (np.array(list_of_ints) + 1).astype('uint8').tobytes()
