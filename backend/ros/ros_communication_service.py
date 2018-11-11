@@ -64,9 +64,13 @@ class RosService(ros_pb2_grpc.RosServiceServicer):
         if robot_name not in self._robot_name_to_queue:
             self._robot_name_to_queue[robot_name] = queue.Queue()
         communication_queue = self._robot_name_to_queue[robot_name]
-        for communication in iter(communication_queue.get, None):
-            # Iterate forever, only ROS node can terminate connection.
-            yield communication
+        while context.is_active():
+            try:
+                communication = communication_queue.get_nowait()
+                yield communication
+            except queue.Empty:
+                pass
+        del self._robot_name_to_queue[robot_name]
 
     def SendMovement(self, request, context):
         robot_name = request_utils.RobotNameFromRequest(request, self._rsa_key)

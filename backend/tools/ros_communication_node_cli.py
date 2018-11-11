@@ -14,7 +14,6 @@ FLAGS = flags.FLAGS
 
 def GenerateRequest():
     yield ros_pb2.RosToServerCommunication(robot_name='client_test')
-    time.sleep(1)
     yield ros_pb2.RosToServerCommunication(raw_map=ros_pb2.RawMap(
         resolution=1,
         height=5,
@@ -38,8 +37,12 @@ def GenerateRequest():
 def main(argv):
     with grpc.insecure_channel(f'localhost:{FLAGS.port}') as channel:
         stub = ros_pb2_grpc.RosServiceStub(channel)
-        for communication in stub.Communicate(GenerateRequest()):
-            print(communication)
+        communication_generator = stub.Communicate(GenerateRequest())
+        try:
+            for communication in communication_generator:
+                print(communication)
+        except KeyError:
+            communication_generator.cancel()
         
 
 if __name__ == '__main__':
