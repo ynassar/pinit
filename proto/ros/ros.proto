@@ -71,10 +71,7 @@ message RawMap{
 }
 
 message RosToServerCommunication{
-    oneof robot_specification{
-        string robot_name = 1; // An identifier for the ros node to send requests to.
-        string token = 5;
-    }
+    string robot_name = 1; // An identifier for the ros node to send requests to.
     oneof communication{
         RawMap raw_map = 2;
         LocalMapPose robot_pose = 3;

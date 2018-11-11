@@ -25,7 +25,15 @@ def GenerateRequest():
                        0,101,101,101,0,
                        0,0,0,0,0], dtype='uint8').tobytes()
     ))
-
+    time.sleep(1)
+    yield ros_pb2.RosToServerCommunication(
+        robot_pose = ros_pb2.LocalMapPose(
+            row = 0,
+            column = 4,
+            angle = 45
+        )
+    )
+    
 
 def main(argv):
     with grpc.insecure_channel(f'localhost:{FLAGS.port}') as channel:
