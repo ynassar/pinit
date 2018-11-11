@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		372022702167AF5B00602B53 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3720226F2167AF5B00602B53 /* CustomTextField.swift */; };
+		3721B1C5219837590083C0DD /* account_management.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721B1BD219837590083C0DD /* account_management.grpc.swift */; };
+		3721B1C6219837590083C0DD /* account_management.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721B1BE219837590083C0DD /* account_management.pb.swift */; };
+		3721B1C7219837590083C0DD /* ros.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721B1C0219837590083C0DD /* ros.grpc.swift */; };
+		3721B1C8219837590083C0DD /* ros.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721B1C1219837590083C0DD /* ros.pb.swift */; };
+		3721B1C9219837590083C0DD /* login.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721B1C3219837590083C0DD /* login.grpc.swift */; };
+		3721B1CA219837590083C0DD /* login.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721B1C4219837590083C0DD /* login.pb.swift */; };
 		37352731217A217700602046 /* MappingControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3735272E217A217700602046 /* MappingControlsView.swift */; };
 		37352732217A217700602046 /* MappingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3735272F217A217700602046 /* MappingView.swift */; };
 		37352733217A217700602046 /* MappingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37352730217A217700602046 /* MappingViewController.swift */; };
@@ -36,12 +42,6 @@
 		3775A06B21650B5D00ABEF54 /* Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3775A0692165012200ABEF54 /* Constraints.swift */; };
 		37CBDCD9219469FE0092C8E1 /* MappingServerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CBDCD7219469FE0092C8E1 /* MappingServerDelegate.swift */; };
 		37CBDCDA219469FE0092C8E1 /* MappingServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CBDCD8219469FE0092C8E1 /* MappingServer.swift */; };
-		37CBDCF9219474780092C8E1 /* account_management.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CBDCF1219474770092C8E1 /* account_management.grpc.swift */; };
-		37CBDCFA219474780092C8E1 /* account_management.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CBDCF2219474770092C8E1 /* account_management.pb.swift */; };
-		37CBDCFB219474780092C8E1 /* ros.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CBDCF4219474770092C8E1 /* ros.grpc.swift */; };
-		37CBDCFC219474780092C8E1 /* ros.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CBDCF5219474770092C8E1 /* ros.pb.swift */; };
-		37CBDCFD219474780092C8E1 /* login.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CBDCF7219474770092C8E1 /* login.grpc.swift */; };
-		37CBDCFE219474780092C8E1 /* login.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CBDCF8219474770092C8E1 /* login.pb.swift */; };
 		37CBDD042194B92D0092C8E1 /* AddLocationServerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CBDD002194B92D0092C8E1 /* AddLocationServerDelegate.swift */; };
 		37CBDD052194B92D0092C8E1 /* AddLocationServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CBDD012194B92D0092C8E1 /* AddLocationServer.swift */; };
 		37CBDD062194B92D0092C8E1 /* AddLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CBDD022194B92D0092C8E1 /* AddLocationViewController.swift */; };
@@ -137,6 +137,12 @@
 
 /* Begin PBXFileReference section */
 		3720226F2167AF5B00602B53 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		3721B1BD219837590083C0DD /* account_management.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = account_management.grpc.swift; sourceTree = "<group>"; };
+		3721B1BE219837590083C0DD /* account_management.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = account_management.pb.swift; sourceTree = "<group>"; };
+		3721B1C0219837590083C0DD /* ros.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ros.grpc.swift; sourceTree = "<group>"; };
+		3721B1C1219837590083C0DD /* ros.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ros.pb.swift; sourceTree = "<group>"; };
+		3721B1C3219837590083C0DD /* login.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = login.grpc.swift; sourceTree = "<group>"; };
+		3721B1C4219837590083C0DD /* login.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = login.pb.swift; sourceTree = "<group>"; };
 		3735272E217A217700602046 /* MappingControlsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MappingControlsView.swift; sourceTree = "<group>"; };
 		3735272F217A217700602046 /* MappingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MappingView.swift; sourceTree = "<group>"; };
 		37352730217A217700602046 /* MappingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MappingViewController.swift; sourceTree = "<group>"; };
@@ -158,12 +164,6 @@
 		3775A0692165012200ABEF54 /* Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constraints.swift; sourceTree = "<group>"; };
 		37CBDCD7219469FE0092C8E1 /* MappingServerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MappingServerDelegate.swift; sourceTree = "<group>"; };
 		37CBDCD8219469FE0092C8E1 /* MappingServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MappingServer.swift; sourceTree = "<group>"; };
-		37CBDCF1219474770092C8E1 /* account_management.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = account_management.grpc.swift; sourceTree = "<group>"; };
-		37CBDCF2219474770092C8E1 /* account_management.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = account_management.pb.swift; sourceTree = "<group>"; };
-		37CBDCF4219474770092C8E1 /* ros.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ros.grpc.swift; sourceTree = "<group>"; };
-		37CBDCF5219474770092C8E1 /* ros.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ros.pb.swift; sourceTree = "<group>"; };
-		37CBDCF7219474770092C8E1 /* login.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = login.grpc.swift; sourceTree = "<group>"; };
-		37CBDCF8219474770092C8E1 /* login.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = login.pb.swift; sourceTree = "<group>"; };
 		37CBDD002194B92D0092C8E1 /* AddLocationServerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddLocationServerDelegate.swift; sourceTree = "<group>"; };
 		37CBDD012194B92D0092C8E1 /* AddLocationServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddLocationServer.swift; sourceTree = "<group>"; };
 		37CBDD022194B92D0092C8E1 /* AddLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddLocationViewController.swift; sourceTree = "<group>"; };
@@ -200,6 +200,43 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3721B1BB219837590083C0DD /* genfiles */ = {
+			isa = PBXGroup;
+			children = (
+				3721B1BC219837590083C0DD /* account_management */,
+				3721B1BF219837590083C0DD /* ros */,
+				3721B1C2219837590083C0DD /* login */,
+			);
+			path = genfiles;
+			sourceTree = "<group>";
+		};
+		3721B1BC219837590083C0DD /* account_management */ = {
+			isa = PBXGroup;
+			children = (
+				3721B1BD219837590083C0DD /* account_management.grpc.swift */,
+				3721B1BE219837590083C0DD /* account_management.pb.swift */,
+			);
+			path = account_management;
+			sourceTree = "<group>";
+		};
+		3721B1BF219837590083C0DD /* ros */ = {
+			isa = PBXGroup;
+			children = (
+				3721B1C0219837590083C0DD /* ros.grpc.swift */,
+				3721B1C1219837590083C0DD /* ros.pb.swift */,
+			);
+			path = ros;
+			sourceTree = "<group>";
+		};
+		3721B1C2219837590083C0DD /* login */ = {
+			isa = PBXGroup;
+			children = (
+				3721B1C3219837590083C0DD /* login.grpc.swift */,
+				3721B1C4219837590083C0DD /* login.pb.swift */,
+			);
+			path = login;
+			sourceTree = "<group>";
+		};
 		3735272D217A217700602046 /* Mapping */ = {
 			isa = PBXGroup;
 			children = (
@@ -292,43 +329,6 @@
 			path = Shared;
 			sourceTree = "<group>";
 		};
-		37CBDCEF219474770092C8E1 /* genfiles */ = {
-			isa = PBXGroup;
-			children = (
-				37CBDCF0219474770092C8E1 /* account_management */,
-				37CBDCF3219474770092C8E1 /* ros */,
-				37CBDCF6219474770092C8E1 /* login */,
-			);
-			path = genfiles;
-			sourceTree = "<group>";
-		};
-		37CBDCF0219474770092C8E1 /* account_management */ = {
-			isa = PBXGroup;
-			children = (
-				37CBDCF1219474770092C8E1 /* account_management.grpc.swift */,
-				37CBDCF2219474770092C8E1 /* account_management.pb.swift */,
-			);
-			path = account_management;
-			sourceTree = "<group>";
-		};
-		37CBDCF3219474770092C8E1 /* ros */ = {
-			isa = PBXGroup;
-			children = (
-				37CBDCF4219474770092C8E1 /* ros.grpc.swift */,
-				37CBDCF5219474770092C8E1 /* ros.pb.swift */,
-			);
-			path = ros;
-			sourceTree = "<group>";
-		};
-		37CBDCF6219474770092C8E1 /* login */ = {
-			isa = PBXGroup;
-			children = (
-				37CBDCF7219474770092C8E1 /* login.grpc.swift */,
-				37CBDCF8219474770092C8E1 /* login.pb.swift */,
-			);
-			path = login;
-			sourceTree = "<group>";
-		};
 		37CBDCFF2194B92D0092C8E1 /* AddLocation */ = {
 			isa = PBXGroup;
 			children = (
@@ -343,7 +343,7 @@
 		37EEA7DA215B962400BF3839 = {
 			isa = PBXGroup;
 			children = (
-				37CBDCEF219474770092C8E1 /* genfiles */,
+				3721B1BB219837590083C0DD /* genfiles */,
 				373C127A216F9ED3003D7CBB /* SwiftGRPC-Carthage.xcodeproj */,
 				37EEA7E5215B962500BF3839 /* pinit */,
 				37EEA7FA215B962800BF3839 /* pinitTests */,
@@ -528,24 +528,23 @@
 			files = (
 				37363A1721761F1100EBD383 /* RegisterView.swift in Sources */,
 				3775A06B21650B5D00ABEF54 /* Constraints.swift in Sources */,
+				3721B1CA219837590083C0DD /* login.pb.swift in Sources */,
 				37352732217A217700602046 /* MappingView.swift in Sources */,
-				37CBDCFC219474780092C8E1 /* ros.pb.swift in Sources */,
 				37CBDD062194B92D0092C8E1 /* AddLocationViewController.swift in Sources */,
+				3721B1C8219837590083C0DD /* ros.pb.swift in Sources */,
 				37363A1E21761F2200EBD383 /* LoginServerDelegate.swift in Sources */,
 				37363A1B21761F1100EBD383 /* LoginView.swift in Sources */,
 				37363A1821761F1100EBD383 /* RegisterServer.swift in Sources */,
+				3721B1C5219837590083C0DD /* account_management.grpc.swift in Sources */,
 				37352733217A217700602046 /* MappingViewController.swift in Sources */,
-				37CBDCFA219474780092C8E1 /* account_management.pb.swift in Sources */,
 				37363A1621761F1100EBD383 /* RegisterServerDelegate.swift in Sources */,
 				37352731217A217700602046 /* MappingControlsView.swift in Sources */,
-				37CBDCFB219474780092C8E1 /* ros.grpc.swift in Sources */,
 				37CBDD072194B92D0092C8E1 /* AddLocationView.swift in Sources */,
 				372022702167AF5B00602B53 /* CustomTextField.swift in Sources */,
 				37363A2021761F3400EBD383 /* LoginServer.swift in Sources */,
 				37CBDCD9219469FE0092C8E1 /* MappingServerDelegate.swift in Sources */,
+				3721B1C7219837590083C0DD /* ros.grpc.swift in Sources */,
 				37CBDCDA219469FE0092C8E1 /* MappingServer.swift in Sources */,
-				37CBDCFD219474780092C8E1 /* login.grpc.swift in Sources */,
-				37CBDCF9219474780092C8E1 /* account_management.grpc.swift in Sources */,
 				37CBDD0D2197A3680092C8E1 /* SlideAnimator.swift in Sources */,
 				37CBDD042194B92D0092C8E1 /* AddLocationServerDelegate.swift in Sources */,
 				37CBDD052194B92D0092C8E1 /* AddLocationServer.swift in Sources */,
@@ -553,11 +552,12 @@
 				37352738217A217F00602046 /* PinitOwnerViewController.swift in Sources */,
 				37363A0B21761C3300EBD383 /* UIButtonExtension.swift in Sources */,
 				37363A1A21761F1100EBD383 /* AuthenticationView.swift in Sources */,
-				37CBDCFE219474780092C8E1 /* login.pb.swift in Sources */,
 				37363A1C21761F1100EBD383 /* LoginViewController.swift in Sources */,
 				37363A1921761F1100EBD383 /* RegisterViewController.swift in Sources */,
 				3735273B217A218700602046 /* SettingsViewController.swift in Sources */,
 				3735274F217B498500602046 /* TabBarNavigationController.swift in Sources */,
+				3721B1C6219837590083C0DD /* account_management.pb.swift in Sources */,
+				3721B1C9219837590083C0DD /* login.grpc.swift in Sources */,
 				376985B9216834DE006FF550 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
