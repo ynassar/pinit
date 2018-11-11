@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import roslaunch
+import rospkg
 
 class MapCreator():
     """Creates a local Map via ros gmapping"""
@@ -34,3 +35,8 @@ class MapCreator():
             self.ros_launch.shutdown()
 
 
+
+def MapCreatorFactory():
+    launch_file_path = rospkg.RosPack().get_path('pinit_pkg') + \
+                                                "/launch/gmapping_launch.launch"
+    return MapCreator(launch_file_path)
