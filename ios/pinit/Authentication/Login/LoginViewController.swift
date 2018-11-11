@@ -1,7 +1,7 @@
 import UIKit
 
 /// `LoginViewController` is resopnsible for the process of logging in.
-class LoginViewController : UIViewController, LoginServerDelegate  {
+class LoginViewController : UIViewController, LoginServerDelegate , CAAnimationDelegate {
 
     /// The view that has the textfields to input the username and password and login button.
     var loginView: LoginView!
@@ -67,10 +67,21 @@ class LoginViewController : UIViewController, LoginServerDelegate  {
     
     /// Function that transition to the `Register` screen.
     @objc private func signUpLabelTap(sender: UITapGestureRecognizer) {
+//        let temp = self.presentingViewController
+////        self.dismiss(animated: true, completion: {
+//        let transition = CATransition()
+//        transition.duration = 0.2
+//        transition.type = CATransitionType.push
+//        transition.subtype = CATransitionSubtype.fromTop
+//        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+//        self.view.window?.layer.add(transition, forKey: kCATransition)
         let registerViewController = RegisterViewController()
-        if let navigationController = self.navigationController {
-            navigationController.pushViewController(registerViewController, animated: true)
-        }
+        self.present(registerViewController, animated: true, completion: nil)
+//        })
+//        let transition = CATransition().fadeTransition()
+//        transition.delegate = self
+//        navigationController?.view.layer.add(transition, forKey: kCATransition)
+//        navigationController?.pushViewController(registerViewController, animated: false)
     }
     
     /// Function called every time there is an edit change in one of the text fields.
@@ -88,10 +99,11 @@ class LoginViewController : UIViewController, LoginServerDelegate  {
     /// successfully. Responsible for navigating to the appropriate homescreen.
     func didLoginSuccessfully() {
         let pinitOwnerViewController = PinitOwnerViewController()
-        if let navigationController = self.navigationController {
-            navigationController.popToRootViewController(animated: true)
-            navigationController.pushViewController(pinitOwnerViewController, animated: true)
-        }
+        self.present(pinitOwnerViewController, animated: true, completion: nil)
+//        if let navigationController = self.navigationController {
+//            navigationController.popToRootViewController(animated: true)
+//            navigationController.pushViewController(pinitOwnerViewController, animated: true)
+//        }
     }
     
     /// Function called by the `LoginServer` when the login process was completed
@@ -110,5 +122,16 @@ class LoginViewController : UIViewController, LoginServerDelegate  {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         loginView.updateView()
+    }
+}
+
+extension CATransition {
+    func fadeTransition() -> CATransition {
+        let transition = CATransition()
+        transition.duration = 0.4
+        transition.type = CATransitionType.fade
+        transition.subtype = CATransitionSubtype.fromRight
+        
+        return transition
     }
 }

@@ -2,7 +2,7 @@ import UIKit
 
 /// `TabBarNavigationController` is a parent view controller to any controller that requires a
 /// navigation bar.
-class TabBarNavigationController : UIViewController {
+class TabBarNavigationController : UINavigationController {
     
     /// The navigation bar added on the top of the view controller.
     var navbar: UINavigationBar!
@@ -21,8 +21,9 @@ class TabBarNavigationController : UIViewController {
         navItem.title = "pinit"
         navbar.items = [navItem]
         
+        self.view.backgroundColor = .red
+        self.view.frame = CGRect(x: 100, y: 100, width: 100, height: 100)
         self.view.addSubview(navbar)
-        self.edgesForExtendedLayout = []
 
     }
 }

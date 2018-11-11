@@ -2,7 +2,7 @@ import UIKit
 
 /// `MappingViewController` is a tab controller responsible for mapping the
 /// robot in its new environment through the app.
-class MappingViewController: TabBarNavigationController,  MappingServerDelegate {
+class MappingViewController: UIViewController, MappingServerDelegate {
     
     /// The view that has the arrow controls to move the robot.
     var mappingControlsView: MappingControlsView!
@@ -24,7 +24,7 @@ class MappingViewController: TabBarNavigationController,  MappingServerDelegate 
         mappingControlsView = MappingControlsView()
         mappingView = MappingView()
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor.white
+        self.view.backgroundColor = UIColor.red
         self.view.addSubview(mappingControlsView)
         self.view.addSubview(mappingView)
         
@@ -43,13 +43,13 @@ class MappingViewController: TabBarNavigationController,  MappingServerDelegate 
         addLocationButton.setImage(UIImage(named: "plusIcon"), for: .normal)
         addLocationButton.addTarget(self, action: #selector(self.addLocationClick), for: .touchDown)
         self.addLocationButtonItem = UIBarButtonItem(customView: addLocationButton)
-
-        self.navbar.topItem?.rightBarButtonItems = [
+        
+        self.navigationController?.navigationBar.topItem?.rightBarButtonItems = [
             UIBarButtonItem(customView: startMappingButton),
             self.addLocationButtonItem
         ]
         
-        self.navbar.topItem?.leftBarButtonItems = [
+        self.navigationController?.navigationBar.topItem?.leftBarButtonItems = [
             self.saveMappingButtonItem
         ]
         
@@ -64,8 +64,8 @@ class MappingViewController: TabBarNavigationController,  MappingServerDelegate 
             .addCenterXConstraint(relativeView: self.view)
             .addWidthConstraint(relativeView: self.view, multipler: 1.0)
             .setConstraintWithConstant(selfAttribute: .top,
-                                       relativeView: self.navbar,
-                                       relativeAttribute: .bottom,
+                                       relativeView: self.view,
+                                       relativeAttribute: .top,
                                        constant: 0)
             .setConstraintWithConstant(selfAttribute: .bottom,
                                        relativeView: mappingControlsView,
@@ -145,16 +145,17 @@ class MappingViewController: TabBarNavigationController,  MappingServerDelegate 
     
     /// Function that navigates to the `AddLocation` screen.
     @objc public func addLocationClick() {
-        let transition = CATransition()
-        transition.duration = 0.2
-        transition.type = CATransitionType.push
-        transition.subtype = CATransitionSubtype.fromTop
-        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
-        let addLocationViewController = AddLocationViewController()
-        if let navigationController = self.navigationController {
-            navigationController.view.window?.layer.add(transition, forKey: kCATransition)
-            navigationController.pushViewController(addLocationViewController, animated: false)
-        }
+//        let transition = CATransition()
+//        transition.duration = 0.2
+//        transition.type = CATransitionType.push
+//        transition.subtype = CATransitionSubtype.fromTop
+//        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+//        let addLocationViewController = AddLocationViewController()
+//////        if let navigationController = self.navigationController {
+////////            navigationController.view.window?.layer.add(transition, forKey: kCATransition)
+//////            navigationController.pushViewController(addLocationViewController, animated: false)
+//////        }
+//        self.pushViewController(addLocationViewController, animated: false)
     }
     
     /// Function responsible for handling any error that comes from the `MapServer` after
@@ -211,13 +212,14 @@ class MappingViewController: TabBarNavigationController,  MappingServerDelegate 
     
 }
 
-//extension MappingViewController: UINavigationControllerDelegate {
-//    func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationController.Operation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-//        switch operation {
-//        case .push:
-//            return SlideAnimator()
-//        default:
-//            return nil
-//        }
-//    }
-//}
+extension MappingViewController : UINavigationControllerDelegate {
+
+    public func navigationController(
+        _ navigationController: UINavigationController,
+        animationControllerFor operation: UINavigationController.Operation,
+        from fromVC: UIViewController,
+        to toVC: UIViewController
+    ) -> UIViewControllerAnimatedTransitioning? {
+        return SlideAnimationTransitioning(operation: operation)
+    }
+}

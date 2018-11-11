@@ -1,27 +1,58 @@
 import UIKit
 
-class SlideAnimator: NSObject, UIViewControllerAnimatedTransitioning {
-    var duration: TimeInterval = 1.0
+class SlideAnimationTransitioning : NSObject, UIViewControllerAnimatedTransitioning {
+    
+    let operation: UINavigationController.Operation
+    
+    init(operation: UINavigationController.Operation) {
+        self.operation = operation
+        super.init()
+    }
     
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-        return duration
+        return 0.5
     }
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+        guard let fromViewController = transitionContext.viewController(
+            forKey: UITransitionContextViewControllerKey.from),
+            let toViewController = transitionContext.viewController(
+                forKey: UITransitionContextViewControllerKey.to)
+        else {
+                return
+        }
+        
         let containerView = transitionContext.containerView
-        let toView = transitionContext.view(forKey: .to)!
         
-        containerView.addSubview(toView)
-        toView.frame = CGRect(x: 0, y: containerView.bounds.height, width: containerView.bounds.width, height: containerView.bounds.height)
+        switch operation {
+        case .push:
+            toViewController.view.frame = containerView.bounds.offsetBy(
+                dx: containerView.frame.size.width,
+                dy: 0.0)
+            
+            containerView.addSubview(toViewController.view)
+            
+            print("HEREEE")
+            
+            UIView.animate(withDuration: transitionDuration(using: transitionContext),
+                           delay: 0,
+                           options: UIView.AnimationOptions.curveEaseOut,
+                           animations: {
+                            toViewController.view.frame = containerView.bounds
+                            fromViewController.view.frame = containerView.bounds.offsetBy(
+                                dx: -containerView.frame.size.width,
+                                dy: 0.0)
+                            },
+                           completion: { (finished) in
+                            transitionContext.completeTransition(true)
+                            })
+        case .pop:
+            break
+        default:
+            break
+        }
         
-        let timingFunction = CAMediaTimingFunction(controlPoints: 0/6, 0.8, 3/6, 1.0)
-        CATransaction.begin()
-        CATransaction.setAnimationTimingFunction(timingFunction)
-        UIView.animate(withDuration: duration, animations: {
-            toView.frame = containerView.frame
-        }, completion: { _ in
-            transitionContext.completeTransition(true)
-        } )
-        CATransaction.commit()
     }
+    
+    
 }
