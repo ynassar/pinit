@@ -1,9 +1,14 @@
 import UIKit
 
+/// The `RegisterServer` is responsible for sending requests to gRPC server related to the
+/// register feature.
 public class RegisterServer {
     
+    /// The delegate to notify when the `RegisterServer` methods return any meaningful results.
     var delegate: RegisterServerDelegate?
     
+    /// Function responsible for sending a `RegisterRequest` with the apporpriate info and
+    /// calling the appropriate delegate function when a response is receieved.
     func registerWithCredentials(
         username: String,
         password: String,

@@ -6,7 +6,8 @@ from proto.ros import ros_pb2_grpc
 from proto.ros import ros_pb2
 
 from robot_motion.motion_controller import MotionController
-from server_map_streamer import ServerMapStreamer
+from map.map_streamer import MapStreamer
+from map.map_creator import MapCreatorFactory
 
 import roslaunch
 import rospy
@@ -26,14 +27,12 @@ class ServerMappingHandler():
     def __init__(self, queue):
 
         self.communication_queue = queue
-        self.map_streamer = ServerMapStreamer(self.communication_queue)
+        self.map_streamer = MapStreamer(self.communication_queue)
+        self.map_creator = MapCreatorFactory()
         self.motion_controller = MotionController()
-        self.current_state = self.RobotState.IDLE
-        self.launch_file_path = rospkg.RosPack().get_path('pinit_pkg') + \
-            "/launch/gmapping_launch.launch"
-        self.launch = None
-        self.transitions = None
 
+        self.current_state = self.RobotState.IDLE
+        self.transitions = None
         self.init_valid_transitions()
 
 
@@ -134,15 +133,8 @@ class ServerMappingHandler():
         Returns:
             None
         """
-
-        if (self.goto_state(self.RobotState.MAPPING)):
-            uuid = roslaunch.rlutil.get_or_generate_uuid(None, False)
-            roslaunch.configure_logging(uuid)
-            self.launch = roslaunch.parent.ROSLaunchParent(uuid,\
-            [self.launch_file_path])
-
-            self.launch.start()
-            self.map_streamer.start_stream()
+        self.map_creator.start()
+        self.map_streamer.start()
 
 
     def stop_mapping(self):
@@ -155,6 +147,5 @@ class ServerMappingHandler():
             None
         """
 
-        if self.goto_state(self.RobotState.IDLE):
-            self.launch.shutdown()
-            self.map_streamer.stop_stream()
+        self.map_creator.finish()
+        self.map_streamer.finish()

@@ -8,10 +8,10 @@ class RegisterView : AuthenticationView, UITextFieldDelegate {
     public var usernameTextField: CustomTextField
     
     /// The password text field.
-    public var passwordTextFiled: CustomTextField
+    public var passwordTextField: CustomTextField
 
     /// The confrim password text field.
-    public var confrimPasswordTextFiled: CustomTextField
+    public var confrimPasswordTextField: CustomTextField
 
     /// The username text field.
     public var emailTextField: CustomTextField
@@ -25,16 +25,16 @@ class RegisterView : AuthenticationView, UITextFieldDelegate {
     /// The initializer of the `RegisterView` which creates the subviews and add them.
     init () {
         usernameTextField = CustomTextField(frame: CGRect.zero)
-        passwordTextFiled = CustomTextField(frame: CGRect.zero)
-        confrimPasswordTextFiled = CustomTextField(frame: CGRect.zero)
+        passwordTextField = CustomTextField(frame: CGRect.zero)
+        confrimPasswordTextField = CustomTextField(frame: CGRect.zero)
         emailTextField = CustomTextField(frame: CGRect.zero)
         registerButton = UIButton(frame: CGRect.zero)
         signInLabel = UILabel(frame: CGRect.zero)
         super.init(frame: CGRect.zero)
         
         self.addSubview(usernameTextField)
-        self.addSubview(passwordTextFiled)
-        self.addSubview(confrimPasswordTextFiled)
+        self.addSubview(passwordTextField)
+        self.addSubview(confrimPasswordTextField)
         self.addSubview(emailTextField)
         self.addSubview(registerButton)
         self.addSubview(signInLabel)
@@ -45,20 +45,20 @@ class RegisterView : AuthenticationView, UITextFieldDelegate {
     public func updateView() {
         let spacing = self.frame.size.height * 0.05
         usernameTextField = customizeTextfields(textfield: usernameTextField)
-        passwordTextFiled = customizeTextfields(textfield: passwordTextFiled)
-        confrimPasswordTextFiled = customizeTextfields(textfield: confrimPasswordTextFiled)
+        passwordTextField = customizeTextfields(textfield: passwordTextField)
+        confrimPasswordTextField = customizeTextfields(textfield: confrimPasswordTextField)
         emailTextField = customizeTextfields(textfield: emailTextField)
         
         registerButton = customizeButton(button: registerButton)
         signInLabel = customizeLinkLabel(label: signInLabel)
         
         usernameTextField.placeholder = "Username"
-        passwordTextFiled.placeholder = "Password"
-        confrimPasswordTextFiled.placeholder = "Confirm Password"
+        passwordTextField.placeholder = "Password"
+        confrimPasswordTextField.placeholder = "Confirm Password"
         emailTextField.placeholder = "Email"
         
-        passwordTextFiled.isSecureTextEntry = true
-        confrimPasswordTextFiled.isSecureTextEntry = true
+        passwordTextField.isSecureTextEntry = true
+        confrimPasswordTextField.isSecureTextEntry = true
         
         registerButton.setTitle("Register", for: .normal)
 
@@ -71,24 +71,24 @@ class RegisterView : AuthenticationView, UITextFieldDelegate {
                 relativeAttribute: .bottom,
                 constant: spacing)
 
-        passwordTextFiled = passwordTextFiled
+        passwordTextField = passwordTextField
             .setConstraintWithConstant(
                 selfAttribute: .top,
                 relativeView: usernameTextField,
                 relativeAttribute: .bottom,
                 constant: spacing)
 
-        confrimPasswordTextFiled = confrimPasswordTextFiled
+        confrimPasswordTextField = confrimPasswordTextField
             .setConstraintWithConstant(
                 selfAttribute: .top,
-                relativeView: passwordTextFiled,
+                relativeView: passwordTextField,
                 relativeAttribute: .bottom,
                 constant: spacing)
         
         emailTextField = emailTextField
             .setConstraintWithConstant(
                 selfAttribute: .top,
-                relativeView: confrimPasswordTextFiled,
+                relativeView: confrimPasswordTextField,
                 relativeAttribute: .bottom,
                 constant: spacing)
         

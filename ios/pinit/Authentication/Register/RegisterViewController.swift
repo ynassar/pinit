@@ -1,12 +1,18 @@
 import UIKit
 import CgRPC
 
+/// `RegitserViewController` is responsible for the process of registering.
 class RegisterViewController : UIViewController, RegisterServerDelegate {
 
+    /// The view that has the textfields of the user info and the register button.
     var registerView: RegisterView!
     
+    /// The server which sends all the requests related to registering.
     var registerServer = RegisterServer()
     
+    /// The function responsible for adding the action target to the register button
+    /// and the the textfields. Also responsible for adding and  adjusting the register
+    /// view to the screen.
     override func viewDidLoad() {
         super.viewDidLoad()
         registerView = RegisterView()
@@ -17,9 +23,10 @@ class RegisterViewController : UIViewController, RegisterServerDelegate {
         
         registerServer.delegate = self
         
+        // Adding action target to all textfields to track their editing status.
         registerView.usernameTextField.addTarget(self, action: #selector(self.textFieldEditChange), for: .editingChanged)
-        registerView.passwordTextFiled.addTarget(self, action: #selector(self.textFieldEditChange), for: .editingChanged)
-        registerView.confrimPasswordTextFiled.addTarget(self, action: #selector(self.textFieldEditChange), for: .editingChanged)
+        registerView.passwordTextField.addTarget(self, action: #selector(self.textFieldEditChange), for: .editingChanged)
+        registerView.confrimPasswordTextField.addTarget(self, action: #selector(self.textFieldEditChange), for: .editingChanged)
         registerView.emailTextField.addTarget(self, action: #selector(self.textFieldEditChange), for: .editingChanged)
         
         let tapAnywhere = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
@@ -37,36 +44,44 @@ class RegisterViewController : UIViewController, RegisterServerDelegate {
                 relativeAttribute: .top,
                 constant: topHeight)
         
-        
-        
+        // Add action target to the login label.
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.signInLabelTap(sender:)))
         registerView.signInLabel.addGestureRecognizer(tap)
         registerView.signInLabel.isUserInteractionEnabled = true
         
+        // Add action target to the register button.
         registerView.registerButton.addTarget(
             self,
             action: #selector(self.regiserButtonClick),
             for: .touchUpInside)
     }
     
+    /// Function to remove the keyboard if shown in the screen.
+    @objc private func dismissKeyboard() {
+        self.view.endEditing(true)
+    }
+    
+    /// Function that sends the request to the `RegisterView` with the information to register.
     @objc private func regiserButtonClick() {
-        if (registerView.passwordTextFiled.text! !=
-            registerView.confrimPasswordTextFiled.text!) {
+        if (registerView.passwordTextField.text! !=
+            registerView.confrimPasswordTextField.text!) {
             self.showAlertMessage(
                 title: "Error Message",
                 message: "PLease type the same passwords twice.")
         } else {
             registerServer.registerWithCredentials(
                 username: registerView.usernameTextField.text!,
-                password: registerView.passwordTextFiled.text!,
+                password: registerView.passwordTextField.text!,
                 email:  registerView.emailTextField.text!)
         }
     }
     
+    /// Function called every time there is an edit change in one of the text fields.
+    /// Responsible for disabling the register button in case any of the fields aren't filled.
     @objc private func textFieldEditChange() {
         if registerView.usernameTextField.hasText
-            && registerView.passwordTextFiled.hasText
-            && registerView.confrimPasswordTextFiled.hasText
+            && registerView.passwordTextField.hasText
+            && registerView.confrimPasswordTextField.hasText
             && registerView.emailTextField.hasText {
             registerView.registerButton.enableButton()
         } else {
@@ -74,6 +89,8 @@ class RegisterViewController : UIViewController, RegisterServerDelegate {
         }
     }
     
+    /// Function called by the `RegisterServer` when the register process was completed
+    /// successfully. Responsible for navigating back to the `LoginViewController`.
     func didRegisterSuccessfully() {
         if let navigationController = self.navigationController {
             let loginViewController = navigationController.viewControllers[0]
@@ -81,19 +98,16 @@ class RegisterViewController : UIViewController, RegisterServerDelegate {
         }
     }
     
+    /// Function called by the `RegisterServer` when the register process was completed
+    /// with errors. Responsible for showing the error sent by the server with the
+    /// appropraite `errorMessage`.
     func didRegisterErrorOccur(errorMessage: String) {
-        let alert = UIAlertController(
+        self.showAlertMessage(
             title: "Error Occured",
-            message: errorMessage,
-            preferredStyle: UIAlertController.Style.alert)
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
+            message: errorMessage)
     }
     
-    @objc private func dismissKeyboard() {
-        self.view.endEditing(true)
-    }
-    
+    /// Function that transition to the `Login` screen.
     @objc func signInLabelTap(sender: UITapGestureRecognizer) {
         if let navigationController = self.navigationController {
             let loginViewController = navigationController.viewControllers[0]
@@ -101,10 +115,13 @@ class RegisterViewController : UIViewController, RegisterServerDelegate {
         }
     }
     
+    /// Function responsible for updaing the views if needed when the main view appears.
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         registerView.updateView()
     }
     
+    /// Function that shows an alert with and `OK` button. 
     private func showAlertMessage(title: String, message: String) {
         let alert = UIAlertController(
             title: title,

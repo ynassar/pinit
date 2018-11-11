@@ -2,7 +2,7 @@ import UIKit
 
 extension UIView {
     
-    /// Center the view horizontally in reference to another view superview
+    /// Center the view horizontally in reference to another view superview.
     public func addCenterXConstraint(relativeView: UIView) -> Self {
         let adjustedView = self
         self.translatesAutoresizingMaskIntoConstraints = false
@@ -16,7 +16,7 @@ extension UIView {
         return adjustedView
     }
     
-    /// Center the view vertically in reference to another view
+    /// Center the view vertically in reference to another view.
     public func addCenterYConstraint(relativeView: UIView) -> Self {
         let adjustedView = self
         self.translatesAutoresizingMaskIntoConstraints = false
@@ -46,7 +46,7 @@ extension UIView {
     }
     
     /// Height constraint that set the height of the view as a percentage
-    /// (value of the `multiplier`) relative to the `relativeView`
+    /// (value of the `multiplier`) relative to the `relativeView`.
     public func addHeightConstraint(relativeView: UIView, multipler: CGFloat) -> Self {
         let adjustedView = self
         adjustedView.translatesAutoresizingMaskIntoConstraints = false
@@ -92,7 +92,8 @@ extension UIView {
         return adjustedView
     }
     
-    /// Set the top of the view with respect to any `attribute` of a second `relativeView`
+    /// Set any `selfAttribute` of the view with respect to any `relativeAttribute` of
+    /// a second `relativeView` with a specific constant.
     public func setConstraintWithConstant(
         selfAttribute: NSLayoutConstraint.Attribute,
         relativeView: UIView,
@@ -111,7 +112,8 @@ extension UIView {
         return adjustedView
     }
     
-    /// Set the top of the view with respect to any `attribute` of a second `relativeView`
+    /// Set any `selfAttribute` of the view with respect to any `relativeAttribute` of
+    /// a second `relativeView` to be equal.
     public func setEqualConstraint(
         selfAttribute: NSLayoutConstraint.Attribute,
         relativeView: UIView,

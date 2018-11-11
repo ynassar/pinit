@@ -11,3 +11,7 @@
 	path = ros_ws/src/navigation
 	url = https://github.com/ros-planning/navigation/
 	branch = kinetic-devel
+[submodule "ros_ws/src/nmea_navsat_driver"]
+	path = ros_ws/src/nmea_navsat_driver
+	url = https://github.com/ros-drivers/nmea_navsat_driver
+	branch = jade-devel

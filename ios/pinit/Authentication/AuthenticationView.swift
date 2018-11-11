@@ -1,10 +1,13 @@
 import UIKit
 
+/// `AuthenticationView` is a general view with the essentials of any authentication related
+/// screen. Used by the `LoginView` and `RegisterView`.
 class AuthenticationView : UIView {
     
     /// The pinit logo at the top of any authentication view
     var pinitLogo: UIImageView
     
+    /// Initializes the `AithernticationView` along with the its variables.
     override init(frame: CGRect) {
         pinitLogo = UIImageView(image: UIImage(named: "pinitIcon"))
         super.init(frame: frame)
@@ -22,6 +25,7 @@ class AuthenticationView : UIView {
         
     }
     
+    /// Method responsible for adjusting the look of any `CustomTextField` inside the view.
     internal func customizeTextfields(textfield: CustomTextField) -> CustomTextField {
         let adjustedTextfield = textfield
             .addCenterXConstraint(relativeView: self)
@@ -32,10 +36,11 @@ class AuthenticationView : UIView {
         adjustedTextfield.layer.borderWidth = 0.5
         adjustedTextfield.layer.borderColor = PinitColors.borderGreen.cgColor
         adjustedTextfield.font = adjustedTextfield.font?
-            .withSize(PinitConstants.authernticationFontSize)
+            .withSize(PinitConstants.authenticationFontSize)
         return adjustedTextfield
     }
     
+    /// Method responsible for adjusting the look of any `UIButton` inside the view.
     internal func customizeButton(button: UIButton) -> UIButton {
         let adjustedButton = button
             .addCenterXConstraint(relativeView: self)
@@ -44,10 +49,12 @@ class AuthenticationView : UIView {
         adjustedButton.backgroundColor = PinitColors.blue
         adjustedButton.layer.cornerRadius = 10
         adjustedButton.titleLabel?.font = adjustedButton.titleLabel?.font
-            .withSize(PinitConstants.authernticationFontSize)
+            .withSize(PinitConstants.authenticationFontSize)
         return adjustedButton
     }
     
+    /// Method responsible for adjusting the look of any `UILabel` that acts as
+    /// a link inside the view.
     internal func customizeLinkLabel(label: UILabel) -> UILabel {
         let adjustedLabel = label
             .addCenterXConstraint(relativeView: self)
@@ -56,7 +63,7 @@ class AuthenticationView : UIView {
         label.textAlignment = .center
         label.adjustsFontSizeToFitWidth = true
         adjustedLabel.font = adjustedLabel.font
-            .withSize(PinitConstants.authernticationFontSize)
+            .withSize(PinitConstants.authenticationFontSize)
         return adjustedLabel
     }
     
