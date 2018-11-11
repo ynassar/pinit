@@ -46,6 +46,7 @@
 		37CBDD052194B92D0092C8E1 /* AddLocationServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CBDD012194B92D0092C8E1 /* AddLocationServer.swift */; };
 		37CBDD062194B92D0092C8E1 /* AddLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CBDD022194B92D0092C8E1 /* AddLocationViewController.swift */; };
 		37CBDD072194B92D0092C8E1 /* AddLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CBDD032194B92D0092C8E1 /* AddLocationView.swift */; };
+		37CBDD0D2197A3680092C8E1 /* SlideAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CBDD0C2197A3680092C8E1 /* SlideAnimator.swift */; };
 		37EEA7E7215B962500BF3839 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EEA7E6215B962500BF3839 /* AppDelegate.swift */; };
 		37EEA7EE215B962800BF3839 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37EEA7ED215B962800BF3839 /* Assets.xcassets */; };
 		37EEA7FC215B962800BF3839 /* pinitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EEA7FB215B962800BF3839 /* pinitTests.swift */; };
@@ -167,6 +168,7 @@
 		37CBDD012194B92D0092C8E1 /* AddLocationServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddLocationServer.swift; sourceTree = "<group>"; };
 		37CBDD022194B92D0092C8E1 /* AddLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddLocationViewController.swift; sourceTree = "<group>"; };
 		37CBDD032194B92D0092C8E1 /* AddLocationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddLocationView.swift; sourceTree = "<group>"; };
+		37CBDD0C2197A3680092C8E1 /* SlideAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideAnimator.swift; sourceTree = "<group>"; };
 		37EEA7E3215B962500BF3839 /* pinit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pinit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		37EEA7E6215B962500BF3839 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		37EEA7ED215B962800BF3839 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -285,6 +287,7 @@
 				3720226F2167AF5B00602B53 /* CustomTextField.swift */,
 				37363A0A21761C3300EBD383 /* UIButtonExtension.swift */,
 				3735274E217B498500602046 /* TabBarNavigationController.swift */,
+				37CBDD0C2197A3680092C8E1 /* SlideAnimator.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -543,6 +546,7 @@
 				37CBDCDA219469FE0092C8E1 /* MappingServer.swift in Sources */,
 				37CBDCFD219474780092C8E1 /* login.grpc.swift in Sources */,
 				37CBDCF9219474780092C8E1 /* account_management.grpc.swift in Sources */,
+				37CBDD0D2197A3680092C8E1 /* SlideAnimator.swift in Sources */,
 				37CBDD042194B92D0092C8E1 /* AddLocationServerDelegate.swift in Sources */,
 				37CBDD052194B92D0092C8E1 /* AddLocationServer.swift in Sources */,
 				37EEA7E7215B962500BF3839 /* AppDelegate.swift in Sources */,

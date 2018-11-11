@@ -6,6 +6,9 @@ struct PinitColors {
     /// Gray color used for backgrounds.
     static public let gray = UIColor(red:0.98, green:0.98, blue:0.98, alpha:1.0)
     
+    /// Gray color used for backgrounds.
+    static public let borderGray = UIColor(red:0.70, green:0.70, blue:0.70, alpha:1.0)
+    
     /// Blue color used for different `UIButton`.
     static public let blue = UIColor(red:0.20, green:0.74, blue:0.83, alpha:1.0)
 
@@ -25,6 +28,9 @@ struct PinitConstants {
     
     /// The font size of all the UI elements in the `AuthentucationView`
     static public let authenticationFontSize: CGFloat = 12.0
+    
+    /// The font size of all the UI elements in the `AuthentucationView`
+    static public let addLocationFontSize: CGFloat = 12.0
     
     /// The address of the gRPC server used by `LoginServer` and `RegisterServer`.
     static public let tempAuthenticationServerAddress = "localhost:50051"

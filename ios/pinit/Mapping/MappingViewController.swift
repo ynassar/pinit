@@ -146,12 +146,13 @@ class MappingViewController: TabBarNavigationController,  MappingServerDelegate 
     /// Function that navigates to the `AddLocation` screen.
     @objc public func addLocationClick() {
         let transition = CATransition()
-        transition.duration = 0.3
+        transition.duration = 0.2
         transition.type = CATransitionType.push
         transition.subtype = CATransitionSubtype.fromTop
+        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
         let addLocationViewController = AddLocationViewController()
         if let navigationController = self.navigationController {
-            navigationController.view.layer.add(transition, forKey: kCATransition)
+            navigationController.view.window?.layer.add(transition, forKey: kCATransition)
             navigationController.pushViewController(addLocationViewController, animated: false)
         }
     }
@@ -209,3 +210,14 @@ class MappingViewController: TabBarNavigationController,  MappingServerDelegate 
     }
     
 }
+
+//extension MappingViewController: UINavigationControllerDelegate {
+//    func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationController.Operation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+//        switch operation {
+//        case .push:
+//            return SlideAnimator()
+//        default:
+//            return nil
+//        }
+//    }
+//}
