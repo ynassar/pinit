@@ -25,7 +25,7 @@ def get_vector(p1, p2):
     lat2 = p2.lat
 
     R = 6378137
-    # R = 6371000
+
     dLat = lat2 - lat1
     dLong = long2 - long1
     a = np.sin(dLat / 2) * np.sin(dLat / 2) + \
@@ -40,6 +40,11 @@ def get_vector(p1, p2):
     theta = np.arctan2(y, x)
 
     return d, theta
+
+def convert_gps(point, theta, resolution):
+    x = (point.long * np.cos(theta)) / resolution
+    y = (point.lat * np.sin(theta)) / resolution
+    return (x, y)
 
 
 if __name__=='__main__':
