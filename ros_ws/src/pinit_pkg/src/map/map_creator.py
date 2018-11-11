@@ -2,6 +2,7 @@
 
 import roslaunch
 import rospkg
+import rospy
 
 class MapCreator():
     """Creates a local Map via ros gmapping"""
@@ -28,11 +29,13 @@ class MapCreator():
                                                        [self.launch_file_path])
 
         self.ros_launch.start()
+        rospy.loginfo("Starting gmapping...")
 
 
-        def stop(self):
-            #TODO transition to a new robot state
-            self.ros_launch.shutdown()
+    def finish(self):
+        #TODO transition to a new robot state
+        self.ros_launch.shutdown()
+        rospy.loginfo("Stoping gmapping...")
 
 
 

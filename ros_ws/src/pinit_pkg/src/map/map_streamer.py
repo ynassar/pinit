@@ -35,6 +35,7 @@ class MapStreamer():
         self.subscriber = rospy.Subscriber(self.map_topic_name,
                                            OccupancyGrid,
                                            self.map_callback)
+        rospy.loginfo("Started streaming map to server...")
 
 
     def fetch_global_origin(self):
@@ -61,6 +62,7 @@ class MapStreamer():
         """
 
         self.subscriber.unregister()
+        rospy.loginfo("Stopped streaming map to server...")
 
 
     def map_callback(self, occupancy_grid):
