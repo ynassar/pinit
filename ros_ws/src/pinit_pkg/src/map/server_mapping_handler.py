@@ -6,7 +6,7 @@ from proto.ros import ros_pb2_grpc
 from proto.ros import ros_pb2
 
 from robot_motion.motion_controller import MotionController
-from server_map_streamer import ServerMapStreamer
+from map.server_map_streamer import ServerMapStreamer
 
 import roslaunch
 import rospy

@@ -7,8 +7,8 @@ from proto.ros import ros_pb2_grpc
 from proto.ros import ros_pb2
 
 
-from server_mapping_handler import ServerMappingHandler
-from server_map_streamer import ServerMapStreamer
+from map.server_mapping_handler import ServerMappingHandler
+from map.server_map_streamer import ServerMapStreamer
 
 import rospy
 
