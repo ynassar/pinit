@@ -3,6 +3,7 @@
 import grpc
 from proto.ros import ros_pb2_grpc
 from proto.ros import ros_pb2
+from google.protobuf.timestamp_pb2 import Timestamp
 
 import tf
 import rospy
@@ -10,6 +11,7 @@ import threading
 import time
 
 from geometry_msgs.msg import PoseStamped
+from robot_motion.robot_pose import PoseListenerFactory
 
 class ServerPoseStreamer():
     """Streames the robot pose to the server"""
@@ -26,19 +28,22 @@ class ServerPoseStreamer():
     def init_stream_loop(self):
         self.stream_thread = threading.Thread(target=self.stream_loop)
         self.stream_thread.start()
+        rospy.loginfo("Starting pose streamer loop")
 
 
     def stream_loop(self):
-        rate = rospy.rate(10)
+        rate = rospy.Rate(10)
         while not rospy.is_shutdown():
             ros_pose = self.pose_listener.get_pose()
-            grpc_pose = self.ros_to_grpc_pose(ros_pose)
-            self.communication_queue.push(grpc_pose)
+            if ros_pose is not None:
+                grpc_pose = self.ros_to_grpc_pose(ros_pose)
+                self.communication_queue.put(grpc_pose)
+                rospy.loginfo("Sending pose to server...")
 
 
     def ros_to_grpc_pose(self, pose):
-        x = pose.pose.position.x
-        y = pose.pose.position.y
+        x = int(pose.pose.position.x)
+        y = int(pose.pose.position.y)
         angle = 0               #TODO do we really need the angle?
         current_time = self.get_time_now()
 
@@ -47,17 +52,19 @@ class ServerPoseStreamer():
                 row=x,
                 column=y,
                 angle=angle,
-                time=current_time))
+                timestamp=current_time))
 
 
     def get_time_now(self):
-        current_time = time.time() #TODO is this local time??
+        current_time = Timestamp()
+        current_time = current_time.GetCurrentTime() #TODO is this local time??
         return current_time
 
 
 
 
 def ServerPoseStreamerFactory(queue):
+    rospy.loginfo("Creating pose streamer...")
     pose_listener = PoseListenerFactory()
     return ServerPoseStreamer(queue, pose_listener)
 
