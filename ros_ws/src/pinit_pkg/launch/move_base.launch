@@ -1,0 +1,26 @@
+<launch>
+  <master auto="start"/>
+
+  <!-- Run the map server -->
+  <!-- Note: avoid using maps pgm as it doesn't set map origin correctly -->
+  <!-- use yamls instead the contain the map origin -->
+  <!-- in the future we will be fetching the map from the server, so it won't matter then -->
+  <node name="map_server" pkg="map_server" type="map_server" args="/home/nvidia/map.yaml"/>
+
+  <!--- Run AMCL -->
+  <include file="$(find amcl)/examples/amcl_diff.launch" />
+  
+  <include file="$(find pinit_pkg)/launch/my_robot_config.launch" />
+
+  <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+    <rosparam file="$(find pinit_pkg)/config/costmap_common_params.yaml" command="load" ns="global_costmap" />
+    <rosparam file="$(find pinit_pkg)/config/costmap_common_params.yaml" command="load" ns="local_costmap" />
+    <rosparam file="$(find pinit_pkg)/config/local_costmap_params.yaml" command="load" />
+    <rosparam file="$(find pinit_pkg)/config/global_costmap_params.yaml" command="load" />
+    <!--- <rosparam file="$(find pinit_pkg)/config/global_planner_params.yaml" command="load" /> -->
+    <!--- <rosparam file="$(find pinit_pkg)/config/dwa_local_planner.yaml" command="load" /> -->
+    <rosparam file="$(find pinit_pkg)/config/base_local_planner_params.yaml" command="load" />
+    <param name = "controller_frequency" value = "10.0"/>
+    <!--- <param name = "base_local_planner" value = "dwa_local_planner/DWAPlannerROS" /> -->
+  </node>
+</launch>
