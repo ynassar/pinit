@@ -7,8 +7,8 @@ from proto.ros import ros_pb2_grpc
 from proto.ros import ros_pb2
 
 
-from map.server_mapping_handler import ServerMappingHandler
-from map.server_map_streamer import ServerMapStreamer
+from server_communication.server_mapping_handler import ServerMappingHandler
+from server_communication.server_pose_streamer import ServerPoseStreamerFactory
 
 import rospy
 
@@ -22,12 +22,14 @@ class ServerHandler():
         self.robot_name = "nemo"
         self.node_name = "robot_grpc_server_handler"
         self.max_message_length = 1024 * 1024 * 10
+        self.server_address = '10.40.33.186:50052'
         self.init_node()
         self.communication_queue = Queue()
 
         self.mapping_hanlder = ServerMappingHandler(self.communication_queue)
-        self.main_loop()
+        self.pose_streamer = ServerPoseStreamerFactory(self.communication_queue)
 
+        self.main_loop()
 
     def init_node(self):
         """Initiallize the class as a ros node
@@ -57,7 +59,13 @@ class ServerHandler():
 
         yield ros_pb2.RosToServerCommunication(robot_name=self.robot_name)
         for communication in iter(self.communication_queue.get, None):
+            communication = self.fill_communication_msg(communication)
             yield communication
+
+
+    def fill_communication_msg(self):
+        msg.robot_name = self.robot_name
+        return msg
 
 
     def main_loop(self):
@@ -73,7 +81,8 @@ class ServerHandler():
             grpc exceptions. please refer to grpc
         """
 
-        with grpc.insecure_channel('10.40.37.149:50052',
+
+        with grpc.insecure_channel(self.server_address,
                                    options=[
                                        ("grpc.max_send_message_length", self.max_message_length),
                                        ("grpc.max_receive_message_length", self.max_message_length)
