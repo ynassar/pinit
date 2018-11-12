@@ -1,11 +1,11 @@
 <launch>
-   <include file = "$(find pinit_pkg)/launch/lidar.launch"></include>
+    <arg name="pkg" default="pinit_pkg" />
+    <include file="$(eval find(pkg) + '/launch/lidar.launch')"></include>
+    <include file="$(eval find(pkg) + '/launch/create_2.launch')"></include>
 
-   <include file = "$(find pinit_pkg)/launch/create_2.launch"></include>
-
-	<node pkg="tf"
-          type="static_transform_publisher"
-          name="tf_laser_frame"
-          args="-0.04 0 0 0 0 0 base_link laser_frame 100"/>
+    <node pkg="tf"
+         type="static_transform_publisher"
+         name="tf_laser_frame"
+         args="-0.04 0 0 0 0 0 base_link laser_frame 100"/>
 
 </launch>
