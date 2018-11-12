@@ -28,7 +28,6 @@ class ServerPoseStreamer():
     def init_stream_loop(self):
         self.stream_thread = threading.Thread(target=self.stream_loop)
         self.stream_thread.start()
-        rospy.loginfo("Starting pose streamer loop")
 
 
     def stream_loop(self):
@@ -39,6 +38,7 @@ class ServerPoseStreamer():
                 grpc_pose = self.ros_to_grpc_pose(ros_pose)
                 self.communication_queue.put(grpc_pose)
                 rospy.loginfo("Sending pose to server...")
+            rate.sleep()
 
 
     def ros_to_grpc_pose(self, pose):
@@ -64,7 +64,6 @@ class ServerPoseStreamer():
 
 
 def ServerPoseStreamerFactory(queue):
-    rospy.loginfo("Creating pose streamer...")
     pose_listener = PoseListenerFactory()
     return ServerPoseStreamer(queue, pose_listener)
 
