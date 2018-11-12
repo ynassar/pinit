@@ -100,10 +100,6 @@ class LoginViewController : UIViewController, LoginServerDelegate , CAAnimationD
     func didLoginSuccessfully() {
         let pinitOwnerViewController = PinitOwnerViewController()
         self.present(pinitOwnerViewController, animated: true, completion: nil)
-//        if let navigationController = self.navigationController {
-//            navigationController.popToRootViewController(animated: true)
-//            navigationController.pushViewController(pinitOwnerViewController, animated: true)
-//        }
     }
     
     /// Function called by the `LoginServer` when the login process was completed

@@ -1,6 +1,6 @@
 import UIKit
 
-class SlideAnimationTransitioning : NSObject, UIViewControllerAnimatedTransitioning {
+class SlideUpAnimationTransitioning : NSObject, UIViewControllerAnimatedTransitioning {
     
     let operation: UINavigationController.Operation
     
@@ -10,49 +10,35 @@ class SlideAnimationTransitioning : NSObject, UIViewControllerAnimatedTransition
     }
     
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-        return 0.5
+        return 0.3
     }
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
-        guard let fromViewController = transitionContext.viewController(
-            forKey: UITransitionContextViewControllerKey.from),
-            let toViewController = transitionContext.viewController(
-                forKey: UITransitionContextViewControllerKey.to)
+        guard let toViewController = transitionContext.viewController(forKey: .to)
         else {
                 return
         }
         
         let containerView = transitionContext.containerView
-        
-        switch operation {
-        case .push:
+        if operation == .push {
             toViewController.view.frame = containerView.bounds.offsetBy(
-                dx: containerView.frame.size.width,
-                dy: 0.0)
-            
+                dx: 0.0,
+                dy: containerView.frame.size.height)
+                        
             containerView.addSubview(toViewController.view)
-            
-            print("HEREEE")
             
             UIView.animate(withDuration: transitionDuration(using: transitionContext),
                            delay: 0,
                            options: UIView.AnimationOptions.curveEaseOut,
                            animations: {
-                            toViewController.view.frame = containerView.bounds
-                            fromViewController.view.frame = containerView.bounds.offsetBy(
-                                dx: -containerView.frame.size.width,
+                            toViewController.view.frame = containerView.bounds.offsetBy(
+                                dx: 0.0,
                                 dy: 0.0)
                             },
                            completion: { (finished) in
                             transitionContext.completeTransition(true)
                             })
-        case .pop:
-            break
-        default:
-            break
         }
         
     }
-    
-    
 }

@@ -1,6 +1,6 @@
 import UIKit
 
-class AddLocationViewController : UIViewController, AddLocationServerDelegate {
+class AddLocationViewController : UIViewController, AddLocationServerDelegate, UINavigationControllerDelegate {
     
     var addLocationView : AddLocationView!
     
@@ -12,6 +12,9 @@ class AddLocationViewController : UIViewController, AddLocationServerDelegate {
         super.viewDidLoad()        
         self.view.backgroundColor = .white
         self.view.addSubview(addLocationView)
+        
+        self.navigationController?.delegate = self
+        addLocationServer.delegate = self
         
         addLocationView.doneButton.disableButton()
         
@@ -38,14 +41,8 @@ class AddLocationViewController : UIViewController, AddLocationServerDelegate {
     }
     
     @objc private func closeButtonClick() {
-        let transition = CATransition()
-        transition.duration = 0.2
-        transition.type = CATransitionType.push
-        transition.subtype = CATransitionSubtype.fromBottom
-        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
         if let navigationController = self.navigationController {
-            navigationController.view.window?.layer.add(transition, forKey: kCATransition)
-            navigationController.popViewController(animated: false)
+            navigationController.popViewController(animated: true)
         }
     }
     
@@ -71,9 +68,29 @@ class AddLocationViewController : UIViewController, AddLocationServerDelegate {
         print("Error Message")
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         addLocationView.updateView()
+        print("bekhh")
+    }
+    
+    func navigationController(
+        _ navigationController: UINavigationController,
+        animationControllerFor operation: UINavigationController.Operation,
+        from fromVC: UIViewController,
+        to toVC: UIViewController
+        ) -> UIViewControllerAnimatedTransitioning? {
+        return SlideDownAnimationTransitioning(operation: operation)
     }
 }
 

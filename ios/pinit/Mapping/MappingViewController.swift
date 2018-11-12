@@ -2,7 +2,7 @@ import UIKit
 
 /// `MappingViewController` is a tab controller responsible for mapping the
 /// robot in its new environment through the app.
-class MappingViewController: UIViewController, MappingServerDelegate {
+class MappingViewController: TabBarNavigationController, MappingServerDelegate, UINavigationControllerDelegate {
     
     /// The view that has the arrow controls to move the robot.
     var mappingControlsView: MappingControlsView!
@@ -16,6 +16,8 @@ class MappingViewController: UIViewController, MappingServerDelegate {
     var saveMappingButtonItem: UIBarButtonItem!
     
     var addLocationButtonItem: UIBarButtonItem!
+    
+    var temp = CGRect.zero
 
     /// The function is responsible for adding the targets to the different control buttons,
     /// one for button hold and the other for release. Also adding the different views in the
@@ -24,11 +26,14 @@ class MappingViewController: UIViewController, MappingServerDelegate {
         mappingControlsView = MappingControlsView()
         mappingView = MappingView()
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor.red
+        self.view.backgroundColor = UIColor.white
         self.view.addSubview(mappingControlsView)
         self.view.addSubview(mappingView)
         
         mappingServer.delegate = self
+        self.navigationController?.delegate = self
+        
+        self.view.bounds = temp
         
         let startMappingButton = UIButton(frame: CGRect.zero)
         startMappingButton.setImage(UIImage(named: "startMapping"), for: .normal)
@@ -57,9 +62,18 @@ class MappingViewController: UIViewController, MappingServerDelegate {
         mappingView.disableMapView()
         saveMappingButtonItem.disableButton()
         //addLocationButtonItem.disableButton()
-
+        
         let spacing = self.view.frame.size.height * 0.02
-
+        
+        mappingControlsView = self.mappingControlsView
+            .addCenterXConstraint(relativeView: self.view)
+            .addWidthConstraint(relativeView: self.view, multipler: 0.6)
+            .addHeightConstraint(relativeView: self.view, multipler: 0.25)
+            .setConstraintWithConstant(selfAttribute: .bottom,
+                                       relativeView: self.view,
+                                       relativeAttribute: .bottom,
+                                       constant: -spacing)
+        
         mappingView = self.mappingView
             .addCenterXConstraint(relativeView: self.view)
             .addWidthConstraint(relativeView: self.view, multipler: 1.0)
@@ -71,15 +85,7 @@ class MappingViewController: UIViewController, MappingServerDelegate {
                                        relativeView: mappingControlsView,
                                        relativeAttribute: .top,
                                        constant: -spacing)
-        
-        mappingControlsView = self.mappingControlsView
-            .addCenterXConstraint(relativeView: self.view)
-            .addWidthConstraint(relativeView: self.view, multipler: 0.6)
-            .addHeightConstraint(relativeView: self.view, multipler: 0.25)
-            .setConstraintWithConstant(selfAttribute: .bottom,
-                                       relativeView: self.view,
-                                       relativeAttribute: .bottom,
-                                       constant: -spacing)
+
         
         mappingControlsView.moveForwardButton.addTarget(
             self, action:  #selector(self.moveForwardButtonClick), for: .touchDown)
@@ -104,6 +110,8 @@ class MappingViewController: UIViewController, MappingServerDelegate {
         
         mappingControlsView.moveBackwardButton.addTarget(
             self, action:  #selector(self.stopMovemenetClick), for: .touchUpInside)
+        
+        print("hena", self.view.bounds)
 
     }
     
@@ -145,17 +153,10 @@ class MappingViewController: UIViewController, MappingServerDelegate {
     
     /// Function that navigates to the `AddLocation` screen.
     @objc public func addLocationClick() {
-//        let transition = CATransition()
-//        transition.duration = 0.2
-//        transition.type = CATransitionType.push
-//        transition.subtype = CATransitionSubtype.fromTop
-//        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
-//        let addLocationViewController = AddLocationViewController()
-//////        if let navigationController = self.navigationController {
-////////            navigationController.view.window?.layer.add(transition, forKey: kCATransition)
-//////            navigationController.pushViewController(addLocationViewController, animated: false)
-//////        }
-//        self.pushViewController(addLocationViewController, animated: false)
+        let addLocationViewController = AddLocationViewController()
+        if let navigationController = self.navigationController {
+            navigationController.pushViewController(addLocationViewController, animated: true)
+        }
     }
     
     /// Function responsible for handling any error that comes from the `MapServer` after
@@ -199,8 +200,13 @@ class MappingViewController: UIViewController, MappingServerDelegate {
     }
     
     /// Function responsible for updaing the views if needed when the main view appears.
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        print("didlayout", self.view.bounds)
+        
+        if temp == CGRect.zero {
+            temp = self.view.bounds
+        }
         mappingControlsView.updateView()
         mappingView.updateView()
         mappingView.enableMapView()
@@ -210,16 +216,14 @@ class MappingViewController: UIViewController, MappingServerDelegate {
         super.didReceiveMemoryWarning()
     }
     
-}
-
-extension MappingViewController : UINavigationControllerDelegate {
-
-    public func navigationController(
+    func navigationController(
         _ navigationController: UINavigationController,
         animationControllerFor operation: UINavigationController.Operation,
         from fromVC: UIViewController,
         to toVC: UIViewController
     ) -> UIViewControllerAnimatedTransitioning? {
-        return SlideAnimationTransitioning(operation: operation)
+        return SlideUpAnimationTransitioning(operation: operation)
     }
+    
 }
+
