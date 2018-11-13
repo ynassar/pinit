@@ -54,6 +54,8 @@ class ServerPoseStreamer():
                 angle=angle,
                 timestamp=current_time))
 
+        return grpc_pose
+
 
     def get_time_now(self):
         current_time = Timestamp()
