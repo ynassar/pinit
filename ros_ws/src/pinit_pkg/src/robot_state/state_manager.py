@@ -7,7 +7,6 @@ import rospy
 
 
 class RobotStateManager():
-    #TODO Make this a static class with static methods w kolo static
 
     class States(Enum):
         START = 1
@@ -17,19 +16,12 @@ class RobotStateManager():
         ERROR = 5
 
     # static vars
-    uuid = roslaunch.rlutil.get_or_generate_uuid(None, False)
-
-    gmapping_launch = None
-    movebase_launch = None
-    robot_launch = None
-    pkg_path = rospkg.RosPack().get_path('pinit_pkg')
-    gmapping_launch_path = pkg_path + "/launch/gmapping_launch"
-    movebase_launch_path = pkg_path + "/launch/movebase_launch"
-    robot_launch_path = pkg_path + "/launch/my_robot.launch"
-
-    roslaunch.configure_logging(uuid)
     robot_fsm = FSM()
     states = [s for s in States]
+
+
+    def __init__(self):
+        raise NotImplementedError('This class is intended to be used as a static class only')
 
 
     @classmethod
@@ -79,21 +71,17 @@ class RobotStateManager():
     
     @classmethod
     def idle_to_mapping_cb(cls):
-        RobotStateManager.gmapping_launch = roslaunch.parent.ROSLaunchParent(RobotStateManager.uuid,\
-                [RobotStateManager.gmapping_launch_path])
-        RobotStateManager.gmapping_launch.start()
+        pass
 
 
     @classmethod
     def idle_to_navigating_cb(cls):
-        RobotStateManager.movebase_launch = roslaunch.parent.ROSLaunchParent(RobotStateManager.uuid,\
-                [RobotStateManager.movebase_launch_path])
-        RobotStateManager.movebase_launch.start()
+        pass
 
 
     @classmethod
     def mapping_to_idle_cb(cls):
-        RobotStateManager.gmapping_launch.shutdown()
+        pass
 
 
     @classmethod
@@ -103,7 +91,7 @@ class RobotStateManager():
 
     @classmethod
     def navigating_to_idle_cb(cls):
-        RobotStateManager.movebase_launch.shutdown()
+        pass
 
     
     @classmethod
@@ -113,10 +101,7 @@ class RobotStateManager():
 
     @classmethod
     def start_to_idle_cb(cls):
-        RobotStateManager.robot_launch = roslaunch.parent.ROSLaunchParent(RobotStateManager.uuid,\
-                [RobotStateManager.robot_launch_path])
-        RobotStateManager.robot_launch.start()
-        
+        pass       
 
 
 if __name__ == "__main__":
