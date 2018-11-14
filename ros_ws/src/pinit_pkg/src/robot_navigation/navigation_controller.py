@@ -12,7 +12,8 @@ class NavigationController():
         rospy.init_node('navigation_controller_node')
         self.client = actionlib.SimpleActionClient('move_base', MoveBaseAction)
         self.client.wait_for_server()
-        self.goal = Pose(Point(101.665, 100.262, 0.000), Quaternion(0.000, 0.000, -0.014, 1.000))
+        # Position(3.500, -0.344, 0.000), Orientation(0.000, 0.000, -0.827, 0.562) 
+        self.goal = Pose(Point(3.500, -0.344, 0.000), Quaternion(0.000, 0.000, -0.827, 0.562))
 
     def active_cb(self):
         rospy.loginfo("active cb")
