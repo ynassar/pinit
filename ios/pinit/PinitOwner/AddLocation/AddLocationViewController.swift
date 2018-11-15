@@ -36,9 +36,6 @@ class AddLocationViewController : UIViewController, AddLocationServerDelegate, U
             for: .touchUpInside)
         
         addLocationView.locationName.becomeFirstResponder()
-        
-        print("add location view did load", self.view.bounds)
-        
     }
     
     @objc private func closeButtonClick() {
@@ -91,8 +88,7 @@ class AddLocationViewController : UIViewController, AddLocationServerDelegate, U
         from fromVC: UIViewController,
         to toVC: UIViewController
         ) -> UIViewControllerAnimatedTransitioning? {
-//        return SlideDownAnimationTransitioning(operation: operation)
-        return nil
+        return SlideDownAnimationTransitioning(operation: operation)
     }
 }
 
