@@ -33,7 +33,7 @@ class AddLocationViewController : UIViewController, AddLocationServerDelegate, U
         
         addLocationView.doneButton.addTarget(
             self,
-            action: #selector(self.closeButtonClick),
+            action: #selector(self.doneButtonClick),
             for: .touchUpInside)
         
         addLocationView.locationName.becomeFirstResponder()
@@ -81,7 +81,6 @@ class AddLocationViewController : UIViewController, AddLocationServerDelegate, U
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         addLocationView.updateView()
-        print("bekhh")
     }
     
     func navigationController(
@@ -90,7 +89,8 @@ class AddLocationViewController : UIViewController, AddLocationServerDelegate, U
         from fromVC: UIViewController,
         to toVC: UIViewController
         ) -> UIViewControllerAnimatedTransitioning? {
-        return SlideDownAnimationTransitioning(operation: operation)
+//        return SlideDownAnimationTransitioning(operation: operation)
+        return nil
     }
 }
 

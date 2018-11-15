@@ -7,17 +7,21 @@ public class AddLocationServer {
     
     func addLocation(locationName: String, locationDescription: String) {
         let accountClient = RosServiceServiceClient(
-            address: PinitConstants.tempAuthenticationServerAddress,
+            address: PinitConstants.tempRobotServerAddress,
             secure: false,
             arguments: [])
         
         var addLocationRequest = AddWaypointRequest()
         addLocationRequest.waypointName = locationName
         addLocationRequest.description_p = locationDescription
-        addLocationRequest.token = ""
+        
+        let userDefaults = UserDefaults.standard
+        addLocationRequest.token = userDefaults.string(forKey: "AccountToken")!
+        
+        
         var timestamp = Google_Protobuf_Timestamp()
         timestamp.seconds = Int64(Date().timeIntervalSince1970)
-        addLocationRequest.timestamp = timestamp
+//        addLocationRequest.timestamp = timestamp
         
         do {
             let addLocationResponse = try accountClient.addWaypoint(addLocationRequest)
@@ -27,3 +31,4 @@ public class AddLocationServer {
         }
     }
 }
+
