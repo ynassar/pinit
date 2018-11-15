@@ -135,8 +135,10 @@ class MotionController():
                 angular = 0
                 if linear > 0:
                     linear = self.decelerate_linear(linear)
+                    linear = max(0, linear)
                 elif linear < 0:
                     linear = self.accelerate_linear(linear)
+                    linear = min(0, linear)
                 else:
                     linear = linear
                     angular = angular
