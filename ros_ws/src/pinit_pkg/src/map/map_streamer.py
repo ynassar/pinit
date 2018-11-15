@@ -11,18 +11,17 @@ from nav_msgs.msg import OccupancyGrid
 from gps.gps_controller import GpsController
 
 
-class ServerMapStreamer():
+class MapStreamer():
     """Fetch the map and send it to the server"""
 
     def __init__(self, queue):
         self.communication_queue = queue
         self.map_topic_name = "map"
-        self.map_grpc = None
         self.subscriber = None
         self.global_origin = None
 
 
-    def start_stream(self):
+    def start(self):
         """Start listenning and streaming the mapping and gets global reference
 
         Args:
@@ -36,6 +35,7 @@ class ServerMapStreamer():
         self.subscriber = rospy.Subscriber(self.map_topic_name,
                                            OccupancyGrid,
                                            self.map_callback)
+        rospy.loginfo("Started streaming map to server...")
 
 
     def fetch_global_origin(self):
@@ -51,7 +51,7 @@ class ServerMapStreamer():
         self.global_origin = GpsController().get_coordinates()
 
 
-    def stop_stream(self):
+    def finish(self):
         """Stops listenning and streaming the map
 
         Args:
@@ -62,6 +62,7 @@ class ServerMapStreamer():
         """
 
         self.subscriber.unregister()
+        rospy.loginfo("Stopped streaming map to server...")
 
 
     def map_callback(self, occupancy_grid):
@@ -83,7 +84,7 @@ class ServerMapStreamer():
             longitude=self.global_origin.long,
             latitude=self.global_origin.lat)
 
-        self.map_grpc = ros_pb2.RosToServerCommunication(
+        grpc_raw_map = ros_pb2.RosToServerCommunication(
             raw_map=ros_pb2.RawMap(
                 resolution=metadata.resolution,
                 height=metadata.height,
@@ -91,7 +92,7 @@ class ServerMapStreamer():
                 data=map_raw_data_encoded,
                 coordinates=gps_coordinates_msg))
 
-        self.communication_queue.put(self.map_grpc)
+        self.communication_queue.put(grpc_raw_map)
         rospy.loginfo("Sending map to server...")
 
 

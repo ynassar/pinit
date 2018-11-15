@@ -212,7 +212,8 @@ class MappingViewController: TabBarNavigationController, MappingServerDelegate, 
         from fromVC: UIViewController,
         to toVC: UIViewController
     ) -> UIViewControllerAnimatedTransitioning? {
-        return SlideUpAnimationTransitioning(operation: operation)
+//        return SlideUpAnimationTransitioning(operation: operation)
+        return nil
     }
     
 }

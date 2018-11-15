@@ -1,5 +1,5 @@
 from backend.ros import map_utils
-
+from backend.models import robot as robot_model
 
 class HandlerRegistry(object):
     HANDLERS = {}
@@ -22,7 +22,23 @@ class RosDataHandler(object):
         image_array = self._map_renderer.RenderToArray(map_array)
         b64_map_image = map_utils.Base64JpgEncode(image_array)
         map_utils.UpdateMap(robot_name, raw_map, b64_map_image)
-        print(raw_map)
+
+    @HandlerRegistry.RegisterHandler("robot_pose")
+    def HandleLocalPose(self, robot_pose, robot_name):
+        if robot_pose.HasField("timestamp"):
+            robot_model.Robot.objects(robot_name=robot_name).update_one(
+                upsert=True,
+                set__row = robot_pose.row,
+                set__column = robot_pose.column,
+                set__angle = robot_pose.angle,
+                set__timestamp = robot_pose.timestamp
+            )
+        else:
+            robot_model.Robot.objects(robot_name=robot_name).update_one(
+                upsert=True,
+                set__row = robot_pose.row,
+                set__column = robot_pose.column,
+                set__angle = robot_pose.angle)
 
     def HandleRequests(self, request_iterator, robot_name):
         for request in request_iterator:

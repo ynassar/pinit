@@ -1,4 +1,5 @@
 import grpc
+import time
 
 from absl import app
 from absl import flags
@@ -25,6 +26,15 @@ def main(argv):
                 mapping_request=ros_pb2.ServerToRosMappingRequest(
                     request_type=ros_pb2.ServerToRosMappingRequest.START_MAPPING
                 )))
+        time.sleep(3)
+        stub.SendMovement(
+            ros_pb2.MappingRequest(
+                token=token,
+                mapping_request=ros_pb2.ServerToRosMappingRequest(
+                    request_type=ros_pb2.ServerToRosMappingRequest.STOP_MAPPING
+                    )))
+        time.sleep(3)
+        stub.AddWaypoint(ros_pb2.AddWaypointRequest(waypoint_name='test_waypoint', description='some description', token=token))
 
 if __name__ == '__main__':
     app.run(main)

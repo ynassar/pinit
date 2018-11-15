@@ -11,6 +11,8 @@ import mongoengine
 
 from backend import constants
 from backend.models import map as map_model
+from backend.models import waypoint as waypoint_model
+from backend.models import robot as robot_model
 from backend.ros import map_utils
 from backend.ros import request_utils
 from backend.ros import ros_data_handler
@@ -24,6 +26,11 @@ class NoMapFound(Exception):
 class RobotNotConnected(Exception):
     pass
 
+class NoKnownRobotPosition(Exception):
+    pass
+
+class WaypointAlreadyExists(Exception):
+    pass
 
 def BuildRosService(ignore_unhandled_communication_types=False):
     """Factory method for RosService instances."""
@@ -48,7 +55,7 @@ class RosService(ros_pb2_grpc.RosServiceServicer):
         The first message sent by the robot should contain the robot name for identification.
         """
         first_request = next(request_iterator)
-        robot_name = request_utils.RobotNameFromRequest(first_request, self._rsa_key)
+        robot_name = first_request.robot_name
         threading.Thread(
             target=self._ros_data_handler.HandleRequests,
             args=(request_iterator, robot_name)
@@ -57,9 +64,13 @@ class RosService(ros_pb2_grpc.RosServiceServicer):
         if robot_name not in self._robot_name_to_queue:
             self._robot_name_to_queue[robot_name] = queue.Queue()
         communication_queue = self._robot_name_to_queue[robot_name]
-        for communication in iter(communication_queue.get, None):
-            # Iterate forever, only ROS node can terminate connection.
-            yield communication
+        while context.is_active():
+            try:
+                communication = communication_queue.get_nowait()
+                yield communication
+            except queue.Empty:
+                pass
+        del self._robot_name_to_queue[robot_name]
 
     def SendMovement(self, request, context):
         robot_name = request_utils.RobotNameFromRequest(request, self._rsa_key)
@@ -91,3 +102,19 @@ class RosService(ros_pb2_grpc.RosServiceServicer):
             return map_utils.RawMapFromMapDocument(map)
         except mongoengine.DoesNotExist:
             raise NoMapFound()
+
+    def AddWaypoint(self, request, context):
+        robot_name = request_utils.RobotNameFromToken(request.token, self._rsa_key)
+        try:
+            robot = robot_model.Robot.objects.get(robot_name = robot_name)
+        except mongoengine.DoesNotExist:
+            raise NoKnownRobotPosition()
+        try:
+            waypoint_model.Waypoint(waypoint_name = request.waypoint_name,
+                                    description = request.description,
+                                    robot_name = robot_name,
+                                    row=robot.row,
+                                    column=robot.column).save()
+        except mongoengine.NotUniqueError:
+            raise WaypointAlreadyExists()
+        return ros_pb2.AddWaypointResponse()

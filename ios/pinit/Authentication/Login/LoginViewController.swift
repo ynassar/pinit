@@ -89,7 +89,10 @@ class LoginViewController : UIViewController, LoginServerDelegate , CAAnimationD
     
     /// Function called by the `LoginServer` when the login process was completed
     /// successfully. Responsible for navigating to the appropriate homescreen.
-    func didLoginSuccessfully() {
+    func didLoginSuccessfully(loginResponse: LoginResponse) {
+        let userDefaults = UserDefaults.standard
+        userDefaults.set(loginResponse.token, forKey: "AccountToken")
+        
         let pinitOwnerViewController = PinitOwnerViewController()
         self.present(pinitOwnerViewController, animated: true, completion: nil)
     }
