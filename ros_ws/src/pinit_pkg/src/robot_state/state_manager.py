@@ -7,7 +7,6 @@ import rospy
 
 from utils.fsm import FSM
 from nodes.node_manager import NodeManager
-from map.map_creator import MapCreator
 from map.map_streamer import MapStreamer
 from robot_motion.motion_controller import MotionController
 from server_communication.server_pose_streamer import ServerPoseStreamerFactory
@@ -28,7 +27,6 @@ class RobotStateManager():
         robot_fsm = FSM()
         communication_queue = Queue()
         node_manager = NodeManager()
-        map_creator = MapCreator()
         map_streamer = MapStreamer(communication_queue)
         pose_streamer = ServerPoseStreamerFactory(communication_queue)
         motion_controller = MotionController()
@@ -110,7 +108,7 @@ class RobotStateManager():
     def mapping_to_idle_cb(self):
         self.map_streamer.finish()
         self.node_manager.stop_gmapping()
-        self.node_manager.start_movebase()
+        #self.node_manager.start_movebase()
 
 
     def mapping_to_mapping_cb(self, *args):
@@ -126,7 +124,7 @@ class RobotStateManager():
 
 
     def start_to_idle_cb(self):
-        self.node_manager.start_robot()
+        #self.node_manager.start_robot()
         self.pose_streamer.init_stream_loop()
 
 
