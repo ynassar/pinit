@@ -14,29 +14,39 @@ class SlideUpAnimationTransitioning : NSObject, UIViewControllerAnimatedTransiti
     }
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
-        guard let toViewController = transitionContext.viewController(forKey: .to)
+        print("animation slide up started")
+        guard
+            let toViewController = transitionContext.viewController(forKey: .to),
+            let fromViewController = transitionContext.viewController(forKey: .from)
         else {
                 return
         }
         
+        let finalFrameForViewController = transitionContext.finalFrame(for: toViewController)
         let containerView = transitionContext.containerView
+        let bounds = UIScreen.main.bounds
+        
+        print("slide up", fromViewController.view.bounds)
+        print("final frame", finalFrameForViewController)
+
+        
         if operation == .push {
-            toViewController.view.frame = containerView.bounds.offsetBy(
+            toViewController.view.frame = finalFrameForViewController.offsetBy(
                 dx: 0.0,
-                dy: containerView.frame.size.height)
-                        
+                dy: bounds.size.height)
+            
             containerView.addSubview(toViewController.view)
             
             UIView.animate(withDuration: transitionDuration(using: transitionContext),
                            delay: 0,
                            options: UIView.AnimationOptions.curveEaseOut,
                            animations: {
-                            toViewController.view.frame = containerView.bounds.offsetBy(
-                                dx: 0.0,
-                                dy: 0.0)
+                            toViewController.view.frame = finalFrameForViewController
+                            fromViewController.view.alpha = 0.5
                             },
                            completion: { (finished) in
                             transitionContext.completeTransition(true)
+                            fromViewController.view.alpha = 1.0
                             })
         }
         

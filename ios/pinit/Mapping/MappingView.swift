@@ -14,7 +14,6 @@ class MappingView: UIView, UIScrollViewDelegate {
         scrollImage = UIScrollView(frame: CGRect.zero)
         super.init(frame: CGRect.zero)
         scrollImage.delegate = self
-//        self.addSubview(mapImage)
         self.addSubview(scrollImage)
         
         scrollImage.minimumZoomScale = 1.0
@@ -27,8 +26,6 @@ class MappingView: UIView, UIScrollViewDelegate {
     public func updateView() {
         
         let spacing = self.frame.size.height * 0.02
-        
-        print("Faridaaa", self.frame.size.height)
         
         scrollImage = scrollImage
             .addCenterXConstraint(relativeView: self)

@@ -1,6 +1,6 @@
 import UIKit
 
-class AddLocationViewController : UIViewController, AddLocationServerDelegate, UINavigationControllerDelegate {
+class AddLocationViewController : UIViewController, AddLocationServerDelegate, UINavigationControllerDelegate, UIViewControllerTransitioningDelegate {
     
     var addLocationView : AddLocationView!
     
@@ -13,7 +13,6 @@ class AddLocationViewController : UIViewController, AddLocationServerDelegate, U
         self.view.backgroundColor = .white
         self.view.addSubview(addLocationView)
         
-        self.navigationController?.delegate = self
         addLocationServer.delegate = self
         
         addLocationView.doneButton.disableButton()
@@ -38,10 +37,13 @@ class AddLocationViewController : UIViewController, AddLocationServerDelegate, U
         
         addLocationView.locationName.becomeFirstResponder()
         
+        print("add location view did load", self.view.bounds)
+        
     }
     
     @objc private func closeButtonClick() {
         if let navigationController = self.navigationController {
+            navigationController.delegate = self
             navigationController.popViewController(animated: true)
         }
     }
@@ -81,7 +83,6 @@ class AddLocationViewController : UIViewController, AddLocationServerDelegate, U
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         addLocationView.updateView()
-        print("bekhh")
     }
     
     func navigationController(

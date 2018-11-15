@@ -10,7 +10,7 @@ class SlideDownAnimationTransitioning : NSObject, UIViewControllerAnimatedTransi
     }
     
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-        return 0.4
+        return 0.3
     }
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
@@ -21,14 +21,14 @@ class SlideDownAnimationTransitioning : NSObject, UIViewControllerAnimatedTransi
                 return
         }
         
+        let finalFrameForViewController = transitionContext.finalFrame(for: toViewController)
         let containerView = transitionContext.containerView
+    
         if operation == .pop {
             
+            toViewController.view.frame = finalFrameForViewController
+            toViewController.view.alpha = 0.5
             containerView.insertSubview(toViewController.view, belowSubview: fromViewController.view)
-            toViewController.view.bounds = containerView.bounds
-            toViewController.viewDidLoad()
-            
-            print(toViewController.view.bounds)
             
             UIView.animate(withDuration: transitionDuration(using: transitionContext),
                            delay: 0,
@@ -36,7 +36,8 @@ class SlideDownAnimationTransitioning : NSObject, UIViewControllerAnimatedTransi
                            animations: {
                             fromViewController.view.frame = containerView.bounds.offsetBy(
                                 dx: 0.0,
-                                dy: containerView.frame.size.height)
+                                dy: toViewController.view.frame.size.height)
+                            toViewController.view.alpha = 1.0
             },
                            completion: { (finished) in
                             transitionContext.completeTransition(true)

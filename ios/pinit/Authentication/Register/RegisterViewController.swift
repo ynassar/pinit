@@ -127,9 +127,12 @@ class RegisterViewController : UIViewController, RegisterServerDelegate {
 //            let registerViewController = LoginViewController()
 //            temp?.present(registerViewController, animated: false, completion: nil)
 //        })
-        
-        let loginViewController = LoginViewController()
-        self.present(loginViewController, animated: true, completion: nil)
+        let transition = CATransition()
+        transition.duration = 0.5
+        transition.type = CATransitionType.fade
+        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        self.view.window?.layer.add(transition, forKey: kCATransition)
+        self.dismiss(animated: false, completion: nil)
     }
     
     /// Function responsible for updaing the views if needed when the main view appears.

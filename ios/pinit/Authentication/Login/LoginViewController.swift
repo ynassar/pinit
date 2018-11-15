@@ -67,21 +67,13 @@ class LoginViewController : UIViewController, LoginServerDelegate , CAAnimationD
     
     /// Function that transition to the `Register` screen.
     @objc private func signUpLabelTap(sender: UITapGestureRecognizer) {
-//        let temp = self.presentingViewController
-////        self.dismiss(animated: true, completion: {
-//        let transition = CATransition()
-//        transition.duration = 0.2
-//        transition.type = CATransitionType.push
-//        transition.subtype = CATransitionSubtype.fromTop
-//        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
-//        self.view.window?.layer.add(transition, forKey: kCATransition)
+        let transition = CATransition()
+        transition.duration = 0.5
+        transition.type = CATransitionType.fade
+        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        self.view.window?.layer.add(transition, forKey: kCATransition)
         let registerViewController = RegisterViewController()
-        self.present(registerViewController, animated: true, completion: nil)
-//        })
-//        let transition = CATransition().fadeTransition()
-//        transition.delegate = self
-//        navigationController?.view.layer.add(transition, forKey: kCATransition)
-//        navigationController?.pushViewController(registerViewController, animated: false)
+        self.present(registerViewController, animated: false, completion: nil)
     }
     
     /// Function called every time there is an edit change in one of the text fields.

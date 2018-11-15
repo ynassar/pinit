@@ -2,7 +2,7 @@ import UIKit
 
 /// `MappingViewController` is a tab controller responsible for mapping the
 /// robot in its new environment through the app.
-class MappingViewController: TabBarNavigationController, MappingServerDelegate, UINavigationControllerDelegate {
+class MappingViewController: TabBarNavigationController, MappingServerDelegate, UINavigationControllerDelegate, UIViewControllerTransitioningDelegate {
     
     /// The view that has the arrow controls to move the robot.
     var mappingControlsView: MappingControlsView!
@@ -31,9 +31,6 @@ class MappingViewController: TabBarNavigationController, MappingServerDelegate, 
         self.view.addSubview(mappingView)
         
         mappingServer.delegate = self
-        self.navigationController?.delegate = self
-        
-        self.view.bounds = temp
         
         let startMappingButton = UIButton(frame: CGRect.zero)
         startMappingButton.setImage(UIImage(named: "startMapping"), for: .normal)
@@ -110,9 +107,6 @@ class MappingViewController: TabBarNavigationController, MappingServerDelegate, 
         
         mappingControlsView.moveBackwardButton.addTarget(
             self, action:  #selector(self.stopMovemenetClick), for: .touchUpInside)
-        
-        print("hena", self.view.bounds)
-
     }
     
     /// Function that sends a request to the `MapServer` to move the robot forward.
@@ -155,6 +149,7 @@ class MappingViewController: TabBarNavigationController, MappingServerDelegate, 
     @objc public func addLocationClick() {
         let addLocationViewController = AddLocationViewController()
         if let navigationController = self.navigationController {
+            navigationController.delegate = self
             navigationController.pushViewController(addLocationViewController, animated: true)
         }
     }
@@ -202,11 +197,6 @@ class MappingViewController: TabBarNavigationController, MappingServerDelegate, 
     /// Function responsible for updaing the views if needed when the main view appears.
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        print("didlayout", self.view.bounds)
-        
-        if temp == CGRect.zero {
-            temp = self.view.bounds
-        }
         mappingControlsView.updateView()
         mappingView.updateView()
         mappingView.enableMapView()
