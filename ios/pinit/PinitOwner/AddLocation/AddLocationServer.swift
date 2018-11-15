@@ -17,11 +17,10 @@ public class AddLocationServer {
         
         let userDefaults = UserDefaults.standard
         addLocationRequest.token = userDefaults.string(forKey: "AccountToken")!
-        
-        
+                
         var timestamp = Google_Protobuf_Timestamp()
         timestamp.seconds = Int64(Date().timeIntervalSince1970)
-//        addLocationRequest.timestamp = timestamp
+        addLocationRequest.timestamp = timestamp
         
         do {
             let addLocationResponse = try accountClient.addWaypoint(addLocationRequest)
