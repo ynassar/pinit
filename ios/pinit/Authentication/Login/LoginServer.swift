@@ -21,7 +21,7 @@ public class LoginServer {
         
         do {
             let loginResponse = try accountClient.login(loginRequest)
-            delegate?.didLoginSuccessfully()
+            delegate?.didLoginSuccessfully(loginResponse: loginResponse)
         } catch {
             delegate?.didLoginErrorOccur(errorMessage: "Can't login")
         }

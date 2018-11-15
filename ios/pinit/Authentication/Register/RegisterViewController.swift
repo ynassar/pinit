@@ -109,15 +109,22 @@ class RegisterViewController : UIViewController, RegisterServerDelegate {
     
     /// Function that transition to the `Login` screen.
     @objc func signInLabelTap(sender: UITapGestureRecognizer) {
-        if let navigationController = self.navigationController {
-            let loginViewController = navigationController.viewControllers[0]
-            navigationController.popToViewController(loginViewController, animated: true)
-        }
+        let transition = CATransition()
+        transition.duration = 0.5
+        transition.type = CATransitionType.fade
+        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        self.view.window?.layer.add(transition, forKey: kCATransition)
+        self.dismiss(animated: false, completion: nil)
     }
     
     /// Function responsible for updaing the views if needed when the main view appears.
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        registerView.updateView()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
         registerView.updateView()
     }
     
