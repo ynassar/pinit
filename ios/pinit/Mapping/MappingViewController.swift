@@ -58,7 +58,7 @@ class MappingViewController: TabBarNavigationController, MappingServerDelegate, 
         mappingControlsView.disableControls()
         mappingView.disableMapView()
         saveMappingButtonItem.disableButton()
-        //addLocationButtonItem.disableButton()
+        addLocationButtonItem.disableButton()
         
         let spacing = self.view.frame.size.height * 0.02
         
@@ -176,7 +176,7 @@ class MappingViewController: TabBarNavigationController, MappingServerDelegate, 
         self.present(alert, animated: true, completion: nil)
         mappingControlsView.disableControls()
         saveMappingButtonItem.disableButton()
-        //addLocationButtonItem.disableButton()
+        addLocationButtonItem.disableButton()
     }
     
     /// Function responsible for enable the different UI elements including the controls
