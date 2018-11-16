@@ -29,9 +29,4 @@ class PinitOwnerViewController: UITabBarController, UITabBarControllerDelegate {
         viewControllers = [mappingViewController, settingsViewController]
         
     }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        print("hello")
-    }
 }

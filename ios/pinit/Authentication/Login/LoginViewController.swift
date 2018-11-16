@@ -1,13 +1,13 @@
 import UIKit
 
 /// `LoginViewController` is resopnsible for the process of logging in.
-class LoginViewController : UIViewController, LoginServerDelegate , CAAnimationDelegate {
+class LoginViewController : PinitViewController, LoginServerDelegate , CAAnimationDelegate {
 
     /// The view that has the textfields to input the username and password and login button.
-    var loginView: LoginView!
+    private var loginView: LoginView!
     
     /// The server which sends all the requests related to logging in.
-    var loginServer: LoginServer!
+    private var loginServer: LoginServer!
     
     /// The function responsible for adding the action target to the login button
     /// and the textfields. Also responsible for adding and adjusting the
@@ -16,6 +16,7 @@ class LoginViewController : UIViewController, LoginServerDelegate , CAAnimationD
         super.viewDidLoad()
         loginView = LoginView()
         loginServer = LoginServer()
+        self.controllerViews.append(loginView)
         self.view.addSubview(loginView)
         self.view.backgroundColor = .white
         
@@ -41,7 +42,7 @@ class LoginViewController : UIViewController, LoginServerDelegate , CAAnimationD
                 constant: loginViewTopHeight)
         
         // Add action target to the sign up label.
-        let tap = UITapGestureRecognizer(target: self, action: #selector(self.signUpLabelTap(sender:)))
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.signUpLabelTap))
         loginView.signUpLabel.addGestureRecognizer(tap)
         loginView.signUpLabel.isUserInteractionEnabled = true
         
@@ -66,7 +67,7 @@ class LoginViewController : UIViewController, LoginServerDelegate , CAAnimationD
     }
     
     /// Function that transition to the `Register` screen.
-    @objc private func signUpLabelTap(sender: UITapGestureRecognizer) {
+    @objc private func signUpLabelTap() {
         let transition = CATransition()
         transition.duration = 0.5
         transition.type = CATransitionType.fade
@@ -89,7 +90,7 @@ class LoginViewController : UIViewController, LoginServerDelegate , CAAnimationD
     
     /// Function called by the `LoginServer` when the login process was completed
     /// successfully. Responsible for navigating to the appropriate homescreen.
-    func didLoginSuccessfully(loginResponse: LoginResponse) {
+    public func didLoginSuccessfully(loginResponse: LoginResponse) {
         let userDefaults = UserDefaults.standard
         userDefaults.set(loginResponse.token, forKey: "AccountToken")
         
@@ -100,19 +101,13 @@ class LoginViewController : UIViewController, LoginServerDelegate , CAAnimationD
     /// Function called by the `LoginServer` when the login process was completed
     /// with errors. Responsible for showing the error sent by the server with the
     /// appropraite `errorMessage`.
-    func didLoginErrorOccur(errorMessage: String) {
+    public func didLoginErrorOccur(errorMessage: String) {
         let alert = UIAlertController(
             title: "Error Occured",
             message: errorMessage,
             preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
-    }
-
-    /// Function responsible for updaing the views if needed when the main view appears.
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        loginView.updateView()
     }
 }
 

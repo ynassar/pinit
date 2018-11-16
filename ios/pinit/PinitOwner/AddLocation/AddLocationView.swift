@@ -1,6 +1,6 @@
 import UIKit
 
-class AddLocationView : UIView {
+class AddLocationView : UIView, PinitViewProtocol {
     
     public var closeButton: UIButton!
     

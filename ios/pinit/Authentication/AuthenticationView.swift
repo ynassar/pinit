@@ -37,6 +37,7 @@ class AuthenticationView : UIView {
         adjustedTextfield.layer.borderColor = PinitColors.borderGray.cgColor
         adjustedTextfield.font = adjustedTextfield.font?
             .withSize(PinitConstants.authenticationFontSize)
+        adjustedTextfield.autocapitalizationType = .none
         return adjustedTextfield
     }
     

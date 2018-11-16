@@ -2,7 +2,7 @@ import UIKit
 
 /// 'MappingView' is responsible for having the start mapping button and
 /// the imageview of the mapping image updated periodically.
-class MappingView: UIView, UIScrollViewDelegate {
+class MappingView: UIView, UIScrollViewDelegate, PinitViewProtocol {
     
     var mapImage: UIImageView!
     
