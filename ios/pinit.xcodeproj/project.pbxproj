@@ -16,12 +16,14 @@
 		3721B1CA219837590083C0DD /* login.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721B1C4219837590083C0DD /* login.pb.swift */; };
 		3721B1D02199C01E0083C0DD /* SlideUpAnimationTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721B1CF2199C01E0083C0DD /* SlideUpAnimationTransitioning.swift */; };
 		3721B1D22199C18C0083C0DD /* SlideDownAnimationTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721B1D12199C18C0083C0DD /* SlideDownAnimationTransitioning.swift */; };
+		372216C4219EFE51009C8103 /* TabBarNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372216C3219EFE51009C8103 /* TabBarNavigationController.swift */; };
+		372216C6219EFE63009C8103 /* PinitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372216C5219EFE63009C8103 /* PinitViewController.swift */; };
+		372216C9219EFEF3009C8103 /* PinitViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372216C8219EFEF3009C8103 /* PinitViewProtocol.swift */; };
 		37352731217A217700602046 /* MappingControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3735272E217A217700602046 /* MappingControlsView.swift */; };
 		37352732217A217700602046 /* MappingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3735272F217A217700602046 /* MappingView.swift */; };
 		37352733217A217700602046 /* MappingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37352730217A217700602046 /* MappingViewController.swift */; };
 		37352738217A217F00602046 /* PinitOwnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37352736217A217F00602046 /* PinitOwnerViewController.swift */; };
 		3735273B217A218700602046 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3735273A217A218700602046 /* SettingsViewController.swift */; };
-		3735274F217B498500602046 /* TabBarNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3735274E217B498500602046 /* TabBarNavigationController.swift */; };
 		373639CC217248A300EBD383 /* BoringSSL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 373C1282216F9ED4003D7CBB /* BoringSSL.framework */; };
 		373639CD217248A300EBD383 /* BoringSSL.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 373C1282216F9ED4003D7CBB /* BoringSSL.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		373639D0217248A300EBD383 /* SwiftGRPC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 373C1286216F9ED4003D7CBB /* SwiftGRPC.framework */; };
@@ -146,12 +148,14 @@
 		3721B1C4219837590083C0DD /* login.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = login.pb.swift; sourceTree = "<group>"; };
 		3721B1CF2199C01E0083C0DD /* SlideUpAnimationTransitioning.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideUpAnimationTransitioning.swift; sourceTree = "<group>"; };
 		3721B1D12199C18C0083C0DD /* SlideDownAnimationTransitioning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideDownAnimationTransitioning.swift; sourceTree = "<group>"; };
+		372216C3219EFE51009C8103 /* TabBarNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarNavigationController.swift; sourceTree = "<group>"; };
+		372216C5219EFE63009C8103 /* PinitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinitViewController.swift; sourceTree = "<group>"; };
+		372216C8219EFEF3009C8103 /* PinitViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinitViewProtocol.swift; sourceTree = "<group>"; };
 		3735272E217A217700602046 /* MappingControlsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MappingControlsView.swift; sourceTree = "<group>"; };
 		3735272F217A217700602046 /* MappingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MappingView.swift; sourceTree = "<group>"; };
 		37352730217A217700602046 /* MappingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MappingViewController.swift; sourceTree = "<group>"; };
 		37352736217A217F00602046 /* PinitOwnerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinitOwnerViewController.swift; sourceTree = "<group>"; };
 		3735273A217A218700602046 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		3735274E217B498500602046 /* TabBarNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarNavigationController.swift; sourceTree = "<group>"; };
 		37363A0A21761C3300EBD383 /* UIButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
 		37363A0E21761F1100EBD383 /* RegisterServerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterServerDelegate.swift; sourceTree = "<group>"; };
 		37363A0F21761F1100EBD383 /* RegisterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
@@ -248,6 +252,23 @@
 			path = AnimationTransitioning;
 			sourceTree = "<group>";
 		};
+		372216C2219EFE51009C8103 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				372216C3219EFE51009C8103 /* TabBarNavigationController.swift */,
+				372216C5219EFE63009C8103 /* PinitViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		372216C7219EFEE6009C8103 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				372216C8219EFEF3009C8103 /* PinitViewProtocol.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		3735272D217A217700602046 /* Mapping */ = {
 			isa = PBXGroup;
 			children = (
@@ -330,12 +351,13 @@
 		3775A0682165009700ABEF54 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				372216C7219EFEE6009C8103 /* Protocols */,
+				372216C2219EFE51009C8103 /* Controllers */,
 				3721B1CE2199C01E0083C0DD /* AnimationTransitioning */,
 				3775A0692165012200ABEF54 /* Constraints.swift */,
 				376985B8216834DE006FF550 /* Constants.swift */,
 				3720226F2167AF5B00602B53 /* CustomTextField.swift */,
 				37363A0A21761C3300EBD383 /* UIButtonExtension.swift */,
-				3735274E217B498500602046 /* TabBarNavigationController.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -541,6 +563,7 @@
 				3775A06B21650B5D00ABEF54 /* Constraints.swift in Sources */,
 				3721B1CA219837590083C0DD /* login.pb.swift in Sources */,
 				37352732217A217700602046 /* MappingView.swift in Sources */,
+				372216C6219EFE63009C8103 /* PinitViewController.swift in Sources */,
 				37CBDD062194B92D0092C8E1 /* AddLocationViewController.swift in Sources */,
 				3721B1C8219837590083C0DD /* ros.pb.swift in Sources */,
 				37363A1E21761F2200EBD383 /* LoginServerDelegate.swift in Sources */,
@@ -559,15 +582,16 @@
 				37CBDD042194B92D0092C8E1 /* AddLocationServerDelegate.swift in Sources */,
 				3721B1D02199C01E0083C0DD /* SlideUpAnimationTransitioning.swift in Sources */,
 				37CBDD052194B92D0092C8E1 /* AddLocationServer.swift in Sources */,
+				372216C9219EFEF3009C8103 /* PinitViewProtocol.swift in Sources */,
 				37EEA7E7215B962500BF3839 /* AppDelegate.swift in Sources */,
 				37352738217A217F00602046 /* PinitOwnerViewController.swift in Sources */,
 				3721B1D22199C18C0083C0DD /* SlideDownAnimationTransitioning.swift in Sources */,
 				37363A0B21761C3300EBD383 /* UIButtonExtension.swift in Sources */,
 				37363A1A21761F1100EBD383 /* AuthenticationView.swift in Sources */,
 				37363A1C21761F1100EBD383 /* LoginViewController.swift in Sources */,
+				372216C4219EFE51009C8103 /* TabBarNavigationController.swift in Sources */,
 				37363A1921761F1100EBD383 /* RegisterViewController.swift in Sources */,
 				3735273B217A218700602046 /* SettingsViewController.swift in Sources */,
-				3735274F217B498500602046 /* TabBarNavigationController.swift in Sources */,
 				3721B1C6219837590083C0DD /* account_management.pb.swift in Sources */,
 				3721B1C9219837590083C0DD /* login.grpc.swift in Sources */,
 				376985B9216834DE006FF550 /* Constants.swift in Sources */,

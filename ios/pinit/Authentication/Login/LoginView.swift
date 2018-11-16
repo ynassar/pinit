@@ -2,7 +2,7 @@ import UIKit
 
 /// The `LoginView` is responsible for logging in the app using the
 /// correct username and password. 
-class LoginView : AuthenticationView {
+class LoginView : AuthenticationView, PinitViewProtocol {
     
     /// The username text field.
     public var usernameTextField: CustomTextField

@@ -1,7 +1,7 @@
 import UIKit
 
 /// `LoginViewController` is resopnsible for the process of logging in.
-class LoginViewController : UIViewController, LoginServerDelegate , CAAnimationDelegate {
+class LoginViewController : PinitViewController, LoginServerDelegate , CAAnimationDelegate {
 
     /// The view that has the textfields to input the username and password and login button.
     var loginView: LoginView!
@@ -16,6 +16,7 @@ class LoginViewController : UIViewController, LoginServerDelegate , CAAnimationD
         super.viewDidLoad()
         loginView = LoginView()
         loginServer = LoginServer()
+        self.controllerViews.append(loginView)
         self.view.addSubview(loginView)
         self.view.backgroundColor = .white
         
@@ -107,12 +108,6 @@ class LoginViewController : UIViewController, LoginServerDelegate , CAAnimationD
             preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
-    }
-
-    /// Function responsible for updaing the views if needed when the main view appears.
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        loginView.updateView()
     }
 }
 
