@@ -194,6 +194,11 @@ class MappingViewController: TabBarNavigationController, MappingServerDelegate, 
         mappingView.mapImage.image = newImage
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.tabBarController?.tabBar.isHidden = false
+    }
+    
     /// Function responsible for updaing the views if needed when the main view appears.
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
