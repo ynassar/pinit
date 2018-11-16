@@ -90,7 +90,7 @@ fileprivate extension CustomTextField {
         var adjustedTextField = self
         adjustedTextField = adjustedTextField
             .addWidthConstraint(relativeView: superView, multipler: 1.0)
-            .addHeightConstraint(relativeView: superView, multipler: 0.05)
+            .addHeightConstraint(relativeView: superView, multipler: 0.07)
             .addCenterXConstraint(relativeView: superView)
         adjustedTextField.font = self.font?
             .withSize(PinitConstants.authenticationFontSize)

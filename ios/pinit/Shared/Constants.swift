@@ -6,7 +6,7 @@ struct PinitColors {
     /// Gray color used for backgrounds.
     static public let gray = UIColor(red:0.98, green:0.98, blue:0.98, alpha:1.0)
     
-    /// Gray color used for backgrounds.
+    /// Gray color used for borders.
     static public let borderGray = UIColor(red:0.70, green:0.70, blue:0.70, alpha:1.0)
     
     /// Blue color used for different `UIButton`.
@@ -33,10 +33,10 @@ struct PinitConstants {
     static public let addLocationFontSize: CGFloat = 12.0
     
     /// The address of the gRPC server used by `LoginServer` and `RegisterServer`.
-    static public let tempAuthenticationServerAddress = "localhost:50051"
+    static public let tempAuthenticationServerAddress = "192.168.0.2:50051"
     
     /// The address of the gRPC server used by all other severs in the app. 
-    static public let tempRobotServerAddress = "localhost:50052"
+    static public let tempRobotServerAddress = "192.168.0.2:50052"
     
     /// The navigation bar default height.
     static public let navigationBarHeight: CGFloat = 44.0

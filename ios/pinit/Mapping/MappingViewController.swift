@@ -65,7 +65,7 @@ class MappingViewController: TabBarNavigationController, MappingServerDelegate, 
         mappingControlsView = self.mappingControlsView
             .addCenterXConstraint(relativeView: self.view)
             .addWidthConstraint(relativeView: self.view, multipler: 0.6)
-            .addHeightConstraint(relativeView: self.view, multipler: 0.25)
+            .addHeightConstraint(relativeView: self.view, multipler: 0.3)
             .setConstraintWithConstant(selfAttribute: .bottom,
                                        relativeView: self.view,
                                        relativeAttribute: .bottom,

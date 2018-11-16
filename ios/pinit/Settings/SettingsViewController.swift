@@ -1,6 +1,6 @@
 import UIKit
 
-class SettingsViewController: UIViewController {
+class SettingsViewController: TabBarNavigationController {
     
     override func viewDidLoad() {
         super.viewDidLoad()

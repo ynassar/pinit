@@ -37,7 +37,7 @@ class RegisterViewController : UIViewController, RegisterServerDelegate {
         registerView = self.registerView
             .addCenterXConstraint(relativeView: self.view)
             .addWidthConstraint(relativeView: self.view, multipler: 0.9)
-            .addHeightConstraint(relativeView: self.view, multipler: 0.4)
+            .addHeightConstraint(relativeView: self.view, multipler: 0.5)
             .setConstraintWithConstant(
                 selfAttribute: .top,
                 relativeView: self.view,
