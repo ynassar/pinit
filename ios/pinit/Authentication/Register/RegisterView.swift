@@ -2,7 +2,7 @@ import UIKit
 
 /// The `RegisterView` is responsible for registering in the app creating
 /// a general user account.
-class RegisterView : AuthenticationView, UITextFieldDelegate {
+class RegisterView : AuthenticationView, PinitViewProtocol {
     
     /// The username text field.
     public var usernameTextField: CustomTextField
