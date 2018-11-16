@@ -1,15 +1,21 @@
 import UIKit
 
-class AddLocationViewController : UIViewController, AddLocationServerDelegate, UINavigationControllerDelegate, UIViewControllerTransitioningDelegate {
+class AddLocationViewController :
+PinitViewController,
+AddLocationServerDelegate,
+UINavigationControllerDelegate,
+UIViewControllerTransitioningDelegate
+{
     
-    var addLocationView : AddLocationView!
+    private var addLocationView : AddLocationView!
     
-    var addLocationServer: AddLocationServer!
+    private var addLocationServer: AddLocationServer!
     
     override func viewDidLoad() {
         addLocationView = AddLocationView()
         addLocationServer = AddLocationServer()
-        super.viewDidLoad()        
+        super.viewDidLoad()
+        self.controllerViews.append(addLocationView)
         self.view.backgroundColor = .white
         self.view.addSubview(addLocationView)
         
@@ -59,11 +65,11 @@ class AddLocationViewController : UIViewController, AddLocationServerDelegate, U
         }
     }
     
-    func didAddLocationSuccessfully() {
+    public func didAddLocationSuccessfully() {
         self.closeButtonClick()
     }
     
-    func didAddLocationErrorOccur(errorMessage: String) {
+    public func didAddLocationErrorOccur(errorMessage: String) {
         print("Error Message")
     }
     
@@ -78,10 +84,6 @@ class AddLocationViewController : UIViewController, AddLocationServerDelegate, U
         self.navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        addLocationView.updateView()
-    }
     
     func navigationController(
         _ navigationController: UINavigationController,
