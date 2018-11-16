@@ -15,8 +15,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         
         if let window = window {
-            let loginViewController = LoginViewController()
-            window.rootViewController = loginViewController
+            
+            let userDefaults = UserDefaults.standard
+            if userDefaults.object(forKey: PinitConstants.savedOwnerStatusKey) != nil {
+                let isOwner = userDefaults.bool(forKey: PinitConstants.savedOwnerStatusKey)
+                if isOwner {
+                    window.rootViewController = PinitOwnerViewController()
+                } else {
+                    window.rootViewController = PinitUserViewController()
+                }
+            } else {
+                let loginViewController = LoginViewController()
+                window.rootViewController = loginViewController
+            }
             window.makeKeyAndVisible()
         }
         

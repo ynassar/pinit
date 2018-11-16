@@ -12,8 +12,11 @@ struct PinitColors {
     /// Blue color used for different `UIButton`.
     static public let blue = UIColor(red:0.20, green:0.74, blue:0.83, alpha:1.0)
 
-    /// Green color used for borders of `UITextFields`.
-    static public let borderGreen = UIColor(red:0.60, green:0.69, blue:0.27, alpha:1.0)
+    static public let green = UIColor(red:0.60, green:0.69, blue:0.27, alpha:1.0)
+    
+    static public let red = UIColor(red:0.87, green:0.31, blue:0.34, alpha:1.0)
+
+    static public let yellow = UIColor(red:0.96, green:0.81, blue:0.33, alpha:1.0)
     
     /// Light Blue color used for `UILabel` that acts like a link.
     static public let linkBlue = UIColor(red:0.24, green:0.60, blue:0.93, alpha:1.0)
@@ -40,4 +43,10 @@ struct PinitConstants {
     
     /// The navigation bar default height.
     static public let navigationBarHeight: CGFloat = 44.0
+    
+    static public let savedTokenKey = "AccountToken"
+    
+    static public let savedUsernameKey = "Username"
+    
+    static public let savedOwnerStatusKey = "Username"
 }

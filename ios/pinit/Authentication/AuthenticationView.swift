@@ -47,7 +47,7 @@ class AuthenticationView : UIView {
             .addCenterXConstraint(relativeView: self)
             .addWidthConstraint(relativeView: self, multipler: 1)
             .addHeightConstraint(relativeView: self, multipler: 0.1)
-        adjustedButton.backgroundColor = PinitColors.blue
+//        adjustedButton.backgroundColor = PinitColors.blue
         adjustedButton.layer.cornerRadius = 10
         adjustedButton.titleLabel?.font = adjustedButton.titleLabel?.font
             .withSize(PinitConstants.authenticationFontSize)
