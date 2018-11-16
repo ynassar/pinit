@@ -1,6 +1,6 @@
 import UIKit
 
-class TabBarNavigationController : UIViewController {
+class TabBarNavigationController : PinitViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
