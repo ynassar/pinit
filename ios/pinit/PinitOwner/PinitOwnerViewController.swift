@@ -10,8 +10,7 @@ class PinitOwnerViewController: UITabBarController, UITabBarControllerDelegate {
         
         self.tabBar.tintColor = .black
         self.tabBar.barTintColor = .white
-        self.tabBar.backgroundColor = .white
-        
+        self.view.backgroundColor = .white
         setUpTabBar()
     }
     
@@ -29,5 +28,10 @@ class PinitOwnerViewController: UITabBarController, UITabBarControllerDelegate {
         
         viewControllers = [mappingViewController, settingsViewController]
         
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        print("hello")
     }
 }

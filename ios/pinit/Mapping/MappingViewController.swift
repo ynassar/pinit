@@ -65,7 +65,7 @@ class MappingViewController: TabBarNavigationController, MappingServerDelegate, 
         mappingControlsView = self.mappingControlsView
             .addCenterXConstraint(relativeView: self.view)
             .addWidthConstraint(relativeView: self.view, multipler: 0.6)
-            .addHeightConstraint(relativeView: self.view, multipler: 0.25)
+            .addHeightConstraint(relativeView: self.view, multipler: 0.3)
             .setConstraintWithConstant(selfAttribute: .bottom,
                                        relativeView: self.view,
                                        relativeAttribute: .bottom,
@@ -192,6 +192,11 @@ class MappingViewController: TabBarNavigationController, MappingServerDelegate, 
     /// assigns the image to the `mapImage` in the `mappingView`.
     func mapImageUpdate(newImage: UIImage) {
         mappingView.mapImage.image = newImage
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.tabBarController?.tabBar.isHidden = false
     }
     
     /// Function responsible for updaing the views if needed when the main view appears.
