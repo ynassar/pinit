@@ -26,6 +26,8 @@ class MappingViewController: TabBarNavigationController, MappingServerDelegate, 
         mappingControlsView = MappingControlsView()
         mappingView = MappingView()
         super.viewDidLoad()
+        self.controllerViews.append(mappingControlsView)
+        self.controllerViews.append(mappingView)
         self.view.backgroundColor = UIColor.white
         self.view.addSubview(mappingControlsView)
         self.view.addSubview(mappingView)
@@ -185,6 +187,7 @@ class MappingViewController: TabBarNavigationController, MappingServerDelegate, 
         mappingControlsView.enableControls()
         saveMappingButtonItem.enableButton()
         addLocationButtonItem.enableButton()
+        mappingView.enableMapView()
         mappingServer.mapImageRequestAsynchronous()
     }
     
@@ -199,13 +202,6 @@ class MappingViewController: TabBarNavigationController, MappingServerDelegate, 
         self.tabBarController?.tabBar.isHidden = false
     }
     
-    /// Function responsible for updaing the views if needed when the main view appears.
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        mappingControlsView.updateView()
-        mappingView.updateView()
-        mappingView.enableMapView()
-    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
