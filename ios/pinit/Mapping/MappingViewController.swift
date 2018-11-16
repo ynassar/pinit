@@ -5,20 +5,18 @@ import UIKit
 class MappingViewController: TabBarNavigationController, MappingServerDelegate, UINavigationControllerDelegate, UIViewControllerTransitioningDelegate {
     
     /// The view that has the arrow controls to move the robot.
-    var mappingControlsView: MappingControlsView!
+    private var mappingControlsView: MappingControlsView!
     
     /// The view that has the map image which is regularly updated
-    var mappingView: MappingView!
+    private var mappingView: MappingView!
     
     /// The server which sends all the requests related to mapping.
-    var mappingServer = MappingServer()
+    private var mappingServer = MappingServer()
     
-    var saveMappingButtonItem: UIBarButtonItem!
+    private var saveMappingButtonItem: UIBarButtonItem!
     
-    var addLocationButtonItem: UIBarButtonItem!
+    private var addLocationButtonItem: UIBarButtonItem!
     
-    var temp = CGRect.zero
-
     /// The function is responsible for adding the targets to the different control buttons,
     /// one for button hold and the other for release. Also adding the different views in the
     /// view covering the entire screen.
@@ -158,7 +156,7 @@ class MappingViewController: TabBarNavigationController, MappingServerDelegate, 
     
     /// Function responsible for handling any error that comes from the `MapServer` after
     /// sending a request.
-    func didMappingErrorOccur(_ errorMessage: String) {
+    public func didMappingErrorOccur(_ errorMessage: String) {
         let alert = UIAlertController(
             title: "Error Occured",
             message: errorMessage,
@@ -169,7 +167,7 @@ class MappingViewController: TabBarNavigationController, MappingServerDelegate, 
     }
     
     /// Function responsible for showing a confitmation alert that the map has been saved.
-    func mapSaveConfirmation() {
+    public func mapSaveConfirmation() {
         let alert = UIAlertController(
             title: "Map Saved",
             message: nil,
@@ -183,7 +181,7 @@ class MappingViewController: TabBarNavigationController, MappingServerDelegate, 
     
     /// Function responsible for enable the different UI elements including the controls
     /// buttons and the map image when the a `MappingRequest` for starting mapping has been sent.
-    func mapStartConfirmation() {
+    public func mapStartConfirmation() {
         mappingControlsView.enableControls()
         saveMappingButtonItem.enableButton()
         addLocationButtonItem.enableButton()
@@ -193,7 +191,7 @@ class MappingViewController: TabBarNavigationController, MappingServerDelegate, 
     
     /// Function called when the map image requested periodically has been recieved and a
     /// assigns the image to the `mapImage` in the `mappingView`.
-    func mapImageUpdate(newImage: UIImage) {
+    public func mapImageUpdate(newImage: UIImage) {
         mappingView.mapImage.image = newImage
     }
     
