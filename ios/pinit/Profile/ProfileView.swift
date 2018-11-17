@@ -4,7 +4,7 @@ class ProfileView : UIView, PinitViewProtocol {
     
     public var logoutButton: UIButton
     
-    public var profileInfoLabel
+//    public var profileInfoLabel
     
     init() {
         logoutButton = UIButton(frame: CGRect.zero)

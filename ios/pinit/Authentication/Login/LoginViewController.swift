@@ -91,10 +91,13 @@ class LoginViewController : PinitViewController, LoginServerDelegate , CAAnimati
     /// Function called by the `LoginServer` when the login process was completed
     /// successfully. Responsible for navigating to the appropriate homescreen.
     public func didLoginSuccessfully(loginResponse: LoginResponse) {
+        let userProfile = Profile(username: loginView.usernameTextField.text ?? "",
+                                  token: loginResponse.token,
+                                  ownerStatus: loginResponse.isOwner)
         let userDefaults = UserDefaults.standard
-        userDefaults.set(loginResponse.token, forKey: PinitConstants.savedTokenKey)
-        userDefaults.set(loginView.usernameTextField.text ?? "", forKey: PinitConstants.savedUsernameKey)
-        userDefaults.set(loginResponse.isOwner, forKey: PinitConstants.savedOwnerStatusKey)
+        let encodedData: Data = NSKeyedArchiver.archivedData(withRootObject: userProfile)
+        userDefaults.set(encodedData, forKey: PinitConstants.savedProfileKey)
+        userDefaults.synchronize()
         
         if loginResponse.isOwner {
             let pinitOwnerViewController = PinitOwnerViewController()

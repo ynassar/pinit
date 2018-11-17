@@ -36,17 +36,13 @@ struct PinitConstants {
     static public let addLocationFontSize: CGFloat = 12.0
     
     /// The address of the gRPC server used by `LoginServer` and `RegisterServer`.
-    static public let tempAuthenticationServerAddress = "192.168.0.2:50051"
+    static public let tempAuthenticationServerAddress = "localhost:50051"
     
     /// The address of the gRPC server used by all other severs in the app. 
-    static public let tempRobotServerAddress = "192.168.0.2:50052"
+    static public let tempRobotServerAddress = "localhost:50052"
     
     /// The navigation bar default height.
     static public let navigationBarHeight: CGFloat = 44.0
     
-    static public let savedTokenKey = "AccountToken"
-    
-    static public let savedUsernameKey = "Username"
-    
-    static public let savedOwnerStatusKey = "Username"
+    static public let savedProfileKey = "ProfileKey"
 }
