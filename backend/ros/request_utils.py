@@ -1,3 +1,5 @@
+from proto.ros import ros_pb2
+
 import jwt
 
 class AuthenticationError(Exception):
@@ -20,3 +22,8 @@ def RobotNameFromRequest(request, rsa_key):
         return RobotNameFromToken(request.token, rsa_key)
     else:
         raise AuthenticationError("No robot and no token specified.")
+
+
+def ConvertWaypointDocumentToProto(document):
+    return ros_pb2.Waypoint(waypoint_name=document.waypoint_name,
+                            description=document.description)

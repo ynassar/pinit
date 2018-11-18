@@ -32,6 +32,10 @@ class NoKnownRobotPosition(Exception):
 class WaypointAlreadyExists(Exception):
     pass
 
+class AuthenticationError(Exception):
+    pass
+
+
 def BuildRosService(ignore_unhandled_communication_types=False):
     """Factory method for RosService instances."""
     map_renderer = greyscale_map_renderer.GreyscaleMapRenderer()
@@ -118,3 +122,12 @@ class RosService(ros_pb2_grpc.RosServiceServicer):
         except mongoengine.NotUniqueError:
             raise WaypointAlreadyExists()
         return ros_pb2.AddWaypointResponse()
+
+    def RequestRobotToLocation(self, request, context):
+        location = [request.coordinates.longitude, request.coordinates.latitude]
+        nearby_map = map_model.Map.objects(origin__near=location)[0]
+        robot_name = nearby_map.robot_name    
+        nearby_waypoints = waypoint_model.Waypoint.objects(robot_name=robot_name)
+        waypoint_protos = [request_utils.ConvertWaypointDocumentToProto(document)
+                           for document in nearby_waypoints]
+        return ros_pb2.WaypointList(waypoints=waypoint_protos)
