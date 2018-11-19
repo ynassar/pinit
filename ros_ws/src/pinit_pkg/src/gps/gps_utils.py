@@ -2,23 +2,43 @@
 
 import numpy as np
 
-from gps.gps_controller import GpsPoint
+
+class GpsPoint():
+
+    def __init__(self, long, lat):
+        self.long = long
+        self.lat = lat
+
+    def __str__(self):
+        return "latitude: {lat} longitude {long}".format(
+            long=self.long,
+            lat=self.lat
+        )
+    
+
+def coordinates_to_rad(gps_point):
+    rad_long = np.radians(gps_point.long)
+    rad_lat = np.radians(gps_point.lat)
+    rad_gps_point = GpsPoint(long=rad_long, lat=rad_lat)
+
+    return rad_gps_point
 
 
 
 def get_vector(p1, p2):
-    """Calculate the vector between two gps coordinates
+    """Calculate the vector between two gps coordinates in radians
 
     Args:
-        p1: first gps coordinates
-        p2: second gps coordinate
+        p1: first gps coordinates in radians
+        p2: second gps coordinate in radians
 
     Returns:
         d: distance between the two points in meters
         theta: the bearing from one point to another
         #TODO figure out where the bearing start from
     """
-
+    # print "point 1: ", p1, "point2: ", p2
+    
     long1 = p1.long
     lat1 = p1.lat
     long2 = p2.long
@@ -32,13 +52,13 @@ def get_vector(p1, p2):
             np.cos(lat1) * np.cos(lat2) * \
             np.sin(dLong / 2) * np.sin(dLong / 2)
     c = 2 * np.arctan2(np.sqrt(a), np.sqrt(1 - a))
-    d = R * c
-
+    d = R * c #meters
+    
     y = np.sin(dLong) * np.cos(lat2)
     x = np.cos(lat1) * np.sin(lat2) - \
             np.sin(lat1) * np.cos(lat2) * np.cos(dLong)
     theta = np.arctan2(y, x)
-
+    
     return d, theta
 
 def convert_gps(point, theta, resolution):
@@ -48,19 +68,16 @@ def convert_gps(point, theta, resolution):
 
 
 if __name__=='__main__':
-    lat1 = 0
-    long1 = 5
-    lat2 = 0
-    long2 = 3
-
-    lat1 = np.radians(lat1)
-    lat2 = np.radians(lat2)
-    long1 = np.radians(long1)
-    long2 = np.radians(long2)
-
-    v = get_vector(GpsPoint(long=long1, lat=lat1), GpsPoint(long=long2, lat=lat2))
-    print v[0] / 1000
+    lat1 = 30.0187716667
+    long1 = 31.5006533333
+    lat2 = 30.0184083333
+    long2 = 31.501105
+    p1 = GpsPoint(long=long1, lat=lat1)
+    p2 = GpsPoint(long=long2, lat=lat2)
+    p1 = coordinates_to_rad(p1)
+    p2 = coordinates_to_rad(p2)
+    v = get_vector(p1, p2)
+    print v[0]
     bearing = np.degrees(v[1])
     bearing = (bearing + 360) % 360
     print bearing 
-    
