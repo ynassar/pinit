@@ -24,6 +24,8 @@
 		372216D3219F2554009C8103 /* RobotRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372216D2219F2554009C8103 /* RobotRequestViewController.swift */; };
 		372216D5219F255D009C8103 /* RobotRequestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372216D4219F255D009C8103 /* RobotRequestView.swift */; };
 		372216D7219F4731009C8103 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372216D6219F4731009C8103 /* Profile.swift */; };
+		372CEF5D21A1BCC700791DF4 /* SettingsBundleHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CEF5C21A1BCC700791DF4 /* SettingsBundleHelper.swift */; };
+		372CEF5F21A307A000791DF4 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 372CEF5E21A307A000791DF4 /* Settings.bundle */; };
 		37352731217A217700602046 /* MappingControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3735272E217A217700602046 /* MappingControlsView.swift */; };
 		37352732217A217700602046 /* MappingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3735272F217A217700602046 /* MappingView.swift */; };
 		37352733217A217700602046 /* MappingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37352730217A217700602046 /* MappingViewController.swift */; };
@@ -161,6 +163,8 @@
 		372216D2219F2554009C8103 /* RobotRequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RobotRequestViewController.swift; sourceTree = "<group>"; };
 		372216D4219F255D009C8103 /* RobotRequestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RobotRequestView.swift; sourceTree = "<group>"; };
 		372216D6219F4731009C8103 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		372CEF5C21A1BCC700791DF4 /* SettingsBundleHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsBundleHelper.swift; sourceTree = "<group>"; };
+		372CEF5E21A307A000791DF4 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		3735272E217A217700602046 /* MappingControlsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MappingControlsView.swift; sourceTree = "<group>"; };
 		3735272F217A217700602046 /* MappingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MappingView.swift; sourceTree = "<group>"; };
 		37352730217A217700602046 /* MappingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MappingViewController.swift; sourceTree = "<group>"; };
@@ -388,6 +392,7 @@
 				376985B8216834DE006FF550 /* Constants.swift */,
 				3720226F2167AF5B00602B53 /* CustomTextField.swift */,
 				37363A0A21761C3300EBD383 /* UIButtonExtension.swift */,
+				372CEF5C21A1BCC700791DF4 /* SettingsBundleHelper.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -436,6 +441,7 @@
 				3735272D217A217700602046 /* Mapping */,
 				37363A0C21761F1100EBD383 /* Authentication */,
 				3775A0682165009700ABEF54 /* Shared */,
+				372CEF5E21A307A000791DF4 /* Settings.bundle */,
 			);
 			path = pinit;
 			sourceTree = "<group>";
@@ -572,6 +578,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				372CEF5F21A307A000791DF4 /* Settings.bundle in Resources */,
 				37EEA7EE215B962800BF3839 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -618,6 +625,7 @@
 				372216D7219F4731009C8103 /* Profile.swift in Sources */,
 				372216C9219EFEF3009C8103 /* PinitViewProtocol.swift in Sources */,
 				37EEA7E7215B962500BF3839 /* AppDelegate.swift in Sources */,
+				372CEF5D21A1BCC700791DF4 /* SettingsBundleHelper.swift in Sources */,
 				37352738217A217F00602046 /* PinitOwnerViewController.swift in Sources */,
 				3721B1D22199C18C0083C0DD /* SlideDownAnimationTransitioning.swift in Sources */,
 				37363A0B21761C3300EBD383 /* UIButtonExtension.swift in Sources */,

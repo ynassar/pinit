@@ -35,13 +35,24 @@ struct PinitConstants {
     /// The font size of all the UI elements in the `AuthentucationView`
     static public let addLocationFontSize: CGFloat = 12.0
     
-    /// The address of the gRPC server used by `LoginServer` and `RegisterServer`.
-    static public let tempAuthenticationServerAddress = "10.40.47.11:50051"
+    static public var authenticationServerAddress: String {
+        get {
+            let ipAddress = UserDefaults.standard
+                .string(forKey:SettingsBundleHelper.ipAddressIdentifier) ?? "localhost"
+            return "\(ipAddress):50051"
+        }
+    }
     
-    /// The address of the gRPC server used by all other severs in the app. 
-    static public let tempRobotServerAddress = "10.40.47.11:50052"
+    static public var robotServerAddress: String {
+        get {
+            let ipAddress = UserDefaults.standard
+                .string(forKey:SettingsBundleHelper.ipAddressIdentifier) ?? "localhost"
+            return "\(ipAddress):50052"
+        }
+    }
     
-    /// The navigation bar default height.
+//    static public private(set) var tempRobotServerAddress = ""
+    
     static public let navigationBarHeight: CGFloat = 44.0
     
     static public let savedProfileKey = "ProfileKey"

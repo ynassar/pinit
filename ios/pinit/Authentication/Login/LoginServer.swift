@@ -11,7 +11,7 @@ public class LoginServer {
     /// calling the appropriate delegate function when a response is receieved.
     func loginWithCredentials(username: String, password: String) {
         let accountClient = AuthenticationServiceServiceClient(
-            address: PinitConstants.tempAuthenticationServerAddress,
+            address: PinitConstants.authenticationServerAddress,
             secure: false,
             arguments: [])
         

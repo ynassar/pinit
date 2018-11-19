@@ -14,6 +14,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // all the views and view controllers will appear.
         window = UIWindow(frame: UIScreen.main.bounds)
         
+        SettingsBundleHelper.setIpAddress()
+        
         if let window = window {
             
             let userDefaults = UserDefaults.standard

@@ -7,7 +7,7 @@ public class AddLocationServer {
     
     func addLocation(locationName: String, locationDescription: String) {
         let accountClient = RosServiceServiceClient(
-            address: PinitConstants.tempRobotServerAddress,
+            address: PinitConstants.robotServerAddress,
             secure: false,
             arguments: [])
         

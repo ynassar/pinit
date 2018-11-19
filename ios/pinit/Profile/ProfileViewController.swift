@@ -26,7 +26,14 @@ UIViewControllerTransitioningDelegate {
     
     @objc private func logoutButtonClick() {
         let domain = Bundle.main.bundleIdentifier!
+        
+        let ipAddress = UserDefaults.standard.string(forKey: SettingsBundleHelper.ipAddressIdentifier)
         UserDefaults.standard.removePersistentDomain(forName: domain)
+        
+        if let ip = ipAddress {
+            SettingsBundleHelper.saveIpAddress(ipAddress: ip)
+        }
+        
         let loginViewController = LoginViewController()
         if let navigationController = self.navigationController {
             navigationController.delegate = self
