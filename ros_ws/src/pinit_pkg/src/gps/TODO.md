@@ -1,0 +1,2 @@
+- Check gps module coordinates not changing
+- Implement the algorithm discussed on Sunday
