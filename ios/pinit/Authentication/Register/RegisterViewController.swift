@@ -124,4 +124,12 @@ class RegisterViewController : PinitViewController, RegisterServerDelegate {
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        registerView.registerButton.addGradiant(colors:[PinitColors.yellow.cgColor,
+                                                  PinitColors.red.cgColor,
+                                                  PinitColors.blue.cgColor,
+                                                  PinitColors.green.cgColor])
+    }
 }

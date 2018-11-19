@@ -14,9 +14,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // all the views and view controllers will appear.
         window = UIWindow(frame: UIScreen.main.bounds)
         
+        SettingsBundleHelper.setIpAddress()
+        
         if let window = window {
-            let loginViewController = LoginViewController()
-            window.rootViewController = loginViewController
+            
+            let userDefaults = UserDefaults.standard
+            if let userProfileObject = userDefaults.object(forKey: PinitConstants.savedProfileKey) {
+                let userProfileDecoded = userProfileObject as! Data
+                let userProfile = NSKeyedUnarchiver.unarchiveObject(with: userProfileDecoded) as! Profile
+
+                if userProfile.ownerStatus {
+                    window.rootViewController = PinitOwnerViewController()
+                } else {
+                    window.rootViewController = PinitUserViewController()
+                }
+            } else {
+                let loginViewController = LoginViewController()
+                window.rootViewController = loginViewController
+            }
             window.makeKeyAndVisible()
         }
         

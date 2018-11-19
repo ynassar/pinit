@@ -91,11 +91,21 @@ class LoginViewController : PinitViewController, LoginServerDelegate , CAAnimati
     /// Function called by the `LoginServer` when the login process was completed
     /// successfully. Responsible for navigating to the appropriate homescreen.
     public func didLoginSuccessfully(loginResponse: LoginResponse) {
+        let userProfile = Profile(username: loginView.usernameTextField.text ?? "",
+                                  token: loginResponse.token,
+                                  ownerStatus: loginResponse.isOwner)
         let userDefaults = UserDefaults.standard
-        userDefaults.set(loginResponse.token, forKey: "AccountToken")
+        let encodedData: Data = NSKeyedArchiver.archivedData(withRootObject: userProfile)
+        userDefaults.set(encodedData, forKey: PinitConstants.savedProfileKey)
+        userDefaults.synchronize()
         
-        let pinitOwnerViewController = PinitOwnerViewController()
-        self.present(pinitOwnerViewController, animated: true, completion: nil)
+        if loginResponse.isOwner {
+            let pinitOwnerViewController = PinitOwnerViewController()
+            self.present(pinitOwnerViewController, animated: true, completion: nil)
+        } else {
+            let pinitUserViewController = PinitUserViewController()
+            self.present(pinitUserViewController, animated: true, completion: nil)
+        }
     }
     
     /// Function called by the `LoginServer` when the login process was completed
@@ -109,6 +119,15 @@ class LoginViewController : PinitViewController, LoginServerDelegate , CAAnimati
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        loginView.loginButton.addGradiant(colors:[PinitColors.yellow.cgColor,
+                                                  PinitColors.red.cgColor,
+                                                  PinitColors.blue.cgColor,
+                                                  PinitColors.green.cgColor])
+    }
+    
 }
 
 extension CATransition {
