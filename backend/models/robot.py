@@ -1,5 +1,6 @@
 import mongoengine
 
+
 class Robot(mongoengine.Document):
     robot_name = mongoengine.StringField(required=True, unique=True)
     row = mongoengine.IntField()
