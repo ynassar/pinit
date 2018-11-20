@@ -24,6 +24,20 @@ def coordinates_to_rad(gps_point):
     return rad_gps_point
 
 
+def rotate(px, py, theta):
+    """ rotates a point around the origin by theta (counterclockwise) """
+
+    rotated_x = np.cos(theta) * px - np.sin(theta) * py
+    rotated_y = np.sin(theta) * px + np.cos(theta) * py
+    return rotated_x, rotated_y
+
+
+def polar_to_cartesian(distance, angle):
+    x = distance * np.cos(angle)
+    y = distance * np.sin(angle)
+
+    return x, y
+
 
 def get_vector(p1, p2):
     """Calculate the vector between two gps coordinates in radians
@@ -61,6 +75,7 @@ def get_vector(p1, p2):
     
     return d, theta
 
+
 def convert_gps(dist, theta, resolution):
     x = (dist * np.cos(theta)) / resolution
     y = (dist * np.sin(theta)) / resolution
@@ -81,3 +96,6 @@ if __name__=='__main__':
     bearing = np.degrees(v[1])
     bearing = (bearing + 360) % 360
     print bearing 
+
+    dx = lat2 - lat1
+

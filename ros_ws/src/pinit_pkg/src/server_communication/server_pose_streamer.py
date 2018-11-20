@@ -64,7 +64,6 @@ class ServerPoseStreamer():
 
 
 
-def ServerPoseStreamerFactory(queue):
-    pose_listener = PoseListenerFactory()
+def ServerPoseStreamerFactory(queue, pose_listener):
     return ServerPoseStreamer(queue, pose_listener)
 

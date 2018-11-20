@@ -9,8 +9,9 @@ from utils.fsm import FSM
 from nodes.node_manager import NodeManager
 from map.map_streamer import MapStreamer
 from robot_motion.motion_controller import MotionController
+from robot_motion.robot_pose import PoseListenerFactory
 from server_communication.server_pose_streamer import ServerPoseStreamerFactory
-
+from gps import gps_cal
 
 class RobotStateManager():
 
@@ -28,8 +29,11 @@ class RobotStateManager():
         communication_queue = Queue()
         node_manager = NodeManager()
         map_streamer = MapStreamer(communication_queue)
-        pose_streamer = ServerPoseStreamerFactory(communication_queue)
+        pose_listener = PoseListenerFactory()
+        pose_streamer = ServerPoseStreamerFactory(communication_queue, pose_listener)
+        gps_calibrator = gps_cal.GPSCallibrtor(pose_listener)
         motion_controller = MotionController()
+
 
         return RobotStateManager(
             robot_fsm=robot_fsm,
@@ -37,11 +41,12 @@ class RobotStateManager():
             node_manager=node_manager,
             map_streamer=map_streamer,
             pose_streamer=pose_streamer,
-            motion_controller=motion_controller)
+            motion_controller=motion_controller,
+            gps_calibrator=gps_calibrator)
 
 
     def __init__(self, robot_fsm, com_queue, node_manager, map_streamer, pose_streamer,
-                 motion_controller):
+                 motion_controller, gps_calibrator):
 
         self.fsm_states = [s for s in self.States]
         self.robot_fsm = robot_fsm
@@ -50,6 +55,7 @@ class RobotStateManager():
         self.map_streamer = map_streamer
         self.pose_streamer = pose_streamer
         self.motion_controller = motion_controller
+        self.gps_calibrator = gps_calibrator
 
         self.init_states()
         self.init_transitions()
