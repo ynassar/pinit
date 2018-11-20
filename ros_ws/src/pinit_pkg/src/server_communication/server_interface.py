@@ -29,7 +29,7 @@ class ServerHandler():
         self.robot_manager = RobotStateManager.create()
         self.robot_manager.go_to(self.robot_manager.States.IDLE)
         self.mapping_hanlder = ServerMappingHandler(self.robot_manager)
-        #self.nav_handler = ServerNavHandler(self.robot_manager)
+        self.navigation_handler = ServerNavHandler(self.robot_manager)
 
         self.main_loop()
 
@@ -95,6 +95,12 @@ class ServerHandler():
                 if communication.HasField("mapping_request"):
                     mapping_request = communication.mapping_request
                     self.mapping_hanlder.handle_request(mapping_request)
+                    elif communication.HasField("navigation_request"):
+                        navigation_request = communication.navigation_request
+                        self.navigation_handler.handle_request(navigation_request)
+                        
+                        
+
 
 
 

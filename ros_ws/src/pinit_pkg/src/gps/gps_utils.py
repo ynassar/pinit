@@ -76,9 +76,9 @@ def get_vector(p1, p2):
     return d, theta
 
 
-def convert_gps(dist, theta, resolution):
-    x = (dist * np.cos(theta)) / resolution
-    y = (dist * np.sin(theta)) / resolution
+def convert_gps(dist, theta):
+    x = (dist * np.cos(theta))
+    y = (dist * np.sin(theta))
     return (x, y)
 
 
