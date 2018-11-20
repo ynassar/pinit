@@ -1,6 +1,6 @@
 import UIKit
 
-class ProfileViewController: TabBarNavigationController, UINavigationControllerDelegate,
+class ProfileViewController: PinitNavigationController, UINavigationControllerDelegate,
 UIViewControllerTransitioningDelegate {
     
     private var profileView: ProfileView!

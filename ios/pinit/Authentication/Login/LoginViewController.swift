@@ -103,7 +103,7 @@ class LoginViewController : PinitViewController, LoginServerDelegate , CAAnimati
             let pinitOwnerViewController = PinitOwnerViewController()
             self.present(pinitOwnerViewController, animated: true, completion: nil)
         } else {
-            let pinitUserViewController = PinitUserViewController()
+            let pinitUserViewController = UINavigationController.init(rootViewController: PinitUserViewController())
             self.present(pinitUserViewController, animated: true, completion: nil)
         }
     }

@@ -1,7 +1,7 @@
 import UIKit
 import CoreLocation
 
-class RobotRequestViewController : TabBarNavigationController, CLLocationManagerDelegate {
+class RobotRequestViewController : PinitSideMenuNavigationController, CLLocationManagerDelegate {
     
     private var robotRequestView: RobotRequestView!
     
@@ -16,6 +16,13 @@ class RobotRequestViewController : TabBarNavigationController, CLLocationManager
         
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
+        
+        let profileMenuButton = UIButton(frame: CGRect.zero)
+        profileMenuButton.setImage(UIImage(named: "menuIcon"), for: .normal)
+
+        self.navigationController?.navigationBar.topItem?.leftBarButtonItems = [
+            UIBarButtonItem(customView: profileMenuButton)
+        ]
 
         robotRequestView = robotRequestView
             .addCenterYConstraint(relativeView: self.view)

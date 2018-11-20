@@ -2,7 +2,6 @@ import UIKit
 
 class RobotRequestView : UIView, PinitViewProtocol {
 
-    
     public var getGpsCoordinatesButton: UIButton
     
     init() {

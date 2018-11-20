@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 if userProfile.ownerStatus {
                     window.rootViewController = PinitOwnerViewController()
                 } else {
-                    window.rootViewController = PinitUserViewController()
+                    window.rootViewController = UINavigationController.init(rootViewController: PinitUserViewController())
                 }
             } else {
                 let loginViewController = LoginViewController()

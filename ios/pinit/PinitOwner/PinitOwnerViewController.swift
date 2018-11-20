@@ -10,7 +10,17 @@ class PinitOwnerViewController: UITabBarController, UITabBarControllerDelegate {
         
         self.tabBar.tintColor = .black
         self.tabBar.barTintColor = .white
-        self.view.backgroundColor = .white
+//        self.tabBar.layer.borderWidth = 0
+//        self.tabBar.clipsToBounds = true
+//        self.view.backgroundColor = .white
+        
+//        let profileMenuButton = UIButton(frame: CGRect.zero)
+//        profileMenuButton.setImage(UIImage(named: "menuIcon"), for: .normal)
+//
+//        self.navigationController?.navigationBar.topItem?.leftBarButtonItems = [
+//            UIBarButtonItem(customView: profileMenuButton)
+//        ]
+
         setUpTabBar()
     }
     
@@ -27,6 +37,7 @@ class PinitOwnerViewController: UITabBarController, UITabBarControllerDelegate {
         settingsViewController.tabBarItem.image = UIImage(named: "SettingsIcon")
         
         viewControllers = [mappingViewController, settingsViewController]
+        
         
     }
 }
