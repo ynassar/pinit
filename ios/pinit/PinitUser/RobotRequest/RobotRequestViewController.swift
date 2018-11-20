@@ -9,8 +9,6 @@ class RobotRequestViewController : TabBarNavigationController, CLLocationManager
     
     private var robotRequestServer: RobotRequestServer!
     
-    private var gpsCoordinates: CLLocationCoordinate2D!
-    
     override func viewDidLoad() {
         robotRequestView = RobotRequestView()
         locationManager = CLLocationManager()
@@ -33,24 +31,22 @@ class RobotRequestViewController : TabBarNavigationController, CLLocationManager
         robotRequestView.getGpsCoordinatesButton.addTarget(
             self,
             action: #selector(self.getGpsCoordinatesButtonClick),
-            for: .touchUpInside)
+            for: .touchDown)
     }
     
     @objc private func getGpsCoordinatesButtonClick() {
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.delegate = self
         locationManager.startUpdatingLocation()
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.first {
-
-            if self.gpsCoordinates == nil {
-                robotRequestServer.requestRobotToLocation(gpsCoordinates: location)
-                print("Longtitude: \(location.coordinate.longitude)")
-                print("Latitude: \(location.coordinate.latitude)")
-            }
-            
             locationManager.stopUpdatingLocation()
+            locationManager.delegate = nil
+            robotRequestServer.requestRobotToLocation(gpsCoordinates: location)
+            print("Longtitude: \(location.coordinate.longitude)")
+            print("Latitude: \(location.coordinate.latitude)")
         }
     }
     
@@ -71,7 +67,6 @@ class RobotRequestViewController : TabBarNavigationController, CLLocationManager
     
     func didRequestSuccessfully() {
         print("Success")
-        self.gpsCoordinates = nil
     }
     
     func didFailToRequestRobot(erroMessage: String) {

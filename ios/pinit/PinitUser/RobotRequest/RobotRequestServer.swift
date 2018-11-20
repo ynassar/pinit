@@ -19,7 +19,7 @@ public class RobotRequestServer {
     
     public func requestRobotToLocation(gpsCoordinates: CLLocation) {
         
-        var robotNavigationRequest = Robo()
+        var robotNavigationRequest = RobotNavigationRequest()
         if let userProfileObject = UserDefaults.standard.object(forKey: PinitConstants.savedProfileKey) {
             let userProfileDecoded = userProfileObject as! Data
             let userProfile = NSKeyedUnarchiver.unarchiveObject(with: userProfileDecoded) as! Profile
@@ -31,14 +31,14 @@ public class RobotRequestServer {
             sentGpsCoordinates.latitude = Float(gpsCoordinates.coordinate.latitude)
             robotNavigationRequest.coordinates = sentGpsCoordinates
             
-            delegate?.didRequestSuccessfully()
+//            delegate?.didRequestSuccessfully()
             
-//            do {
-//                let locationsList = try robotRequestClient.requestRobotToLocation(robotNavigationRequest)
-//                delegate?.didRequestSuccessfully()
-//            } catch {
-//                delegate?.didFailToRequestRobot(erroMessage: "Error Occured")(
-//            }
+            do {
+                let locationsList = try robotRequestClient.requestRobotToLocation(robotNavigationRequest)
+                delegate?.didRequestSuccessfully()
+            } catch {
+                delegate?.didFailToRequestRobot(erroMessage: "Error Occured")
+            }
 //
         }
     }
