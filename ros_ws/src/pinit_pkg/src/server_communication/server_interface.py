@@ -6,11 +6,12 @@ import grpc
 from proto.ros import ros_pb2_grpc
 from proto.ros import ros_pb2
 
-
 from server_communication.server_mapping_handler import ServerMappingHandler
 from server_communication.server_pose_streamer import ServerPoseStreamerFactory
 
 import rospy
+
+from robot_state.state_manager import RobotStateManager
 
 
 class ServerHandler():
@@ -24,10 +25,11 @@ class ServerHandler():
         self.max_message_length = 1024 * 1024 * 10
         self.server_address = '10.40.33.186:50052'
         self.init_node()
-        self.communication_queue = Queue()
 
-        self.mapping_hanlder = ServerMappingHandler(self.communication_queue)
-        self.pose_streamer = ServerPoseStreamerFactory(self.communication_queue)
+        self.robot_manager = RobotStateManager.create()
+        self.robot_manager.go_to(self.robot_manager.States.IDLE)
+        self.mapping_hanlder = ServerMappingHandler(self.robot_manager)
+        #self.nav_handler = ServerNavHandler(self.robot_manager)
 
         self.main_loop()
 
@@ -58,12 +60,12 @@ class ServerHandler():
         """
 
         yield ros_pb2.RosToServerCommunication(robot_name=self.robot_name)
-        for communication in iter(self.communication_queue.get, None):
+        for communication in iter(self.robot_manager.communication_queue.get, None):
             communication = self.fill_communication_msg(communication)
             yield communication
 
 
-    def fill_communication_msg(self):
+    def fill_communication_msg(self, msg):
         msg.robot_name = self.robot_name
         return msg
 
