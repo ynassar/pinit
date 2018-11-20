@@ -23,7 +23,7 @@ service RosService{
     // waypoints corresponding to the nearest robot.
 }
 
-message RobotNavgiationRequest{
+message RobotNavigationRequest{
     string token = 1;
     oneof destination{
         GpsCoordinates coordinates = 2;
@@ -38,11 +38,6 @@ message Waypoint{
 
 message WaypointList{
     repeated Waypoint waypoints = 1;
-}
-
-message NavigationRequest{
-    GpsCoordinates current_location = 1;
-    string destination_waypoint_name = 2;
 }
 
 message AddWaypointRequest{
@@ -69,7 +64,7 @@ message LocalMapPose{
     google.protobuf.Timestamp timestamp = 4;
 }
 
-message RobotNavigationRequest{
+message ServerToRosNavigationRequest{
     oneof destination{
         LocalMapPose pose = 1;
         GpsCoordinates coordinates = 2;
@@ -136,7 +131,7 @@ message ServerToRosMappingRequest{
 message ServerToRosCommunication{
     oneof communication{
         ServerToRosMappingRequest mapping_request = 1;
-        RobotNavigationRequest navigation_request = 2;
+        ServerToRosNavigationRequest navigation_request = 2;
     }
 }
 

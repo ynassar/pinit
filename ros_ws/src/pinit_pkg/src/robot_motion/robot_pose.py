@@ -25,8 +25,8 @@ class PoseListener():
                 self.target_tf_name,
                 rospy.Time(0))
             ros_pose = self.fill_ros_pose(translation, rotation)
-        except (tf.LookupException, tf.ConnectivityException, tf.ExtrapolationException) as E:
-            rospy.logerr("Error while getting calculating pose: ")
+        except (tf.LookupException, tf.ConnectivityException, tf.ExtrapolationException):
+            pass
 
         return ros_pose
 
