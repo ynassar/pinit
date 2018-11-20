@@ -31,7 +31,7 @@ class MapStreamer():
             None
         """
 
-        self.fetch_global_origin() #This should block until we receive gps coordinates
+        #self.fetch_global_origin() #This should block until we receive gps coordinates
         self.subscriber = rospy.Subscriber(self.map_topic_name,
                                            OccupancyGrid,
                                            self.map_callback)
@@ -80,9 +80,12 @@ class MapStreamer():
         map_raw_data = occupancy_grid.data
         map_raw_data_encoded = self.encode(map_raw_data)
 
+#        gps_coordinates_msg = ros_pb2.GpsCoordinates(
+#            longitude=self.global_origin.long,
+#            latitude=self.global_origin.lat)
         gps_coordinates_msg = ros_pb2.GpsCoordinates(
-            longitude=self.global_origin.long,
-            latitude=self.global_origin.lat)
+            longitude=0,
+            latitude=0)
 
         grpc_raw_map = ros_pb2.RosToServerCommunication(
             raw_map=ros_pb2.RawMap(
@@ -90,7 +93,7 @@ class MapStreamer():
                 height=metadata.height,
                 width=metadata.width,
                 data=map_raw_data_encoded,
-                coordinates=gps_coordinates_msg))
+                origin=gps_coordinates_msg))
 
         self.communication_queue.put(grpc_raw_map)
         rospy.loginfo("Sending map to server...")
