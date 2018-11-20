@@ -8,6 +8,7 @@ import rospy
 from utils.fsm import FSM
 from nodes.node_manager import NodeManager
 from map.map_streamer import MapStreamer
+from map.map_publisher import MapPublisher
 from robot_motion.motion_controller import MotionController
 from robot_motion.robot_pose import PoseListenerFactory
 from server_communication.server_pose_streamer import ServerPoseStreamerFactory
@@ -24,7 +25,7 @@ class RobotStateManager():
 
 
     @classmethod
-    def create(cls):
+    def create(cls, server_address, robot_name):
         robot_fsm = FSM()
         communication_queue = Queue()
         node_manager = NodeManager()
@@ -33,6 +34,7 @@ class RobotStateManager():
         pose_streamer = ServerPoseStreamerFactory(communication_queue, pose_listener)
         gps_calibrator = gps_cal.GPSCallibrtor(pose_listener)
         motion_controller = MotionController()
+        map_publisher = MapPublisher.create(server_address, robot_name)
 
 
         return RobotStateManager(
@@ -42,11 +44,12 @@ class RobotStateManager():
             map_streamer=map_streamer,
             pose_streamer=pose_streamer,
             motion_controller=motion_controller,
-            gps_calibrator=gps_calibrator)
+            gps_calibrator=gps_calibrator,
+            map_publisher=map_publisher)
 
 
     def __init__(self, robot_fsm, com_queue, node_manager, map_streamer, pose_streamer,
-                 motion_controller, gps_calibrator):
+                 motion_controller, gps_calibrator, map_publisher):
 
         self.fsm_states = [s for s in self.States]
         self.robot_fsm = robot_fsm
@@ -56,6 +59,7 @@ class RobotStateManager():
         self.pose_streamer = pose_streamer
         self.motion_controller = motion_controller
         self.gps_calibrator = gps_calibrator
+        self.map_publisher = map_publisher
 
         self.init_states()
         self.init_transitions()
@@ -107,7 +111,10 @@ class RobotStateManager():
         self.map_streamer.start()
 
 
-    def idle_to_navigating_cb(self):
+    def idle_to_navigating_cb(self, *args):
+        #TODO start move base and go to a target
+        self.map_publisher.fetch_remote_map()
+        self.map_publisher.start() #TODO we need to check the side effects of calling this again
         pass
 
 
@@ -136,7 +143,9 @@ class RobotStateManager():
 
 if __name__ == "__main__":
     rospy.init_node("robot_state_manager_test")
-    manager = RobotStateManager.create()
+    robot_name = "nemo"
+    server_address = "localhost:7070"
+    manager = RobotStateManager.create(robot_name, server_address)
     manager.init_states()
     manager.init_transitions()
     manager.go_to(RobotStateManager.States.IDLE)
