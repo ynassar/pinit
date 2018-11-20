@@ -2,7 +2,7 @@ import UIKit
 
 /// `MappingControlsView` is the view responsible for the controls used to
 /// move the robot during mapping.
-class MappingControlsView: UIView {
+class MappingControlsView: UIView, PinitViewProtocol {
     
     /// Control to move the robot to the front.
     public var moveForwardButton: UIButton

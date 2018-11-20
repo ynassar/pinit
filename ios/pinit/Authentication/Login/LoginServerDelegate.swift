@@ -7,7 +7,7 @@ protocol LoginServerDelegate {
     
     /// Function called when the `LoginRequest` is sent and no error occured, so the
     /// delegate view controller is notified to do any actions dependant on that request.
-    func didLoginSuccessfully()
+    func didLoginSuccessfully(loginResponse: LoginResponse)
     
     /// Function called when the `LoginRequest` is sent and an error occured, so the
     /// delegate view controller is notified to do any actions dependant on that request, along

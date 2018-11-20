@@ -17,6 +17,32 @@ service RosService{
 
     rpc AddWaypoint(AddWaypointRequest) returns (AddWaypointResponse) {}
     // Adds a waypoint at the robot's current location.
+
+    rpc RequestRobotToLocation(RobotNavigationRequest) returns (WaypointList) {}
+    // Requests the nearest robot to the specified location and returns a list of
+    // waypoints corresponding to the nearest robot.
+}
+
+message RobotNavgiationRequest{
+    string token = 1;
+    oneof destination{
+        GpsCoordinates coordinates = 2;
+        string waypoint_name = 3;
+    }
+}
+
+message Waypoint{
+    string waypoint_name = 1;
+    string description = 2;
+}
+
+message WaypointList{
+    repeated Waypoint waypoints = 1;
+}
+
+message NavigationRequest{
+    GpsCoordinates current_location = 1;
+    string destination_waypoint_name = 2;
 }
 
 message AddWaypointRequest{
@@ -71,10 +97,7 @@ message RawMap{
 }
 
 message RosToServerCommunication{
-    oneof robot_specification{
-        string robot_name = 1; // An identifier for the ros node to send requests to.
-        string token = 5;
-    }
+    string robot_name = 1; // An identifier for the ros node to send requests to.
     oneof communication{
         RawMap raw_map = 2;
         LocalMapPose robot_pose = 3;

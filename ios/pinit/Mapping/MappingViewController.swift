@@ -2,18 +2,20 @@ import UIKit
 
 /// `MappingViewController` is a tab controller responsible for mapping the
 /// robot in its new environment through the app.
-class MappingViewController: TabBarNavigationController,  MappingServerDelegate {
+class MappingViewController: TabBarNavigationController, MappingServerDelegate, UINavigationControllerDelegate, UIViewControllerTransitioningDelegate {
     
     /// The view that has the arrow controls to move the robot.
-    var mappingControlsView: MappingControlsView!
+    private var mappingControlsView: MappingControlsView!
     
     /// The view that has the map image which is regularly updated
-    var mappingView: MappingView!
+    private var mappingView: MappingView!
     
     /// The server which sends all the requests related to mapping.
-    var mappingServer = MappingServer()
+    private var mappingServer = MappingServer()
     
-    var saveMappingButtonItem: UIBarButtonItem!
+    private var saveMappingButtonItem: UIBarButtonItem!
+    
+    private var addLocationButtonItem: UIBarButtonItem!
     
     /// The function is responsible for adding the targets to the different control buttons,
     /// one for button hold and the other for release. Also adding the different views in the
@@ -22,6 +24,8 @@ class MappingViewController: TabBarNavigationController,  MappingServerDelegate 
         mappingControlsView = MappingControlsView()
         mappingView = MappingView()
         super.viewDidLoad()
+        self.controllerViews.append(mappingControlsView)
+        self.controllerViews.append(mappingView)
         self.view.backgroundColor = UIColor.white
         self.view.addSubview(mappingControlsView)
         self.view.addSubview(mappingView)
@@ -35,39 +39,50 @@ class MappingViewController: TabBarNavigationController,  MappingServerDelegate 
         let saveMappingButton = UIButton(frame: CGRect.zero)
         saveMappingButton.setImage(UIImage(named: "saveMapping"), for: .normal)
         saveMappingButton.addTarget(self, action: #selector(self.saveMappingClick), for: .touchDown)
-        saveMappingButtonItem = UIBarButtonItem(customView: saveMappingButton)
-
-        self.navbar.topItem?.rightBarButtonItems = [
+        self.saveMappingButtonItem = UIBarButtonItem(customView: saveMappingButton)
+    
+        let addLocationButton = UIButton(frame: CGRect.zero)
+        addLocationButton.setImage(UIImage(named: "plusIcon"), for: .normal)
+        addLocationButton.addTarget(self, action: #selector(self.addLocationClick), for: .touchDown)
+        self.addLocationButtonItem = UIBarButtonItem(customView: addLocationButton)
+        
+        self.navigationController?.navigationBar.topItem?.rightBarButtonItems = [
             UIBarButtonItem(customView: startMappingButton),
-            UIBarButtonItem(customView: saveMappingButton)
+            self.addLocationButtonItem
+        ]
+        
+        self.navigationController?.navigationBar.topItem?.leftBarButtonItems = [
+            self.saveMappingButtonItem
         ]
         
         mappingControlsView.disableControls()
         mappingView.disableMapView()
         saveMappingButtonItem.disableButton()
-
+        addLocationButtonItem.disableButton()
+        
         let spacing = self.view.frame.size.height * 0.02
-
+        
+        mappingControlsView = self.mappingControlsView
+            .addCenterXConstraint(relativeView: self.view)
+            .addWidthConstraint(relativeView: self.view, multipler: 0.6)
+            .addHeightConstraint(relativeView: self.view, multipler: 0.3)
+            .setConstraintWithConstant(selfAttribute: .bottom,
+                                       relativeView: self.view,
+                                       relativeAttribute: .bottom,
+                                       constant: -spacing)
+        
         mappingView = self.mappingView
             .addCenterXConstraint(relativeView: self.view)
             .addWidthConstraint(relativeView: self.view, multipler: 1.0)
             .setConstraintWithConstant(selfAttribute: .top,
-                                       relativeView: self.navbar,
-                                       relativeAttribute: .bottom,
+                                       relativeView: self.view,
+                                       relativeAttribute: .top,
                                        constant: 0)
             .setConstraintWithConstant(selfAttribute: .bottom,
                                        relativeView: mappingControlsView,
                                        relativeAttribute: .top,
                                        constant: -spacing)
-        
-        mappingControlsView = self.mappingControlsView
-            .addCenterXConstraint(relativeView: self.view)
-            .addWidthConstraint(relativeView: self.view, multipler: 0.6)
-            .addHeightConstraint(relativeView: self.view, multipler: 0.25)
-            .setConstraintWithConstant(selfAttribute: .bottom,
-                                       relativeView: self.view,
-                                       relativeAttribute: .bottom,
-                                       constant: -spacing)
+
         
         mappingControlsView.moveForwardButton.addTarget(
             self, action:  #selector(self.moveForwardButtonClick), for: .touchDown)
@@ -92,7 +107,6 @@ class MappingViewController: TabBarNavigationController,  MappingServerDelegate 
         
         mappingControlsView.moveBackwardButton.addTarget(
             self, action:  #selector(self.stopMovemenetClick), for: .touchUpInside)
-
     }
     
     /// Function that sends a request to the `MapServer` to move the robot forward.
@@ -131,9 +145,18 @@ class MappingViewController: TabBarNavigationController,  MappingServerDelegate 
         mappingServer.saveMappingRequest()
     }
     
+    /// Function that navigates to the `AddLocation` screen.
+    @objc public func addLocationClick() {
+        let addLocationViewController = AddLocationViewController()
+        if let navigationController = self.navigationController {
+            navigationController.delegate = self
+            navigationController.pushViewController(addLocationViewController, animated: true)
+        }
+    }
+    
     /// Function responsible for handling any error that comes from the `MapServer` after
     /// sending a request.
-    func didMappingErrorOccur(_ errorMessage: String) {
+    public func didMappingErrorOccur(_ errorMessage: String) {
         let alert = UIAlertController(
             title: "Error Occured",
             message: errorMessage,
@@ -144,7 +167,7 @@ class MappingViewController: TabBarNavigationController,  MappingServerDelegate 
     }
     
     /// Function responsible for showing a confitmation alert that the map has been saved.
-    func mapSaveConfirmation() {
+    public func mapSaveConfirmation() {
         let alert = UIAlertController(
             title: "Map Saved",
             message: nil,
@@ -153,32 +176,42 @@ class MappingViewController: TabBarNavigationController,  MappingServerDelegate 
         self.present(alert, animated: true, completion: nil)
         mappingControlsView.disableControls()
         saveMappingButtonItem.disableButton()
+        addLocationButtonItem.disableButton()
     }
     
     /// Function responsible for enable the different UI elements including the controls
     /// buttons and the map image when the a `MappingRequest` for starting mapping has been sent.
-    func mapStartConfirmation() {
+    public func mapStartConfirmation() {
         mappingControlsView.enableControls()
         saveMappingButtonItem.enableButton()
+        addLocationButtonItem.enableButton()
+        mappingView.enableMapView()
         mappingServer.mapImageRequestAsynchronous()
     }
     
     /// Function called when the map image requested periodically has been recieved and a
     /// assigns the image to the `mapImage` in the `mappingView`.
-    func mapImageUpdate(newImage: UIImage) {
+    public func mapImageUpdate(newImage: UIImage) {
         mappingView.mapImage.image = newImage
     }
     
-    /// Function responsible for updaing the views if needed when the main view appears.
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        mappingControlsView.updateView()
-        mappingView.updateView()
-        mappingView.enableMapView()
+        self.tabBarController?.tabBar.isHidden = false
     }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
+    func navigationController(
+        _ navigationController: UINavigationController,
+        animationControllerFor operation: UINavigationController.Operation,
+        from fromVC: UIViewController,
+        to toVC: UIViewController
+    ) -> UIViewControllerAnimatedTransitioning? {
+        return SlideUpAnimationTransitioning(operation: operation)
+    }
 }
+

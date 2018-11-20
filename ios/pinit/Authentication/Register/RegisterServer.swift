@@ -15,7 +15,7 @@ public class RegisterServer {
         email: String
     ) {
         let accountClient = AccountManagementServiceServiceClient(
-            address: PinitConstants.tempAuthenticationServerAddress,
+            address: PinitConstants.authenticationServerAddress,
             secure: false,
             arguments: [])
         

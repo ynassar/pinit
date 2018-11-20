@@ -2,7 +2,7 @@ import UIKit
 
 /// 'MappingView' is responsible for having the start mapping button and
 /// the imageview of the mapping image updated periodically.
-class MappingView: UIView, UIScrollViewDelegate {
+class MappingView: UIView, UIScrollViewDelegate, PinitViewProtocol {
     
     var mapImage: UIImageView!
     
@@ -14,7 +14,6 @@ class MappingView: UIView, UIScrollViewDelegate {
         scrollImage = UIScrollView(frame: CGRect.zero)
         super.init(frame: CGRect.zero)
         scrollImage.delegate = self
-        self.addSubview(mapImage)
         self.addSubview(scrollImage)
         
         scrollImage.minimumZoomScale = 1.0
@@ -44,7 +43,7 @@ class MappingView: UIView, UIScrollViewDelegate {
             .addCenterXConstraint(relativeView: scrollImage)
             .addCenterYConstraint(relativeView: scrollImage)
             .addWidthConstraint(relativeView: scrollImage, multipler: 1.0)
-            .keepHeightAspectRatio()
+            .addHeightConstraint(relativeView: scrollImage, multipler: 1.0)
     }
     
     /// Function to disable the `scrollImage` from the ability to zoom in and out

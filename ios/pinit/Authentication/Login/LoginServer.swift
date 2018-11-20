@@ -11,7 +11,7 @@ public class LoginServer {
     /// calling the appropriate delegate function when a response is receieved.
     func loginWithCredentials(username: String, password: String) {
         let accountClient = AuthenticationServiceServiceClient(
-            address: PinitConstants.tempAuthenticationServerAddress,
+            address: PinitConstants.authenticationServerAddress,
             secure: false,
             arguments: [])
         
@@ -21,7 +21,7 @@ public class LoginServer {
         
         do {
             let loginResponse = try accountClient.login(loginRequest)
-            delegate?.didLoginSuccessfully()
+            delegate?.didLoginSuccessfully(loginResponse: loginResponse)
         } catch {
             delegate?.didLoginErrorOccur(errorMessage: "Can't login")
         }

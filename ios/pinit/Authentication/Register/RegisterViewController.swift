@@ -2,13 +2,13 @@ import UIKit
 import CgRPC
 
 /// `RegitserViewController` is responsible for the process of registering.
-class RegisterViewController : UIViewController, RegisterServerDelegate {
+class RegisterViewController : PinitViewController, RegisterServerDelegate {
 
     /// The view that has the textfields of the user info and the register button.
-    var registerView: RegisterView!
+    private var registerView: RegisterView!
     
     /// The server which sends all the requests related to registering.
-    var registerServer = RegisterServer()
+    private var registerServer = RegisterServer()
     
     /// The function responsible for adding the action target to the register button
     /// and the the textfields. Also responsible for adding and  adjusting the register
@@ -16,6 +16,7 @@ class RegisterViewController : UIViewController, RegisterServerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         registerView = RegisterView()
+        self.controllerViews.append(registerView)
         self.view.addSubview(registerView)
         self.view.backgroundColor = .white
         
@@ -37,7 +38,7 @@ class RegisterViewController : UIViewController, RegisterServerDelegate {
         registerView = self.registerView
             .addCenterXConstraint(relativeView: self.view)
             .addWidthConstraint(relativeView: self.view, multipler: 0.9)
-            .addHeightConstraint(relativeView: self.view, multipler: 0.4)
+            .addHeightConstraint(relativeView: self.view, multipler: 0.5)
             .setConstraintWithConstant(
                 selfAttribute: .top,
                 relativeView: self.view,
@@ -45,7 +46,7 @@ class RegisterViewController : UIViewController, RegisterServerDelegate {
                 constant: topHeight)
         
         // Add action target to the login label.
-        let tap = UITapGestureRecognizer(target: self, action: #selector(self.signInLabelTap(sender:)))
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.signInLabelTap))
         registerView.signInLabel.addGestureRecognizer(tap)
         registerView.signInLabel.isUserInteractionEnabled = true
         
@@ -91,34 +92,27 @@ class RegisterViewController : UIViewController, RegisterServerDelegate {
     
     /// Function called by the `RegisterServer` when the register process was completed
     /// successfully. Responsible for navigating back to the `LoginViewController`.
-    func didRegisterSuccessfully() {
-        if let navigationController = self.navigationController {
-            let loginViewController = navigationController.viewControllers[0]
-            navigationController.popToViewController(loginViewController, animated: true)
-        }
+    public func didRegisterSuccessfully() {
+        self.signInLabelTap()
     }
     
     /// Function called by the `RegisterServer` when the register process was completed
     /// with errors. Responsible for showing the error sent by the server with the
     /// appropraite `errorMessage`.
-    func didRegisterErrorOccur(errorMessage: String) {
+    public func didRegisterErrorOccur(errorMessage: String) {
         self.showAlertMessage(
             title: "Error Occured",
             message: errorMessage)
     }
     
     /// Function that transition to the `Login` screen.
-    @objc func signInLabelTap(sender: UITapGestureRecognizer) {
-        if let navigationController = self.navigationController {
-            let loginViewController = navigationController.viewControllers[0]
-            navigationController.popToViewController(loginViewController, animated: true)
-        }
-    }
-    
-    /// Function responsible for updaing the views if needed when the main view appears.
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        registerView.updateView()
+    @objc private func signInLabelTap() {
+        let transition = CATransition()
+        transition.duration = 0.5
+        transition.type = CATransitionType.fade
+        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        self.view.window?.layer.add(transition, forKey: kCATransition)
+        self.dismiss(animated: false, completion: nil)
     }
     
     /// Function that shows an alert with and `OK` button. 
@@ -129,5 +123,13 @@ class RegisterViewController : UIViewController, RegisterServerDelegate {
             preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        registerView.registerButton.addGradiant(colors:[PinitColors.yellow.cgColor,
+                                                  PinitColors.red.cgColor,
+                                                  PinitColors.blue.cgColor,
+                                                  PinitColors.green.cgColor])
     }
 }

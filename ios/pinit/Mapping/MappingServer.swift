@@ -19,7 +19,7 @@ public class MappingServer {
     /// Initializer of the `MappingServer`.
     init() {
         mappingClient = RosServiceServiceClient(
-            address: PinitConstants.tempRobotServerAddress,
+            address: PinitConstants.robotServerAddress,
             secure: false,
             arguments: [])
         

@@ -22,6 +22,8 @@
 	<true/>
 	<key>UILaunchStoryboardName</key>
 	<string>Login</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Access required to request pinit robot.</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

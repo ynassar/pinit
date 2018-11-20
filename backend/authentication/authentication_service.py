@@ -33,7 +33,7 @@ class AuthenticationService(login_pb2_grpc.AuthenticationServiceServicer):
             if user.is_owner:
                 jwt_data['owned_robot'] = user.owned_robot
             token = jwt.encode(jwt_data, self._rsa_key)
-            return login_pb2.LoginResponse(token=token)
+            return login_pb2.LoginResponse(token=token, is_owner=user.is_owner)
         else:
             context.set_code(grpc.StatusCode.INVALID_ARGUMENT)
             context.set_details("Invalid password.")
