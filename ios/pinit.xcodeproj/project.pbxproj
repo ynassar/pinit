@@ -8,12 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		372022702167AF5B00602B53 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3720226F2167AF5B00602B53 /* CustomTextField.swift */; };
-		3721B1C5219837590083C0DD /* account_management.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721B1BD219837590083C0DD /* account_management.grpc.swift */; };
-		3721B1C6219837590083C0DD /* account_management.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721B1BE219837590083C0DD /* account_management.pb.swift */; };
-		3721B1C7219837590083C0DD /* ros.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721B1C0219837590083C0DD /* ros.grpc.swift */; };
-		3721B1C8219837590083C0DD /* ros.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721B1C1219837590083C0DD /* ros.pb.swift */; };
-		3721B1C9219837590083C0DD /* login.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721B1C3219837590083C0DD /* login.grpc.swift */; };
-		3721B1CA219837590083C0DD /* login.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721B1C4219837590083C0DD /* login.pb.swift */; };
 		3721B1D02199C01E0083C0DD /* SlideUpAnimationTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721B1CF2199C01E0083C0DD /* SlideUpAnimationTransitioning.swift */; };
 		3721B1D22199C18C0083C0DD /* SlideDownAnimationTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721B1D12199C18C0083C0DD /* SlideDownAnimationTransitioning.swift */; };
 		372216C4219EFE51009C8103 /* TabBarNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372216C3219EFE51009C8103 /* TabBarNavigationController.swift */; };
@@ -26,6 +20,14 @@
 		372216D7219F4731009C8103 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372216D6219F4731009C8103 /* Profile.swift */; };
 		372CEF5D21A1BCC700791DF4 /* SettingsBundleHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CEF5C21A1BCC700791DF4 /* SettingsBundleHelper.swift */; };
 		372CEF5F21A307A000791DF4 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 372CEF5E21A307A000791DF4 /* Settings.bundle */; };
+		372CEF7A21A43FDB00791DF4 /* account_management.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CEF7221A43FDB00791DF4 /* account_management.grpc.swift */; };
+		372CEF7B21A43FDB00791DF4 /* account_management.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CEF7321A43FDB00791DF4 /* account_management.pb.swift */; };
+		372CEF7C21A43FDB00791DF4 /* ros.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CEF7521A43FDB00791DF4 /* ros.grpc.swift */; };
+		372CEF7D21A43FDB00791DF4 /* ros.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CEF7621A43FDB00791DF4 /* ros.pb.swift */; };
+		372CEF7E21A43FDB00791DF4 /* login.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CEF7821A43FDB00791DF4 /* login.grpc.swift */; };
+		372CEF7F21A43FDB00791DF4 /* login.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CEF7921A43FDB00791DF4 /* login.pb.swift */; };
+		372CEF8121A4457400791DF4 /* RobotRequestServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CEF8021A4457400791DF4 /* RobotRequestServer.swift */; };
+		372CEF8321A4458000791DF4 /* RobotRequestServerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CEF8221A4458000791DF4 /* RobotRequestServerDelegate.swift */; };
 		37352731217A217700602046 /* MappingControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3735272E217A217700602046 /* MappingControlsView.swift */; };
 		37352732217A217700602046 /* MappingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3735272F217A217700602046 /* MappingView.swift */; };
 		37352733217A217700602046 /* MappingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37352730217A217700602046 /* MappingViewController.swift */; };
@@ -147,12 +149,6 @@
 
 /* Begin PBXFileReference section */
 		3720226F2167AF5B00602B53 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
-		3721B1BD219837590083C0DD /* account_management.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = account_management.grpc.swift; sourceTree = "<group>"; };
-		3721B1BE219837590083C0DD /* account_management.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = account_management.pb.swift; sourceTree = "<group>"; };
-		3721B1C0219837590083C0DD /* ros.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ros.grpc.swift; sourceTree = "<group>"; };
-		3721B1C1219837590083C0DD /* ros.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ros.pb.swift; sourceTree = "<group>"; };
-		3721B1C3219837590083C0DD /* login.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = login.grpc.swift; sourceTree = "<group>"; };
-		3721B1C4219837590083C0DD /* login.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = login.pb.swift; sourceTree = "<group>"; };
 		3721B1CF2199C01E0083C0DD /* SlideUpAnimationTransitioning.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideUpAnimationTransitioning.swift; sourceTree = "<group>"; };
 		3721B1D12199C18C0083C0DD /* SlideDownAnimationTransitioning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideDownAnimationTransitioning.swift; sourceTree = "<group>"; };
 		372216C3219EFE51009C8103 /* TabBarNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarNavigationController.swift; sourceTree = "<group>"; };
@@ -165,6 +161,14 @@
 		372216D6219F4731009C8103 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		372CEF5C21A1BCC700791DF4 /* SettingsBundleHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsBundleHelper.swift; sourceTree = "<group>"; };
 		372CEF5E21A307A000791DF4 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		372CEF7221A43FDB00791DF4 /* account_management.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = account_management.grpc.swift; sourceTree = "<group>"; };
+		372CEF7321A43FDB00791DF4 /* account_management.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = account_management.pb.swift; sourceTree = "<group>"; };
+		372CEF7521A43FDB00791DF4 /* ros.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ros.grpc.swift; sourceTree = "<group>"; };
+		372CEF7621A43FDB00791DF4 /* ros.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ros.pb.swift; sourceTree = "<group>"; };
+		372CEF7821A43FDB00791DF4 /* login.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = login.grpc.swift; sourceTree = "<group>"; };
+		372CEF7921A43FDB00791DF4 /* login.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = login.pb.swift; sourceTree = "<group>"; };
+		372CEF8021A4457400791DF4 /* RobotRequestServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RobotRequestServer.swift; sourceTree = "<group>"; };
+		372CEF8221A4458000791DF4 /* RobotRequestServerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RobotRequestServerDelegate.swift; sourceTree = "<group>"; };
 		3735272E217A217700602046 /* MappingControlsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MappingControlsView.swift; sourceTree = "<group>"; };
 		3735272F217A217700602046 /* MappingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MappingView.swift; sourceTree = "<group>"; };
 		37352730217A217700602046 /* MappingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MappingViewController.swift; sourceTree = "<group>"; };
@@ -220,43 +224,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3721B1BB219837590083C0DD /* genfiles */ = {
-			isa = PBXGroup;
-			children = (
-				3721B1BC219837590083C0DD /* account_management */,
-				3721B1BF219837590083C0DD /* ros */,
-				3721B1C2219837590083C0DD /* login */,
-			);
-			path = genfiles;
-			sourceTree = "<group>";
-		};
-		3721B1BC219837590083C0DD /* account_management */ = {
-			isa = PBXGroup;
-			children = (
-				3721B1BD219837590083C0DD /* account_management.grpc.swift */,
-				3721B1BE219837590083C0DD /* account_management.pb.swift */,
-			);
-			path = account_management;
-			sourceTree = "<group>";
-		};
-		3721B1BF219837590083C0DD /* ros */ = {
-			isa = PBXGroup;
-			children = (
-				3721B1C0219837590083C0DD /* ros.grpc.swift */,
-				3721B1C1219837590083C0DD /* ros.pb.swift */,
-			);
-			path = ros;
-			sourceTree = "<group>";
-		};
-		3721B1C2219837590083C0DD /* login */ = {
-			isa = PBXGroup;
-			children = (
-				3721B1C3219837590083C0DD /* login.grpc.swift */,
-				3721B1C4219837590083C0DD /* login.pb.swift */,
-			);
-			path = login;
-			sourceTree = "<group>";
-		};
 		3721B1CE2199C01E0083C0DD /* AnimationTransitioning */ = {
 			isa = PBXGroup;
 			children = (
@@ -297,8 +264,47 @@
 			children = (
 				372216D2219F2554009C8103 /* RobotRequestViewController.swift */,
 				372216D4219F255D009C8103 /* RobotRequestView.swift */,
+				372CEF8021A4457400791DF4 /* RobotRequestServer.swift */,
+				372CEF8221A4458000791DF4 /* RobotRequestServerDelegate.swift */,
 			);
 			path = RobotRequest;
+			sourceTree = "<group>";
+		};
+		372CEF7021A43FDB00791DF4 /* genfiles */ = {
+			isa = PBXGroup;
+			children = (
+				372CEF7121A43FDB00791DF4 /* account_management */,
+				372CEF7421A43FDB00791DF4 /* ros */,
+				372CEF7721A43FDB00791DF4 /* login */,
+			);
+			path = genfiles;
+			sourceTree = "<group>";
+		};
+		372CEF7121A43FDB00791DF4 /* account_management */ = {
+			isa = PBXGroup;
+			children = (
+				372CEF7221A43FDB00791DF4 /* account_management.grpc.swift */,
+				372CEF7321A43FDB00791DF4 /* account_management.pb.swift */,
+			);
+			path = account_management;
+			sourceTree = "<group>";
+		};
+		372CEF7421A43FDB00791DF4 /* ros */ = {
+			isa = PBXGroup;
+			children = (
+				372CEF7521A43FDB00791DF4 /* ros.grpc.swift */,
+				372CEF7621A43FDB00791DF4 /* ros.pb.swift */,
+			);
+			path = ros;
+			sourceTree = "<group>";
+		};
+		372CEF7721A43FDB00791DF4 /* login */ = {
+			isa = PBXGroup;
+			children = (
+				372CEF7821A43FDB00791DF4 /* login.grpc.swift */,
+				372CEF7921A43FDB00791DF4 /* login.pb.swift */,
+			);
+			path = login;
 			sourceTree = "<group>";
 		};
 		3735272D217A217700602046 /* Mapping */ = {
@@ -411,7 +417,7 @@
 		37EEA7DA215B962400BF3839 = {
 			isa = PBXGroup;
 			children = (
-				3721B1BB219837590083C0DD /* genfiles */,
+				372CEF7021A43FDB00791DF4 /* genfiles */,
 				373C127A216F9ED3003D7CBB /* SwiftGRPC-Carthage.xcodeproj */,
 				37EEA7E5215B962500BF3839 /* pinit */,
 				37EEA7FA215B962800BF3839 /* pinitTests */,
@@ -599,32 +605,35 @@
 			files = (
 				37363A1721761F1100EBD383 /* RegisterView.swift in Sources */,
 				3775A06B21650B5D00ABEF54 /* Constraints.swift in Sources */,
-				3721B1CA219837590083C0DD /* login.pb.swift in Sources */,
+				372CEF7A21A43FDB00791DF4 /* account_management.grpc.swift in Sources */,
 				37352732217A217700602046 /* MappingView.swift in Sources */,
 				372216C6219EFE63009C8103 /* PinitViewController.swift in Sources */,
 				37CBDD062194B92D0092C8E1 /* AddLocationViewController.swift in Sources */,
 				372216CD219F152F009C8103 /* ProfileView.swift in Sources */,
-				3721B1C8219837590083C0DD /* ros.pb.swift in Sources */,
 				37363A1E21761F2200EBD383 /* LoginServerDelegate.swift in Sources */,
+				372CEF7F21A43FDB00791DF4 /* login.pb.swift in Sources */,
 				37363A1B21761F1100EBD383 /* LoginView.swift in Sources */,
 				37363A1821761F1100EBD383 /* RegisterServer.swift in Sources */,
-				3721B1C5219837590083C0DD /* account_management.grpc.swift in Sources */,
 				37352733217A217700602046 /* MappingViewController.swift in Sources */,
+				372CEF7D21A43FDB00791DF4 /* ros.pb.swift in Sources */,
 				372216D3219F2554009C8103 /* RobotRequestViewController.swift in Sources */,
+				372CEF7C21A43FDB00791DF4 /* ros.grpc.swift in Sources */,
 				37363A1621761F1100EBD383 /* RegisterServerDelegate.swift in Sources */,
 				37352731217A217700602046 /* MappingControlsView.swift in Sources */,
 				37CBDD072194B92D0092C8E1 /* AddLocationView.swift in Sources */,
 				372022702167AF5B00602B53 /* CustomTextField.swift in Sources */,
 				37363A2021761F3400EBD383 /* LoginServer.swift in Sources */,
 				37CBDCD9219469FE0092C8E1 /* MappingServerDelegate.swift in Sources */,
-				3721B1C7219837590083C0DD /* ros.grpc.swift in Sources */,
+				372CEF7E21A43FDB00791DF4 /* login.grpc.swift in Sources */,
 				37CBDCDA219469FE0092C8E1 /* MappingServer.swift in Sources */,
 				37CBDD042194B92D0092C8E1 /* AddLocationServerDelegate.swift in Sources */,
 				3721B1D02199C01E0083C0DD /* SlideUpAnimationTransitioning.swift in Sources */,
 				37CBDD052194B92D0092C8E1 /* AddLocationServer.swift in Sources */,
 				372216D7219F4731009C8103 /* Profile.swift in Sources */,
 				372216C9219EFEF3009C8103 /* PinitViewProtocol.swift in Sources */,
+				372CEF8321A4458000791DF4 /* RobotRequestServerDelegate.swift in Sources */,
 				37EEA7E7215B962500BF3839 /* AppDelegate.swift in Sources */,
+				372CEF8121A4457400791DF4 /* RobotRequestServer.swift in Sources */,
 				372CEF5D21A1BCC700791DF4 /* SettingsBundleHelper.swift in Sources */,
 				37352738217A217F00602046 /* PinitOwnerViewController.swift in Sources */,
 				3721B1D22199C18C0083C0DD /* SlideDownAnimationTransitioning.swift in Sources */,
@@ -636,9 +645,8 @@
 				3735273B217A218700602046 /* ProfileViewController.swift in Sources */,
 				372216D5219F255D009C8103 /* RobotRequestView.swift in Sources */,
 				372216D0219F251B009C8103 /* PinitUserViewController.swift in Sources */,
-				3721B1C6219837590083C0DD /* account_management.pb.swift in Sources */,
-				3721B1C9219837590083C0DD /* login.grpc.swift in Sources */,
 				376985B9216834DE006FF550 /* Constants.swift in Sources */,
+				372CEF7B21A43FDB00791DF4 /* account_management.pb.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
