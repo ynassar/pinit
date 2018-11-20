@@ -23,7 +23,7 @@ service RosService{
     // waypoints corresponding to the nearest robot.
 }
 
-message RobotNavgiationRequest{
+message RobotNavigationRequest{
     string token = 1;
     oneof destination{
         GpsCoordinates coordinates = 2;
