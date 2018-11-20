@@ -4,10 +4,13 @@ import rospy
 from gps.gps_controller import GpsController
 import gps.gps_utils as gps_utils
 
+from geometry_msgs.msg import PoseStamped, Point, Quaternion
+
 class GPSTest():
 
     def __init__(self):
         self.controller = GpsController()
+        self.pose_pub = rospy.Publisher("pose_pub", PoseStamped, queue_size=10)
 
 
     def test_loop(self):
@@ -24,8 +27,17 @@ class GPSTest():
             long = current_coordinates.long
             lat = current_coordinates.lat
             distance, angle = gps_utils.get_vector(gps_origin, current_coordinates)
-            print "distance ", distance, " angle ", angle, "long", long, "lat", lat
+            map_x, map_y = gps_utils.convert_gps(distance, angle, 1) 
+            print "distance ", distance, " angle ", angle, "Map x: ", map_x, "Map y : ", map_y
 
+            pose = PoseStamped()
+            pose.header.frame_id = 'map'
+            pose.header.stamp = rospy.Time.now()
+
+            pose.pose.position =  Point(-1 * map_y, -1 * map_x, 0)
+            pose.pose.orientation = Quaternion(0,0,0,0)
+
+            self.pose_pub.publish(pose)
             rate.sleep()
 
 

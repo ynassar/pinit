@@ -38,7 +38,6 @@ class GpsController():
     def get_coordinates(self):
         point = None
         
-        self.fake_coordinantes()
         longitude = self.longitude
         latitude = self.latitude
         if longitude is not None \

@@ -52,7 +52,7 @@ def get_vector(p1, p2):
             np.cos(lat1) * np.cos(lat2) * \
             np.sin(dLong / 2) * np.sin(dLong / 2)
     c = 2 * np.arctan2(np.sqrt(a), np.sqrt(1 - a))
-    d = R * c #meters
+    d = R * c # meters
     
     y = np.sin(dLong) * np.cos(lat2)
     x = np.cos(lat1) * np.sin(lat2) - \
@@ -61,9 +61,9 @@ def get_vector(p1, p2):
     
     return d, theta
 
-def convert_gps(point, theta, resolution):
-    x = (point.long * np.cos(theta)) / resolution
-    y = (point.lat * np.sin(theta)) / resolution
+def convert_gps(dist, theta, resolution):
+    x = (dist * np.cos(theta)) / resolution
+    y = (dist * np.sin(theta)) / resolution
     return (x, y)
 
 
