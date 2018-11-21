@@ -1,3 +1,4 @@
+from proto.ros import ros_pb2
 from backend.models import map as map_model
 
 import base64
@@ -32,7 +33,8 @@ def UpdateMap(robot_name, raw_map, b64_map_image):
 
 
 def RawMapFromMapDocument(map):
-    origin = ros_pb2.GpsCoordinates(longitude=map.origin[0], latitude=map.origin[1])
+    origin = ros_pb2.GpsCoordinates(longitude=map.origin['coordinates'][0],
+                                    latitude=map.origin['coordinates'][1])
     return ros_pb2.RawMap(resolution=map.resolution, 
                    height=map.height,
                    width=map.width,
