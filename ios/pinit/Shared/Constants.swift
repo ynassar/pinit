@@ -18,6 +18,11 @@ struct PinitColors {
 
     static public let yellow = UIColor(red:0.96, green:0.81, blue:0.33, alpha:1.0)
     
+    static public let gradiantColorsList = [PinitColors.yellow.cgColor,
+                                            PinitColors.red.cgColor,
+                                            PinitColors.blue.cgColor,
+                                            PinitColors.green.cgColor]
+    
     /// Light Blue color used for `UILabel` that acts like a link.
     static public let linkBlue = UIColor(red:0.24, green:0.60, blue:0.93, alpha:1.0)
     
@@ -35,6 +40,12 @@ struct PinitConstants {
     /// The font size of all the UI elements in the `AuthentucationView`
     static public let addLocationFontSize: CGFloat = 12.0
     
+    static public let navigationBarHeight: CGFloat = 44.0
+    
+    static public let savedProfileKey = "ProfileKey"
+    
+    static public let snapshotTag = 777
+    
     static public var authenticationServerAddress: String {
         get {
             let ipAddress = UserDefaults.standard
@@ -50,11 +61,5 @@ struct PinitConstants {
             return "\(ipAddress):50052"
         }
     }
-    
-    static public let navigationBarHeight: CGFloat = 44.0
-    
-    static public let savedProfileKey = "ProfileKey"
-    
-    static public let snapshotTag = 777
 
 }

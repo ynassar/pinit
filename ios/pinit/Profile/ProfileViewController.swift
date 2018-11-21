@@ -10,6 +10,8 @@ class ProfileViewController: PinitViewController {
         self.controllerViews.append(profileView)
         self.view.backgroundColor = UIColor.white
         self.view.addSubview(profileView)
+        
+        self.addShadow()
                 
         profileView = profileView
             .addCenterXConstraint(relativeView: self.view)
@@ -26,6 +28,11 @@ class ProfileViewController: PinitViewController {
             self,
             action: #selector(self.closeProfile),
             for: .touchDown)
+    }
+    
+    private func addShadow() {
+        self.view.layer.borderWidth = 1.0
+        self.view.layer.borderColor = UIColor.gray.cgColor
     }
     
     @objc private func logoutButtonClick() {

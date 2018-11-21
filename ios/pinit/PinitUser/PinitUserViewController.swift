@@ -14,6 +14,8 @@ class PinitUserViewController: PinitSideMenuNavigationController, CLLocationMana
         super.viewDidLoad()
 
         self.view.addSubview(robotRequestView)
+        
+        self.view.backgroundColor = .white
 
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
@@ -38,7 +40,6 @@ class PinitUserViewController: PinitSideMenuNavigationController, CLLocationMana
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.first {
-            //            print("Found user's location: \(location)")
             print("Longtitude: \(location.coordinate.longitude)")
             print("Latitude: \(location.coordinate.latitude)")
             locationManager.stopUpdatingLocation()
@@ -49,14 +50,4 @@ class PinitUserViewController: PinitSideMenuNavigationController, CLLocationMana
         print("Failed to find user's location: \(error.localizedDescription)")
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        let gradiantLayer = CAGradientLayer()
-        gradiantLayer.frame = robotRequestView.bounds
-        gradiantLayer.colors = [PinitColors.yellow.cgColor,
-                                PinitColors.red.cgColor,
-                                PinitColors.blue.cgColor,
-                                PinitColors.green.cgColor]
-        robotRequestView.layer.insertSublayer(gradiantLayer, at: 0)
-    }
 }

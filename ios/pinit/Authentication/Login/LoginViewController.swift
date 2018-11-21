@@ -122,10 +122,7 @@ class LoginViewController : PinitViewController, LoginServerDelegate , CAAnimati
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        loginView.loginButton.addGradiant(colors:[PinitColors.yellow.cgColor,
-                                                  PinitColors.red.cgColor,
-                                                  PinitColors.blue.cgColor,
-                                                  PinitColors.green.cgColor])
+        loginView.loginButton.addGradiant(colors:PinitColors.gradiantColorsList)
     }
     
 }
