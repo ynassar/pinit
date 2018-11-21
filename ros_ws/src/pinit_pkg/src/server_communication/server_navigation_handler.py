@@ -16,7 +16,6 @@ class ServerNavigationHandler():
     
     def __init__(self, robot_manager):
         self.robot_manager = robot_manager
-        self.nav_controller = NavigationController()
 
     def handle_request(self, request):
         
@@ -27,8 +26,8 @@ class ServerNavigationHandler():
             request_type = 'pose'
         elif request.HasField("coordinates"):
             coordinates = request.coordinates
-            latitude = coordinates.lat
-            longitude =  coordinates.long
+            latitude = coordinates.latitude
+            longitude =  coordinates.longitude
             dest = GpsPoint(long=longitude, lat=latitude)
             request_type = 'gps'
 
