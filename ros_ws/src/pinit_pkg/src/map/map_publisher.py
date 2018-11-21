@@ -10,12 +10,14 @@ import rospy
 import nav_msgs.msg as ros_nav_msgs
 
 
-class   ():
+class MapPublisher():
+    #TODO test this
 
     @classmethod
     def create(cls, server_address, robot_name):
         topic_name = "map"
         publish_topic = rospy.Publisher(topic_name, ros_nav_msgs.OccupancyGrid, queue_size=10)
+        #TODO we might need to publish map_metadata
         return MapPublisher(server_address, robot_name, publish_topic)
 
 
@@ -82,16 +84,15 @@ class   ():
         ros_map.info.map_load_time = time_now
         ros_map.info.width = width
         ros_map.info.height = height
-        ros_map.info.origin.position.x = 0 #TODO we will probably need to set this with some value
-        ros_map.info.origin.position.y = 0 #TODO we will probably need to set this with some value
+        ros_map.info.origin.position.x = -1 * (width / 2)
+        ros_map.info.origin.position.y = -1 * (height / 2)
         ros_map.data = map_decoded
 
         return ros_map
 
 
     def decode(self, map_encoded):
-        #TODO decode the message here
-        pass
+        return (map_encoded - 1).tolist()
 
 
     def set_stop_flag(self, value):
