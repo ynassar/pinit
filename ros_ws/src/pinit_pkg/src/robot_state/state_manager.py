@@ -10,6 +10,7 @@ from nodes.node_manager import NodeManager
 from map.map_streamer import MapStreamer
 from map.map_publisher import MapPublisher
 from robot_motion.motion_controller import MotionController
+from robot_navigation.navigation_controller import NavigationController
 from robot_motion.robot_pose import PoseListenerFactory
 from server_communication.server_pose_streamer import ServerPoseStreamerFactory
 from gps import gps_cal
@@ -35,6 +36,7 @@ class RobotStateManager():
         gps_calibrator = gps_cal.GPSCallibrtor(pose_listener)
         motion_controller = MotionController()
         map_publisher = MapPublisher.create(server_address, robot_name)
+        nav_controller = NavigationController()
 
 
         return RobotStateManager(
@@ -45,14 +47,16 @@ class RobotStateManager():
             pose_streamer=pose_streamer,
             motion_controller=motion_controller,
             gps_calibrator=gps_calibrator,
-            map_publisher=map_publisher)
+            map_publisher=map_publisher,
+            nav_controller=nav_controller
+            )
 
 
     def __init__(self, robot_fsm, com_queue, node_manager, map_streamer, pose_streamer,
-                 motion_controller, gps_calibrator, map_publisher):
+                 motion_controller, gps_calibrator, map_publisher, nav_controller):
 
         self.fsm_states = [s for s in self.States]
-        self.robot_fsm = robot_fsm
+        self.robot_fsm = robot_fsmq
         self.communication_queue = com_queue
         self.node_manager = node_manager
         self.map_streamer = map_streamer
@@ -60,6 +64,7 @@ class RobotStateManager():
         self.motion_controller = motion_controller
         self.gps_calibrator = gps_calibrator
         self.map_publisher = map_publisher
+        self.nav_controller = nav_controller
 
         self.init_states()
         self.init_transitions()
@@ -114,8 +119,8 @@ class RobotStateManager():
     def idle_to_navigating_cb(self, *args):
         self.node_manager.start_movebase()
         self.map_publisher.fetch_remote_map()
-        #TODO we need to check the side effects of calling this again
         self.map_publisher.start()
+        self.nav_controller.start_nav(*args)
         #TODO call navigation controller and pass the destination
 
 
