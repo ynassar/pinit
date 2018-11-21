@@ -1,7 +1,7 @@
 import UIKit
 
 class SideMenuDismissAnimationTransitioning : NSObject, UIViewControllerAnimatedTransitioning {
-  
+    
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return 0.5
     }
@@ -14,8 +14,9 @@ class SideMenuDismissAnimationTransitioning : NSObject, UIViewControllerAnimated
                 return
         }
         
+        let finalFrameForViewController = transitionContext.finalFrame(for: toViewController)
         let containerView = transitionContext.containerView
-        
+
         containerView.insertSubview(toViewController.view, belowSubview: fromViewController.view)
         
         let widthOffset = fromViewController.view.bounds.width
@@ -23,6 +24,7 @@ class SideMenuDismissAnimationTransitioning : NSObject, UIViewControllerAnimated
         toViewController.view.frame = finalFrameForViewController.offsetBy(
             dx: widthOffset,
             dy: 0.0)
+
         toViewController.view.alpha = 1.0
         
         let snapshot = containerView.viewWithTag(PinitConstants.snapshotTag)
