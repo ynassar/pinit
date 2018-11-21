@@ -23,19 +23,26 @@ class MapPublisher():
         self.server_address = server_address
         self.robot_name = robot_name
         self.publisher = publisher
+        self.stop_lock = threading.Lock()
+        self.stop_flag = False
         self.ros_map = None
         self.gps_origin = None
         self.delta_theta = None
 
 
     def start(self):
+        self.set_stop_flag(False)
         thread = threading.Thread(target=self.publish_loop)
         thread.start()
 
 
+    def stop(self):
+        self.set_stop_flag(True)
+
+
     def get_origin(self):
         return self.gps_origin
- 
+
 
     def get_theta(self):
         return self.delta_theta
@@ -48,13 +55,13 @@ class MapPublisher():
                 robot_name=self.robot_name)
             remote_map = stub.GetRawMap(map_request)
             self.ros_map = self.grpc_map_to_rosmap(remote_map)
-            self.delta_theta = None         #TODO check ros proto and fill this
+            self.delta_theta = remote_map.origin_angle_shift
             self.gps_origin = remote_map.origin
 
 
     def publish_loop(self):
         rate = rospy.Rate(10)
-        while not rospy.is_shutdown():
+        while not rospy.is_shutdown() and self.get_stop_flag():
             self.ros_map.header.stamp = rospy.Time.now()
             self.ros_map.header.frame_id = "map"    #TODO check if this is correct
             self.publisher.publish(self.ros_map)
@@ -83,5 +90,17 @@ class MapPublisher():
     def decode(self, map_encoded):
         #TODO decode the message here
         pass
-        
 
+
+    def set_stop_flag(self, value):
+        self.stop_lock.acquire()
+        self.stop_flag = value
+        self.stop_lock.release()
+
+
+    def get_stop_flag(self):
+        self.stop_lock.acquire()
+        flag = self.stop_flag
+        self.stop_lock.release()
+
+        return flag

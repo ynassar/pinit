@@ -33,8 +33,8 @@ class NavigationController():
         self.client.send_goal(goal, self.done_cb, self.active_cb, self.feedback_cb)
     
     def got_to_gps(self, dest, origin):
-        distance, theta = get_vector(origin, dest)
-        dest_x, dest_y = convert_gps(distance, theta)
+        distance, theta = gps_utils.get_vector(origin, dest)
+        dest_x, dest_y = gps_utils.convert_gps(distance, theta)
         self.goal = Pose(Point(dest_x, dest_y, 0.000), Quaternion(0, 0, 0, 0))
         self.send_goal() 
 

@@ -14,10 +14,10 @@ import rospkg
 
 class ServerNavigationHandler():
     
-    def __init__(self, robot_manager, MapPublisher):
+    def __init__(self, robot_manager):
         self.robot_manager = robot_manager
         self.nav_controller = NavigationController()
-        self.map_info = MapPublisher
+        self.map_info = self.robot_manager.map_publisher #TODO we should look for another way to get info from map publisher
 
     def handle_request(self, request):
         
@@ -27,7 +27,7 @@ class ServerNavigationHandler():
         elif request.HasField("coordinates"):
             coordinates = request.coordinates
             latitude = coordinates.lat
-            longitutde =  coordinates.long
+            longitude =  coordinates.long
             
             dest = GpsPoint(long=longitude, lat=latitude)
             origin = self.map_info.get_origin()

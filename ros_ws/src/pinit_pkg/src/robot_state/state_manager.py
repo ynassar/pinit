@@ -112,10 +112,11 @@ class RobotStateManager():
 
 
     def idle_to_navigating_cb(self, *args):
-        #TODO start move base and go to a target
+        self.node_manager.start_movebase()
         self.map_publisher.fetch_remote_map()
-        self.map_publisher.start() #TODO we need to check the side effects of calling this again
-        pass
+        #TODO we need to check the side effects of calling this again
+        self.map_publisher.start()
+        #TODO call navigation controller and pass the destination
 
 
     def mapping_to_idle_cb(self):
@@ -129,7 +130,8 @@ class RobotStateManager():
 
 
     def navigating_to_idle_cb(self):
-        pass
+        self.node_manager.stop_movebase()
+        self.map_publisher.stop()
 
 
     def navigating_to_navigating_cb(self):

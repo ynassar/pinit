@@ -7,7 +7,7 @@ from proto.ros import ros_pb2_grpc
 from proto.ros import ros_pb2
 
 from server_communication.server_mapping_handler import ServerMappingHandler
-from server_communication.server_pose_streamer import ServerPoseStreamerFactory
+from server_communication.server_navigation_handler import ServerNavHandler
 
 import rospy
 
@@ -95,9 +95,9 @@ class ServerHandler():
                 if communication.HasField("mapping_request"):
                     mapping_request = communication.mapping_request
                     self.mapping_hanlder.handle_request(mapping_request)
-                    elif communication.HasField("navigation_request"):
-                        navigation_request = communication.navigation_request
-                        self.navigation_handler.handle_request(navigation_request)
+                elif communication.HasField("navigation_request"):
+                    navigation_request = communication.navigation_request
+                    self.navigation_handler.handle_request(navigation_request)
                         
                         
 

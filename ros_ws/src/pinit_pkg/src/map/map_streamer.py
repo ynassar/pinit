@@ -65,6 +65,7 @@ class MapStreamer():
         """
 
         self.subscriber.unregister()
+        self.gps_callibrator.stop_cal()
         rospy.loginfo("Stopped streaming map to server...")
 
 
@@ -92,7 +93,7 @@ class MapStreamer():
             gps_coordinates_msg.longitude = gps_origin.long
             gps_coordinates_msg.latitude = gps_origin.lat
 
-        delta = self.gps_callibrator.get_theta
+        delta = self.gps_callibrator.get_theta()
 
         grpc_raw_map = ros_pb2.RosToServerCommunication(
             raw_map=ros_pb2.RawMap(
@@ -100,7 +101,7 @@ class MapStreamer():
                 height=metadata.height,
                 width=metadata.width,
                 data=map_raw_data_encoded,
-                #TODO fill theta
+                origin_angle_shift=delta,
                 origin=gps_coordinates_msg))
 
         self.communication_queue.put(grpc_raw_map)
