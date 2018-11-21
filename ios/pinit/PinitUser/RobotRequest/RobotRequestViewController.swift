@@ -1,8 +1,8 @@
 import UIKit
 import CoreLocation
 
-class RobotRequestViewController : TabBarNavigationController, CLLocationManagerDelegate, RobotRequestServerDelegate {
-
+class RobotRequestViewController : PinitSideMenuNavigationController, CLLocationManagerDelegate {
+    
     private var robotRequestView: RobotRequestView!
     
     private var locationManager: CLLocationManager!
@@ -21,6 +21,13 @@ class RobotRequestViewController : TabBarNavigationController, CLLocationManager
         
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
+        
+        let profileMenuButton = UIButton(frame: CGRect.zero)
+        profileMenuButton.setImage(UIImage(named: "menuIcon"), for: .normal)
+
+        self.navigationController?.navigationBar.topItem?.leftBarButtonItems = [
+            UIBarButtonItem(customView: profileMenuButton)
+        ]
 
         robotRequestView = robotRequestView
             .addCenterYConstraint(relativeView: self.view)
@@ -32,6 +39,7 @@ class RobotRequestViewController : TabBarNavigationController, CLLocationManager
             self,
             action: #selector(self.getGpsCoordinatesButtonClick),
             for: .touchDown)
+
     }
     
     @objc private func getGpsCoordinatesButtonClick() {

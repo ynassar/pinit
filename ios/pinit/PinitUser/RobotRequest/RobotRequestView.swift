@@ -2,7 +2,6 @@ import UIKit
 
 class RobotRequestView : UIView, PinitViewProtocol {
 
-    
     public var getGpsCoordinatesButton: UIButton
     
     init() {
@@ -21,7 +20,7 @@ class RobotRequestView : UIView, PinitViewProtocol {
         getGpsCoordinatesButton.setTitle("Get GPS Coordinates", for: .normal)
         getGpsCoordinatesButton.backgroundColor = .white
         getGpsCoordinatesButton.setTitleColor(.black, for: .normal)
-        
+                
         getGpsCoordinatesButton = getGpsCoordinatesButton
             .addCenterXConstraint(relativeView: self)
             .addCenterYConstraint(relativeView: self)
