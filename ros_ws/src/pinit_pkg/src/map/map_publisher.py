@@ -82,6 +82,8 @@ class MapPublisher():
         ros_map.info.map_load_time = time_now
         ros_map.info.width = width
         ros_map.info.height = height
+        ros_map.info.origin.position.x = 0 #TODO we will probably need to set this with some value
+        ros_map.info.origin.position.y = 0 #TODO we will probably need to set this with some value
         ros_map.data = map_decoded
 
         return ros_map
