@@ -39,12 +39,7 @@ class ProfileViewController: PinitNavigationController {
         }
         
         let loginViewController = LoginViewController()
-        if let navigationController = self.navigationController {
-            navigationController.viewControllers.insert(loginViewController, at: 0)
-            self.tabBarController?.tabBar.isHidden = true
-            navigationController.navigationBar.isHidden = true
-            navigationController.popToRootViewController(animated: true)
-        }
+        self.present(loginViewController, animated: true, completion: nil)
     }
     
     @objc private func closeProfile() {
