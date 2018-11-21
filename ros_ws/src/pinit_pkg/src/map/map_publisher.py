@@ -10,7 +10,7 @@ import rospy
 import nav_msgs.msg as ros_nav_msgs
 
 
-class MapPublisher():
+class   ():
 
     @classmethod
     def create(cls, server_address, robot_name):
