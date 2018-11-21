@@ -89,6 +89,7 @@ message RawMap{
     uint32 width = 3;
     bytes data = 4; // Should contain a byte-encoded uint8 numpy array.
     GpsCoordinates origin = 5;
+    float origin_angle_shift = 6;
 }
 
 message RosToServerCommunication{
