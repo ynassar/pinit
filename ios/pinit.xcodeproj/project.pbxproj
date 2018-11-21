@@ -12,6 +12,8 @@
 		3721401D21A5DD9000A5A880 /* SideMenuDismissAnimationTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721401C21A5DD9000A5A880 /* SideMenuDismissAnimationTransitioning.swift */; };
 		3721402021A6096900A5A880 /* HomepageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721401F21A6096900A5A880 /* HomepageViewController.swift */; };
 		3721402221A6097400A5A880 /* HomepageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721402121A6097400A5A880 /* HomepageView.swift */; };
+		3721402421A6157200A5A880 /* UserDefaultsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721402321A6157200A5A880 /* UserDefaultsHelper.swift */; };
+		3721402621A6172700A5A880 /* ProfileInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721402521A6172700A5A880 /* ProfileInfoView.swift */; };
 		3721B1C5219837590083C0DD /* account_management.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721B1BD219837590083C0DD /* account_management.grpc.swift */; };
 		3721B1C6219837590083C0DD /* account_management.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721B1BE219837590083C0DD /* account_management.pb.swift */; };
 		3721B1C7219837590083C0DD /* ros.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721B1C0219837590083C0DD /* ros.grpc.swift */; };
@@ -157,6 +159,8 @@
 		3721401C21A5DD9000A5A880 /* SideMenuDismissAnimationTransitioning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuDismissAnimationTransitioning.swift; sourceTree = "<group>"; };
 		3721401F21A6096900A5A880 /* HomepageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomepageViewController.swift; sourceTree = "<group>"; };
 		3721402121A6097400A5A880 /* HomepageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomepageView.swift; sourceTree = "<group>"; };
+		3721402321A6157200A5A880 /* UserDefaultsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsHelper.swift; sourceTree = "<group>"; };
+		3721402521A6172700A5A880 /* ProfileInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInfoView.swift; sourceTree = "<group>"; };
 		3721B1BD219837590083C0DD /* account_management.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = account_management.grpc.swift; sourceTree = "<group>"; };
 		3721B1BE219837590083C0DD /* account_management.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = account_management.pb.swift; sourceTree = "<group>"; };
 		3721B1C0219837590083C0DD /* ros.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ros.grpc.swift; sourceTree = "<group>"; };
@@ -355,6 +359,7 @@
 				3735273A217A218700602046 /* ProfileViewController.swift */,
 				372216CC219F152F009C8103 /* ProfileView.swift */,
 				372216D6219F4731009C8103 /* Profile.swift */,
+				3721402521A6172700A5A880 /* ProfileInfoView.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -420,6 +425,7 @@
 				3720226F2167AF5B00602B53 /* CustomTextField.swift */,
 				37363A0A21761C3300EBD383 /* UIButtonExtension.swift */,
 				372CEF5C21A1BCC700791DF4 /* SettingsBundleHelper.swift */,
+				3721402321A6157200A5A880 /* UserDefaultsHelper.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -644,9 +650,11 @@
 				37CBDD072194B92D0092C8E1 /* AddLocationView.swift in Sources */,
 				372022702167AF5B00602B53 /* CustomTextField.swift in Sources */,
 				372CEF6921A3409300791DF4 /* MappingControlsView.swift in Sources */,
+				3721402421A6157200A5A880 /* UserDefaultsHelper.swift in Sources */,
 				37363A2021761F3400EBD383 /* LoginServer.swift in Sources */,
 				3721B1C7219837590083C0DD /* ros.grpc.swift in Sources */,
 				37CBDD042194B92D0092C8E1 /* AddLocationServerDelegate.swift in Sources */,
+				3721402621A6172700A5A880 /* ProfileInfoView.swift in Sources */,
 				3721B1D02199C01E0083C0DD /* SlideUpAnimationTransitioning.swift in Sources */,
 				37CBDD052194B92D0092C8E1 /* AddLocationServer.swift in Sources */,
 				372216D7219F4731009C8103 /* Profile.swift in Sources */,

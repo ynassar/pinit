@@ -26,6 +26,11 @@ extension UIButton {
         gradiantLayer.cornerRadius = self.layer.cornerRadius
         self.layer.insertSublayer(gradiantLayer, at: 0)
     }
+    
+    public func makeButtonCircular() {
+        self.layer.cornerRadius = self.bounds.width / 2.0
+        self.clipsToBounds = true
+    }
 }
 
 /// Extension for `UIBarButtonItem` to add the functionality to enable/disable the button.

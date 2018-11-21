@@ -32,7 +32,7 @@ class PinitUserViewController: PinitSideMenuNavigationController, CLLocationMana
             for: .touchUpInside)
         
     }
-    
+        
     @objc private func getGpsCoordinatesButtonClick() {
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.startUpdatingLocation()

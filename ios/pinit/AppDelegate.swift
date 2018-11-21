@@ -18,11 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if let window = window {
             
-            let userDefaults = UserDefaults.standard
-            if let userProfileObject = userDefaults.object(forKey: PinitConstants.savedProfileKey) {
-                let userProfileDecoded = userProfileObject as! Data
-                let userProfile = NSKeyedUnarchiver.unarchiveObject(with: userProfileDecoded) as! Profile
-
+            if let userProfile = UserDefaultsHelper.getUserProfile() {
                 if userProfile.ownerStatus {
                     window.rootViewController = PinitOwnerViewController()
                 } else {
