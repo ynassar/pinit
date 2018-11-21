@@ -1,7 +1,6 @@
 import UIKit
 
-class ProfileViewController: PinitNavigationController, UINavigationControllerDelegate,
-UIViewControllerTransitioningDelegate {
+class ProfileViewController: PinitNavigationController {
     
     private var profileView: ProfileView!
     
@@ -21,7 +20,12 @@ UIViewControllerTransitioningDelegate {
         profileView.logoutButton.addTarget(
             self,
             action: #selector(self.logoutButtonClick),
-            for: .touchUpInside)
+            for: .touchDown)
+        
+        profileView.closeButton.addTarget(
+            self,
+            action: #selector(self.closeProfile),
+            for: .touchDown)
     }
     
     @objc private func logoutButtonClick() {
@@ -36,12 +40,16 @@ UIViewControllerTransitioningDelegate {
         
         let loginViewController = LoginViewController()
         if let navigationController = self.navigationController {
-            navigationController.delegate = self
             navigationController.viewControllers.insert(loginViewController, at: 0)
             self.tabBarController?.tabBar.isHidden = true
             navigationController.navigationBar.isHidden = true
             navigationController.popToRootViewController(animated: true)
         }
+    }
+    
+    @objc private func closeProfile() {
+        transitioningDelegate = self
+        dismiss(animated: true, completion: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -55,14 +63,14 @@ UIViewControllerTransitioningDelegate {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+}
+
+extension ProfileViewController: UIViewControllerTransitioningDelegate {
     
-    func navigationController(
-        _ navigationController: UINavigationController,
-        animationControllerFor operation: UINavigationController.Operation,
-        from fromVC: UIViewController,
-        to toVC: UIViewController
-        ) -> UIViewControllerAnimatedTransitioning? {
-        return SlideDownAnimationTransitioning(operation: operation)
+    public func animationController(
+        forDismissed dismissed: UIViewController
+    ) -> UIViewControllerAnimatedTransitioning? {
+        return SideMenuDismissAnimationTransitioning()
     }
     
 }

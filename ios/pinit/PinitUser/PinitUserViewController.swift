@@ -12,29 +12,23 @@ class PinitUserViewController: PinitSideMenuNavigationController, CLLocationMana
         locationManager = CLLocationManager()
         self.controllerViews.append(robotRequestView)
         super.viewDidLoad()
+
         self.view.addSubview(robotRequestView)
-        self.view.addSubview(buttonTest)
-        
+
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
-        
-        let profileMenuButton = UIButton(frame: CGRect.zero)
-        profileMenuButton.setImage(UIImage(named: "menuIcon"), for: .normal)
-        
-        self.navigationController?.navigationBar.topItem?.leftBarButtonItems = [
-            UIBarButtonItem(customView: profileMenuButton)
-        ]
-        
+
         robotRequestView = robotRequestView
-            .addCenterYConstraint(relativeView: self.view)
+            .addCenterXConstraint(relativeView: self.view)
             .addCenterYConstraint(relativeView: self.view)
             .addWidthConstraint(relativeView: self.view, multipler: 1.0)
             .addHeightConstraint(relativeView: self.view, multipler: 1.0)
-        
+
         robotRequestView.getGpsCoordinatesButton.addTarget(
             self,
             action: #selector(self.getGpsCoordinatesButtonClick),
             for: .touchUpInside)
+        
     }
     
     @objc private func getGpsCoordinatesButtonClick() {
@@ -57,12 +51,12 @@ class PinitUserViewController: PinitSideMenuNavigationController, CLLocationMana
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-//        let gradiantLayer = CAGradientLayer()
-//        gradiantLayer.frame = robotRequestView.bounds
-//        gradiantLayer.colors = [PinitColors.yellow.cgColor,
-//                                PinitColors.red.cgColor,
-//                                PinitColors.blue.cgColor,
-//                                PinitColors.green.cgColor]
-//        robotRequestView.layer.insertSublayer(gradiantLayer, at: 0)
+        let gradiantLayer = CAGradientLayer()
+        gradiantLayer.frame = robotRequestView.bounds
+        gradiantLayer.colors = [PinitColors.yellow.cgColor,
+                                PinitColors.red.cgColor,
+                                PinitColors.blue.cgColor,
+                                PinitColors.green.cgColor]
+        robotRequestView.layer.insertSublayer(gradiantLayer, at: 0)
     }
 }

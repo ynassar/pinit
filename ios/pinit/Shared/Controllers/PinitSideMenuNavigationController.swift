@@ -2,41 +2,33 @@ import UIKit
 
 class PinitSideMenuNavigationController : PinitNavigationController {
     
-    var buttonTest: UIButton!
-    
-    var shit: UIBarButtonItem!
-    
     override func viewDidLoad() {
-        buttonTest = UIButton(frame: CGRect.zero)
         super.viewDidLoad()
  
         let profileMenuButton = UIButton(frame: CGRect.zero)
         profileMenuButton.setImage(UIImage(named: "menuIcon"), for: .normal)
-        profileMenuButton.addTarget(self, action: #selector(menuButtonClicked), for: .touchDown)
-        shit = UIBarButtonItem(customView: profileMenuButton)
-
+        profileMenuButton.addTarget(self, action: #selector(self.menuButtonClicked), for: .touchDown)
 
         self.navigationController?.navigationBar.topItem?.leftBarButtonItems = [
             UIBarButtonItem(customView: profileMenuButton)
         ]
-        
-        self.view.addSubview(buttonTest)
-        buttonTest.backgroundColor = .white
-        
-        self.view.backgroundColor = .red
-        
-        buttonTest = buttonTest
-            .addCenterXConstraint(relativeView: self.view)
-            .addWidthConstraint(relativeView: self.view, multipler: 1.0)
-            .addHeightConstraint(relativeView: self.view, multipler: 0.1)
-            .setConstraintWithConstant(selfAttribute: .top, relativeView: self.view, relativeAttribute: .top, constant: 10)
-        
-        buttonTest.addTarget(self, action: #selector(menuButtonClicked), for: .touchUpInside)
-
     }
     
     @objc public func menuButtonClicked() {
-        print("whattt")
+        let profileViewController = ProfileViewController()
+        profileViewController.transitioningDelegate = self
+        self.present(profileViewController, animated: true, completion: nil)
+    }
+}
+
+extension PinitSideMenuNavigationController: UIViewControllerTransitioningDelegate {
+    
+    public func animationController(
+        forPresented presented: UIViewController,
+        presenting: UIViewController,
+        source: UIViewController
+        ) -> UIViewControllerAnimatedTransitioning? {
+        return SideMenuShowAnimationTransitioning(sideMenuWidthMultiplier: 0.7)
     }
     
 }

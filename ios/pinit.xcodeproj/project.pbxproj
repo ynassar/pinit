@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		372022702167AF5B00602B53 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3720226F2167AF5B00602B53 /* CustomTextField.swift */; };
+		3721401B21A5A05900A5A880 /* SideMenuInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721401A21A5A05900A5A880 /* SideMenuInteractor.swift */; };
+		3721401D21A5DD9000A5A880 /* SideMenuDismissAnimationTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721401C21A5DD9000A5A880 /* SideMenuDismissAnimationTransitioning.swift */; };
 		3721B1C5219837590083C0DD /* account_management.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721B1BD219837590083C0DD /* account_management.grpc.swift */; };
 		3721B1C6219837590083C0DD /* account_management.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721B1BE219837590083C0DD /* account_management.pb.swift */; };
 		3721B1C7219837590083C0DD /* ros.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721B1C0219837590083C0DD /* ros.grpc.swift */; };
@@ -32,6 +34,7 @@
 		372CEF6B21A3409300791DF4 /* MappingServerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CEF6621A3409300791DF4 /* MappingServerDelegate.swift */; };
 		372CEF6C21A3409300791DF4 /* MappingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CEF6721A3409300791DF4 /* MappingView.swift */; };
 		372CEF6E21A354EA00791DF4 /* PinitSideMenuNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CEF6D21A354EA00791DF4 /* PinitSideMenuNavigationController.swift */; };
+		372CEF8621A48D1900791DF4 /* SideMenuShowAnimationTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CEF8521A48D1900791DF4 /* SideMenuShowAnimationTransitioning.swift */; };
 		37352738217A217F00602046 /* PinitOwnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37352736217A217F00602046 /* PinitOwnerViewController.swift */; };
 		3735273B217A218700602046 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3735273A217A218700602046 /* ProfileViewController.swift */; };
 		373639CC217248A300EBD383 /* BoringSSL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 373C1282216F9ED4003D7CBB /* BoringSSL.framework */; };
@@ -148,6 +151,8 @@
 
 /* Begin PBXFileReference section */
 		3720226F2167AF5B00602B53 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		3721401A21A5A05900A5A880 /* SideMenuInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuInteractor.swift; sourceTree = "<group>"; };
+		3721401C21A5DD9000A5A880 /* SideMenuDismissAnimationTransitioning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuDismissAnimationTransitioning.swift; sourceTree = "<group>"; };
 		3721B1BD219837590083C0DD /* account_management.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = account_management.grpc.swift; sourceTree = "<group>"; };
 		3721B1BE219837590083C0DD /* account_management.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = account_management.pb.swift; sourceTree = "<group>"; };
 		3721B1C0219837590083C0DD /* ros.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ros.grpc.swift; sourceTree = "<group>"; };
@@ -172,6 +177,7 @@
 		372CEF6621A3409300791DF4 /* MappingServerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MappingServerDelegate.swift; sourceTree = "<group>"; };
 		372CEF6721A3409300791DF4 /* MappingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MappingView.swift; sourceTree = "<group>"; };
 		372CEF6D21A354EA00791DF4 /* PinitSideMenuNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinitSideMenuNavigationController.swift; sourceTree = "<group>"; };
+		372CEF8521A48D1900791DF4 /* SideMenuShowAnimationTransitioning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuShowAnimationTransitioning.swift; sourceTree = "<group>"; };
 		37352736217A217F00602046 /* PinitOwnerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinitOwnerViewController.swift; sourceTree = "<group>"; };
 		3735273A217A218700602046 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		37363A0A21761C3300EBD383 /* UIButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
@@ -264,6 +270,9 @@
 			children = (
 				3721B1CF2199C01E0083C0DD /* SlideUpAnimationTransitioning.swift */,
 				3721B1D12199C18C0083C0DD /* SlideDownAnimationTransitioning.swift */,
+				372CEF8521A48D1900791DF4 /* SideMenuShowAnimationTransitioning.swift */,
+				3721401A21A5A05900A5A880 /* SideMenuInteractor.swift */,
+				3721401C21A5DD9000A5A880 /* SideMenuDismissAnimationTransitioning.swift */,
 			);
 			path = AnimationTransitioning;
 			sourceTree = "<group>";
@@ -631,6 +640,7 @@
 				372CEF6821A3409300791DF4 /* MappingServer.swift in Sources */,
 				372CEF5D21A1BCC700791DF4 /* SettingsBundleHelper.swift in Sources */,
 				37352738217A217F00602046 /* PinitOwnerViewController.swift in Sources */,
+				3721401D21A5DD9000A5A880 /* SideMenuDismissAnimationTransitioning.swift in Sources */,
 				3721B1D22199C18C0083C0DD /* SlideDownAnimationTransitioning.swift in Sources */,
 				37363A0B21761C3300EBD383 /* UIButtonExtension.swift in Sources */,
 				37363A1A21761F1100EBD383 /* AuthenticationView.swift in Sources */,
@@ -639,7 +649,9 @@
 				37363A1921761F1100EBD383 /* RegisterViewController.swift in Sources */,
 				3735273B217A218700602046 /* ProfileViewController.swift in Sources */,
 				372216D5219F255D009C8103 /* RobotRequestView.swift in Sources */,
+				372CEF8621A48D1900791DF4 /* SideMenuShowAnimationTransitioning.swift in Sources */,
 				372216D0219F251B009C8103 /* PinitUserViewController.swift in Sources */,
+				3721401B21A5A05900A5A880 /* SideMenuInteractor.swift in Sources */,
 				3721B1C6219837590083C0DD /* account_management.pb.swift in Sources */,
 				3721B1C9219837590083C0DD /* login.grpc.swift in Sources */,
 				376985B9216834DE006FF550 /* Constants.swift in Sources */,

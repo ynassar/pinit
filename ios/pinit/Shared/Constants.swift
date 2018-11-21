@@ -51,9 +51,10 @@ struct PinitConstants {
         }
     }
     
-//    static public private(set) var tempRobotServerAddress = ""
-    
     static public let navigationBarHeight: CGFloat = 44.0
     
     static public let savedProfileKey = "ProfileKey"
+    
+    static public let snapshotTag = 777
+
 }

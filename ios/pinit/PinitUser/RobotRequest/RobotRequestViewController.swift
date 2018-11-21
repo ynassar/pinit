@@ -34,6 +34,7 @@ class RobotRequestViewController : PinitSideMenuNavigationController, CLLocation
             self,
             action: #selector(self.getGpsCoordinatesButtonClick),
             for: .touchUpInside)
+        
     }
     
     @objc private func getGpsCoordinatesButtonClick() {
