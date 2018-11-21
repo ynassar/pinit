@@ -30,13 +30,13 @@ class RobotStateManager():
         robot_fsm = FSM()
         communication_queue = Queue()
         node_manager = NodeManager()
-        map_streamer = MapStreamer(communication_queue)
         pose_listener = PoseListenerFactory()
         pose_streamer = ServerPoseStreamerFactory(communication_queue, pose_listener)
         gps_calibrator = gps_cal.GPSCallibrtor(pose_listener)
+        map_streamer = MapStreamer(communication_queue, gps_calibrator)
         motion_controller = MotionController()
         map_publisher = MapPublisher.create(server_address, robot_name)
-        nav_controller = NavigationController()
+        nav_controller = NavigationController(map_publisher)
 
 
         return RobotStateManager(
@@ -56,7 +56,7 @@ class RobotStateManager():
                  motion_controller, gps_calibrator, map_publisher, nav_controller):
 
         self.fsm_states = [s for s in self.States]
-        self.robot_fsm = robot_fsmq
+        self.robot_fsm = robot_fsm
         self.communication_queue = com_queue
         self.node_manager = node_manager
         self.map_streamer = map_streamer
@@ -107,24 +107,23 @@ class RobotStateManager():
                                       self.navigating_to_idle_cb)
 
 
-    def idle_to_idle_cb(self):
+    def idle_to_idle_cb(self, *args):
         pass
 
 
-    def idle_to_mapping_cb(self):
+    def idle_to_mapping_cb(self, *args):
         self.node_manager.start_gmapping()
         self.map_streamer.start()
 
 
     def idle_to_navigating_cb(self, *args):
-        self.node_manager.start_movebase()
-        self.map_publisher.fetch_remote_map()
-        self.map_publisher.start()
+        #self.node_manager.start_movebase()
+        #self.map_publisher.fetch_remote_map()
+        #self.map_publisher.start()
         self.nav_controller.start_nav(*args)
-        #TODO call navigation controller and pass the destination
 
 
-    def mapping_to_idle_cb(self):
+    def mapping_to_idle_cb(self, *args):
         self.map_streamer.finish()
         self.node_manager.stop_gmapping()
         #self.node_manager.start_movebase()
@@ -134,16 +133,16 @@ class RobotStateManager():
         self.motion_controller.move(*args)
 
 
-    def navigating_to_idle_cb(self):
+    def navigating_to_idle_cb(self, *args):
         self.node_manager.stop_movebase()
         self.map_publisher.stop()
 
 
-    def navigating_to_navigating_cb(self):
+    def navigating_to_navigating_cb(self, *args):
         pass
 
 
-    def start_to_idle_cb(self):
+    def start_to_idle_cb(self, *args):
         #self.node_manager.start_robot()
         self.pose_streamer.init_stream_loop()
 
