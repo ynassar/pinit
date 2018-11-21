@@ -10,6 +10,8 @@
 		372022702167AF5B00602B53 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3720226F2167AF5B00602B53 /* CustomTextField.swift */; };
 		3721401B21A5A05900A5A880 /* SideMenuInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721401A21A5A05900A5A880 /* SideMenuInteractor.swift */; };
 		3721401D21A5DD9000A5A880 /* SideMenuDismissAnimationTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721401C21A5DD9000A5A880 /* SideMenuDismissAnimationTransitioning.swift */; };
+		3721402021A6096900A5A880 /* HomepageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721401F21A6096900A5A880 /* HomepageViewController.swift */; };
+		3721402221A6097400A5A880 /* HomepageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721402121A6097400A5A880 /* HomepageView.swift */; };
 		3721B1C5219837590083C0DD /* account_management.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721B1BD219837590083C0DD /* account_management.grpc.swift */; };
 		3721B1C6219837590083C0DD /* account_management.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721B1BE219837590083C0DD /* account_management.pb.swift */; };
 		3721B1C7219837590083C0DD /* ros.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721B1C0219837590083C0DD /* ros.grpc.swift */; };
@@ -153,6 +155,8 @@
 		3720226F2167AF5B00602B53 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		3721401A21A5A05900A5A880 /* SideMenuInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuInteractor.swift; sourceTree = "<group>"; };
 		3721401C21A5DD9000A5A880 /* SideMenuDismissAnimationTransitioning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuDismissAnimationTransitioning.swift; sourceTree = "<group>"; };
+		3721401F21A6096900A5A880 /* HomepageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomepageViewController.swift; sourceTree = "<group>"; };
+		3721402121A6097400A5A880 /* HomepageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomepageView.swift; sourceTree = "<group>"; };
 		3721B1BD219837590083C0DD /* account_management.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = account_management.grpc.swift; sourceTree = "<group>"; };
 		3721B1BE219837590083C0DD /* account_management.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = account_management.pb.swift; sourceTree = "<group>"; };
 		3721B1C0219837590083C0DD /* ros.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ros.grpc.swift; sourceTree = "<group>"; };
@@ -228,6 +232,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3721401E21A6095A00A5A880 /* Homepage */ = {
+			isa = PBXGroup;
+			children = (
+				3721401F21A6096900A5A880 /* HomepageViewController.swift */,
+				3721402121A6097400A5A880 /* HomepageView.swift */,
+			);
+			path = Homepage;
+			sourceTree = "<group>";
+		};
 		3721B1BB219837590083C0DD /* genfiles */ = {
 			isa = PBXGroup;
 			children = (
@@ -328,6 +341,7 @@
 		37352734217A217F00602046 /* PinitOwner */ = {
 			isa = PBXGroup;
 			children = (
+				3721401E21A6095A00A5A880 /* Homepage */,
 				372CEF6221A3409300791DF4 /* Mapping */,
 				37CBDCFF2194B92D0092C8E1 /* AddLocation */,
 				37352736217A217F00602046 /* PinitOwnerViewController.swift */,
@@ -616,6 +630,7 @@
 				37CBDD062194B92D0092C8E1 /* AddLocationViewController.swift in Sources */,
 				372216CD219F152F009C8103 /* ProfileView.swift in Sources */,
 				3721B1C8219837590083C0DD /* ros.pb.swift in Sources */,
+				3721402021A6096900A5A880 /* HomepageViewController.swift in Sources */,
 				37363A1E21761F2200EBD383 /* LoginServerDelegate.swift in Sources */,
 				37363A1B21761F1100EBD383 /* LoginView.swift in Sources */,
 				372CEF6E21A354EA00791DF4 /* PinitSideMenuNavigationController.swift in Sources */,
@@ -638,6 +653,7 @@
 				372216C9219EFEF3009C8103 /* PinitViewProtocol.swift in Sources */,
 				37EEA7E7215B962500BF3839 /* AppDelegate.swift in Sources */,
 				372CEF6821A3409300791DF4 /* MappingServer.swift in Sources */,
+				3721402221A6097400A5A880 /* HomepageView.swift in Sources */,
 				372CEF5D21A1BCC700791DF4 /* SettingsBundleHelper.swift in Sources */,
 				37352738217A217F00602046 /* PinitOwnerViewController.swift in Sources */,
 				3721401D21A5DD9000A5A880 /* SideMenuDismissAnimationTransitioning.swift in Sources */,

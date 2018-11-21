@@ -41,7 +41,6 @@ class SideMenuShowAnimationTransitioning : NSObject, UIViewControllerAnimatedTra
         containerView.insertSubview(toViewController.view, belowSubview: fromViewController.view)
 
         snapshot.tag = PinitConstants.snapshotTag
-        snapshot.alpha = 0.2
         containerView.insertSubview(snapshot, aboveSubview: toViewController.view)
         fromViewController.view.isHidden = true
         

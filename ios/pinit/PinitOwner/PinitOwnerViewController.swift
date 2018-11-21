@@ -8,19 +8,11 @@ class PinitOwnerViewController: UITabBarController, UITabBarControllerDelegate {
         super.viewDidLoad()
         self.delegate = self
         
-        self.tabBar.tintColor = .black
         self.tabBar.barTintColor = .white
-//        self.tabBar.layer.borderWidth = 0
-//        self.tabBar.clipsToBounds = true
+        self.tabBar.layer.borderWidth = 0
+        self.tabBar.clipsToBounds = true
 //        self.view.backgroundColor = .white
         
-//        let profileMenuButton = UIButton(frame: CGRect.zero)
-//        profileMenuButton.setImage(UIImage(named: "menuIcon"), for: .normal)
-//
-//        self.navigationController?.navigationBar.topItem?.leftBarButtonItems = [
-//            UIBarButtonItem(customView: profileMenuButton)
-//        ]
-
         setUpTabBar()
     }
     
@@ -28,15 +20,15 @@ class PinitOwnerViewController: UITabBarController, UITabBarControllerDelegate {
         // The `MappingViewController` is used to start mapping, move the robot and save the map.
         let mappingViewController = UINavigationController(
             rootViewController: MappingViewController())
-        mappingViewController.tabBarItem.image = UIImage(named: "MapIcon")
+        mappingViewController.tabBarItem.image = UIImage(named: "mapIcon")
+        mappingViewController.tabBarItem.selectedImage = UIImage(named: "mapIconSelected")
         
-        // The `SettingsViewController` is a list of options related to the app
-        // and the user can change them.
-        let settingsViewController = UINavigationController(
-            rootViewController: ProfileViewController())
-        settingsViewController.tabBarItem.image = UIImage(named: "SettingsIcon")
+        let homepageViewController = UINavigationController(
+            rootViewController: HomepageViewController())
+        homepageViewController.tabBarItem.image = UIImage(named: "infoIcon")
+        homepageViewController.tabBarItem.selectedImage = UIImage(named: "infoIconSelected")
         
-        viewControllers = [mappingViewController, settingsViewController]
+        viewControllers = [homepageViewController, mappingViewController]
         
         
     }

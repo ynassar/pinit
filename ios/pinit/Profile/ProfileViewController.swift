@@ -1,6 +1,6 @@
 import UIKit
 
-class ProfileViewController: PinitNavigationController {
+class ProfileViewController: PinitViewController {
     
     private var profileView: ProfileView!
     
