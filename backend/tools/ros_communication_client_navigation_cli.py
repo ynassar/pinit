@@ -18,10 +18,12 @@ def main(argv):
         with grpc.insecure_channel(f'localhost:50051') as auth_channel:
             auth_stub = login_pb2_grpc.AuthenticationServiceStub(auth_channel)
             response = auth_stub.Login(login_pb2.LoginRequest(username="Admin", password="123"))
+            token = response.token
+        print(token)
         stub = ros_pb2_grpc.RosServiceStub(channel)
         waypoint = stub.RequestRobotToLocation(
                 ros_pb2.RobotNavigationRequest(
-                    token=response.token,
+                    token=token,
                     coordinates=ros_pb2.GpsCoordinates(
                         latitude=10,
                         longitude=20)))
