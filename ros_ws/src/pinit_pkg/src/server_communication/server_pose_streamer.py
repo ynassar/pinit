@@ -37,7 +37,6 @@ class ServerPoseStreamer():
             if ros_pose is not None:
                 grpc_pose = self.ros_to_grpc_pose(ros_pose)
                 self.communication_queue.put(grpc_pose)
-                rospy.loginfo("Sending pose to server...")
             rate.sleep()
 
 

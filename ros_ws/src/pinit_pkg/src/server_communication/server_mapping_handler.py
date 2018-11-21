@@ -6,8 +6,6 @@ from proto.ros import ros_pb2_grpc
 from proto.ros import ros_pb2
 
 from robot_motion.motion_controller import MotionController
-from map.map_streamer import MapStreamer
-from map.map_creator import MapCreatorFactory
 
 import roslaunch
 import rospy
@@ -17,68 +15,9 @@ import rospkg
 class ServerMappingHandler():
     """Handles server mapping requests"""
 
-    class RobotState(Enum):
-        """An enum for robot mapping states"""
-        IDLE = 1
-        MAPPING = 2
-        MOVING_AND_MAPPING = 3
 
-
-    def __init__(self, queue):
-
-        self.communication_queue = queue
-        self.map_streamer = MapStreamer(self.communication_queue)
-        self.map_creator = MapCreatorFactory()
-        self.motion_controller = MotionController()
-
-        self.current_state = self.RobotState.IDLE
-        self.transitions = None
-        self.init_valid_transitions()
-
-
-    def init_valid_transitions(self):
-        """Initializes a dictionary of state transitions
-
-        Args:
-            None
-
-        Returns:
-            None
-        """
-        self.transitions = {
-            self.RobotState.MAPPING :
-            [self.RobotState.IDLE,
-             self.RobotState.MOVING_AND_MAPPING],
-            self.RobotState.IDLE:
-            [self.RobotState.MAPPING,
-             self.RobotState.IDLE],
-            self.RobotState.MOVING_AND_MAPPING :
-            [self.RobotState.IDLE,
-             self.RobotState.MOVING_AND_MAPPING]
-        }
-
-
-    def goto_state(self, state):
-        """Transistion to another state
-
-        Args:
-            state: the state which the robot attempts to transition to
-
-        Returns:
-            True or False if transition is successfull
-        """
-
-        valid_transitions = self.transitions[self.current_state]
-        success = False
-
-        if state in valid_transitions:
-            self.current_state = state
-            success = True
-        else:
-            print("Warning invalid state transistion")
-            success = False
-
-        return success
+    def __init__(self, robot_manager):
+        self.robot_manager = robot_manager
 
 
     def handle_request(self, request):
@@ -120,8 +59,7 @@ class ServerMappingHandler():
             None
         """
 
-        if self.goto_state(self.RobotState.MOVING_AND_MAPPING):
-            self.motion_controller.move(direction)
+        self.robot_manager.go_to(self.robot_manager.States.MAPPING, direction)
 
 
     def start_mapping(self):
@@ -133,8 +71,8 @@ class ServerMappingHandler():
         Returns:
             None
         """
-        self.map_creator.start()
-        self.map_streamer.start()
+
+        self.robot_manager.go_to(self.robot_manager.States.MAPPING)
 
 
     def stop_mapping(self):
@@ -147,5 +85,4 @@ class ServerMappingHandler():
             None
         """
 
-        self.map_creator.finish()
-        self.map_streamer.finish()
+        self.robot_manager.go_to(self.robot_manager.States.IDLE)

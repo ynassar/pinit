@@ -125,8 +125,23 @@ class RosService(ros_pb2_grpc.RosServiceServicer):
 
     def RequestRobotToLocation(self, request, context):
         location = [request.coordinates.longitude, request.coordinates.latitude]
-        nearby_map = map_model.Map.objects(origin__near=location)[0]
-        robot_name = nearby_map.robot_name    
+
+        nearby_maps = map_model.Map.objects(origin__near=location)
+        if not nearby_maps:
+            context.set_code(grpc.StatusCode.NOT_FOUND)
+            context.set_details("No map found near given location.")
+            raise NoMapFound()
+        nearby_map = nearby_maps[0]
+        robot_name = nearby_map.robot_name
+        if robot_name not in self._robot_name_to_queue:
+            context.set_code(grpc.StatusCode.NOT_FOUND)
+            context.set_details("Specified robot not connected.")
+            raise RobotNotConnected()
+        self._robot_name_to_queue[robot_name].put(ros_pb2.ServerToRosCommunication(
+            navigation_request=ros_pb2.ServerToRosNavigationRequest(
+                coordinates=request.coordinates
+            )
+        ))
         nearby_waypoints = waypoint_model.Waypoint.objects(robot_name=robot_name)
         waypoint_protos = [request_utils.ConvertWaypointDocumentToProto(document)
                            for document in nearby_waypoints]
