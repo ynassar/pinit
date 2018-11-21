@@ -2,11 +2,14 @@
 
 import threading
 
+import numpy as np
+
 import grpc
 from proto.ros import ros_pb2_grpc
 from proto.ros import ros_pb2
 
 import rospy
+import ros_numpy
 import nav_msgs.msg as ros_nav_msgs
 
 
@@ -63,7 +66,7 @@ class MapPublisher():
 
     def publish_loop(self):
         rate = rospy.Rate(10)
-        while not rospy.is_shutdown() and self.get_stop_flag():
+        while not rospy.is_shutdown() and not self.get_stop_flag():
             self.ros_map.header.stamp = rospy.Time.now()
             self.ros_map.header.frame_id = "map"    #TODO check if this is correct
             self.publisher.publish(self.ros_map)
@@ -92,7 +95,8 @@ class MapPublisher():
 
 
     def decode(self, map_encoded):
-        return (map_encoded - 1).tolist()
+        ros_data = (np.frombuffer(map_encoded, dtype='int8')-1).tolist()
+        return ros_data
 
 
     def set_stop_flag(self, value):
