@@ -17,9 +17,10 @@ class MapPoint():
 class NavigationController():
 
     def __init__(self, MapPub):
-        rospy.init_node('navigation_controller_node')
         self.client = actionlib.SimpleActionClient('move_base', MoveBaseAction)
-        self.client.wait_for_server()
+        #TODO run the client in a separate thread
+        #TODO this blocks untill movebase (which contains a ros action server) starts so it should be in a separate thread
+        #self.client.wait_for_server()
         # Position(3.500, -0.344, 0.000), Orientation(0.000, 0.000, -0.827, 0.562) 
         self.goal = Pose(Point(3.500, -0.344, 0.000), Quaternion(0.000, 0.000, -0.827, 0.562))
         self.map_info = MapPub
@@ -52,10 +53,11 @@ class NavigationController():
         self.send_goal()
     
     def start_nav(self, dest_type, dest):
-        if dest_type == 'pose':
-            self.go_to_map_goal(dest)
-        elif dest_type == 'gps':
-            self.got_to_gps(dest)
+        print dest_type, dest
+#        if dest_type == 'pose':
+#            self.go_to_map_goal(dest)
+#        elif dest_type == 'gps':
+#            self.got_to_gps(dest)
             
 
 
