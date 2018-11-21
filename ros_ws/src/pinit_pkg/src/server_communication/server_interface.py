@@ -7,7 +7,7 @@ from proto.ros import ros_pb2_grpc
 from proto.ros import ros_pb2
 
 from server_communication.server_mapping_handler import ServerMappingHandler
-from server_communication.server_navigation_handler import ServerNavHandler
+from server_communication.server_navigation_handler import ServerNavigationHandler
 
 import rospy
 
@@ -23,13 +23,14 @@ class ServerHandler():
         self.robot_name = "nemo"
         self.node_name = "robot_grpc_server_handler"
         self.max_message_length = 1024 * 1024 * 10
-        self.server_address = '10.40.33.186:50052'
+        #self.server_address = '10.40.33.186:50052'
+        self.server_address = 'localhost:50052'
         self.init_node()
 
-        self.robot_manager = RobotStateManager.create()
+        self.robot_manager = RobotStateManager.create(self.server_address, self.robot_name)
         self.robot_manager.go_to(self.robot_manager.States.IDLE)
         self.mapping_hanlder = ServerMappingHandler(self.robot_manager)
-        self.navigation_handler = ServerNavHandler(self.robot_manager)
+        self.navigation_handler = ServerNavigationHandler(self.robot_manager)
 
         self.main_loop()
 
