@@ -2,7 +2,6 @@ import UIKit
 
 class RobotRequestView : UIView, PinitViewProtocol {
 
-    
     public var getGpsCoordinatesButton: UIButton
     
     init() {
@@ -18,15 +17,19 @@ class RobotRequestView : UIView, PinitViewProtocol {
     
     func updateView() {
         
-        getGpsCoordinatesButton.setTitle("Get GPS Coordinates", for: .normal)
-        getGpsCoordinatesButton.backgroundColor = .white
-        getGpsCoordinatesButton.setTitleColor(.black, for: .normal)
         
+        getGpsCoordinatesButton.setTitle("Request Robot", for: .normal)
+        getGpsCoordinatesButton.backgroundColor = PinitColors.gray
+        getGpsCoordinatesButton.setTitleColor(.white, for: .normal)
+        getGpsCoordinatesButton.titleLabel?.font = UIFont(name: "Avenir", size: 14.0)
+                        
         getGpsCoordinatesButton = getGpsCoordinatesButton
             .addCenterXConstraint(relativeView: self)
             .addCenterYConstraint(relativeView: self)
-            .addWidthConstraint(relativeView: self, multipler: 0.8)
-            .addHeightConstraint(relativeView: self, multipler: 0.1)
+            .addWidthConstraint(relativeView: self, multipler: 0.5)
+            .setEqualConstraint(selfAttribute: .height,
+                                relativeView: getGpsCoordinatesButton,
+                                relativeAttribute: .width)
     }
     
     

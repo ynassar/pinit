@@ -4,14 +4,11 @@ class ProfileView : UIView, PinitViewProtocol {
     
     public var logoutButton: UIButton
     
-//    public var profileInfoLabel
-    
     init() {
         logoutButton = UIButton(frame: CGRect.zero)
         super.init(frame: CGRect.zero)
         self.addSubview(logoutButton)
     }
-    
     
     public func updateView() {
         logoutButton.setTitle("Logout", for: .normal)
@@ -25,6 +22,7 @@ class ProfileView : UIView, PinitViewProtocol {
         logoutButton.layer.cornerRadius = 10
         logoutButton.titleLabel?.font = logoutButton.titleLabel?.font
             .withSize(PinitConstants.authenticationFontSize)
+
     }
     
     required init?(coder aDecoder: NSCoder) {
