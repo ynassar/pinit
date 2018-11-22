@@ -1,42 +1,25 @@
 import UIKit
 
-class ProfileView : UIView, PinitViewProtocol {
-    
-    public var logoutButton: UIButton
+class ProfileInfoView: UIView, PinitViewProtocol {
     
     public var closeButton: UIButton!
     
     public var usernameLabel: UILabel!
     
     init() {
-        logoutButton = UIButton(frame: CGRect.zero)
         closeButton = UIButton(frame: CGRect.zero)
         usernameLabel = UILabel(frame: CGRect.zero)
         super.init(frame: CGRect.zero)
-        self.addSubview(logoutButton)
         self.addSubview(usernameLabel)
         self.addSubview(closeButton)
+
     }
     
-    public func updateView() {
-        logoutButton.setTitle("Logout", for: .normal)
-        logoutButton.backgroundColor = .white
-        logoutButton.setTitleColor(.black, for: .normal)
-        
+    func updateView() {
         closeButton.setImage(UIImage(named: "closeIconWhite"), for: .normal)
         
         let spacing = self.frame.size.width * 0.05
-
-        logoutButton = logoutButton
-            .addCenterXConstraint(relativeView: self)
-            .addCenterYConstraint(relativeView: self)
-            .addWidthConstraint(relativeView: self, multipler: 0.8)
-            .addHeightConstraint(relativeView: self, multipler: 0.05)
         
-        logoutButton.layer.cornerRadius = 10
-        logoutButton.titleLabel?.font = logoutButton.titleLabel?.font
-            .withSize(PinitConstants.authenticationFontSize)
-
         closeButton = closeButton
             .addWidthConstraint(relativeView: self, multipler: 0.1)
             .setEqualConstraint(selfAttribute: .height,
@@ -50,7 +33,6 @@ class ProfileView : UIView, PinitViewProtocol {
                                        relativeView: self,
                                        relativeAttribute: .right,
                                        constant: -spacing)
-
     }
     
     public func addGradiant() {
@@ -61,7 +43,6 @@ class ProfileView : UIView, PinitViewProtocol {
         gradiantLayer.colors = [PinitColors.yellow.cgColor,
                                 PinitColors.red.cgColor]
         self.layer.insertSublayer(gradiantLayer, at: 0)
-
     }
     
     required init?(coder aDecoder: NSCoder) {
