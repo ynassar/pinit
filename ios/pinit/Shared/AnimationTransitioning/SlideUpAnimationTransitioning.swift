@@ -14,7 +14,6 @@ class SlideUpAnimationTransitioning : NSObject, UIViewControllerAnimatedTransiti
     }
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
-        print("animation slide up started")
         guard
             let toViewController = transitionContext.viewController(forKey: .to),
             let fromViewController = transitionContext.viewController(forKey: .from)
@@ -25,10 +24,6 @@ class SlideUpAnimationTransitioning : NSObject, UIViewControllerAnimatedTransiti
         let finalFrameForViewController = transitionContext.finalFrame(for: toViewController)
         let containerView = transitionContext.containerView
         let bounds = UIScreen.main.bounds
-        
-        print("slide up", fromViewController.view.bounds)
-        print("final frame", finalFrameForViewController)
-
         
         if operation == .push {
             toViewController.view.frame = finalFrameForViewController.offsetBy(

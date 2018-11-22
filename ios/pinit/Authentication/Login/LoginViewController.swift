@@ -103,7 +103,7 @@ class LoginViewController : PinitViewController, LoginServerDelegate , CAAnimati
             let pinitOwnerViewController = PinitOwnerViewController()
             self.present(pinitOwnerViewController, animated: true, completion: nil)
         } else {
-            let pinitUserViewController = PinitUserViewController()
+            let pinitUserViewController = UINavigationController.init(rootViewController: PinitUserViewController())
             self.present(pinitUserViewController, animated: true, completion: nil)
         }
     }
@@ -122,10 +122,7 @@ class LoginViewController : PinitViewController, LoginServerDelegate , CAAnimati
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        loginView.loginButton.addGradiant(colors:[PinitColors.yellow.cgColor,
-                                                  PinitColors.red.cgColor,
-                                                  PinitColors.blue.cgColor,
-                                                  PinitColors.green.cgColor])
+        loginView.loginButton.addGradiant(colors:PinitColors.gradiantColorsList)
     }
     
 }

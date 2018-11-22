@@ -1,21 +1,33 @@
 import UIKit
 import CoreLocation
 
-class RobotRequestViewController : TabBarNavigationController, CLLocationManagerDelegate {
+class RobotRequestViewController : PinitSideMenuNavigationController, CLLocationManagerDelegate {
     
     private var robotRequestView: RobotRequestView!
     
     private var locationManager: CLLocationManager!
     
+    private var robotRequestServer: RobotRequestServer!
+    
     override func viewDidLoad() {
         robotRequestView = RobotRequestView()
         locationManager = CLLocationManager()
+        robotRequestServer = RobotRequestServer()
         self.controllerViews.append(robotRequestView)
         super.viewDidLoad()
         self.view.addSubview(robotRequestView)
         
+        robotRequestServer.delegate = self
+        
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
+        
+        let profileMenuButton = UIButton(frame: CGRect.zero)
+        profileMenuButton.setImage(UIImage(named: "menuIcon"), for: .normal)
+
+        self.navigationController?.navigationBar.topItem?.leftBarButtonItems = [
+            UIBarButtonItem(customView: profileMenuButton)
+        ]
 
         robotRequestView = robotRequestView
             .addCenterYConstraint(relativeView: self.view)
@@ -26,20 +38,23 @@ class RobotRequestViewController : TabBarNavigationController, CLLocationManager
         robotRequestView.getGpsCoordinatesButton.addTarget(
             self,
             action: #selector(self.getGpsCoordinatesButtonClick),
-            for: .touchUpInside)
+            for: .touchDown)
+
     }
     
     @objc private func getGpsCoordinatesButtonClick() {
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.delegate = self
         locationManager.startUpdatingLocation()
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.first {
-//            print("Found user's location: \(location)")
+            locationManager.stopUpdatingLocation()
+            locationManager.delegate = nil
+            robotRequestServer.requestRobotToLocation(gpsCoordinates: location)
             print("Longtitude: \(location.coordinate.longitude)")
             print("Latitude: \(location.coordinate.latitude)")
-            locationManager.stopUpdatingLocation()
         }
     }
     
@@ -58,5 +73,12 @@ class RobotRequestViewController : TabBarNavigationController, CLLocationManager
         robotRequestView.layer.insertSublayer(gradiantLayer, at: 0)
     }
     
+    func didRequestSuccessfully() {
+        print("Success")
+    }
+    
+    func didFailToRequestRobot(erroMessage: String) {
+        print("Eroorrr")
+    }
     
 }
