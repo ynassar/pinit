@@ -22,10 +22,7 @@ class NavigationController():
         self.client = actionlib.SimpleActionClient('move_base', MoveBaseAction)
         #TODO run the client in a separate thread
         #TODO this blocks untill movebase (which contains a ros action server) starts so it should be in a separate thread
-        # self.client.wait_for_server()
-        self.thread_exec = threading.Thread(target=self.client.wait_for_server())
-        self.thread_exec.start()
-        self.thread_exec.join()
+        
         # Position(3.500, -0.344, 0.000), Orientation(0.000, 0.000, -0.827, 0.562) 
         self.goal = Pose(Point(3.500, -0.344, 0.000), Quaternion(0.000, 0.000, -0.827, 0.562))
         self.map_info = MapPub
@@ -44,6 +41,7 @@ class NavigationController():
         goal.target_pose.header.frame_id = "map"
         goal.target_pose.header.stamp = rospy.Time.now()
         goal.target_pose.pose = self.goal
+        self.client.wait_for_server()
         self.client.send_goal(goal, self.done_cb, self.active_cb, self.feedback_cb)
     
     def got_to_gps(self, dest):
