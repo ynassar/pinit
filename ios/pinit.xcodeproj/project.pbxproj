@@ -8,20 +8,19 @@
 
 /* Begin PBXBuildFile section */
 		372022702167AF5B00602B53 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3720226F2167AF5B00602B53 /* CustomTextField.swift */; };
-
 		3721401B21A5A05900A5A880 /* SideMenuInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721401A21A5A05900A5A880 /* SideMenuInteractor.swift */; };
 		3721401D21A5DD9000A5A880 /* SideMenuDismissAnimationTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721401C21A5DD9000A5A880 /* SideMenuDismissAnimationTransitioning.swift */; };
 		3721402021A6096900A5A880 /* HomepageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721401F21A6096900A5A880 /* HomepageViewController.swift */; };
 		3721402221A6097400A5A880 /* HomepageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721402121A6097400A5A880 /* HomepageView.swift */; };
 		3721402421A6157200A5A880 /* UserDefaultsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721402321A6157200A5A880 /* UserDefaultsHelper.swift */; };
-		3721402621A6172700A5A880 /* ProfileInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721402521A6172700A5A880 /* ProfileInfoView.swift */; };
-		3721B1C5219837590083C0DD /* account_management.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721B1BD219837590083C0DD /* account_management.grpc.swift */; };
-		3721B1C6219837590083C0DD /* account_management.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721B1BE219837590083C0DD /* account_management.pb.swift */; };
-		3721B1C7219837590083C0DD /* ros.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721B1C0219837590083C0DD /* ros.grpc.swift */; };
-		3721B1C8219837590083C0DD /* ros.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721B1C1219837590083C0DD /* ros.pb.swift */; };
-		3721B1C9219837590083C0DD /* login.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721B1C3219837590083C0DD /* login.grpc.swift */; };
-		3721B1CA219837590083C0DD /* login.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721B1C4219837590083C0DD /* login.pb.swift */; };
-
+		3721404521A621D200A5A880 /* account_management.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721403D21A621D200A5A880 /* account_management.grpc.swift */; };
+		3721404621A621D200A5A880 /* account_management.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721403E21A621D200A5A880 /* account_management.pb.swift */; };
+		3721404721A621D200A5A880 /* ros.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721404021A621D200A5A880 /* ros.grpc.swift */; };
+		3721404821A621D200A5A880 /* ros.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721404121A621D200A5A880 /* ros.pb.swift */; };
+		3721404921A621D200A5A880 /* login.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721404321A621D200A5A880 /* login.grpc.swift */; };
+		3721404A21A621D200A5A880 /* login.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721404421A621D200A5A880 /* login.pb.swift */; };
+		3721404D21A622A000A5A880 /* RobotRequestServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721404B21A6229F00A5A880 /* RobotRequestServer.swift */; };
+		3721404E21A622A000A5A880 /* RobotRequestServerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721404C21A622A000A5A880 /* RobotRequestServerDelegate.swift */; };
 		3721B1D02199C01E0083C0DD /* SlideUpAnimationTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721B1CF2199C01E0083C0DD /* SlideUpAnimationTransitioning.swift */; };
 		3721B1D22199C18C0083C0DD /* SlideDownAnimationTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721B1D12199C18C0083C0DD /* SlideDownAnimationTransitioning.swift */; };
 		372216C4219EFE51009C8103 /* PinitNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372216C3219EFE51009C8103 /* PinitNavigationController.swift */; };
@@ -29,12 +28,10 @@
 		372216C9219EFEF3009C8103 /* PinitViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372216C8219EFEF3009C8103 /* PinitViewProtocol.swift */; };
 		372216CD219F152F009C8103 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372216CC219F152F009C8103 /* ProfileView.swift */; };
 		372216D0219F251B009C8103 /* PinitUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372216CF219F251B009C8103 /* PinitUserViewController.swift */; };
-		372216D3219F2554009C8103 /* RobotRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372216D2219F2554009C8103 /* RobotRequestViewController.swift */; };
 		372216D5219F255D009C8103 /* RobotRequestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372216D4219F255D009C8103 /* RobotRequestView.swift */; };
 		372216D7219F4731009C8103 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372216D6219F4731009C8103 /* Profile.swift */; };
 		372CEF5D21A1BCC700791DF4 /* SettingsBundleHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CEF5C21A1BCC700791DF4 /* SettingsBundleHelper.swift */; };
 		372CEF5F21A307A000791DF4 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 372CEF5E21A307A000791DF4 /* Settings.bundle */; };
-
 		372CEF6821A3409300791DF4 /* MappingServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CEF6321A3409300791DF4 /* MappingServer.swift */; };
 		372CEF6921A3409300791DF4 /* MappingControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CEF6421A3409300791DF4 /* MappingControlsView.swift */; };
 		372CEF6A21A3409300791DF4 /* MappingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CEF6521A3409300791DF4 /* MappingViewController.swift */; };
@@ -42,7 +39,6 @@
 		372CEF6C21A3409300791DF4 /* MappingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CEF6721A3409300791DF4 /* MappingView.swift */; };
 		372CEF6E21A354EA00791DF4 /* PinitSideMenuNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CEF6D21A354EA00791DF4 /* PinitSideMenuNavigationController.swift */; };
 		372CEF8621A48D1900791DF4 /* SideMenuShowAnimationTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CEF8521A48D1900791DF4 /* SideMenuShowAnimationTransitioning.swift */; };
-
 		37352738217A217F00602046 /* PinitOwnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37352736217A217F00602046 /* PinitOwnerViewController.swift */; };
 		3735273B217A218700602046 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3735273A217A218700602046 /* ProfileViewController.swift */; };
 		373639CC217248A300EBD383 /* BoringSSL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 373C1282216F9ED4003D7CBB /* BoringSSL.framework */; };
@@ -159,13 +155,19 @@
 
 /* Begin PBXFileReference section */
 		3720226F2167AF5B00602B53 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
-
 		3721401A21A5A05900A5A880 /* SideMenuInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuInteractor.swift; sourceTree = "<group>"; };
 		3721401C21A5DD9000A5A880 /* SideMenuDismissAnimationTransitioning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuDismissAnimationTransitioning.swift; sourceTree = "<group>"; };
 		3721401F21A6096900A5A880 /* HomepageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomepageViewController.swift; sourceTree = "<group>"; };
 		3721402121A6097400A5A880 /* HomepageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomepageView.swift; sourceTree = "<group>"; };
 		3721402321A6157200A5A880 /* UserDefaultsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsHelper.swift; sourceTree = "<group>"; };
-		3721402521A6172700A5A880 /* ProfileInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInfoView.swift; sourceTree = "<group>"; };
+		3721403D21A621D200A5A880 /* account_management.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = account_management.grpc.swift; sourceTree = "<group>"; };
+		3721403E21A621D200A5A880 /* account_management.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = account_management.pb.swift; sourceTree = "<group>"; };
+		3721404021A621D200A5A880 /* ros.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ros.grpc.swift; sourceTree = "<group>"; };
+		3721404121A621D200A5A880 /* ros.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ros.pb.swift; sourceTree = "<group>"; };
+		3721404321A621D200A5A880 /* login.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = login.grpc.swift; sourceTree = "<group>"; };
+		3721404421A621D200A5A880 /* login.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = login.pb.swift; sourceTree = "<group>"; };
+		3721404B21A6229F00A5A880 /* RobotRequestServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RobotRequestServer.swift; sourceTree = "<group>"; };
+		3721404C21A622A000A5A880 /* RobotRequestServerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RobotRequestServerDelegate.swift; sourceTree = "<group>"; };
 		3721B1BD219837590083C0DD /* account_management.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = account_management.grpc.swift; sourceTree = "<group>"; };
 		3721B1BE219837590083C0DD /* account_management.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = account_management.pb.swift; sourceTree = "<group>"; };
 		3721B1C0219837590083C0DD /* ros.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ros.grpc.swift; sourceTree = "<group>"; };
@@ -179,12 +181,10 @@
 		372216C8219EFEF3009C8103 /* PinitViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinitViewProtocol.swift; sourceTree = "<group>"; };
 		372216CC219F152F009C8103 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		372216CF219F251B009C8103 /* PinitUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinitUserViewController.swift; sourceTree = "<group>"; };
-		372216D2219F2554009C8103 /* RobotRequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RobotRequestViewController.swift; sourceTree = "<group>"; };
 		372216D4219F255D009C8103 /* RobotRequestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RobotRequestView.swift; sourceTree = "<group>"; };
 		372216D6219F4731009C8103 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		372CEF5C21A1BCC700791DF4 /* SettingsBundleHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsBundleHelper.swift; sourceTree = "<group>"; };
 		372CEF5E21A307A000791DF4 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
-
 		372CEF6321A3409300791DF4 /* MappingServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MappingServer.swift; sourceTree = "<group>"; };
 		372CEF6421A3409300791DF4 /* MappingControlsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MappingControlsView.swift; sourceTree = "<group>"; };
 		372CEF6521A3409300791DF4 /* MappingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MappingViewController.swift; sourceTree = "<group>"; };
@@ -192,7 +192,6 @@
 		372CEF6721A3409300791DF4 /* MappingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MappingView.swift; sourceTree = "<group>"; };
 		372CEF6D21A354EA00791DF4 /* PinitSideMenuNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinitSideMenuNavigationController.swift; sourceTree = "<group>"; };
 		372CEF8521A48D1900791DF4 /* SideMenuShowAnimationTransitioning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuShowAnimationTransitioning.swift; sourceTree = "<group>"; };
-
 		37352736217A217F00602046 /* PinitOwnerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinitOwnerViewController.swift; sourceTree = "<group>"; };
 		3735273A217A218700602046 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		37363A0A21761C3300EBD383 /* UIButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
@@ -243,8 +242,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-
-3721401E21A6095A00A5A880 /* Homepage */ = {
+		3721401E21A6095A00A5A880 /* Homepage */ = {
 			isa = PBXGroup;
 			children = (
 				3721401F21A6096900A5A880 /* HomepageViewController.swift */,
@@ -253,39 +251,52 @@
 			path = Homepage;
 			sourceTree = "<group>";
 		};
-		3721B1BB219837590083C0DD /* genfiles */ = {
+		3721402A21A6214B00A5A880 /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
-				3721B1BC219837590083C0DD /* account_management */,
-				3721B1BF219837590083C0DD /* ros */,
-				3721B1C2219837590083C0DD /* login */,
+				3721B1C4219837590083C0DD /* login.pb.swift */,
+				3721B1C1219837590083C0DD /* ros.pb.swift */,
+				3721B1BD219837590083C0DD /* account_management.grpc.swift */,
+				3721B1C0219837590083C0DD /* ros.grpc.swift */,
+				3721B1BE219837590083C0DD /* account_management.pb.swift */,
+				3721B1C3219837590083C0DD /* login.grpc.swift */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		3721403B21A621D200A5A880 /* genfiles */ = {
+			isa = PBXGroup;
+			children = (
+				3721403C21A621D200A5A880 /* account_management */,
+				3721403F21A621D200A5A880 /* ros */,
+				3721404221A621D200A5A880 /* login */,
 			);
 			path = genfiles;
 			sourceTree = "<group>";
 		};
-		3721B1BC219837590083C0DD /* account_management */ = {
+		3721403C21A621D200A5A880 /* account_management */ = {
 			isa = PBXGroup;
 			children = (
-				3721B1BD219837590083C0DD /* account_management.grpc.swift */,
-				3721B1BE219837590083C0DD /* account_management.pb.swift */,
+				3721403D21A621D200A5A880 /* account_management.grpc.swift */,
+				3721403E21A621D200A5A880 /* account_management.pb.swift */,
 			);
 			path = account_management;
 			sourceTree = "<group>";
 		};
-		3721B1BF219837590083C0DD /* ros */ = {
+		3721403F21A621D200A5A880 /* ros */ = {
 			isa = PBXGroup;
 			children = (
-				3721B1C0219837590083C0DD /* ros.grpc.swift */,
-				3721B1C1219837590083C0DD /* ros.pb.swift */,
+				3721404021A621D200A5A880 /* ros.grpc.swift */,
+				3721404121A621D200A5A880 /* ros.pb.swift */,
 			);
 			path = ros;
 			sourceTree = "<group>";
 		};
-		3721B1C2219837590083C0DD /* login */ = {
+		3721404221A621D200A5A880 /* login */ = {
 			isa = PBXGroup;
 			children = (
-				3721B1C3219837590083C0DD /* login.grpc.swift */,
-				3721B1C4219837590083C0DD /* login.pb.swift */,
+				3721404321A621D200A5A880 /* login.grpc.swift */,
+				3721404421A621D200A5A880 /* login.pb.swift */,
 			);
 			path = login;
 			sourceTree = "<group>";
@@ -332,10 +343,9 @@
 		372216D1219F2548009C8103 /* RobotRequest */ = {
 			isa = PBXGroup;
 			children = (
-				372216D2219F2554009C8103 /* RobotRequestViewController.swift */,
+				3721404B21A6229F00A5A880 /* RobotRequestServer.swift */,
+				3721404C21A622A000A5A880 /* RobotRequestServerDelegate.swift */,
 				372216D4219F255D009C8103 /* RobotRequestView.swift */,
-				372CEF8021A4457400791DF4 /* RobotRequestServer.swift */,
-				372CEF8221A4458000791DF4 /* RobotRequestServerDelegate.swift */,
 			);
 			path = RobotRequest;
 			sourceTree = "<group>";
@@ -369,7 +379,6 @@
 				3735273A217A218700602046 /* ProfileViewController.swift */,
 				372216CC219F152F009C8103 /* ProfileView.swift */,
 				372216D6219F4731009C8103 /* Profile.swift */,
-				3721402521A6172700A5A880 /* ProfileInfoView.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -454,12 +463,13 @@
 		37EEA7DA215B962400BF3839 = {
 			isa = PBXGroup;
 			children = (
-				372CEF7021A43FDB00791DF4 /* genfiles */,
+				3721403B21A621D200A5A880 /* genfiles */,
 				373C127A216F9ED3003D7CBB /* SwiftGRPC-Carthage.xcodeproj */,
 				37EEA7E5215B962500BF3839 /* pinit */,
 				37EEA7FA215B962800BF3839 /* pinitTests */,
 				37EEA7E4215B962500BF3839 /* Products */,
 				373C1234216E8A63003D7CBB /* Frameworks */,
+				3721402A21A6214B00A5A880 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -641,54 +651,38 @@
 			files = (
 				37363A1721761F1100EBD383 /* RegisterView.swift in Sources */,
 				3775A06B21650B5D00ABEF54 /* Constraints.swift in Sources */,
-
-				3721B1CA219837590083C0DD /* login.pb.swift in Sources */,
 				372216C6219EFE63009C8103 /* PinitViewController.swift in Sources */,
 				37CBDD062194B92D0092C8E1 /* AddLocationViewController.swift in Sources */,
 				372216CD219F152F009C8103 /* ProfileView.swift in Sources */,
-				3721B1C8219837590083C0DD /* ros.pb.swift in Sources */,
 				3721402021A6096900A5A880 /* HomepageViewController.swift in Sources */,
-
 				37363A1E21761F2200EBD383 /* LoginServerDelegate.swift in Sources */,
-				372CEF7F21A43FDB00791DF4 /* login.pb.swift in Sources */,
 				37363A1B21761F1100EBD383 /* LoginView.swift in Sources */,
+				3721404E21A622A000A5A880 /* RobotRequestServerDelegate.swift in Sources */,
 				372CEF6E21A354EA00791DF4 /* PinitSideMenuNavigationController.swift in Sources */,
 				372CEF6B21A3409300791DF4 /* MappingServerDelegate.swift in Sources */,
 				372CEF6A21A3409300791DF4 /* MappingViewController.swift in Sources */,
 				372CEF6C21A3409300791DF4 /* MappingView.swift in Sources */,
 				37363A1821761F1100EBD383 /* RegisterServer.swift in Sources */,
-
-				3721B1C5219837590083C0DD /* account_management.grpc.swift in Sources */,
-
-				372216D3219F2554009C8103 /* RobotRequestViewController.swift in Sources */,
-				372CEF7C21A43FDB00791DF4 /* ros.grpc.swift in Sources */,
+				3721404521A621D200A5A880 /* account_management.grpc.swift in Sources */,
 				37363A1621761F1100EBD383 /* RegisterServerDelegate.swift in Sources */,
+				3721404D21A622A000A5A880 /* RobotRequestServer.swift in Sources */,
+				3721404921A621D200A5A880 /* login.grpc.swift in Sources */,
 				37CBDD072194B92D0092C8E1 /* AddLocationView.swift in Sources */,
 				372022702167AF5B00602B53 /* CustomTextField.swift in Sources */,
 				372CEF6921A3409300791DF4 /* MappingControlsView.swift in Sources */,
 				3721402421A6157200A5A880 /* UserDefaultsHelper.swift in Sources */,
+				3721404721A621D200A5A880 /* ros.grpc.swift in Sources */,
 				37363A2021761F3400EBD383 /* LoginServer.swift in Sources */,
-
-				37CBDCD9219469FE0092C8E1 /* MappingServerDelegate.swift in Sources */,
-				372CEF7E21A43FDB00791DF4 /* login.grpc.swift in Sources */,
-				37CBDCDA219469FE0092C8E1 /* MappingServer.swift in Sources */,
-
-				3721B1C7219837590083C0DD /* ros.grpc.swift in Sources */,
-
 				37CBDD042194B92D0092C8E1 /* AddLocationServerDelegate.swift in Sources */,
-				3721402621A6172700A5A880 /* ProfileInfoView.swift in Sources */,
 				3721B1D02199C01E0083C0DD /* SlideUpAnimationTransitioning.swift in Sources */,
+				3721404821A621D200A5A880 /* ros.pb.swift in Sources */,
 				37CBDD052194B92D0092C8E1 /* AddLocationServer.swift in Sources */,
 				372216D7219F4731009C8103 /* Profile.swift in Sources */,
 				372216C9219EFEF3009C8103 /* PinitViewProtocol.swift in Sources */,
-				372CEF8321A4458000791DF4 /* RobotRequestServerDelegate.swift in Sources */,
+				3721404621A621D200A5A880 /* account_management.pb.swift in Sources */,
 				37EEA7E7215B962500BF3839 /* AppDelegate.swift in Sources */,
-
-				372CEF8121A4457400791DF4 /* RobotRequestServer.swift in Sources */,
-        
 				372CEF6821A3409300791DF4 /* MappingServer.swift in Sources */,
 				3721402221A6097400A5A880 /* HomepageView.swift in Sources */,
-
 				372CEF5D21A1BCC700791DF4 /* SettingsBundleHelper.swift in Sources */,
 				37352738217A217F00602046 /* PinitOwnerViewController.swift in Sources */,
 				3721401D21A5DD9000A5A880 /* SideMenuDismissAnimationTransitioning.swift in Sources */,
@@ -701,14 +695,10 @@
 				3735273B217A218700602046 /* ProfileViewController.swift in Sources */,
 				372216D5219F255D009C8103 /* RobotRequestView.swift in Sources */,
 				372CEF8621A48D1900791DF4 /* SideMenuShowAnimationTransitioning.swift in Sources */,
+				3721404A21A621D200A5A880 /* login.pb.swift in Sources */,
 				372216D0219F251B009C8103 /* PinitUserViewController.swift in Sources */,
-
 				3721401B21A5A05900A5A880 /* SideMenuInteractor.swift in Sources */,
-				3721B1C6219837590083C0DD /* account_management.pb.swift in Sources */,
-				3721B1C9219837590083C0DD /* login.grpc.swift in Sources */,
-
 				376985B9216834DE006FF550 /* Constants.swift in Sources */,
-				372CEF7B21A43FDB00791DF4 /* account_management.pb.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
