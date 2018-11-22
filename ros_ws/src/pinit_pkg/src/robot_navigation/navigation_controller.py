@@ -46,6 +46,7 @@ class NavigationController():
     
     def got_to_gps(self, dest):
         origin = self.map_info.get_origin()
+        origin = gps_utils.grpc_to_ros(origin)
         distance, theta = gps_utils.get_vector(origin, dest)
         dest_x, dest_y = gps_utils.convert_gps(distance, theta)
         self.goal = Pose(Point(dest_x, dest_y, 0.000), Quaternion(0, 0, 0, 0))
@@ -57,6 +58,7 @@ class NavigationController():
     
     def start_nav(self, dest_type, dest):
         # print dest_type, dest
+        print dest_type, dest
         # TODO comment below for testing 
         if dest_type == 'pose':
            self.go_to_map_goal(dest)

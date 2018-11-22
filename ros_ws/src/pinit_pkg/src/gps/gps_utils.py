@@ -16,6 +16,13 @@ class GpsPoint():
         )
     
 
+def grpc_to_ros(point):
+    lat = point.latitude
+    long = point.longitude
+
+    return GpsPoint(long, lat)
+
+
 def coordinates_to_rad(gps_point):
     rad_long = np.radians(gps_point.long)
     rad_lat = np.radians(gps_point.lat)
