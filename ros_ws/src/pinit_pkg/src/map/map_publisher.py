@@ -77,12 +77,14 @@ class MapPublisher():
 
 
     def publish_loop(self):
+        rate = rospy.Rate(5)
         while not rospy.is_shutdown() and not self.get_stop_flag():
             self.ros_map.header.stamp = rospy.Time.now()
             self.ros_map.info.map_load_time = rospy.Time.now()
             self.ros_map.header.frame_id = "map"    #TODO check if this is correct
             self.map_publisher.publish(self.ros_map)
             self.metadata_publisher.publish(self.ros_map.info)
+            rate.sleep()
 
 
     def grpc_map_to_rosmap(self, grpc_map):

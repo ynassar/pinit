@@ -54,7 +54,7 @@ class NavigationController():
         dest = gps_utils.coordinates_to_rad(dest)
         print "gps origin", origin
         distance, theta = gps_utils.get_vector(origin, dest)
-        print "gps shit: ", distance, theta
+        print "gps distance, theta: ", distance, theta
         dest_x, dest_y = gps_utils.convert_gps(distance, theta)
         print "destination: ", dest_x, dest_y
         self.goal = Pose(Point(dest_x, dest_y, 0.000), Quaternion(0, 0, 0, 1))
