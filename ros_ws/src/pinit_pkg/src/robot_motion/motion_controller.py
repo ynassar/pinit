@@ -27,7 +27,6 @@ class MotionController():
         self.vel_linear = 0
         self.vel_angular = 0
         self.robot_direction = self.RobotDirection.STOP
-        self.direction_lock = None
         self.vel_linear_range = (-0.5, 0.5)
         self.vel_angular_range = (-1.25, 1.25)
         self.acceleration_steps = 80
@@ -37,12 +36,13 @@ class MotionController():
         self.vel_angular_increment = (abs(self.vel_angular_range[0] -
                                           self.vel_angular_range[1]) /
                                       self.acceleration_steps)
-        self.thread_executor = None
         self.vel_pub = rospy.Publisher(self.topic_name,
                                        Twist,
                                        queue_size=10)
-
-        self.init_vel_loop()
+        self.thread_executor = None
+        self.direction_lock = threading.Lock()
+        self.stop_flag = False
+        self.stop_lock = threading.Lock()
 
 
     def init_node(self):
@@ -58,7 +58,21 @@ class MotionController():
         rospy.init_node(self.node_name, anonymous=True)
 
 
-    def init_vel_loop(self):
+    def stop(self):
+        self.stop_lock.acquire()
+        self.stop_flag = True
+        self.stop_lock.release()
+
+    
+    def get_stop_flag(self):
+        self.stop_lock.acquire()
+        flag = self.stop_flag
+        self.stop_lock.release()
+
+        return flag
+
+
+    def start(self):
         """Start a separate thread to publish velocities
 
         Args:
@@ -68,10 +82,14 @@ class MotionController():
             None
         """
 
+        if self.thread_executor is not None:
+            self.thread_executor.join()
+        self.stop_lock.acquire()
+        self.stop_flag = False
+        self.stop_lock.release()
         self.thread_executor = threading.Thread(target=self.vel_loop)
         self.thread_executor.start()
-        self.direction_lock = threading.Lock()
-        rospy.loginfo("velocity publisher loop init")
+        rospy.loginfo("velocity publisher loop start")
 
 
     def accelerate_linear(self, vel):
@@ -116,7 +134,7 @@ class MotionController():
             None
         """
 
-        while not rospy.is_shutdown():
+        while not self.get_stop_flag():
             rospy.sleep(0.01)
             linear = self.vel_linear
             angular = self.vel_angular
