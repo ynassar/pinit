@@ -45,6 +45,8 @@ class GPSCallibrtor():
             distance, angle = gps_utils.get_vector(self.gps_origin, current_coordinates)
 
             robot_pose = self.robot_pose_listener.get_pose()
+            while robot_pose is None:
+                robot_pose = self.robot_pose_listener.get_pose()
             robot_x = robot_pose.pose.position.x
             robot_y = robot_pose.pose.position.y
             robot_angle = np.arctan2(robot_y, robot_x)

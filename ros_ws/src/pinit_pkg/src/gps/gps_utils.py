@@ -31,6 +31,15 @@ def coordinates_to_rad(gps_point):
     return rad_gps_point
 
 
+def coordinates_to_deg(gps_point):
+    deg_long = np.degrees(gps_point.long)
+    deg_lat = np.degrees(gps_point.lat)
+    deg_gps_point = GpsPoint(long=deg_long, lat=deg_lat)
+
+    return deg_gps_point
+
+
+
 def rotate(px, py, theta):
     """ rotates a point around the origin by theta (counterclockwise) """
 

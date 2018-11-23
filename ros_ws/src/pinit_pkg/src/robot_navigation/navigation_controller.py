@@ -20,6 +20,7 @@ class NavigationController():
     def __init__(self, MapPub):
 
         self.client = actionlib.SimpleActionClient('move_base', MoveBaseAction)
+        self.state_manager = None
         #TODO run the client in a separate thread
         #TODO this blocks untill movebase (which contains a ros action server) starts so it should be in a separate thread
         
@@ -30,11 +31,13 @@ class NavigationController():
     def active_cb(self):
         rospy.loginfo("active cb")
 
-    def feedback_cb(self):
-        rospy.loginfo("feedback cb")
+    def feedback_cb(self, arg1):
+        #rospy.loginfo("feedback cb")
+        pass
 
-    def done_cb(self):
-         rospy.loginfo("done cb")
+    def done_cb(self, arg1, arg2):
+        #self.state_manager.go_to(self.state_manager.States.IDLE)
+        rospy.loginfo("done cb")
     
     def send_goal(self):
         goal = MoveBaseGoal()
@@ -44,16 +47,21 @@ class NavigationController():
         self.client.wait_for_server()
         self.client.send_goal(goal, self.done_cb, self.active_cb, self.feedback_cb)
     
-    def got_to_gps(self, dest):
+    def go_to_gps(self, dest):
         origin = self.map_info.get_origin()
         origin = gps_utils.grpc_to_ros(origin)
+        print "gps origin degrees", gps_utils.coordinates_to_deg(dest)
+        dest = gps_utils.coordinates_to_rad(dest)
+        print "gps origin", origin
         distance, theta = gps_utils.get_vector(origin, dest)
+        print "gps shit: ", distance, theta
         dest_x, dest_y = gps_utils.convert_gps(distance, theta)
-        self.goal = Pose(Point(dest_x, dest_y, 0.000), Quaternion(0, 0, 0, 0))
+        print "destination: ", dest_x, dest_y
+        self.goal = Pose(Point(dest_x, dest_y, 0.000), Quaternion(0, 0, 0, 1))
         self.send_goal() 
 
     def go_to_map_goal(self, dest):
-        self.goal = Pose(Point(dest.x, dest.y, 0.000), Quaternion(0, 0, 0, 0))
+        self.goal = Pose(Point(dest.x, dest.y, 0.000), Quaternion(0, 0, 0, 1))
         self.send_goal()
     
     def start_nav(self, dest_type, dest):
@@ -63,7 +71,7 @@ class NavigationController():
         if dest_type == 'pose':
            self.go_to_map_goal(dest)
         elif dest_type == 'gps':
-           self.got_to_gps(dest)
+           self.go_to_gps(dest)
             
 
 

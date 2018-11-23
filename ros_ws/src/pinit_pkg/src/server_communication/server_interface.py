@@ -23,14 +23,16 @@ class ServerHandler():
         self.robot_name = "nemo"
         self.node_name = "robot_grpc_server_handler"
         self.max_message_length = 1024 * 1024 * 10
-        #self.server_address = '10.40.33.186:50052'
-        self.server_address = 'localhost:50052'
+        self.server_address = '10.40.59.191:50052'
+        #self.server_address = 'localhost:50052'
         self.init_node()
 
         self.robot_manager = RobotStateManager.create(self.server_address, self.robot_name)
         self.robot_manager.go_to(self.robot_manager.States.IDLE)
         self.mapping_hanlder = ServerMappingHandler(self.robot_manager)
         self.navigation_handler = ServerNavigationHandler(self.robot_manager)
+        #TODO we need to fix this
+        #self.robot_manager.nav_controller = self.robot_manager
 
         self.main_loop()
 

@@ -117,11 +117,10 @@ class RobotStateManager():
 
 
     def idle_to_navigating_cb(self, *args):
-        #self.node_manager.start_movebase()
+        self.node_manager.start_movebase()
         self.map_publisher.fetch_remote_map()
         self.map_publisher.start()
-        self.nav_controller.start_nav(*args)
-
+        self.nav_controller.start_nav(*args) 
 
     def mapping_to_idle_cb(self, *args):
         self.map_streamer.finish()
