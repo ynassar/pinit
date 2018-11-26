@@ -92,7 +92,7 @@ class MapStreamer():
             gps_coordinates_msg.longitude = gps_origin.long
             gps_coordinates_msg.latitude = gps_origin.lat
 
-        delta = self.gps_callibrator.get_theta()
+        delta = 0
 
         grpc_raw_map = ros_pb2.RosToServerCommunication(
             raw_map=ros_pb2.RawMap(

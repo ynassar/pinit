@@ -32,7 +32,7 @@ class RobotStateManager():
         node_manager = NodeManager()
         pose_listener = PoseListenerFactory()
         pose_streamer = ServerPoseStreamerFactory(communication_queue, pose_listener)
-        gps_calibrator = gps_cal.GPSCallibrtor(pose_listener)
+        gps_calibrator = gps_cal.GPSCallibrtor()
         map_streamer = MapStreamer(communication_queue, gps_calibrator)
         motion_controller = MotionController()
         map_publisher = MapPublisher.create(server_address, robot_name)
