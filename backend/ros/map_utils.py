@@ -29,7 +29,9 @@ def UpdateMap(robot_name, raw_map, b64_map_image):
         set__height=raw_map.height,
         set__width=raw_map.width,
         set__origin=origin,
-        set__origin_angle_shift=raw_map.origin_angle_shift)
+        set__origin_angle_shift=raw_map.origin_angle_shift,
+        set__shift_x=raw_map.shift_x,
+        set__shift_y=raw_map.shift_y)
 
 
 def RawMapFromMapDocument(map):
@@ -40,4 +42,6 @@ def RawMapFromMapDocument(map):
                    width=map.width,
                    data=map.raw_map.encode('utf-8'),
                    origin_angle_shift=map.origin_angle_shift,
-                   origin=origin)
+                   origin=origin,
+                   shift_x=map.shift_x,
+                   shift_y=map.shift_y)

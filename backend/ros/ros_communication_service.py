@@ -137,3 +137,7 @@ class RosService(ros_pb2_grpc.RosServiceServicer):
         waypoint_protos = [request_utils.ConvertWaypointDocumentToProto(document)
                            for document in nearby_waypoints]
         return ros_pb2.WaypointList(waypoints=waypoint_protos)
+
+    def GetPose(self, request, context):
+        robot = robot_model.objects().get(robot_name=request.robot_name)
+        return ros_pb2.LocalMapPose(row=robot.row, column=robot.column, angle=robot.angle)
