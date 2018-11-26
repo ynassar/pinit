@@ -18,9 +18,8 @@ service RosService{
     rpc AddWaypoint(AddWaypointRequest) returns (AddWaypointResponse) {}
     // Adds a waypoint at the robot's current location.
 
-    rpc RequestRobotToLocation(RobotNavigationRequest) returns (WaypointList) {}
-    // Requests the nearest robot to the specified location and returns a list of
-    // waypoints corresponding to the nearest robot.
+    rpc GetNearbyWaypoints(GpsCoordinates) returns (WaypointList) {}
+    // Gets a list of the waypoints in the nearest map to the given coordinates.
 }
 
 message RobotNavigationRequest{
