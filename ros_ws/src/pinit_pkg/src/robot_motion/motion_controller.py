@@ -9,6 +9,8 @@ import rospy
 from geometry_msgs.msg import Twist
 from geometry_msgs.msg import Vector3
 
+from utils.ros_thread import SimpleThread
+
 class MotionController():
     """Handles the robot, iCreate, velocity"""
 
@@ -27,7 +29,6 @@ class MotionController():
         self.vel_linear = 0
         self.vel_angular = 0
         self.robot_direction = self.RobotDirection.STOP
-        self.direction_lock = None
         self.vel_linear_range = (-0.5, 0.5)
         self.vel_angular_range = (-1.25, 1.25)
         self.acceleration_steps = 80
@@ -37,12 +38,14 @@ class MotionController():
         self.vel_angular_increment = (abs(self.vel_angular_range[0] -
                                           self.vel_angular_range[1]) /
                                       self.acceleration_steps)
-        self.thread_executor = None
         self.vel_pub = rospy.Publisher(self.topic_name,
                                        Twist,
                                        queue_size=10)
 
-        self.init_vel_loop()
+        self.direction_lock = threading.Lock()
+        self.loop_thread = SimpleThread()
+        self.loop_thread.set_loop_function(self.vel_loop)
+        self.loop_thread.set_rate(120)
 
 
     def init_node(self):
@@ -58,7 +61,11 @@ class MotionController():
         rospy.init_node(self.node_name, anonymous=True)
 
 
-    def init_vel_loop(self):
+    def stop(self):
+        self.loop_thread.stop()
+
+
+    def start(self):
         """Start a separate thread to publish velocities
 
         Args:
@@ -68,10 +75,8 @@ class MotionController():
             None
         """
 
-        self.thread_executor = threading.Thread(target=self.vel_loop)
-        self.thread_executor.start()
-        self.direction_lock = threading.Lock()
-        rospy.loginfo("velocity publisher loop init")
+        self.loop_thread.start()
+        rospy.loginfo("velocity publisher loop start")
 
 
     def accelerate_linear(self, vel):
@@ -116,39 +121,37 @@ class MotionController():
             None
         """
 
-        while not rospy.is_shutdown():
-            rospy.sleep(0.01)
-            linear = self.vel_linear
-            angular = self.vel_angular
-            self.direction_lock.acquire()
-            direction = self.robot_direction
-            self.direction_lock.release()
-            if direction == self.RobotDirection.FORWARD:
-                linear = self.accelerate_linear(linear)
-            elif direction == self.RobotDirection.BACKWARD:
+        linear = self.vel_linear
+        angular = self.vel_angular
+        self.direction_lock.acquire()
+        direction = self.robot_direction
+        self.direction_lock.release()
+        if direction == self.RobotDirection.FORWARD:
+            linear = self.accelerate_linear(linear)
+        elif direction == self.RobotDirection.BACKWARD:
+            linear = self.decelerate_linear(linear)
+        elif direction == self.RobotDirection.LEFT:
+            angular = self.vel_angular_range[1]
+        elif direction == self.RobotDirection.RIGHT:
+            angular = self.vel_angular_range[0]
+        elif direction == self.RobotDirection.STOP:
+            angular = 0
+            if linear > 0:
                 linear = self.decelerate_linear(linear)
-            elif direction == self.RobotDirection.LEFT:
-                angular = self.vel_angular_range[1]
-            elif direction == self.RobotDirection.RIGHT:
-                angular = self.vel_angular_range[0]
-            elif direction == self.RobotDirection.STOP:
-                angular = 0
-                if linear > 0:
-                    linear = self.decelerate_linear(linear)
-                    linear = max(0, linear)
-                elif linear < 0:
-                    linear = self.accelerate_linear(linear)
-                    linear = min(0, linear)
-                else:
-                    linear = linear
-                    angular = angular
+                linear = max(0, linear)
+            elif linear < 0:
+                linear = self.accelerate_linear(linear)
+                linear = min(0, linear)
             else:
-                rospy.logwarn("Unknown motion direction. Check \
-                                 MotionController.RobotDirection")
+                linear = linear
+                angular = angular
+        else:
+            rospy.logwarn("Unknown motion direction. Check \
+                             MotionController.RobotDirection")
 
-            self.vel_linear = linear
-            self.vel_angular = angular
-            self.publish()
+        self.vel_linear = linear
+        self.vel_angular = angular
+        self.publish()
 
 
     def publish(self):

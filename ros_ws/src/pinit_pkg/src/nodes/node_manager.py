@@ -8,7 +8,7 @@ class NodeManager():
         self.base_pkg_path = rospkg.RosPack().get_path('pinit_pkg')
 
         self.gmapping_relative_path = "/launch/gmapping_launch.launch"
-        self.movebase_relative_path = "/launch/move_base_launch.launch"
+        self.movebase_relative_path = "/launch/move_base.launch"
         self.robot_relative_path = "/launch/my_robot_config.launch"
 
         self.gmapping_launch = RosLaunch()
