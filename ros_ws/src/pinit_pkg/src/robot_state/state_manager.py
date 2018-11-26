@@ -145,10 +145,8 @@ class RobotStateManager():
 
     def start_to_idle_cb(self, *args):
         #self.node_manager.start_robot()
-        self.pose_streamer.init_stream_loop()
-        #TODO delete below lines when done testing
-        self.map_publisher.fetch_remote_map()
-        self.map_publisher.start()
+        pass
+        self.pose_streamer.start()
 
 
 if __name__ == "__main__":

@@ -30,7 +30,7 @@ class ServerHandler():
         self.robot_name = "nemo"
         self.node_name = "robot_grpc_server_handler"
         self.max_message_length = 1024 * 1024 * 10
-        self.server_address = '10.40.59.207:50052'
+        self.server_address = '10.40.47.190:50052'
         #self.server_address = 'localhost:50052'
         self.init_node()
 

@@ -11,7 +11,7 @@ import time
 
 from geometry_msgs.msg import PoseStamped
 from robot_motion.robot_pose import PoseListenerFactory
-from utils import ros_server_streamer
+from utils import ros_thread
 
 class ServerPoseStreamer():
     """Streames the robot pose to the server"""
@@ -78,6 +78,6 @@ class ServerPoseStreamer():
 
 
 def ServerPoseStreamerFactory(queue, pose_listener):
-    streamer = ros_server_streamer.RosServerStreamer()
+    streamer = ros_thread.SimpleThread()
     return ServerPoseStreamer(queue, pose_listener, streamer)
 
