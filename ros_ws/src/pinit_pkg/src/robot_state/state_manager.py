@@ -21,8 +21,9 @@ class RobotStateManager():
         START = 1
         IDLE = 2
         MAPPING = 3
-        NAVIGATING = 4
-        ERROR = 5
+        MAPPING_AND_MOVING = 4
+        NAVIGATING = 5
+        ERROR = 6
 
 
     @classmethod
@@ -105,6 +106,15 @@ class RobotStateManager():
         self.robot_fsm.add_transition(self.States.NAVIGATING,
                                       self.States.IDLE,
                                       self.navigating_to_idle_cb)
+        self.robot_fsm.add_transition(self.States.MAPPING,
+                                      self.States.MAPPING_AND_MOVING,
+                                      self.mapping_to_mmoving_cb)
+        self.robot_fsm.add_transition(self.States.MAPPING_AND_MOVING,
+                                      self.States.MAPPING_AND_MOVING,
+                                      self.mmoving_to_mmoving_cb)
+        self.robot_fsm.add_transition(self.States.MAPPING_AND_MOVING,
+                                      self.States.IDLE,
+                                      self.mmoving_to_idle_cb)
 
 
     def idle_to_idle_cb(self, *args):
@@ -123,6 +133,7 @@ class RobotStateManager():
         #self.map_publisher.start()
         self.nav_controller.start_nav(*args) 
 
+
     def mapping_to_idle_cb(self, *args):
         self.map_streamer.finish()
         self.node_manager.stop_gmapping()
@@ -130,8 +141,22 @@ class RobotStateManager():
         #self.node_manager.start_movebase()
 
 
-    def mapping_to_mapping_cb(self, *args):
+    def mapping_to_mmoving_cb(self, *args):
         self.motion_controller.move(*args)
+
+
+    def mmoving_to_mmoving_cb(self, *args):
+        self.motion_controller.move(*args)
+
+    
+    def mmoving_to_idle_cb(self, *args):
+        self.map_streamer.finish()
+        self.node_manager.stop_gmapping()
+        self.motion_controller.stop()
+
+
+    def mapping_to_mapping_cb(self, *args):
+        pass
 
 
     def navigating_to_idle_cb(self, *args):
@@ -145,7 +170,6 @@ class RobotStateManager():
 
     def start_to_idle_cb(self, *args):
         #self.node_manager.start_robot()
-        pass
         self.pose_streamer.start()
 
 
