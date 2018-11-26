@@ -59,7 +59,7 @@ class ServerMappingHandler():
             None
         """
 
-        self.robot_manager.go_to(self.robot_manager.States.MAPPING, direction)
+        self.robot_manager.go_to(self.robot_manager.States.MAPPING_AND_MOVING, direction)
 
 
     def start_mapping(self):
