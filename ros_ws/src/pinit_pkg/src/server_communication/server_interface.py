@@ -7,11 +7,18 @@ from proto.ros import ros_pb2_grpc
 from proto.ros import ros_pb2
 
 from server_communication.server_mapping_handler import ServerMappingHandler
-from server_communication.server_pose_streamer import ServerPoseStreamerFactory
+from server_communication.server_navigation_handler import ServerNavigationHandler
 
 import rospy
 
 from robot_state.state_manager import RobotStateManager
+from map.map_publisher import MapPublisher
+from nodes.node_manager import NodeManager
+from robot_motion.robot_pose import PoseListenerFactory
+from server_communication.server_pose_streamer import ServerPoseStreamerFactory
+from gps import gps_cal
+from map.map_streamer import MapStreamer
+from robot_motion.motion_controller import MotionController
 
 
 class ServerHandler():
@@ -23,13 +30,16 @@ class ServerHandler():
         self.robot_name = "nemo"
         self.node_name = "robot_grpc_server_handler"
         self.max_message_length = 1024 * 1024 * 10
-        self.server_address = '10.40.33.186:50052'
+        self.server_address = '10.40.59.207:50052'
+        #self.server_address = 'localhost:50052'
         self.init_node()
 
-        self.robot_manager = RobotStateManager.create()
+        self.robot_manager = RobotStateManager.create(self.server_address, self.robot_name)
         self.robot_manager.go_to(self.robot_manager.States.IDLE)
         self.mapping_hanlder = ServerMappingHandler(self.robot_manager)
-        #self.nav_handler = ServerNavHandler(self.robot_manager)
+        self.navigation_handler = ServerNavigationHandler(self.robot_manager)
+        #TODO we need to fix this
+        self.robot_manager.nav_controller.robot_manager = self.robot_manager
 
         self.main_loop()
 
@@ -95,6 +105,12 @@ class ServerHandler():
                 if communication.HasField("mapping_request"):
                     mapping_request = communication.mapping_request
                     self.mapping_hanlder.handle_request(mapping_request)
+                elif communication.HasField("navigation_request"):
+                    navigation_request = communication.navigation_request
+                    self.navigation_handler.handle_request(navigation_request)
+                        
+                        
+
 
 
 

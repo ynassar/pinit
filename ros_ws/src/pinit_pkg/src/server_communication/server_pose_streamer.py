@@ -41,8 +41,8 @@ class ServerPoseStreamer():
 
 
     def ros_to_grpc_pose(self, pose):
-        x = int(pose.pose.position.x)
-        y = int(pose.pose.position.y)
+        x = pose.pose.position.x
+        y = pose.pose.position.y
         angle = 0               #TODO do we really need the angle?
         current_time = self.get_time_now()
 
@@ -64,7 +64,6 @@ class ServerPoseStreamer():
 
 
 
-def ServerPoseStreamerFactory(queue):
-    pose_listener = PoseListenerFactory()
+def ServerPoseStreamerFactory(queue, pose_listener):
     return ServerPoseStreamer(queue, pose_listener)
 
