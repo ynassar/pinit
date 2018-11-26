@@ -65,7 +65,6 @@ class MapStreamer():
         """
 
         self.subscriber.unregister()
-        self.gps_callibrator.stop_cal()
         rospy.loginfo("Stopped streaming map to server...")
 
 
