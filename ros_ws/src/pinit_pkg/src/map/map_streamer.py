@@ -18,7 +18,7 @@ class MapStreamer():
         self.communication_queue = queue
         self.map_topic_name = "map"
         self.subscriber = None
-        self.global_origin = None
+        self.gps_origin = None
         self.gps_callibrator = gps_callibrator
  
 
@@ -32,16 +32,15 @@ class MapStreamer():
             None
         """
 
-        #self.fetch_global_origin() #This should block until we receive gps coordinates
+        self.get_global_origin()
         self.subscriber = rospy.Subscriber(self.map_topic_name,
                                            OccupancyGrid,
                                            self.map_callback)
         rospy.loginfo("Started streaming map to server...")
 
-        self.gps_callibrator.start_cal()
 
 
-    def fetch_global_origin(self):
+    def get_global_origin(self):
         """Fetch the map global origin
 
         Args:
@@ -51,7 +50,12 @@ class MapStreamer():
             None
         """
 
-        self.global_origin = GpsController().get_coordinates()
+        gps_controller = GpsController()
+        origin = gps_controller.get_coordinates()
+        while origin is None:
+            origin = gps_controller.get_coordinates()
+        self.gps_origin = origin
+        print "new origin", origin
 
 
     def finish(self):
@@ -84,14 +88,9 @@ class MapStreamer():
         map_raw_data = occupancy_grid.data
         map_raw_data_encoded = self.encode(map_raw_data)
 
-        gps_origin = self.gps_callibrator.get_origin()
-        gps_coordinates_msg = ros_pb2.GpsCoordinates(
-            longitude=0,
-            latitude=0)
-        if gps_origin is not None:
-            gps_coordinates_msg.longitude = gps_origin.long
-            gps_coordinates_msg.latitude = gps_origin.lat
-
+        gps_coordinates_msg = ros_pb2.GpsCoordinates()
+        gps_coordinates_msg.longitude = self.gps_origin.long
+        gps_coordinates_msg.latitude = self.gps_origin.lat
         delta = 0
 
         grpc_raw_map = ros_pb2.RosToServerCommunication(
