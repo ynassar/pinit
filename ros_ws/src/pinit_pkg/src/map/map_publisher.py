@@ -13,6 +13,8 @@ import ros_numpy
 import nav_msgs.msg as ros_nav_msgs
 import nav_msgs.srv as ros_nav_srv
 
+import utils
+
 
 class MapPublisher():
     #TODO test this
@@ -32,8 +34,9 @@ class MapPublisher():
         self.robot_name = robot_name
         self.map_publisher = map_publisher
         self.metadata_publisher = metadata_publisher
-        self.stop_lock = threading.Lock()
-        self.stop_flag = False
+        self.publish_thread = utils.ros_thread.SimpleThread()
+        self.publish_thread.set_loop_function(self.publish_loop)
+        self.publish_thread.set_rate(5)
         self.ros_map = None
         self.gps_origin = None
         self.delta_theta = None
@@ -41,20 +44,17 @@ class MapPublisher():
 
 
     def start(self):
-#        self.publish_loop()
         self.srv = rospy.Service("static_map", ros_nav_srv.GetMap, self.get_map)
-#        self.set_stop_flag(False)
-        thread = threading.Thread(target=self.publish_loop)
-        thread.start()
+        self.publish_thread.start()
+
+
+    def stop(self):
+        self.publish_thread.stop()
 
 
     def get_map(self, req):
         rospy.loginfo("Sending map :)")
         return self.ros_map
-
-
-    def stop(self):
-        self.set_stop_flag(True)
 
 
     def get_origin(self):
@@ -77,14 +77,11 @@ class MapPublisher():
 
 
     def publish_loop(self):
-        rate = rospy.Rate(5)
-        while not rospy.is_shutdown() and not self.get_stop_flag():
-            self.ros_map.header.stamp = rospy.Time.now()
-            self.ros_map.info.map_load_time = rospy.Time.now()
-            self.ros_map.header.frame_id = "map"    #TODO check if this is correct
-            self.map_publisher.publish(self.ros_map)
-            self.metadata_publisher.publish(self.ros_map.info)
-            rate.sleep()
+        self.ros_map.header.stamp = rospy.Time.now()
+        self.ros_map.info.map_load_time = rospy.Time.now()
+        self.ros_map.header.frame_id = "map"    #TODO check if this is correct
+        self.map_publisher.publish(self.ros_map)
+        self.metadata_publisher.publish(self.ros_map.info)
 
 
     def grpc_map_to_rosmap(self, grpc_map):
@@ -118,17 +115,5 @@ class MapPublisher():
     def decode(self, map_encoded):
         ros_data = (np.frombuffer(map_encoded, dtype='int8')-1).tolist()
         return ros_data
-
-
-    def set_stop_flag(self, value):
-        self.stop_lock.acquire()
-        self.stop_flag = value
-        self.stop_lock.release()
-
-
-    def get_stop_flag(self):
-        self.stop_lock.acquire()
-        flag = self.stop_flag
-        self.stop_lock.release()
 
         return flag
