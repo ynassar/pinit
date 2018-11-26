@@ -45,6 +45,7 @@ class MotionController():
         self.direction_lock = threading.Lock()
         self.loop_thread = SimpleThread()
         self.loop_thread.set_loop_function(self.vel_loop)
+        self.loop_thread.set_rate(120)
 
 
     def init_node(self):
