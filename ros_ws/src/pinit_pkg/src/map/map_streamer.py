@@ -32,7 +32,7 @@ class MapStreamer():
             None
         """
 
-        self.get_global_origin()
+        #self.get_global_origin()
         self.subscriber = rospy.Subscriber(self.map_topic_name,
                                            OccupancyGrid,
                                            self.map_callback)
@@ -89,15 +89,22 @@ class MapStreamer():
         map_raw_data_encoded = self.encode(map_raw_data)
 
         gps_coordinates_msg = ros_pb2.GpsCoordinates()
-        gps_coordinates_msg.longitude = self.gps_origin.long
-        gps_coordinates_msg.latitude = self.gps_origin.lat
+        if self.gps_origin is not None:
+            gps_coordinates_msg.longitude = self.gps_origin.long
+            gps_coordinates_msg.latitude = self.gps_origin.lat
+        gps_coordinates_msg.longitude = 0
+        gps_coordinates_msg.latitude = 0
         delta = 0
 
+        print metadata.origin.position.x
+        print metadata.origin.position.y
         grpc_raw_map = ros_pb2.RosToServerCommunication(
             raw_map=ros_pb2.RawMap(
                 resolution=metadata.resolution,
                 height=metadata.height,
                 width=metadata.width,
+                shift_x=metadata.origin.position.x,
+                shift_y=metadata.origin.position.y,
                 data=map_raw_data_encoded,
                 origin_angle_shift=delta,
                 origin=gps_coordinates_msg))

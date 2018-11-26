@@ -12,19 +12,19 @@ import tf
 
 class InitialPosePublisher(object):
     def __init__(self, server_address, robot_name):
-        rospy.init_node("initial_pose_publisher", anonymous=True)
-        self.publisher = rospy.Publisher('/initialpose', PoseWithCovarianceStamped) 
+        self.publisher = rospy.Publisher('/initialpose', PoseWithCovarianceStamped, queue_size=10)
         self.initial_pose = PoseWithCovarianceStamped()
         self.initial_pose.header.frame_id = "map"
         self.initial_pose.header.stamp = rospy.Time.now()
         self.server_address = server_address
         self.robot_name = robot_name
 
-        rospy.sleep(15)
 
     def publish_initial_pose(self):
         # waits for amcl to run
         rospy.wait_for_service('set_map')
+        rospy.loginfo("publishing initial_pose")
+        rospy.sleep(5)
         self.publisher.publish(self.initial_pose)
 
     def fetch_pose(self):

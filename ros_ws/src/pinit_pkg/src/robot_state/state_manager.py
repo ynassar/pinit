@@ -131,12 +131,12 @@ class RobotStateManager():
 
 
     def idle_to_navigating_cb(self, *args):
-        #self.node_manager.start_movebase()
-        #self.map_publisher.fetch_remote_map()
-        #self.map_publisher.start()
-        self.initial_pose_publisher.fetch_remote_map()
+        self.node_manager.start_movebase()
+        self.map_publisher.fetch_remote_map()
+        self.map_publisher.start()
+        self.initial_pose_publisher.fetch_pose()
         self.initial_pose_publisher.publish_initial_pose()
-        self.nav_controller.start_nav(*args)
+        #self.nav_controller.start_nav(*args)
 
 
 
@@ -144,7 +144,6 @@ class RobotStateManager():
         self.map_streamer.finish()
         self.node_manager.stop_gmapping()
         self.motion_controller.stop()
-        #self.node_manager.start_movebase()
 
 
     def mapping_to_mmoving_cb(self, *args):
@@ -177,6 +176,7 @@ class RobotStateManager():
     def start_to_idle_cb(self, *args):
         #self.node_manager.start_robot()
         self.pose_streamer.start()
+        #self.idle_to_navigating_cb(*args)
 
 
 if __name__ == "__main__":

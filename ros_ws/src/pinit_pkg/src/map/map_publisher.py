@@ -89,6 +89,8 @@ class MapPublisher():
         time_now = rospy.Time.now()
         width = grpc_map.width
         height = grpc_map.height
+        x = grpc_map.shift_x
+        y = grpc_map.shift_y
         map_encoded = grpc_map.data
         map_decoded = self.decode(map_encoded)
 
@@ -97,8 +99,8 @@ class MapPublisher():
         ros_map.info.map_load_time = time_now
         ros_map.info.width = width
         ros_map.info.height = height
-        ros_map.info.origin.position.x = -1 * (width / 2) * resolution
-        ros_map.info.origin.position.y = -1 * (height / 2) * resolution
+        ros_map.info.origin.position.x = x
+        ros_map.info.origin.position.y = y
         ros_map.info.origin.position.z = 0
         ros_map.info.origin.orientation.x = 0.
         ros_map.info.origin.orientation.y = 0.
