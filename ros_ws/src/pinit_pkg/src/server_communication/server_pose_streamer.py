@@ -7,43 +7,49 @@ from google.protobuf.timestamp_pb2 import Timestamp
 
 import tf
 import rospy
-import threading
 import time
 
 from geometry_msgs.msg import PoseStamped
 from robot_motion.robot_pose import PoseListenerFactory
+from utils import ros_server_streamer
 
 class ServerPoseStreamer():
     """Streames the robot pose to the server"""
 
 
-    def __init__(self, queue, robot_pose_listener):
+    def __init__(self, queue, robot_pose_listener, server_streamer):
         self.communication_queue = queue
         self.pose_listener = robot_pose_listener
+        self.streamer = server_streamer
+        self.streamer.set_loop_function(self.stream_loop)
 
-        self.stream_thread = None
-        self.init_stream_loop()
+
+    def start(self):
+        self.streamer.start()
 
 
-    def init_stream_loop(self):
-        self.stream_thread = threading.Thread(target=self.stream_loop)
-        self.stream_thread.start()
+    def stop(self):
+        self.streamer.stop()
 
 
     def stream_loop(self):
-        rate = rospy.Rate(10)
-        while not rospy.is_shutdown():
-            ros_pose = self.pose_listener.get_pose()
-            if ros_pose is not None:
-                grpc_pose = self.ros_to_grpc_pose(ros_pose)
-                self.communication_queue.put(grpc_pose)
-            rate.sleep()
+        ros_pose = self.pose_listener.get_pose()
+        if ros_pose is not None:
+            grpc_pose = self.ros_to_grpc_pose(ros_pose)
+            self.communication_queue.put(grpc_pose)
 
 
     def ros_to_grpc_pose(self, pose):
-        x = pose.pose.position.x
-        y = pose.pose.position.y
-        angle = 0               #TODO do we really need the angle?
+        x = (pose.pose.position.x)
+        y = (pose.pose.position.y)
+        orientation = [
+                pose.pose.orientation.x,
+                pose.pose.orientation.y,
+                pose.pose.orientation.z,
+                pose.pose.orientation.w]
+        euler = tf.transformations.euler_from_quaternion(orientation)
+        yaw = euler[2]
+        angle = yaw
         current_time = self.get_time_now()
 
         grpc_pose = ros_pb2.RosToServerCommunication(
@@ -56,14 +62,22 @@ class ServerPoseStreamer():
         return grpc_pose
 
 
+    def get_fake_pose(self):
+        pose = PoseStamped()
+        pose.pose.position.x = 2.5
+        pose.pose.position.y = 4.7
+
+        return pose
+
     def get_time_now(self):
         current_time = Timestamp()
-        current_time = current_time.GetCurrentTime() #TODO is this local time??
+        current_time = current_time.GetCurrentTime()
         return current_time
 
 
 
 
 def ServerPoseStreamerFactory(queue, pose_listener):
-    return ServerPoseStreamer(queue, pose_listener)
+    streamer = ros_server_streamer.RosServerStreamer()
+    return ServerPoseStreamer(queue, pose_listener, streamer)
 
