@@ -15,8 +15,9 @@ public class AddLocationServer {
         addLocationRequest.waypointName = locationName
         addLocationRequest.description_p = locationDescription
         
-        let userDefaults = UserDefaults.standard
-        addLocationRequest.token = userDefaults.string(forKey: "AccountToken")!
+        if let userProfile = UserDefaultsHelper.getUserProfile() {
+            addLocationRequest.token = userProfile.token
+        }
                 
         var timestamp = Google_Protobuf_Timestamp()
         timestamp.seconds = Int64(Date().timeIntervalSince1970)

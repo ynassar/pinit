@@ -25,6 +25,8 @@ class MappingView: UIView, UIScrollViewDelegate, PinitViewProtocol {
     /// is set. 
     public func updateView() {
         
+        scrollImage.isScrollEnabled = true
+        
         let spacing = self.frame.size.height * 0.02
         
         scrollImage = scrollImage
