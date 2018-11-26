@@ -12,6 +12,7 @@ from map.map_publisher import MapPublisher
 from robot_motion.motion_controller import MotionController
 from robot_navigation.navigation_controller import NavigationController
 from robot_motion.robot_pose import PoseListenerFactory
+from robot_navigation.initial_pose_publisher import InitialPosePublisher
 from server_communication.server_pose_streamer import ServerPoseStreamerFactory
 from gps import gps_cal
 
@@ -38,7 +39,7 @@ class RobotStateManager():
         motion_controller = MotionController()
         map_publisher = MapPublisher.create(server_address, robot_name)
         nav_controller = NavigationController(map_publisher)
-
+        initial_pose_publisher = InitialPosePublisher(server_address, robot_name)
 
         return RobotStateManager(
             robot_fsm=robot_fsm,
@@ -49,12 +50,13 @@ class RobotStateManager():
             motion_controller=motion_controller,
             gps_calibrator=gps_calibrator,
             map_publisher=map_publisher,
-            nav_controller=nav_controller
+            nav_controller=nav_controller,
+            initial_pose_publisher=initial_pose_publisher
             )
 
 
     def __init__(self, robot_fsm, com_queue, node_manager, map_streamer, pose_streamer,
-                 motion_controller, gps_calibrator, map_publisher, nav_controller):
+                 motion_controller, gps_calibrator, map_publisher, nav_controller, initial_pose_publisher):
 
         self.fsm_states = [s for s in self.States]
         self.robot_fsm = robot_fsm
@@ -66,6 +68,7 @@ class RobotStateManager():
         self.gps_calibrator = gps_calibrator
         self.map_publisher = map_publisher
         self.nav_controller = nav_controller
+        self.initial_pose_publisher = initial_pose_publisher
 
         self.init_states()
         self.init_transitions()
@@ -131,7 +134,10 @@ class RobotStateManager():
         #self.node_manager.start_movebase()
         #self.map_publisher.fetch_remote_map()
         #self.map_publisher.start()
-        self.nav_controller.start_nav(*args) 
+        self.initial_pose_publisher.fetch_remote_map()
+        self.initial_pose_publisher.publish_initial_pose()
+        self.nav_controller.start_nav(*args)
+
 
 
     def mapping_to_idle_cb(self, *args):
