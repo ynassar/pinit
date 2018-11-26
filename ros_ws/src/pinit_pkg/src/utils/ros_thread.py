@@ -39,6 +39,7 @@ class SimpleThread():
 
     def start(self):
         if not self.thread.is_alive():
+            rospy.loginfo("Starting a new thread")
             self.thread = threading.Thread(target=self.loop)
             self.thread.start()
         else:
