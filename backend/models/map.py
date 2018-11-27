@@ -8,4 +8,6 @@ class Map(mongoengine.Document):
     b64_image = mongoengine.StringField()
     raw_map = mongoengine.StringField()
     origin = mongoengine.PointField()
-    origin_angle_shift = mongoengine.DecimalField()
+    origin_angle_shift = mongoengine.FloatField()
+    shift_x = mongoengine.FloatField()
+    shift_y = mongoengine.FloatField()

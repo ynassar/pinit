@@ -22,7 +22,10 @@ def GenerateRequest():
                        0,101,101,101,0,
                        0,101,0,101,0,
                        0,101,101,101,0,
-                       0,0,0,0,0], dtype='uint8').tobytes()
+                       0,0,0,0,0], dtype='uint8').tobytes(),
+        origin=ros_pb2.GpsCoordinates(longitude=10, latitude=20),
+        shift_x = 10.0,
+        shift_y = 20.0
     ))
     time.sleep(1)
     yield ros_pb2.RosToServerCommunication(

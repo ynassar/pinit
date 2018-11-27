@@ -14,12 +14,13 @@ from gps.gps_controller import GpsController
 class MapStreamer():
     """Fetch the map and send it to the server"""
 
-    def __init__(self, queue):
+    def __init__(self, queue, gps_callibrator):
         self.communication_queue = queue
         self.map_topic_name = "map"
         self.subscriber = None
-        self.global_origin = None
-
+        self.gps_origin = None
+        self.gps_callibrator = gps_callibrator
+ 
 
     def start(self):
         """Start listenning and streaming the mapping and gets global reference
@@ -31,14 +32,15 @@ class MapStreamer():
             None
         """
 
-        #self.fetch_global_origin() #This should block until we receive gps coordinates
+        #self.get_global_origin()
         self.subscriber = rospy.Subscriber(self.map_topic_name,
                                            OccupancyGrid,
                                            self.map_callback)
         rospy.loginfo("Started streaming map to server...")
 
 
-    def fetch_global_origin(self):
+
+    def get_global_origin(self):
         """Fetch the map global origin
 
         Args:
@@ -48,7 +50,12 @@ class MapStreamer():
             None
         """
 
-        self.global_origin = GpsController().get_coordinates()
+        gps_controller = GpsController()
+        origin = gps_controller.get_coordinates()
+        while origin is None:
+            origin = gps_controller.get_coordinates()
+        self.gps_origin = origin
+        print "new origin", origin
 
 
     def finish(self):
@@ -76,23 +83,30 @@ class MapStreamer():
             None
         """
 
+        
         metadata = occupancy_grid.info
         map_raw_data = occupancy_grid.data
         map_raw_data_encoded = self.encode(map_raw_data)
 
-#        gps_coordinates_msg = ros_pb2.GpsCoordinates(
-#            longitude=self.global_origin.long,
-#            latitude=self.global_origin.lat)
-        gps_coordinates_msg = ros_pb2.GpsCoordinates(
-            longitude=0,
-            latitude=0)
+        gps_coordinates_msg = ros_pb2.GpsCoordinates()
+        if self.gps_origin is not None:
+            gps_coordinates_msg.longitude = self.gps_origin.long
+            gps_coordinates_msg.latitude = self.gps_origin.lat
+        gps_coordinates_msg.longitude = 0
+        gps_coordinates_msg.latitude = 0
+        delta = 0
 
+        print metadata.origin.position.x
+        print metadata.origin.position.y
         grpc_raw_map = ros_pb2.RosToServerCommunication(
             raw_map=ros_pb2.RawMap(
                 resolution=metadata.resolution,
                 height=metadata.height,
                 width=metadata.width,
+                shift_x=metadata.origin.position.x,
+                shift_y=metadata.origin.position.y,
                 data=map_raw_data_encoded,
+                origin_angle_shift=delta,
                 origin=gps_coordinates_msg))
 
         self.communication_queue.put(grpc_raw_map)

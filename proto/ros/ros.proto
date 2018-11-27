@@ -18,9 +18,10 @@ service RosService{
     rpc AddWaypoint(AddWaypointRequest) returns (AddWaypointResponse) {}
     // Adds a waypoint at the robot's current location.
 
-    rpc RequestRobotToLocation(RobotNavigationRequest) returns (WaypointList) {}
-    // Requests the nearest robot to the specified location and returns a list of
-    // waypoints corresponding to the nearest robot.
+    rpc GetNearbyWaypoints(GpsCoordinates) returns (WaypointList) {}
+    // Gets a list of the waypoints in the nearest map to the given coordinates.
+
+    rpc GetPose(GetPoseRequest) returns (LocalMapPose) {}
 }
 
 message RobotNavigationRequest{
@@ -29,6 +30,10 @@ message RobotNavigationRequest{
         GpsCoordinates coordinates = 2;
         string waypoint_name = 3;
     }
+}
+
+message GetPoseRequest{
+    string robot_name = 1;
 }
 
 message Waypoint{
@@ -90,6 +95,8 @@ message RawMap{
     bytes data = 4; // Should contain a byte-encoded uint8 numpy array.
     GpsCoordinates origin = 5;
     float origin_angle_shift = 6;
+    float shift_x = 7;
+    float shift_y = 8;
 }
 
 message RosToServerCommunication{
