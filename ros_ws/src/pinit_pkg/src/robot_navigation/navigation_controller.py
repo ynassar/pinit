@@ -36,7 +36,7 @@ class NavigationController():
         pass
 
     def done_cb(self, arg1, arg2):
-        #self.state_manager.go_to(self.state_manager.States.IDLE)
+        self.state_manager.go_to(self.state_manager.States.NAVIGATING_AND_IDLE)
         rospy.loginfo("done cb")
     
     def send_goal(self):
