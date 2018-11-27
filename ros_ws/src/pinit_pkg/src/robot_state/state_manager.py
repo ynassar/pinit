@@ -24,7 +24,8 @@ class RobotStateManager():
         MAPPING = 3
         MAPPING_AND_MOVING = 4
         NAVIGATING = 5
-        ERROR = 6
+        NAVIGATING_AND_IDLE = 6
+        ERROR = 7
 
 
     @classmethod
@@ -78,6 +79,10 @@ class RobotStateManager():
         self.robot_fsm.go_to(state, *args)
 
 
+    def get_state(self):
+        return self.robot_fsm.get_current_state()
+
+
     def init_states(self):
         for state in self.fsm_states:
             self.robot_fsm.add_state(state)
@@ -118,6 +123,14 @@ class RobotStateManager():
         self.robot_fsm.add_transition(self.States.MAPPING_AND_MOVING,
                                       self.States.IDLE,
                                       self.mmoving_to_idle_cb)
+        self.robot_fsm.add_transition(self.States.NAVIGATING_AND_IDLE,
+                                      self.States.NAVIGATING,
+                                      self.navigatingidle_to_navigating_cb)
+        self.robot_fsm.add_transition(self.States.NAVIGATING,
+                                      self.States.NAVIGATING_AND_IDLE
+                                      self.navigating_to_navigatingidle_cb)
+
+
 
 
     def idle_to_idle_cb(self, *args):
@@ -136,7 +149,7 @@ class RobotStateManager():
         self.map_publisher.start()
         self.initial_pose_publisher.fetch_pose()
         self.initial_pose_publisher.publish_initial_pose()
-        #self.nav_controller.start_nav(*args)
+        self.nav_controller.start_nav(*args)
 
 
 
@@ -173,8 +186,15 @@ class RobotStateManager():
         pass
 
 
+    def navigatingidle_to_navigating_cb(self, *args):
+        self.nav_controller.start_nav(*args)
+
+
+    def navigating_to_navigatingidle_cb(self, *args):
+        pass
+
+
     def start_to_idle_cb(self, *args):
-        #self.node_manager.start_robot()
         self.pose_streamer.start()
         #self.idle_to_navigating_cb(*args)
 
