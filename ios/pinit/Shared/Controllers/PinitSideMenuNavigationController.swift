@@ -16,9 +16,23 @@ class PinitSideMenuNavigationController : PinitNavigationController {
     
     @objc public func menuButtonClicked() {
         let profileViewController = ProfileViewController()
+        profileViewController.loggingOutDelegate = self
         profileViewController.transitioningDelegate = self
         self.present(profileViewController, animated: true, completion: nil)
     }
+}
+
+extension PinitSideMenuNavigationController: LoggingOutDelegate {
+    
+    func userLoggedOut() {
+        let loginViewController = LoginViewController()
+        if let navigationController = self.navigationController {
+            navigationController.viewControllers.insert(loginViewController, at: 0)
+            navigationController.popToRootViewController(animated: true)
+            self.navigationController?.navigationBar.isHidden = true
+            self.tabBarController?.tabBar.isHidden = true
+        }
+    }    
 }
 
 extension PinitSideMenuNavigationController: UIViewControllerTransitioningDelegate {

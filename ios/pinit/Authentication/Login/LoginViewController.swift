@@ -124,7 +124,7 @@ class LoginViewController : PinitViewController, LoginServerDelegate , CAAnimati
         super.viewDidAppear(animated)
         loginView.loginButton.addGradiant(colors:PinitColors.gradiantColorsList)
     }
-    
+        
 }
 
 extension CATransition {

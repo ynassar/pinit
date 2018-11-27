@@ -4,7 +4,8 @@ class ProfileViewController: PinitViewController {
     
     private var profileView: ProfileView!
     
-    
+    public var loggingOutDelegate: LoggingOutDelegate?
+        
     override func viewDidLoad() {
         profileView = ProfileView()
         super.viewDidLoad()
@@ -46,8 +47,14 @@ class ProfileViewController: PinitViewController {
             SettingsBundleHelper.saveIpAddress(ipAddress: ip)
         }
         
-        let loginViewController = LoginViewController()
-        self.present(loginViewController, animated: true, completion: nil)
+//        let loginViewController = LoginViewController()
+//        self.present(loginViewController, animated: true, completion: {
+//
+//        })
+        transitioningDelegate = self
+        self.dismiss(animated: true, completion: {
+            self.loggingOutDelegate?.userLoggedOut()
+        })
     }
     
     @objc private func closeProfile() {

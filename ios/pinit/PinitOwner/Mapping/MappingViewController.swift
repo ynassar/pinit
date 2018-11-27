@@ -58,7 +58,7 @@ class MappingViewController: PinitNavigationController, MappingServerDelegate, U
         mappingControlsView.disableControls()
         mappingView.disableMapView()
         saveMappingButtonItem.disableButton()
-        addLocationButtonItem.disableButton()
+//        addLocationButtonItem.disableButton()
         
         let spacing = self.view.frame.size.height * 0.02
         

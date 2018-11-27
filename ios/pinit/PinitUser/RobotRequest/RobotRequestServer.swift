@@ -34,7 +34,7 @@ public class RobotRequestServer {
 //            delegate?.didRequestSuccessfully()
             
             do {
-                let locationsList = try robotRequestClient.requestRobotToLocation(robotNavigationRequest)
+//                let locationsList = try robotRequestClient.requestRobotToLocation(robotNavigationRequest)
                 delegate?.didRequestSuccessfully()
             } catch {
                 delegate?.didFailToRequestRobot(erroMessage: "Error Occured")
