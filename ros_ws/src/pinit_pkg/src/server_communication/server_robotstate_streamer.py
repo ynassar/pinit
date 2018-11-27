@@ -45,7 +45,7 @@ class ServerStateStreamer():
 
 
     def get_state(self):
-        return self.state_manager.get_state()
+        return self.state_manager.get_current_state()
 
 
     def ros_state_to_grpc(self, state):

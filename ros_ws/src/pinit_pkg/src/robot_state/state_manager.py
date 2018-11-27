@@ -14,6 +14,7 @@ from robot_navigation.navigation_controller import NavigationController
 from robot_motion.robot_pose import PoseListenerFactory
 from robot_navigation.initial_pose_publisher import InitialPosePublisher
 from server_communication.server_pose_streamer import ServerPoseStreamerFactory
+from server_communication.server_robotstate_streamer import ServerStateStreamer
 from gps import gps_cal
 
 class RobotStateManager():
@@ -41,6 +42,7 @@ class RobotStateManager():
         map_publisher = MapPublisher.create(server_address, robot_name)
         nav_controller = NavigationController(map_publisher)
         initial_pose_publisher = InitialPosePublisher(server_address, robot_name)
+        state_streamer = ServerStateStreamer.create(robot_name, robot_fsm, communication_queue)
 
         return RobotStateManager(
             robot_fsm=robot_fsm,
@@ -52,12 +54,14 @@ class RobotStateManager():
             gps_calibrator=gps_calibrator,
             map_publisher=map_publisher,
             nav_controller=nav_controller,
-            initial_pose_publisher=initial_pose_publisher
+            initial_pose_publisher=initial_pose_publisher,
+            state_streamer=state_streamer
             )
 
 
     def __init__(self, robot_fsm, com_queue, node_manager, map_streamer, pose_streamer,
-                 motion_controller, gps_calibrator, map_publisher, nav_controller, initial_pose_publisher):
+                 motion_controller, gps_calibrator, map_publisher, nav_controller, initial_pose_publisher,
+                 state_streamer):
 
         self.fsm_states = [s for s in self.States]
         self.robot_fsm = robot_fsm
@@ -70,6 +74,7 @@ class RobotStateManager():
         self.map_publisher = map_publisher
         self.nav_controller = nav_controller
         self.initial_pose_publisher = initial_pose_publisher
+        self.state_streamer = state_streamer
 
         self.init_states()
         self.init_transitions()
