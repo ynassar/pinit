@@ -154,6 +154,7 @@ class RobotStateManager():
         self.map_publisher.start()
         self.initial_pose_publisher.fetch_pose()
         self.initial_pose_publisher.publish_initial_pose()
+        rospy.sleep(5)
         self.nav_controller.start_nav(*args)
 
 

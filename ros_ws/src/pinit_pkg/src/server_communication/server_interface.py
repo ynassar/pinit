@@ -39,7 +39,7 @@ class ServerHandler():
         self.mapping_hanlder = ServerMappingHandler(self.robot_manager)
         self.navigation_handler = ServerNavigationHandler(self.robot_manager)
         #TODO we need to fix this
-        self.robot_manager.nav_controller.robot_manager = self.robot_manager
+        self.robot_manager.nav_controller.state_manager = self.robot_manager
 
         self.main_loop()
 
