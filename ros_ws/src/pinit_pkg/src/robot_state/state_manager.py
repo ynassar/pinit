@@ -132,7 +132,7 @@ class RobotStateManager():
                                       self.States.NAVIGATING,
                                       self.navigatingidle_to_navigating_cb)
         self.robot_fsm.add_transition(self.States.NAVIGATING,
-                                      self.States.NAVIGATING_AND_IDLE
+                                      self.States.NAVIGATING_AND_IDLE,
                                       self.navigating_to_navigatingidle_cb)
 
 
@@ -201,6 +201,7 @@ class RobotStateManager():
 
     def start_to_idle_cb(self, *args):
         self.pose_streamer.start()
+        self.state_streamer.start()
         #self.idle_to_navigating_cb(*args)
 
 
