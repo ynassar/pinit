@@ -50,7 +50,7 @@ class ServerStateStreamer():
 
     def ros_state_to_grpc(self, state):
         grpc_state_msg = ros_pb2.RobotStatusUpdate()
-        grpc_state_msg.status_update = state            #TODO I am not sure if this is valid
+        grpc_state_msg.status_update = state.value            #TODO I am not sure if this is valid
 
         grpc_communication_msg = ros_pb2.RosToServerCommunication()
         grpc_communication_msg.robot_name = self.robot_name
