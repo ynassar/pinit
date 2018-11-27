@@ -110,10 +110,13 @@ message RosToServerCommunication{
 
 message RobotStatusUpdate{
     enum Status{
-        MAPPING = 0;
-        IDLE = 1;
-        EN_ROUTE = 2;
-        ERROR = 3;
+        START = 1;
+        IDLE = 2;
+        MAPPING = 3;
+        MAPPING_AND_MOVING = 4;
+        NAVIGATING = 5;
+        NAVIGATING_AND_IDLE = 6;
+        ERROR = 7;
     }
     Status status_update = 1;
 }

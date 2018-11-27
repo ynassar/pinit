@@ -19,13 +19,13 @@ from gps import gps_cal
 class RobotStateManager():
 
     class States(Enum):
-        START = 1
-        IDLE = 2
-        MAPPING = 3
-        MAPPING_AND_MOVING = 4
-        NAVIGATING = 5
-        NAVIGATING_AND_IDLE = 6
-        ERROR = 7
+        START = 0
+        IDLE = 1
+        MAPPING = 2
+        MAPPING_AND_MOVING = 3
+        NAVIGATING = 4
+        NAVIGATING_AND_IDLE = 5
+        ERROR = 6
 
 
     @classmethod
