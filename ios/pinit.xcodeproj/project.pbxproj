@@ -13,16 +13,16 @@
 		3721402021A6096900A5A880 /* HomepageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721401F21A6096900A5A880 /* HomepageViewController.swift */; };
 		3721402221A6097400A5A880 /* HomepageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721402121A6097400A5A880 /* HomepageView.swift */; };
 		3721402421A6157200A5A880 /* UserDefaultsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721402321A6157200A5A880 /* UserDefaultsHelper.swift */; };
-		3721404521A621D200A5A880 /* account_management.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721403D21A621D200A5A880 /* account_management.grpc.swift */; };
-		3721404621A621D200A5A880 /* account_management.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721403E21A621D200A5A880 /* account_management.pb.swift */; };
-		3721404721A621D200A5A880 /* ros.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721404021A621D200A5A880 /* ros.grpc.swift */; };
-		3721404821A621D200A5A880 /* ros.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721404121A621D200A5A880 /* ros.pb.swift */; };
-		3721404921A621D200A5A880 /* login.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721404321A621D200A5A880 /* login.grpc.swift */; };
-		3721404A21A621D200A5A880 /* login.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721404421A621D200A5A880 /* login.pb.swift */; };
 		3721404D21A622A000A5A880 /* RobotRequestServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721404B21A6229F00A5A880 /* RobotRequestServer.swift */; };
 		3721404E21A622A000A5A880 /* RobotRequestServerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721404C21A622A000A5A880 /* RobotRequestServerDelegate.swift */; };
 		3721B1D02199C01E0083C0DD /* SlideUpAnimationTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721B1CF2199C01E0083C0DD /* SlideUpAnimationTransitioning.swift */; };
 		3721B1D22199C18C0083C0DD /* SlideDownAnimationTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721B1D12199C18C0083C0DD /* SlideDownAnimationTransitioning.swift */; };
+		3721F8D121AD78EF005C9813 /* account_management.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721F8C921AD78EF005C9813 /* account_management.grpc.swift */; };
+		3721F8D221AD78EF005C9813 /* account_management.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721F8CA21AD78EF005C9813 /* account_management.pb.swift */; };
+		3721F8D321AD78EF005C9813 /* ros.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721F8CC21AD78EF005C9813 /* ros.grpc.swift */; };
+		3721F8D421AD78EF005C9813 /* ros.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721F8CD21AD78EF005C9813 /* ros.pb.swift */; };
+		3721F8D521AD78EF005C9813 /* login.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721F8CF21AD78EF005C9813 /* login.grpc.swift */; };
+		3721F8D621AD78EF005C9813 /* login.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721F8D021AD78EF005C9813 /* login.pb.swift */; };
 		372216C4219EFE51009C8103 /* PinitNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372216C3219EFE51009C8103 /* PinitNavigationController.swift */; };
 		372216C6219EFE63009C8103 /* PinitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372216C5219EFE63009C8103 /* PinitViewController.swift */; };
 		372216C9219EFEF3009C8103 /* PinitViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372216C8219EFEF3009C8103 /* PinitViewProtocol.swift */; };
@@ -160,12 +160,6 @@
 		3721401F21A6096900A5A880 /* HomepageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomepageViewController.swift; sourceTree = "<group>"; };
 		3721402121A6097400A5A880 /* HomepageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomepageView.swift; sourceTree = "<group>"; };
 		3721402321A6157200A5A880 /* UserDefaultsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsHelper.swift; sourceTree = "<group>"; };
-		3721403D21A621D200A5A880 /* account_management.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = account_management.grpc.swift; sourceTree = "<group>"; };
-		3721403E21A621D200A5A880 /* account_management.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = account_management.pb.swift; sourceTree = "<group>"; };
-		3721404021A621D200A5A880 /* ros.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ros.grpc.swift; sourceTree = "<group>"; };
-		3721404121A621D200A5A880 /* ros.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ros.pb.swift; sourceTree = "<group>"; };
-		3721404321A621D200A5A880 /* login.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = login.grpc.swift; sourceTree = "<group>"; };
-		3721404421A621D200A5A880 /* login.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = login.pb.swift; sourceTree = "<group>"; };
 		3721404B21A6229F00A5A880 /* RobotRequestServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RobotRequestServer.swift; sourceTree = "<group>"; };
 		3721404C21A622A000A5A880 /* RobotRequestServerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RobotRequestServerDelegate.swift; sourceTree = "<group>"; };
 		3721B1BD219837590083C0DD /* account_management.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = account_management.grpc.swift; sourceTree = "<group>"; };
@@ -176,6 +170,12 @@
 		3721B1C4219837590083C0DD /* login.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = login.pb.swift; sourceTree = "<group>"; };
 		3721B1CF2199C01E0083C0DD /* SlideUpAnimationTransitioning.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideUpAnimationTransitioning.swift; sourceTree = "<group>"; };
 		3721B1D12199C18C0083C0DD /* SlideDownAnimationTransitioning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideDownAnimationTransitioning.swift; sourceTree = "<group>"; };
+		3721F8C921AD78EF005C9813 /* account_management.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = account_management.grpc.swift; sourceTree = "<group>"; };
+		3721F8CA21AD78EF005C9813 /* account_management.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = account_management.pb.swift; sourceTree = "<group>"; };
+		3721F8CC21AD78EF005C9813 /* ros.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ros.grpc.swift; sourceTree = "<group>"; };
+		3721F8CD21AD78EF005C9813 /* ros.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ros.pb.swift; sourceTree = "<group>"; };
+		3721F8CF21AD78EF005C9813 /* login.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = login.grpc.swift; sourceTree = "<group>"; };
+		3721F8D021AD78EF005C9813 /* login.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = login.pb.swift; sourceTree = "<group>"; };
 		372216C3219EFE51009C8103 /* PinitNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinitNavigationController.swift; sourceTree = "<group>"; };
 		372216C5219EFE63009C8103 /* PinitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinitViewController.swift; sourceTree = "<group>"; };
 		372216C8219EFEF3009C8103 /* PinitViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinitViewProtocol.swift; sourceTree = "<group>"; };
@@ -264,43 +264,6 @@
 			name = "Recovered References";
 			sourceTree = "<group>";
 		};
-		3721403B21A621D200A5A880 /* genfiles */ = {
-			isa = PBXGroup;
-			children = (
-				3721403C21A621D200A5A880 /* account_management */,
-				3721403F21A621D200A5A880 /* ros */,
-				3721404221A621D200A5A880 /* login */,
-			);
-			path = genfiles;
-			sourceTree = "<group>";
-		};
-		3721403C21A621D200A5A880 /* account_management */ = {
-			isa = PBXGroup;
-			children = (
-				3721403D21A621D200A5A880 /* account_management.grpc.swift */,
-				3721403E21A621D200A5A880 /* account_management.pb.swift */,
-			);
-			path = account_management;
-			sourceTree = "<group>";
-		};
-		3721403F21A621D200A5A880 /* ros */ = {
-			isa = PBXGroup;
-			children = (
-				3721404021A621D200A5A880 /* ros.grpc.swift */,
-				3721404121A621D200A5A880 /* ros.pb.swift */,
-			);
-			path = ros;
-			sourceTree = "<group>";
-		};
-		3721404221A621D200A5A880 /* login */ = {
-			isa = PBXGroup;
-			children = (
-				3721404321A621D200A5A880 /* login.grpc.swift */,
-				3721404421A621D200A5A880 /* login.pb.swift */,
-			);
-			path = login;
-			sourceTree = "<group>";
-		};
 		3721B1CE2199C01E0083C0DD /* AnimationTransitioning */ = {
 			isa = PBXGroup;
 			children = (
@@ -311,6 +274,43 @@
 				3721401C21A5DD9000A5A880 /* SideMenuDismissAnimationTransitioning.swift */,
 			);
 			path = AnimationTransitioning;
+			sourceTree = "<group>";
+		};
+		3721F8C721AD78EF005C9813 /* genfiles */ = {
+			isa = PBXGroup;
+			children = (
+				3721F8C821AD78EF005C9813 /* account_management */,
+				3721F8CB21AD78EF005C9813 /* ros */,
+				3721F8CE21AD78EF005C9813 /* login */,
+			);
+			path = genfiles;
+			sourceTree = "<group>";
+		};
+		3721F8C821AD78EF005C9813 /* account_management */ = {
+			isa = PBXGroup;
+			children = (
+				3721F8C921AD78EF005C9813 /* account_management.grpc.swift */,
+				3721F8CA21AD78EF005C9813 /* account_management.pb.swift */,
+			);
+			path = account_management;
+			sourceTree = "<group>";
+		};
+		3721F8CB21AD78EF005C9813 /* ros */ = {
+			isa = PBXGroup;
+			children = (
+				3721F8CC21AD78EF005C9813 /* ros.grpc.swift */,
+				3721F8CD21AD78EF005C9813 /* ros.pb.swift */,
+			);
+			path = ros;
+			sourceTree = "<group>";
+		};
+		3721F8CE21AD78EF005C9813 /* login */ = {
+			isa = PBXGroup;
+			children = (
+				3721F8CF21AD78EF005C9813 /* login.grpc.swift */,
+				3721F8D021AD78EF005C9813 /* login.pb.swift */,
+			);
+			path = login;
 			sourceTree = "<group>";
 		};
 		372216C2219EFE51009C8103 /* Controllers */ = {
@@ -463,7 +463,7 @@
 		37EEA7DA215B962400BF3839 = {
 			isa = PBXGroup;
 			children = (
-				3721403B21A621D200A5A880 /* genfiles */,
+				3721F8C721AD78EF005C9813 /* genfiles */,
 				373C127A216F9ED3003D7CBB /* SwiftGRPC-Carthage.xcodeproj */,
 				37EEA7E5215B962500BF3839 /* pinit */,
 				37EEA7FA215B962800BF3839 /* pinitTests */,
@@ -660,30 +660,30 @@
 				3721404E21A622A000A5A880 /* RobotRequestServerDelegate.swift in Sources */,
 				372CEF6E21A354EA00791DF4 /* PinitSideMenuNavigationController.swift in Sources */,
 				372CEF6B21A3409300791DF4 /* MappingServerDelegate.swift in Sources */,
+				3721F8D421AD78EF005C9813 /* ros.pb.swift in Sources */,
 				372CEF6A21A3409300791DF4 /* MappingViewController.swift in Sources */,
 				372CEF6C21A3409300791DF4 /* MappingView.swift in Sources */,
+				3721F8D521AD78EF005C9813 /* login.grpc.swift in Sources */,
 				37363A1821761F1100EBD383 /* RegisterServer.swift in Sources */,
-				3721404521A621D200A5A880 /* account_management.grpc.swift in Sources */,
 				37363A1621761F1100EBD383 /* RegisterServerDelegate.swift in Sources */,
 				3721404D21A622A000A5A880 /* RobotRequestServer.swift in Sources */,
-				3721404921A621D200A5A880 /* login.grpc.swift in Sources */,
 				37CBDD072194B92D0092C8E1 /* AddLocationView.swift in Sources */,
 				372022702167AF5B00602B53 /* CustomTextField.swift in Sources */,
 				372CEF6921A3409300791DF4 /* MappingControlsView.swift in Sources */,
 				3721402421A6157200A5A880 /* UserDefaultsHelper.swift in Sources */,
-				3721404721A621D200A5A880 /* ros.grpc.swift in Sources */,
 				37363A2021761F3400EBD383 /* LoginServer.swift in Sources */,
 				37CBDD042194B92D0092C8E1 /* AddLocationServerDelegate.swift in Sources */,
 				3721B1D02199C01E0083C0DD /* SlideUpAnimationTransitioning.swift in Sources */,
-				3721404821A621D200A5A880 /* ros.pb.swift in Sources */,
+				3721F8D121AD78EF005C9813 /* account_management.grpc.swift in Sources */,
 				37CBDD052194B92D0092C8E1 /* AddLocationServer.swift in Sources */,
 				372216D7219F4731009C8103 /* Profile.swift in Sources */,
 				372216C9219EFEF3009C8103 /* PinitViewProtocol.swift in Sources */,
-				3721404621A621D200A5A880 /* account_management.pb.swift in Sources */,
 				37EEA7E7215B962500BF3839 /* AppDelegate.swift in Sources */,
 				372CEF6821A3409300791DF4 /* MappingServer.swift in Sources */,
 				3721402221A6097400A5A880 /* HomepageView.swift in Sources */,
 				372CEF5D21A1BCC700791DF4 /* SettingsBundleHelper.swift in Sources */,
+				3721F8D221AD78EF005C9813 /* account_management.pb.swift in Sources */,
+				3721F8D621AD78EF005C9813 /* login.pb.swift in Sources */,
 				37352738217A217F00602046 /* PinitOwnerViewController.swift in Sources */,
 				3721401D21A5DD9000A5A880 /* SideMenuDismissAnimationTransitioning.swift in Sources */,
 				3721B1D22199C18C0083C0DD /* SlideDownAnimationTransitioning.swift in Sources */,
@@ -695,8 +695,8 @@
 				3735273B217A218700602046 /* ProfileViewController.swift in Sources */,
 				372216D5219F255D009C8103 /* RobotRequestView.swift in Sources */,
 				372CEF8621A48D1900791DF4 /* SideMenuShowAnimationTransitioning.swift in Sources */,
-				3721404A21A621D200A5A880 /* login.pb.swift in Sources */,
 				372216D0219F251B009C8103 /* PinitUserViewController.swift in Sources */,
+				3721F8D321AD78EF005C9813 /* ros.grpc.swift in Sources */,
 				3721401B21A5A05900A5A880 /* SideMenuInteractor.swift in Sources */,
 				376985B9216834DE006FF550 /* Constants.swift in Sources */,
 			);
