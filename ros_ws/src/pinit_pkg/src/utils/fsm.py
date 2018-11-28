@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+import threading
 
 class FSM():
     class FSMTransition():
@@ -19,6 +20,7 @@ class FSM():
     def __init__(self):
         self.transitions = []
         self.current_state = None
+        self.state_lock = threading.Lock()
         self.states = []
 
 
@@ -37,20 +39,34 @@ class FSM():
         return exist
 
 
+    def get_current_state(self):
+        self.state_lock.acquire()
+        state = self.current_state
+        self.state_lock.release()
+        return state
+
+
+    def set_current_state(self, state):
+       self.state_lock.acquire()
+       self.current_state = state
+       self.state_lock.release()
+
+
+
     def set_default(self, state):
         if self.state_exist(state):
-            self.current_state = state
+            self.set_current_state(state)
         else:
             print "State {s} doesn't exist".format(s=state)
 
 
     def go_to(self, target_state, *args):
         success = False
-        transtition = self.get_transition(self.current_state, target_state)
+        transtition = self.get_transition(self.get_current_state(), target_state)
         if transtition is not None:
             try:
                 transtition.execute(*args)
-                self.current_state = target_state
+                self.set_current_state(target_state)
                 success = True
             except Exception:
                 raise

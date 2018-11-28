@@ -31,5 +31,5 @@ class ServerNavigationHandler():
             dest = GpsPoint(long=longitude, lat=latitude)
             request_type = 'gps'
 
-        #self.robot_manager.go_to(self.robot_manager.States.NAVIGATING, request_type, dest)        
+        self.robot_manager.go_to(self.robot_manager.States.NAVIGATING, request_type, dest)        
         

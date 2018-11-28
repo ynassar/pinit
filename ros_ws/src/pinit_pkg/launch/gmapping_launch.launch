@@ -2,16 +2,16 @@
 
    <node name="map"
           pkg="gmapping"
-          type="slam_gmapping"
-          output="screen">
+          type="slam_gmapping">
+          
         <param name="minimumScore" value="50"/>
         <param name="map_update_interval" value="0.5"/>
         <param name="linearUpdate" value="0.25"/>
         <param name="angularUpdate" value="0.2"/>
         <param name="delta" value="0.1"/>
-        <param name="xmin" value="-30.0"/>
-        <param name="ymin" value="-30.0"/>
-        <param name="xmax" value="30.0"/>
-        <param name="ymax" value="30.0"/>
+        <param name="xmin" value="-10.0"/>
+        <param name="ymin" value="-10.0"/>
+        <param name="xmax" value="10.0"/>
+        <param name="ymax" value="10.0"/>
    </node>
 </launch>

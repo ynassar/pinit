@@ -14,16 +14,18 @@ from robot_navigation.navigation_controller import NavigationController
 from robot_motion.robot_pose import PoseListenerFactory
 from robot_navigation.initial_pose_publisher import InitialPosePublisher
 from server_communication.server_pose_streamer import ServerPoseStreamerFactory
+from server_communication.server_robotstate_streamer import ServerStateStreamer
 from gps import gps_cal
 
 class RobotStateManager():
 
     class States(Enum):
-        START = 1
-        IDLE = 2
-        MAPPING = 3
-        MAPPING_AND_MOVING = 4
-        NAVIGATING = 5
+        START = 0
+        IDLE = 1
+        MAPPING = 2
+        MAPPING_AND_MOVING = 3
+        NAVIGATING = 4
+        NAVIGATING_AND_IDLE = 5
         ERROR = 6
 
 
@@ -40,6 +42,7 @@ class RobotStateManager():
         map_publisher = MapPublisher.create(server_address, robot_name)
         nav_controller = NavigationController(map_publisher)
         initial_pose_publisher = InitialPosePublisher(server_address, robot_name)
+        state_streamer = ServerStateStreamer.create(robot_name, robot_fsm, communication_queue)
 
         return RobotStateManager(
             robot_fsm=robot_fsm,
@@ -51,12 +54,14 @@ class RobotStateManager():
             gps_calibrator=gps_calibrator,
             map_publisher=map_publisher,
             nav_controller=nav_controller,
-            initial_pose_publisher=initial_pose_publisher
+            initial_pose_publisher=initial_pose_publisher,
+            state_streamer=state_streamer
             )
 
 
     def __init__(self, robot_fsm, com_queue, node_manager, map_streamer, pose_streamer,
-                 motion_controller, gps_calibrator, map_publisher, nav_controller, initial_pose_publisher):
+                 motion_controller, gps_calibrator, map_publisher, nav_controller, initial_pose_publisher,
+                 state_streamer):
 
         self.fsm_states = [s for s in self.States]
         self.robot_fsm = robot_fsm
@@ -69,6 +74,7 @@ class RobotStateManager():
         self.map_publisher = map_publisher
         self.nav_controller = nav_controller
         self.initial_pose_publisher = initial_pose_publisher
+        self.state_streamer = state_streamer
 
         self.init_states()
         self.init_transitions()
@@ -76,6 +82,10 @@ class RobotStateManager():
 
     def go_to(self, state, *args):
         self.robot_fsm.go_to(state, *args)
+
+
+    def get_state(self):
+        return self.robot_fsm.get_current_state()
 
 
     def init_states(self):
@@ -118,6 +128,14 @@ class RobotStateManager():
         self.robot_fsm.add_transition(self.States.MAPPING_AND_MOVING,
                                       self.States.IDLE,
                                       self.mmoving_to_idle_cb)
+        self.robot_fsm.add_transition(self.States.NAVIGATING_AND_IDLE,
+                                      self.States.NAVIGATING,
+                                      self.navigatingidle_to_navigating_cb)
+        self.robot_fsm.add_transition(self.States.NAVIGATING,
+                                      self.States.NAVIGATING_AND_IDLE,
+                                      self.navigating_to_navigatingidle_cb)
+
+
 
 
     def idle_to_idle_cb(self, *args):
@@ -136,7 +154,8 @@ class RobotStateManager():
         self.map_publisher.start()
         self.initial_pose_publisher.fetch_pose()
         self.initial_pose_publisher.publish_initial_pose()
-        #self.nav_controller.start_nav(*args)
+        rospy.sleep(5)
+        self.nav_controller.start_nav(*args)
 
 
 
@@ -173,9 +192,17 @@ class RobotStateManager():
         pass
 
 
+    def navigatingidle_to_navigating_cb(self, *args):
+        self.nav_controller.start_nav(*args)
+
+
+    def navigating_to_navigatingidle_cb(self, *args):
+        pass
+
+
     def start_to_idle_cb(self, *args):
-        #self.node_manager.start_robot()
         self.pose_streamer.start()
+        self.state_streamer.start()
         #self.idle_to_navigating_cb(*args)
 
 
