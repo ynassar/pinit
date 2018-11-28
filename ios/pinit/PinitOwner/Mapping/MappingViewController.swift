@@ -55,7 +55,7 @@ class MappingViewController: PinitNavigationController, MappingServerDelegate, U
             self.saveMappingButtonItem
         ]
         
-//        mappingControlsView.disableControls()
+        mappingControlsView.disableControls()
         mappingView.disableMapView()
         saveMappingButtonItem.disableButton()
         addLocationButtonItem.disableButton()
