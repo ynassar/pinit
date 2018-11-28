@@ -8,13 +8,15 @@ class PinitOwnerViewController: UITabBarController, UITabBarControllerDelegate {
         super.viewDidLoad()
         self.delegate = self
         
-        self.tabBar.barTintColor = .white
-        self.tabBar.tintColor = .white
-        self.tabBar.layer.borderWidth = 0
-        self.tabBar.clipsToBounds = true
-        self.tabBar.backgroundColor = .white
-//        self.view.backgroundColor = .white
+//        self.tabBar.barTintColor = .clear
+//        self.tabBar.tintColor = .white
+//        self.tabBar.layer.borderWidth = 0
+//        self.tabBar.clipsToBounds = true
+//        self.tabBar.backgroundColor = UIColor.clear
         
+        self.tabBar.backgroundImage = UIImage()
+        self.tabBar.barTintColor = .clear
+        self.tabBar.shadowImage = UIImage()
         setUpTabBar()
     }
     
