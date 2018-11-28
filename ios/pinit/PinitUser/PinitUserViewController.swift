@@ -66,18 +66,13 @@ class PinitUserViewController: PinitSideMenuNavigationController, CLLocationMana
         print("Eroorrr")
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.addGradiantBackground(color: PinitColors.red.cgColor)
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         robotRequestView.getGpsCoordinatesButton.makeButtonCircular()
-        
-        
-        let gradiantLayer = CAGradientLayer()
-        gradiantLayer.frame = self.view.bounds
-        gradiantLayer.startPoint = CGPoint(x: 0, y: 0)
-        gradiantLayer.endPoint = CGPoint(x: 0, y: 1)
-        gradiantLayer.colors = [UIColor.white.cgColor,
-                                UIColor.white.cgColor,
-                                PinitColors.red.cgColor]
-        self.view.layer.insertSublayer(gradiantLayer, at: 0)
     }
 }
