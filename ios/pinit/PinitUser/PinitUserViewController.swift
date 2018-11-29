@@ -17,7 +17,6 @@ class PinitUserViewController: PinitSideMenuNavigationController, CLLocationMana
         super.viewDidLoad()
 
         self.view.addSubview(robotRequestView)
-        
         self.view.backgroundColor = .white
 
         locationManager.delegate = self
@@ -35,7 +34,16 @@ class PinitUserViewController: PinitSideMenuNavigationController, CLLocationMana
             self,
             action: #selector(self.getGpsCoordinatesButtonClick),
             for: .touchUpInside)
-
+        
+        robotRequestView.pickUpLocationTextFeild
+            .addTarget(self,
+                       action: #selector(self.showSearchController),
+                       for: .editingDidBegin)
+        
+        robotRequestView.destinationLocationTextFiled
+            .addTarget(self,
+                       action: #selector(self.showSearchController),
+                       for: .editingDidBegin)
     }
         
     @objc private func getGpsCoordinatesButtonClick() {
@@ -51,6 +59,17 @@ class PinitUserViewController: PinitSideMenuNavigationController, CLLocationMana
             robotRequestServer.requestRobotToLocation(gpsCoordinates: location)
             print("Longtitude: \(location.coordinate.longitude)")
             print("Latitude: \(location.coordinate.latitude)")
+        }
+    }
+    
+    @objc private func showSearchController() {
+        robotRequestView.destinationLocationTextFiled.endEditing(true)
+        robotRequestView.pickUpLocationTextFeild.endEditing(true)
+
+        let selectLocationController = SelectLocationViewController()
+        if let navigationController = self.navigationController {
+            navigationController.delegate = self
+            navigationController.pushViewController(selectLocationController, animated: true)
         }
     }
     
@@ -75,4 +94,17 @@ class PinitUserViewController: PinitSideMenuNavigationController, CLLocationMana
         super.viewDidAppear(animated)
         robotRequestView.getGpsCoordinatesButton.makeButtonCircular()
     }
+}
+
+extension PinitUserViewController : UINavigationControllerDelegate {
+    
+    func navigationController(
+        _ navigationController: UINavigationController,
+        animationControllerFor operation: UINavigationController.Operation,
+        from fromVC: UIViewController,
+        to toVC: UIViewController
+        ) -> UIViewControllerAnimatedTransitioning? {
+        return SlideUpAnimationTransitioning(operation: operation)
+    }
+    
 }
