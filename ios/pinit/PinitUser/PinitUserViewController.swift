@@ -27,7 +27,7 @@ class PinitUserViewController: PinitSideMenuNavigationController, CLLocationMana
 
         robotRequestView = robotRequestView
             .addCenterXConstraint(relativeView: self.view)
-            .setEqualConstraint(selfAttribute: .top, relativeView: self.view, relativeAttribute: .top)
+            .addCenterYConstraint(relativeView: self.view)
             .addWidthConstraint(relativeView: self.view, multipler: 1.0)
             .addHeightConstraint(relativeView: self.view, multipler: 0.5)
 
@@ -66,10 +66,13 @@ class PinitUserViewController: PinitSideMenuNavigationController, CLLocationMana
         print("Eroorrr")
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.addGradiantBackground(color: PinitColors.red.cgColor)
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         robotRequestView.getGpsCoordinatesButton.makeButtonCircular()
-        robotRequestView.getGpsCoordinatesButton.addGradiant(colors:
-            [PinitColors.blue.cgColor, PinitColors.linkBlue.cgColor])
     }
 }

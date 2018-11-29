@@ -7,14 +7,10 @@ class PinitOwnerViewController: UITabBarController, UITabBarControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.delegate = self
-        
-        self.tabBar.barTintColor = .white
-        self.tabBar.tintColor = .white
-        self.tabBar.layer.borderWidth = 0
-        self.tabBar.clipsToBounds = true
-        self.tabBar.backgroundColor = .white
-//        self.view.backgroundColor = .white
-        
+ 
+        self.tabBar.backgroundImage = UIImage()
+        self.tabBar.barTintColor = .clear
+        self.tabBar.shadowImage = UIImage()
         setUpTabBar()
     }
     
@@ -24,11 +20,14 @@ class PinitOwnerViewController: UITabBarController, UITabBarControllerDelegate {
             rootViewController: MappingViewController())
         mappingViewController.tabBarItem.image = UIImage(named: "mapIcon")
         mappingViewController.tabBarItem.selectedImage = UIImage(named: "mapIconSelected")
+        mappingViewController.tabBarItem.imageInsets = UIEdgeInsets(top: 6, left: 0, bottom: -6, right: 0)
+
         
         let homepageViewController = UINavigationController(
             rootViewController: HomepageViewController())
         homepageViewController.tabBarItem.image = UIImage(named: "infoIcon")
         homepageViewController.tabBarItem.selectedImage = UIImage(named: "infoIconSelected")
+        homepageViewController.tabBarItem.imageInsets = UIEdgeInsets(top: 6, left: 0, bottom: -6, right: 0)
         
         viewControllers = [homepageViewController, mappingViewController]
         
