@@ -40,9 +40,6 @@ class SelectLocationTableViewCell: UITableViewCell {
         locationDescription.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.5).isActive = true
         locationDescription.heightAnchor.constraint(equalTo: locationName.heightAnchor).isActive = true
         
-        locationName.text = "Location Name"
-        locationDescription.text = "Location Description"
-        
         locationName.font = UIFont(name: "Avenir", size: 14.0)
         locationDescription.font = UIFont(name: "Avenir-Oblique", size: 12.0)
         locationDescription.textColor = PinitColors.borderGray

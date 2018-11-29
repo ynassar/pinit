@@ -1,6 +1,6 @@
 import UIKit
 
-class SelectLocationViewController : PinitViewController, UITableViewDelegate, UITableViewDataSource {
+class SelectLocationViewController : PinitViewController , SelectLocationServerDelegate{
     
     private let identifier = "id"
     
@@ -10,16 +10,40 @@ class SelectLocationViewController : PinitViewController, UITableViewDelegate, U
     
     private var searchBarView: SelectLocationSearchBarView!
     
+    private var selectLocationServer: SelectLocationServer!
+    
+    private var locationList: [Location]!
+    
     override func viewDidLoad() {
         locationsTableView = UITableView()
         searchBarView = SelectLocationSearchBarView()
+        selectLocationServer = SelectLocationServer()
+        locationList = []
         self.controllerViews.append(searchBarView)
         super.viewDidLoad()
-        
+        self.view.backgroundColor = .white
+
         self.view.addSubview(searchBarView)
         self.view.addSubview(locationsTableView)
+
+        self.addViewsConstraints()
         
-        self.view.backgroundColor = .white
+        locationsTableView.register(SelectLocationTableViewCell.self, forCellReuseIdentifier: identifier)
+        
+        locationsTableView.delegate = self
+        locationsTableView.dataSource = self
+        
+        selectLocationServer.delegate = self
+        selectLocationServer.getLocations()
+        
+        searchBarView.backButton.addTarget(
+            self,
+            action: #selector(self.backButtonClick),
+            for: .touchDown)
+        
+    }
+    
+    private func addViewsConstraints() {
         
         let statusBar = UIApplication.shared.statusBarFrame.size.height
         
@@ -44,15 +68,6 @@ class SelectLocationViewController : PinitViewController, UITableViewDelegate, U
                                        relativeAttribute: .bottom,
                                        constant: 0)
         
-        locationsTableView.register(SelectLocationTableViewCell.self, forCellReuseIdentifier: identifier)
-        
-        locationsTableView.delegate = self
-        locationsTableView.dataSource = self
-        
-        searchBarView.backButton.addTarget(
-            self,
-            action: #selector(self.backButtonClick),
-            for: .touchDown)
     }
     
     @objc private func backButtonClick() {
@@ -62,26 +77,19 @@ class SelectLocationViewController : PinitViewController, UITableViewDelegate, U
         }
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 20
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return tableView.dequeueReusableCell(withIdentifier: self.identifier, for: indexPath)
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return self.tableViewCellHeight
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
+        super.viewWillAppear(animated)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
         self.navigationController?.setNavigationBarHidden(false, animated: animated)
+        super.viewWillDisappear(animated)
+    }
+    
+    public func didUpdateLocations(locations: [Location]) {
+        locationList = locations
+        locationsTableView.reloadData()
     }
 }
 
@@ -94,4 +102,35 @@ extension SelectLocationViewController : UINavigationControllerDelegate {
         ) -> UIViewControllerAnimatedTransitioning? {
         return SlideDownAnimationTransitioning(operation: operation)
     }
+}
+
+extension SelectLocationViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return locationList.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(
+            withIdentifier: self.identifier,
+            for: indexPath) as! SelectLocationTableViewCell
+        let values = locationList[indexPath.row]
+        cell.locationName.text = values.name
+        cell.locationDescription.text = (values.description == "")
+            ? "No Description Available" : values.description
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return self.tableViewCellHeight
+    }
+    
+}
+
+extension SelectLocationViewController: UIScrollViewDelegate {
+    
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        view.endEditing(true)
+    }
+    
 }

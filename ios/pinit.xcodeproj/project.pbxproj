@@ -26,6 +26,9 @@
 		3721F90821B02465005C9813 /* ros.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721F90121B02465005C9813 /* ros.pb.swift */; };
 		3721F90921B02465005C9813 /* login.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721F90321B02465005C9813 /* login.grpc.swift */; };
 		3721F90A21B02465005C9813 /* login.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721F90421B02465005C9813 /* login.pb.swift */; };
+		3721F90C21B05258005C9813 /* SelectLocationServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721F90B21B05258005C9813 /* SelectLocationServer.swift */; };
+		3721F90E21B05263005C9813 /* SelectLocationServerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721F90D21B05263005C9813 /* SelectLocationServerDelegate.swift */; };
+		3721F91021B053FF005C9813 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721F90F21B053FF005C9813 /* Location.swift */; };
 		372216C4219EFE51009C8103 /* PinitNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372216C3219EFE51009C8103 /* PinitNavigationController.swift */; };
 		372216C6219EFE63009C8103 /* PinitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372216C5219EFE63009C8103 /* PinitViewController.swift */; };
 		372216C9219EFEF3009C8103 /* PinitViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372216C8219EFEF3009C8103 /* PinitViewProtocol.swift */; };
@@ -182,6 +185,9 @@
 		3721F90121B02465005C9813 /* ros.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ros.pb.swift; sourceTree = "<group>"; };
 		3721F90321B02465005C9813 /* login.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = login.grpc.swift; sourceTree = "<group>"; };
 		3721F90421B02465005C9813 /* login.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = login.pb.swift; sourceTree = "<group>"; };
+		3721F90B21B05258005C9813 /* SelectLocationServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLocationServer.swift; sourceTree = "<group>"; };
+		3721F90D21B05263005C9813 /* SelectLocationServerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLocationServerDelegate.swift; sourceTree = "<group>"; };
+		3721F90F21B053FF005C9813 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		372216C3219EFE51009C8103 /* PinitNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinitNavigationController.swift; sourceTree = "<group>"; };
 		372216C5219EFE63009C8103 /* PinitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinitViewController.swift; sourceTree = "<group>"; };
 		372216C8219EFEF3009C8103 /* PinitViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinitViewProtocol.swift; sourceTree = "<group>"; };
@@ -288,6 +294,9 @@
 				3721F8E421AEB75E005C9813 /* SelectLocationTableViewCell.swift */,
 				3721F8E621AFF94D005C9813 /* SelectLocationViewController.swift */,
 				3721F8E821B010CA005C9813 /* SelectLocationSearchBarView.swift */,
+				3721F90B21B05258005C9813 /* SelectLocationServer.swift */,
+				3721F90D21B05263005C9813 /* SelectLocationServerDelegate.swift */,
+				3721F90F21B053FF005C9813 /* Location.swift */,
 			);
 			path = SelectLocation;
 			sourceTree = "<group>";
@@ -700,6 +709,7 @@
 				37EEA7E7215B962500BF3839 /* AppDelegate.swift in Sources */,
 				372CEF6821A3409300791DF4 /* MappingServer.swift in Sources */,
 				3721402221A6097400A5A880 /* HomepageView.swift in Sources */,
+				3721F91021B053FF005C9813 /* Location.swift in Sources */,
 				372CEF5D21A1BCC700791DF4 /* SettingsBundleHelper.swift in Sources */,
 				37352738217A217F00602046 /* PinitOwnerViewController.swift in Sources */,
 				3721F90821B02465005C9813 /* ros.pb.swift in Sources */,
@@ -710,6 +720,7 @@
 				37363A1A21761F1100EBD383 /* AuthenticationView.swift in Sources */,
 				37363A1C21761F1100EBD383 /* LoginViewController.swift in Sources */,
 				372216C4219EFE51009C8103 /* PinitNavigationController.swift in Sources */,
+				3721F90E21B05263005C9813 /* SelectLocationServerDelegate.swift in Sources */,
 				37363A1921761F1100EBD383 /* RegisterViewController.swift in Sources */,
 				3721F8E921B010CA005C9813 /* SelectLocationSearchBarView.swift in Sources */,
 				3735273B217A218700602046 /* ProfileViewController.swift in Sources */,
@@ -717,6 +728,7 @@
 				372216D5219F255D009C8103 /* RobotRequestView.swift in Sources */,
 				372CEF8621A48D1900791DF4 /* SideMenuShowAnimationTransitioning.swift in Sources */,
 				372216D0219F251B009C8103 /* PinitUserViewController.swift in Sources */,
+				3721F90C21B05258005C9813 /* SelectLocationServer.swift in Sources */,
 				3721401B21A5A05900A5A880 /* SideMenuInteractor.swift in Sources */,
 				376985B9216834DE006FF550 /* Constants.swift in Sources */,
 			);
