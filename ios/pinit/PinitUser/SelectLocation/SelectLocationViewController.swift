@@ -14,11 +14,16 @@ class SelectLocationViewController : PinitViewController , SelectLocationServerD
     
     private var locationList: [Location]!
     
+    private var originalLocationList: [Location]!
+    
+    public var searchResultDelegate: SelectLocationResultDelegate?
+        
     override func viewDidLoad() {
         locationsTableView = UITableView()
         searchBarView = SelectLocationSearchBarView()
         selectLocationServer = SelectLocationServer()
         locationList = []
+        originalLocationList = []
         self.controllerViews.append(searchBarView)
         super.viewDidLoad()
         self.view.backgroundColor = .white
@@ -41,6 +46,7 @@ class SelectLocationViewController : PinitViewController , SelectLocationServerD
             action: #selector(self.backButtonClick),
             for: .touchDown)
         
+        searchBarView.searchBar.addTarget(self, action: #selector(self.search), for: .editingChanged)
     }
     
     private func addViewsConstraints() {
@@ -77,6 +83,20 @@ class SelectLocationViewController : PinitViewController , SelectLocationServerD
         }
     }
     
+    @objc private func search() {
+        if let searchText = searchBarView.searchBar.text {
+            if searchText == "" {
+                locationList = originalLocationList
+            } else {
+                let key = searchText.lowercased()
+                locationList = originalLocationList.filter {
+                    $0.name.lowercased().range(of: key) != nil
+                }
+            }
+            locationsTableView.reloadData()
+        }
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
         super.viewWillAppear(animated)
@@ -89,6 +109,7 @@ class SelectLocationViewController : PinitViewController , SelectLocationServerD
     
     public func didUpdateLocations(locations: [Location]) {
         locationList = locations
+        originalLocationList = locations
         locationsTableView.reloadData()
     }
 }
@@ -123,6 +144,14 @@ extension SelectLocationViewController: UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return self.tableViewCellHeight
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        searchResultDelegate?.getLocationSelected(location: locationList[indexPath.row])
+        if let navigationController = navigationController {
+            navigationController.delegate = self
+            navigationController.popViewController(animated: true)
+        }
     }
     
 }

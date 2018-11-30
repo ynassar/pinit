@@ -25,8 +25,6 @@ class SelectLocationServer: NSObject, CLLocationManagerDelegate {
         if let location = locations.first {
             locationManager.stopUpdatingLocation()
             locationManager.delegate = nil
-            print("Longtitude: \(location.coordinate.longitude)")
-            print("Latitude: \(location.coordinate.latitude)")
             
             let accountClient = RosServiceServiceClient(
                 address: PinitConstants.robotServerAddress,
