@@ -1,19 +1,25 @@
 import UIKit
 
+/// The view responsible for the cells of `UITableView` showing the locations of the robot.
 class SelectLocationTableViewCell: UITableViewCell {
     
+    /// The name of the location.
     public var locationName: UILabel
     
+    /// The description of the location.
     public var locationDescription: UILabel
     
+    /// The pin image on the side for view purposes.
     public var pinImage: UIImageView
     
+    /// Initializer responside for initializing the elements of the location cell and adding
+    /// the appropriate constraints for each using anchors.
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         locationName = UILabel()
         locationDescription = UILabel()
         pinImage = UIImageView(image: UIImage(named: "mapPinIcon"))
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
+    
         addSubview(locationName)
         addSubview(locationDescription)
         addSubview(pinImage)
