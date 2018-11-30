@@ -13,6 +13,7 @@ from backend import constants
 from backend.models import map as map_model
 from backend.models import waypoint as waypoint_model
 from backend.models import robot as robot_model
+from backend.models import trip as trip_model
 from backend.ros import map_utils
 from backend.ros import request_utils
 from backend.ros import ros_data_handler
@@ -21,6 +22,12 @@ from proto.ros import ros_pb2_grpc
 from proto.ros import ros_pb2
 
 TESTING_ROBOT = True
+
+class NotAwaitingConfirmation(Exception):
+    pass
+
+class RobotBusy(Exception):
+    pass
 
 class NoMapFound(Exception):
     pass
@@ -147,3 +154,68 @@ class RosService(ros_pb2_grpc.RosServiceServicer):
     def GetPose(self, request, context):
         robot = robot_model.Robot.objects().get(robot_name=request.robot_name)
         return ros_pb2.LocalMapPose(row=robot.row, column=robot.column, angle=robot.angle)
+
+    def CreateTrip(self, request, context):
+        username = request_utils.UsernameFromToken(request.token, self._rsa_key)
+        start_waypoint = waypoint_model.Waypoint.objects.get(waypoint_name=request.start_waypoint)
+        robot_name = start_waypoint.robot_name
+        robot = robot_model.Robot.objects.get(robot_name=robot_name)
+        if robot.status != 'Idle':
+            context.set_code(grpc.StatusCode.NOT_FOUND)
+            context.set_details('Robot is busy.')
+            raise RobotBusy()
+        if robot_name not in self._robot_name_to_queue:
+            context.set_code(grpc.StatusCode.NOT_FOUND)
+            context.set_details("Specified robot not connected.")
+            raise RobotNotConnected()
+        trip = trip_model.Trip(created_by=username,
+                               start_waypoint=request.start_waypoint,
+                               end_waypoint=request.end_waypoint,
+                               status='RoutingToPickup')
+        robot.trip = trip
+        trip.save()
+        robot.save()
+        self._robot_name_to_queue[robot_name].put(ros_pb2.ServerToRosCommunication(
+            navigation_request=ros_pb2.ServerToRosNavigationRequest(
+                pose=ros_pb2.LocalMapPose(
+                    row=start_waypoint.row,
+                    column=start_waypoint.column
+                )
+            )
+        ))
+        return ros_pb2.CreateTripResponse()
+
+    def GetTripStatus(self, request, context):
+        username = request_utils.UsernameFromToken(request.token, self._rsa_key)
+        trip = trip_model.Trip.objects.get(created_by=username, status__ne='Completed')
+        status_string_to_enum = {
+            'RoutingToPickup' : ros_pb2.TripStatus.ROUTING_TO_PICKUP,
+            'AwaitingConfirmation' : ros_pb2.TripStatus.AWAITING_CONFIRMATION,
+            'RoutingToDestination' : ros_pb2.TripStatus.ROUTING_TO_DESTINATION,
+            'Completed' : ros_pb2.TripStatus.COMPLETED
+        }
+        return ros_pb2.TripStatus(status=status_string_to_enum[trip.status])
+
+    def ConfirmTrip(self, request, context):
+        username = request_utils.UsernameFromToken(request.token, self._rsa_key)
+        trip = trip_model.Trip.objects.get(created_by=username, status__ne='Completed')
+        if trip.status != 'AwaitingConfirmation':
+            context.set_code(grpc.StatusCode.NOT_FOUND)
+            raise NotAwaitingConfirmation()
+        end_waypoint = waypoint_model.Waypoint.objects.get(waypoint_name=trip.start_waypoint)
+        trip.status = 'RoutingToDestination'
+        robot_name = end_waypoint.robot_name
+        if robot_name not in self._robot_name_to_queue:
+            context.set_code(grpc.StatusCode.NOT_FOUND)
+            context.set_details("Specified robot not connected.")
+            raise RobotNotConnected()
+        self._robot_name_to_queue[robot_name].put(ros_pb2.ServerToRosCommunication(
+            navigation_request=ros_pb2.ServerToRosNavigationRequest(
+                pose=ros_pb2.LocalMapPose(
+                    row=end_waypoint.row,
+                    column=end_waypoint.column
+                )
+            )
+        ))
+        trip.save()
+        return ros_pb2.ConfirmTripResponse()

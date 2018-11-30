@@ -1,3 +1,5 @@
+from proto.ros import ros_pb2
+
 from backend.ros import map_utils
 from backend.models import robot as robot_model
 
@@ -39,6 +41,16 @@ class RosDataHandler(object):
                 set__row = robot_pose.row,
                 set__column = robot_pose.column,
                 set__angle = robot_pose.angle)
+
+    @HandlerRegistry.RegisterHandler('status_update')
+    def HandleStatusUpdate(self, status_update, robot_name):
+        robot = robot_model.Robot.objects.get(robot_name=robot_name)
+        if status_update.status_update == ros_pb2.RobotStatusUpdate.NAVIGATING_AND_IDLE:
+            if robot.trip.status == 'RoutingToPickup':
+                robot.trip.status = 'AwaitingConfirmation'
+            elif robot.trip.status == 'RoutingToDesintation':
+                robot.trip.status = 'Completed'
+            robot.trip.save()
 
     def HandleRequests(self, request_iterator, robot_name):
         for request in request_iterator:

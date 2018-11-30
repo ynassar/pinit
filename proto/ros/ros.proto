@@ -22,6 +22,38 @@ service RosService{
     // Gets a list of the waypoints in the nearest map to the given coordinates.
 
     rpc GetPose(GetPoseRequest) returns (LocalMapPose) {}
+
+    rpc CreateTrip(CreateTripRequest) returns (CreateTripResponse) {}
+
+    rpc GetTripStatus(GetTripStatusRequest) returns (TripStatus) {}
+
+    rpc ConfirmTrip(ConfirmTripRequest) returns (ConfirmTripResponse) {}
+}
+
+message ConfirmTripRequest{
+    string token = 1;
+}
+
+message CreateTripRequest{
+    string start_waypoint = 1;
+    string end_waypoint = 2;
+    string token = 3;
+}
+
+message CreateTripResponse{}
+
+message GetTripStatusRequest{
+    string token = 1;
+}
+
+message TripStatus{
+    enum TripStatusType{
+        ROUTING_TO_PICKUP = 0;
+        AWAITING_CONFIRMATION = 1;
+        ROUTING_TO_DESTINATION = 2;
+        COMPLETED = 3;
+    }
+    TripStatusType status = 1;
 }
 
 message RobotNavigationRequest{
@@ -157,3 +189,4 @@ message MappingRequest{
 }
 
 message MappingResponse{}
+message ConfirmTripResponse{}

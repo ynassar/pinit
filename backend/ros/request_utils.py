@@ -5,6 +5,11 @@ import jwt
 class AuthenticationError(Exception):
     pass
 
+def UsernameFromToken(token, rsa_key):
+    jwt_dict = jwt.decode(token, key=rsa_key)
+    return jwt_dict["username"]
+
+
 def RobotNameFromToken(token, rsa_key):
     jwt_dict = jwt.decode(token, key=rsa_key)
     if not jwt_dict["is_owner"]:
