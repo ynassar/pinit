@@ -60,7 +60,9 @@ class MappingViewController: PinitNavigationController, MappingServerDelegate, U
         saveMappingButtonItem.disableButton()
         addLocationButtonItem.disableButton()
         
-        let spacing = self.view.frame.size.height * 0.02
+        let spacing = self.view.frame.size.height * 0.05
+        let tabBarSpacing = self.view.frame.size.height * 0.02
+        let tabBarHeight = self.tabBarController?.tabBar.bounds.height ?? 0.0
         
         mappingControlsView = self.mappingControlsView
             .addCenterXConstraint(relativeView: self.view)
@@ -69,7 +71,7 @@ class MappingViewController: PinitNavigationController, MappingServerDelegate, U
             .setConstraintWithConstant(selfAttribute: .bottom,
                                        relativeView: self.view,
                                        relativeAttribute: .bottom,
-                                       constant: -spacing)
+                                       constant: 0 - tabBarHeight - tabBarSpacing)
         
         mappingView = self.mappingView
             .addCenterXConstraint(relativeView: self.view)
@@ -77,7 +79,7 @@ class MappingViewController: PinitNavigationController, MappingServerDelegate, U
             .setConstraintWithConstant(selfAttribute: .top,
                                        relativeView: self.view,
                                        relativeAttribute: .top,
-                                       constant: 0)
+                                       constant: spacing)
             .setConstraintWithConstant(selfAttribute: .bottom,
                                        relativeView: mappingControlsView,
                                        relativeAttribute: .top,
@@ -198,6 +200,11 @@ class MappingViewController: PinitNavigationController, MappingServerDelegate, U
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.tabBarController?.tabBar.isHidden = false
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.addGradiantBackground(color: PinitColors.blue.cgColor)
     }
     
     

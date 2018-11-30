@@ -16,4 +16,13 @@ class PinitViewController : UIViewController {
         }
     }
     
+    public func addGradiantBackground(color: CGColor) {
+        let gradiantLayer = CAGradientLayer()
+        gradiantLayer.frame = self.view.bounds
+        gradiantLayer.startPoint = CGPoint(x: 0, y: 0.5)
+        gradiantLayer.endPoint = CGPoint(x: 0, y: 1)
+        gradiantLayer.colors = [UIColor.white.cgColor,
+                                color]
+        self.view.layer.insertSublayer(gradiantLayer, at: 0)
+    }
 }

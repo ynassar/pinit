@@ -8,4 +8,9 @@ class HomepageViewController : PinitSideMenuNavigationController {
         super.view.backgroundColor = .white
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.addGradiantBackground(color: PinitColors.yellow.cgColor)
+    }
+    
 }
