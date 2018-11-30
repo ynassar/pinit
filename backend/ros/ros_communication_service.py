@@ -202,7 +202,7 @@ class RosService(ros_pb2_grpc.RosServiceServicer):
         if trip.status != 'AwaitingConfirmation':
             context.set_code(grpc.StatusCode.NOT_FOUND)
             raise NotAwaitingConfirmation()
-        end_waypoint = waypoint_model.Waypoint.objects.get(waypoint_name=trip.start_waypoint)
+        end_waypoint = waypoint_model.Waypoint.objects.get(waypoint_name=trip.end_waypoint)
         trip.status = 'RoutingToDestination'
         robot_name = end_waypoint.robot_name
         if robot_name not in self._robot_name_to_queue:

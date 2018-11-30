@@ -2,6 +2,7 @@ import grpc
 
 import numpy as np
 import time
+import queue
 
 from absl import app
 from absl import flags
@@ -11,6 +12,9 @@ from proto.ros import ros_pb2
 
 flags.DEFINE_integer("port", 50052, "The port to connect to on localhost.")
 FLAGS = flags.FLAGS
+
+status = 'Idle'
+state_update_requests = queue.Queue()
 
 def GenerateRequest():
     yield ros_pb2.RosToServerCommunication(robot_name='client_test')
@@ -35,6 +39,8 @@ def GenerateRequest():
             angle = 45
         )
     )
+    for update_request in iter(state_update_requests.get, None):
+        yield update_request
     
 
 def main(argv):
@@ -44,6 +50,21 @@ def main(argv):
         try:
             for communication in communication_generator:
                 print(communication)
+                if communication.HasField("navigation_request"):
+                    state_update_requests.put(
+                        ros_pb2.RosToServerCommunication(
+                            status_update = ros_pb2.RobotStatusUpdate(
+                                status_update=ros_pb2.RobotStatusUpdate.NAVIGATING
+                            )
+                        )
+                    )
+                    state_update_requests.put(
+                        ros_pb2.RosToServerCommunication(
+                            status_update = ros_pb2.RobotStatusUpdate(
+                                status_update=ros_pb2.RobotStatusUpdate.NAVIGATING_AND_IDLE
+                            )
+                        )
+                    )
         except KeyError:
             communication_generator.cancel()
         

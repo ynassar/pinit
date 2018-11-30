@@ -17,18 +17,13 @@ def main(argv):
     with grpc.insecure_channel(f'localhost:{FLAGS.port}') as channel:
         with grpc.insecure_channel(f'localhost:50051') as auth_channel:
             auth_stub = login_pb2_grpc.AuthenticationServiceStub(auth_channel)
-            response = auth_stub.Login(login_pb2.LoginRequest(username="Admin", password="123"))
+            response = auth_stub.Login(login_pb2.LoginRequest(username="y", password="p"))
             token = response.token
         print(token)
         stub = ros_pb2_grpc.RosServiceStub(channel)
-        waypoint = stub.RequestRobotToLocation(
-                ros_pb2.RobotNavigationRequest(
-                    token=token,
-                    coordinates=ros_pb2.GpsCoordinates(
-                        latitude=10,
-                        longitude=20)))
-
-        print(waypoint)
+        stub.CreateTrip(ros_pb2.CreateTripRequest(token=token,start_waypoint="test_waypoint",end_waypoint="test_destination"))
+        time.sleep(1)
+        stub.ConfirmTrip(ros_pb2.ConfirmTripRequest(token=token))
 
     #rpc RequestRobotToLocation(RobotNavigationRequest) returns (WaypointList) {}
 if __name__ == '__main__':

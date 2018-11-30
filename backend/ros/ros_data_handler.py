@@ -48,7 +48,7 @@ class RosDataHandler(object):
         if status_update.status_update == ros_pb2.RobotStatusUpdate.NAVIGATING_AND_IDLE:
             if robot.trip.status == 'RoutingToPickup':
                 robot.trip.status = 'AwaitingConfirmation'
-            elif robot.trip.status == 'RoutingToDesintation':
+            elif robot.trip.status == 'RoutingToDestination':
                 robot.trip.status = 'Completed'
             robot.trip.save()
 
