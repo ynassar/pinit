@@ -12,14 +12,19 @@ class PinitUserViewController: PinitSideMenuNavigationController {
         
     private var fieldSelected: FieldSelected!
     
+    private var robotRequestServer: RequestRobotServer!
+    
     override func viewDidLoad() {
         robotRequestView = RobotRequestView()
         fieldSelected = .None
+        robotRequestServer = RequestRobotServer()
         self.controllerViews.append(robotRequestView)
         super.viewDidLoad()
 
         self.view.addSubview(robotRequestView)
         self.view.backgroundColor = .white
+        
+        robotRequestServer.delegate = self
 
         robotRequestView = robotRequestView
             .addCenterXConstraint(relativeView: self.view)
@@ -39,6 +44,11 @@ class PinitUserViewController: PinitSideMenuNavigationController {
         
         robotRequestView.pickUpLocationTextFeild.tag = FieldSelected.PickUpLocation.rawValue
         robotRequestView.destinationLocationTextFiled.tag = FieldSelected.DestinationLocation.rawValue
+        
+        robotRequestView.requestButton.addTarget(
+            self,
+            action: #selector(self.requestRobot),
+            for: .touchDown)
         
         robotRequestView.requestButton.disableButton()
     }
@@ -61,6 +71,13 @@ class PinitUserViewController: PinitSideMenuNavigationController {
             navigationController.delegate = self
             navigationController.pushViewController(selectLocationController, animated: true)
         }
+    }
+    
+    @objc private func requestRobot() {
+        let robotRequest = RobotRequest(
+            pickUp: robotRequestView.pickUpLocationTextFeild.text ?? "",
+            destination: robotRequestView.destinationLocationTextFiled.text ?? "")
+        robotRequestServer.sendRequest(robotRequest: robotRequest)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -106,6 +123,13 @@ extension PinitUserViewController : SelectLocationResultDelegate {
             
             robotRequestView.enableRequestButton()
         }
+    }
+}
+
+extension PinitUserViewController: RobotRequestServerDelegate {
+    
+    func robotRequested() {
+        print("robot Requested")
     }
     
 }

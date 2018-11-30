@@ -28,6 +28,9 @@
 		3721F90E21B05263005C9813 /* SelectLocationServerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721F90D21B05263005C9813 /* SelectLocationServerDelegate.swift */; };
 		3721F91021B053FF005C9813 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721F90F21B053FF005C9813 /* Location.swift */; };
 		3721F91221B07BE6005C9813 /* SelectLocationResultDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721F91121B07BE6005C9813 /* SelectLocationResultDelegate.swift */; };
+		3721F91621B1AE3E005C9813 /* RobotRquestServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721F91521B1AE3E005C9813 /* RobotRquestServer.swift */; };
+		3721F91821B1AE5B005C9813 /* RequestRobotServerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721F91721B1AE5B005C9813 /* RequestRobotServerDelegate.swift */; };
+		3721F91A21B1AE90005C9813 /* RobotRquest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721F91921B1AE90005C9813 /* RobotRquest.swift */; };
 		372216C4219EFE51009C8103 /* PinitNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372216C3219EFE51009C8103 /* PinitNavigationController.swift */; };
 		372216C6219EFE63009C8103 /* PinitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372216C5219EFE63009C8103 /* PinitViewController.swift */; };
 		372216C9219EFEF3009C8103 /* PinitViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372216C8219EFEF3009C8103 /* PinitViewProtocol.swift */; };
@@ -186,6 +189,9 @@
 		3721F90D21B05263005C9813 /* SelectLocationServerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLocationServerDelegate.swift; sourceTree = "<group>"; };
 		3721F90F21B053FF005C9813 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		3721F91121B07BE6005C9813 /* SelectLocationResultDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLocationResultDelegate.swift; sourceTree = "<group>"; };
+		3721F91521B1AE3E005C9813 /* RobotRquestServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RobotRquestServer.swift; sourceTree = "<group>"; };
+		3721F91721B1AE5B005C9813 /* RequestRobotServerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestRobotServerDelegate.swift; sourceTree = "<group>"; };
+		3721F91921B1AE90005C9813 /* RobotRquest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RobotRquest.swift; sourceTree = "<group>"; };
 		372216C3219EFE51009C8103 /* PinitNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinitNavigationController.swift; sourceTree = "<group>"; };
 		372216C5219EFE63009C8103 /* PinitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinitViewController.swift; sourceTree = "<group>"; };
 		372216C8219EFEF3009C8103 /* PinitViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinitViewProtocol.swift; sourceTree = "<group>"; };
@@ -369,6 +375,9 @@
 			isa = PBXGroup;
 			children = (
 				372216D4219F255D009C8103 /* RobotRequestView.swift */,
+				3721F91521B1AE3E005C9813 /* RobotRquestServer.swift */,
+				3721F91721B1AE5B005C9813 /* RequestRobotServerDelegate.swift */,
+				3721F91921B1AE90005C9813 /* RobotRquest.swift */,
 			);
 			path = RobotRequest;
 			sourceTree = "<group>";
@@ -683,6 +692,7 @@
 				372CEF6E21A354EA00791DF4 /* PinitSideMenuNavigationController.swift in Sources */,
 				372CEF6B21A3409300791DF4 /* MappingServerDelegate.swift in Sources */,
 				3721F90521B02465005C9813 /* account_management.grpc.swift in Sources */,
+				3721F91621B1AE3E005C9813 /* RobotRquestServer.swift in Sources */,
 				3721F8E721AFF94D005C9813 /* SelectLocationViewController.swift in Sources */,
 				3721F90621B02465005C9813 /* account_management.pb.swift in Sources */,
 				372CEF6A21A3409300791DF4 /* MappingViewController.swift in Sources */,
@@ -699,6 +709,7 @@
 				37CBDD042194B92D0092C8E1 /* AddLocationServerDelegate.swift in Sources */,
 				3721B1D02199C01E0083C0DD /* SlideUpAnimationTransitioning.swift in Sources */,
 				37CBDD052194B92D0092C8E1 /* AddLocationServer.swift in Sources */,
+				3721F91A21B1AE90005C9813 /* RobotRquest.swift in Sources */,
 				372216D7219F4731009C8103 /* Profile.swift in Sources */,
 				372216C9219EFEF3009C8103 /* PinitViewProtocol.swift in Sources */,
 				37EEA7E7215B962500BF3839 /* AppDelegate.swift in Sources */,
@@ -722,6 +733,7 @@
 				3735273B217A218700602046 /* ProfileViewController.swift in Sources */,
 				3721F90921B02465005C9813 /* login.grpc.swift in Sources */,
 				372216D5219F255D009C8103 /* RobotRequestView.swift in Sources */,
+				3721F91821B1AE5B005C9813 /* RequestRobotServerDelegate.swift in Sources */,
 				372CEF8621A48D1900791DF4 /* SideMenuShowAnimationTransitioning.swift in Sources */,
 				372216D0219F251B009C8103 /* PinitUserViewController.swift in Sources */,
 				3721F90C21B05258005C9813 /* SelectLocationServer.swift in Sources */,
