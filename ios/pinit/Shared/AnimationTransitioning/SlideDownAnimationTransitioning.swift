@@ -34,10 +34,10 @@ class SlideDownAnimationTransitioning : NSObject, UIViewControllerAnimatedTransi
                            delay: 0,
                            options: UIView.AnimationOptions.curveEaseOut,
                            animations: {
+                            toViewController.view.alpha = 1.0
                             fromViewController.view.frame = containerView.bounds.offsetBy(
                                 dx: 0.0,
                                 dy: toViewController.view.frame.size.height)
-                            toViewController.view.alpha = 1.0
             },
                            completion: { (finished) in
                             transitionContext.completeTransition(true)
