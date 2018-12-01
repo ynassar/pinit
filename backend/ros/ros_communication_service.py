@@ -187,7 +187,7 @@ class RosService(ros_pb2_grpc.RosServiceServicer):
 
     def GetTripStatus(self, request, context):
         username = request_utils.UsernameFromToken(request.token, self._rsa_key)
-        trip = trip_model.Trip.objects.get(created_by=username, status__ne='Completed')
+        trip = trip_model.Trip.objects(created_by=username).order_by('-id').first()
         status_string_to_enum = {
             'RoutingToPickup' : ros_pb2.TripStatus.ROUTING_TO_PICKUP,
             'AwaitingConfirmation' : ros_pb2.TripStatus.AWAITING_CONFIRMATION,
