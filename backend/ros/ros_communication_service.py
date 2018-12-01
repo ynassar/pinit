@@ -95,6 +95,7 @@ class RosService(ros_pb2_grpc.RosServiceServicer):
             communication_queue = self._robot_name_to_queue[robot_name]
             if request.mapping_request.request_type == ros_pb2.ServerToRosMappingRequest.START_MAPPING:
                 map_model.Map.objects(robot_name = robot_name).delete()
+                waypoint_model.Waypoint.objects(robot_name=robot_name).delete()
             communication_queue.put(ros_pb2.ServerToRosCommunication(
                 mapping_request=request.mapping_request
             ))
@@ -187,7 +188,7 @@ class RosService(ros_pb2_grpc.RosServiceServicer):
 
     def GetTripStatus(self, request, context):
         username = request_utils.UsernameFromToken(request.token, self._rsa_key)
-        trip = trip_model.Trip.objects(created_by=username).order_by('-id').first()
+        trip = trip_model.Trip.objects(created_by=username).order_by('-id').first()+
         status_string_to_enum = {
             'RoutingToPickup' : ros_pb2.TripStatus.ROUTING_TO_PICKUP,
             'AwaitingConfirmation' : ros_pb2.TripStatus.AWAITING_CONFIRMATION,
