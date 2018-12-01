@@ -26,6 +26,7 @@ class TripStatusServer {
             do {
                 let tripStatus = try self.tripStatusClient.getTripStatus(getTripStatusRequest)
                 let status = PinitTripStatus(grpcTripStatus: tripStatus.status)
+                print(tripStatus)
                 self.delegate?.updateTripStatus(status: status)
             } catch {
                 print("Error in Trip Status Server")

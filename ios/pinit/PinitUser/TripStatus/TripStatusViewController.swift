@@ -92,7 +92,6 @@ class TripStatusViewController: PinitViewController {
 extension TripStatusViewController : TripStatusServerDelegate {
     
     func updateTripStatus(status: PinitTripStatus) {
-        print(status)
         tripInfoView.updateStatus(tripStatus: status)
         switch status {
         case .WaitingForConfrimation:
