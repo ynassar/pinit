@@ -69,6 +69,11 @@ class TripStatusViewController: PinitViewController {
     @objc private func homeButtonClick() {
         if let navigationController = self.navigationController {
             navigationController.delegate = self
+            let previousController = navigationController.viewControllers.count - 2
+            if let userController = navigationController.viewControllers[previousController]
+                as? ResetViewControllerProtocol {
+                userController.resetViewController()
+            }
             navigationController.popViewController(animated: true)
         }
     }

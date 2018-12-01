@@ -37,6 +37,7 @@
 		3721F92321B1BA0C005C9813 /* TripStatusServerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721F92221B1BA0C005C9813 /* TripStatusServerDelegate.swift */; };
 		3721F92521B1CB68005C9813 /* TripInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721F92421B1CB68005C9813 /* TripInfoView.swift */; };
 		3721F92921B2393F005C9813 /* PinitTripStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721F92821B2393F005C9813 /* PinitTripStatus.swift */; };
+		3721F92B21B2AD08005C9813 /* ResetViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721F92A21B2AD08005C9813 /* ResetViewControllerProtocol.swift */; };
 		372216C4219EFE51009C8103 /* PinitNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372216C3219EFE51009C8103 /* PinitNavigationController.swift */; };
 		372216C6219EFE63009C8103 /* PinitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372216C5219EFE63009C8103 /* PinitViewController.swift */; };
 		372216C9219EFEF3009C8103 /* PinitViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372216C8219EFEF3009C8103 /* PinitViewProtocol.swift */; };
@@ -204,6 +205,7 @@
 		3721F92221B1BA0C005C9813 /* TripStatusServerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripStatusServerDelegate.swift; sourceTree = "<group>"; };
 		3721F92421B1CB68005C9813 /* TripInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripInfoView.swift; sourceTree = "<group>"; };
 		3721F92821B2393F005C9813 /* PinitTripStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinitTripStatus.swift; sourceTree = "<group>"; };
+		3721F92A21B2AD08005C9813 /* ResetViewControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetViewControllerProtocol.swift; sourceTree = "<group>"; };
 		372216C3219EFE51009C8103 /* PinitNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinitNavigationController.swift; sourceTree = "<group>"; };
 		372216C5219EFE63009C8103 /* PinitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinitViewController.swift; sourceTree = "<group>"; };
 		372216C8219EFEF3009C8103 /* PinitViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinitViewProtocol.swift; sourceTree = "<group>"; };
@@ -382,6 +384,7 @@
 			isa = PBXGroup;
 			children = (
 				372216C8219EFEF3009C8103 /* PinitViewProtocol.swift */,
+				3721F92A21B2AD08005C9813 /* ResetViewControllerProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -769,6 +772,7 @@
 				372CEF8621A48D1900791DF4 /* SideMenuShowAnimationTransitioning.swift in Sources */,
 				372216D0219F251B009C8103 /* PinitUserViewController.swift in Sources */,
 				3721F90C21B05258005C9813 /* SelectLocationServer.swift in Sources */,
+				3721F92B21B2AD08005C9813 /* ResetViewControllerProtocol.swift in Sources */,
 				3721401B21A5A05900A5A880 /* SideMenuInteractor.swift in Sources */,
 				376985B9216834DE006FF550 /* Constants.swift in Sources */,
 			);

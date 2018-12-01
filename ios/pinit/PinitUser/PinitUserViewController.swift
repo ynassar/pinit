@@ -49,8 +49,6 @@ class PinitUserViewController: PinitSideMenuNavigationController {
             self,
             action: #selector(self.requestRobot),
             for: .touchDown)
-        
-        robotRequestView.requestButton.disableButton()
     }
     
     @objc private func showSearchController(sender: UITextField) {
@@ -136,4 +134,11 @@ extension PinitUserViewController: RobotRequestServerDelegate {
         }
     }
     
+}
+
+extension PinitUserViewController: ResetViewControllerProtocol {
+    
+    func resetViewController() {
+        robotRequestView.resetView()
+    }
 }

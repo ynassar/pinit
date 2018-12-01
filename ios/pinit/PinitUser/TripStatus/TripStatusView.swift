@@ -48,8 +48,8 @@ class TripStatusView: UIView, PinitViewProtocol {
     }
     
     public func enableHomeButton() {
-        homeButton.setImage(UIImage(named: "homeButtonIcon"), for: .normal)
         homeButton.setImage(UIImage(named: "homeButtonColoredIcon"), for: .normal)
+        homeButton.enableButton()
     }
     
     public func showHomeButton() {

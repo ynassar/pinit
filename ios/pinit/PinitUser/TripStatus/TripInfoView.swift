@@ -25,6 +25,8 @@ class TripInfoView: UIView, PinitViewProtocol {
         self.addSubview(statusLabel)
         self.addSubview(statusLabelValue)
         self.addSubview(progressbar)
+        
+        progressbar.setProgress(0, animated: true)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -35,7 +37,6 @@ class TripInfoView: UIView, PinitViewProtocol {
         
         setShadowBorder()
         
-        progressbar.setProgress(0, animated: true)
         progressbar.trackTintColor = PinitColors.gray
         progressbar.tintColor = PinitColors.red
         
