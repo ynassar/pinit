@@ -129,7 +129,11 @@ extension PinitUserViewController : SelectLocationResultDelegate {
 extension PinitUserViewController: RobotRequestServerDelegate {
     
     func robotRequested() {
-        print("robot Requested")
+        let tripStatusViewController = TripStatusViewController()
+        if let navigationController = self.navigationController {
+            navigationController.delegate = self
+            navigationController.pushViewController(tripStatusViewController, animated: true)
+        }
     }
     
 }

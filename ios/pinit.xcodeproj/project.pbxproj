@@ -31,6 +31,12 @@
 		3721F91621B1AE3E005C9813 /* RobotRquestServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721F91521B1AE3E005C9813 /* RobotRquestServer.swift */; };
 		3721F91821B1AE5B005C9813 /* RequestRobotServerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721F91721B1AE5B005C9813 /* RequestRobotServerDelegate.swift */; };
 		3721F91A21B1AE90005C9813 /* RobotRquest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721F91921B1AE90005C9813 /* RobotRquest.swift */; };
+		3721F91D21B1B7D1005C9813 /* TripStatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721F91C21B1B7D1005C9813 /* TripStatusViewController.swift */; };
+		3721F91F21B1B7E4005C9813 /* TripStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721F91E21B1B7E4005C9813 /* TripStatusView.swift */; };
+		3721F92121B1B9FC005C9813 /* TripStatusServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721F92021B1B9FC005C9813 /* TripStatusServer.swift */; };
+		3721F92321B1BA0C005C9813 /* TripStatusServerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721F92221B1BA0C005C9813 /* TripStatusServerDelegate.swift */; };
+		3721F92521B1CB68005C9813 /* TripInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721F92421B1CB68005C9813 /* TripInfoView.swift */; };
+		3721F92921B2393F005C9813 /* PinitTripStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721F92821B2393F005C9813 /* PinitTripStatus.swift */; };
 		372216C4219EFE51009C8103 /* PinitNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372216C3219EFE51009C8103 /* PinitNavigationController.swift */; };
 		372216C6219EFE63009C8103 /* PinitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372216C5219EFE63009C8103 /* PinitViewController.swift */; };
 		372216C9219EFEF3009C8103 /* PinitViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372216C8219EFEF3009C8103 /* PinitViewProtocol.swift */; };
@@ -192,6 +198,12 @@
 		3721F91521B1AE3E005C9813 /* RobotRquestServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RobotRquestServer.swift; sourceTree = "<group>"; };
 		3721F91721B1AE5B005C9813 /* RequestRobotServerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestRobotServerDelegate.swift; sourceTree = "<group>"; };
 		3721F91921B1AE90005C9813 /* RobotRquest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RobotRquest.swift; sourceTree = "<group>"; };
+		3721F91C21B1B7D1005C9813 /* TripStatusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripStatusViewController.swift; sourceTree = "<group>"; };
+		3721F91E21B1B7E4005C9813 /* TripStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripStatusView.swift; sourceTree = "<group>"; };
+		3721F92021B1B9FC005C9813 /* TripStatusServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripStatusServer.swift; sourceTree = "<group>"; };
+		3721F92221B1BA0C005C9813 /* TripStatusServerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripStatusServerDelegate.swift; sourceTree = "<group>"; };
+		3721F92421B1CB68005C9813 /* TripInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripInfoView.swift; sourceTree = "<group>"; };
+		3721F92821B2393F005C9813 /* PinitTripStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinitTripStatus.swift; sourceTree = "<group>"; };
 		372216C3219EFE51009C8103 /* PinitNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinitNavigationController.swift; sourceTree = "<group>"; };
 		372216C5219EFE63009C8103 /* PinitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinitViewController.swift; sourceTree = "<group>"; };
 		372216C8219EFEF3009C8103 /* PinitViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinitViewProtocol.swift; sourceTree = "<group>"; };
@@ -343,6 +355,19 @@
 			path = login;
 			sourceTree = "<group>";
 		};
+		3721F91B21B1B7C7005C9813 /* TripStatus */ = {
+			isa = PBXGroup;
+			children = (
+				3721F91C21B1B7D1005C9813 /* TripStatusViewController.swift */,
+				3721F91E21B1B7E4005C9813 /* TripStatusView.swift */,
+				3721F92021B1B9FC005C9813 /* TripStatusServer.swift */,
+				3721F92221B1BA0C005C9813 /* TripStatusServerDelegate.swift */,
+				3721F92421B1CB68005C9813 /* TripInfoView.swift */,
+				3721F92821B2393F005C9813 /* PinitTripStatus.swift */,
+			);
+			path = TripStatus;
+			sourceTree = "<group>";
+		};
 		372216C2219EFE51009C8103 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -364,6 +389,7 @@
 		372216CE219F2504009C8103 /* PinitUser */ = {
 			isa = PBXGroup;
 			children = (
+				3721F91B21B1B7C7005C9813 /* TripStatus */,
 				3721F8DD21AEA997005C9813 /* SelectLocation */,
 				372216D1219F2548009C8103 /* RobotRequest */,
 				372216CF219F251B009C8103 /* PinitUserViewController.swift */,
@@ -691,6 +717,7 @@
 				37363A1B21761F1100EBD383 /* LoginView.swift in Sources */,
 				372CEF6E21A354EA00791DF4 /* PinitSideMenuNavigationController.swift in Sources */,
 				372CEF6B21A3409300791DF4 /* MappingServerDelegate.swift in Sources */,
+				3721F92121B1B9FC005C9813 /* TripStatusServer.swift in Sources */,
 				3721F90521B02465005C9813 /* account_management.grpc.swift in Sources */,
 				3721F91621B1AE3E005C9813 /* RobotRquestServer.swift in Sources */,
 				3721F8E721AFF94D005C9813 /* SelectLocationViewController.swift in Sources */,
@@ -698,10 +725,12 @@
 				372CEF6A21A3409300791DF4 /* MappingViewController.swift in Sources */,
 				372CEF6C21A3409300791DF4 /* MappingView.swift in Sources */,
 				3721F90A21B02465005C9813 /* login.pb.swift in Sources */,
+				3721F91F21B1B7E4005C9813 /* TripStatusView.swift in Sources */,
 				37363A1821761F1100EBD383 /* RegisterServer.swift in Sources */,
 				37363A1621761F1100EBD383 /* RegisterServerDelegate.swift in Sources */,
 				37CBDD072194B92D0092C8E1 /* AddLocationView.swift in Sources */,
 				372022702167AF5B00602B53 /* CustomTextField.swift in Sources */,
+				3721F92921B2393F005C9813 /* PinitTripStatus.swift in Sources */,
 				372CEF6921A3409300791DF4 /* MappingControlsView.swift in Sources */,
 				3721F8E521AEB75E005C9813 /* SelectLocationTableViewCell.swift in Sources */,
 				3721402421A6157200A5A880 /* UserDefaultsHelper.swift in Sources */,
@@ -713,6 +742,7 @@
 				372216D7219F4731009C8103 /* Profile.swift in Sources */,
 				372216C9219EFEF3009C8103 /* PinitViewProtocol.swift in Sources */,
 				37EEA7E7215B962500BF3839 /* AppDelegate.swift in Sources */,
+				3721F92521B1CB68005C9813 /* TripInfoView.swift in Sources */,
 				372CEF6821A3409300791DF4 /* MappingServer.swift in Sources */,
 				3721402221A6097400A5A880 /* HomepageView.swift in Sources */,
 				3721F91021B053FF005C9813 /* Location.swift in Sources */,
@@ -720,10 +750,12 @@
 				37352738217A217F00602046 /* PinitOwnerViewController.swift in Sources */,
 				3721F90821B02465005C9813 /* ros.pb.swift in Sources */,
 				3721F90721B02465005C9813 /* ros.grpc.swift in Sources */,
+				3721F91D21B1B7D1005C9813 /* TripStatusViewController.swift in Sources */,
 				3721401D21A5DD9000A5A880 /* SideMenuDismissAnimationTransitioning.swift in Sources */,
 				3721B1D22199C18C0083C0DD /* SlideDownAnimationTransitioning.swift in Sources */,
 				37363A0B21761C3300EBD383 /* UIButtonExtension.swift in Sources */,
 				37363A1A21761F1100EBD383 /* AuthenticationView.swift in Sources */,
+				3721F92321B1BA0C005C9813 /* TripStatusServerDelegate.swift in Sources */,
 				37363A1C21761F1100EBD383 /* LoginViewController.swift in Sources */,
 				372216C4219EFE51009C8103 /* PinitNavigationController.swift in Sources */,
 				3721F91221B07BE6005C9813 /* SelectLocationResultDelegate.swift in Sources */,
