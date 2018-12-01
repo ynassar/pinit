@@ -21,7 +21,6 @@ from backend.ros import greyscale_map_renderer
 from proto.ros import ros_pb2_grpc
 from proto.ros import ros_pb2
 
-TESTING_ROBOT = True
 
 class NotAwaitingConfirmation(Exception):
     pass
@@ -146,10 +145,6 @@ class RosService(ros_pb2_grpc.RosServiceServicer):
         nearby_waypoints = waypoint_model.Waypoint.objects(robot_name=robot_name)
         waypoint_protos = [request_utils.ConvertWaypointDocumentToProto(document)
                            for document in nearby_waypoints]
-        if TESTING_ROBOT:
-            self._robot_name_to_queue[robot_name].put(ros_pb2.ServerToRosCommunication(navigation_request=ros_pb2.ServerToRosNavigationRequest(
-                pose=ros_pb2.LocalMapPose(row=nearby_waypoints[0].row, column=nearby_waypoints[0].column)
-            )))
         return ros_pb2.WaypointList(waypoints=waypoint_protos)
 
     def GetPose(self, request, context):
