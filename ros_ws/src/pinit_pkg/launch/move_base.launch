@@ -17,6 +17,7 @@
     <!--- <rosparam file="$(find pinit_pkg)/config/global_planner_params.yaml" command="load" /> -->
     <!--- <rosparam file="$(find pinit_pkg)/config/dwa_local_planner.yaml" command="load" /> -->
     <rosparam file="$(find pinit_pkg)/config/base_local_planner_params.yaml" command="load" />
+    <!-- <param name = "controller_frequency" value = "10.0"/> -->
     <param name = "controller_frequency" value = "10.0"/>
     <!--- <param name = "base_local_planner" value = "dwa_local_planner/DWAPlannerROS" /> -->
   </node>
