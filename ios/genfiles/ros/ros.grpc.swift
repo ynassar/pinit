@@ -62,6 +62,54 @@ fileprivate final class RosServiceSendMovementCallBase: ClientCallUnaryBase<Mapp
   override class var method: String { return "/RosService/SendMovement" }
 }
 
+internal protocol RosServiceGetMapImageCall: ClientCallUnary {}
+
+fileprivate final class RosServiceGetMapImageCallBase: ClientCallUnaryBase<GetMapRequest, MapImage>, RosServiceGetMapImageCall {
+  override class var method: String { return "/RosService/GetMapImage" }
+}
+
+internal protocol RosServiceGetRawMapCall: ClientCallUnary {}
+
+fileprivate final class RosServiceGetRawMapCallBase: ClientCallUnaryBase<GetMapRequest, RawMap>, RosServiceGetRawMapCall {
+  override class var method: String { return "/RosService/GetRawMap" }
+}
+
+internal protocol RosServiceAddWaypointCall: ClientCallUnary {}
+
+fileprivate final class RosServiceAddWaypointCallBase: ClientCallUnaryBase<AddWaypointRequest, AddWaypointResponse>, RosServiceAddWaypointCall {
+  override class var method: String { return "/RosService/AddWaypoint" }
+}
+
+internal protocol RosServiceGetNearbyWaypointsCall: ClientCallUnary {}
+
+fileprivate final class RosServiceGetNearbyWaypointsCallBase: ClientCallUnaryBase<GpsCoordinates, WaypointList>, RosServiceGetNearbyWaypointsCall {
+  override class var method: String { return "/RosService/GetNearbyWaypoints" }
+}
+
+internal protocol RosServiceGetPoseCall: ClientCallUnary {}
+
+fileprivate final class RosServiceGetPoseCallBase: ClientCallUnaryBase<GetPoseRequest, LocalMapPose>, RosServiceGetPoseCall {
+  override class var method: String { return "/RosService/GetPose" }
+}
+
+internal protocol RosServiceCreateTripCall: ClientCallUnary {}
+
+fileprivate final class RosServiceCreateTripCallBase: ClientCallUnaryBase<CreateTripRequest, CreateTripResponse>, RosServiceCreateTripCall {
+  override class var method: String { return "/RosService/CreateTrip" }
+}
+
+internal protocol RosServiceGetTripStatusCall: ClientCallUnary {}
+
+fileprivate final class RosServiceGetTripStatusCallBase: ClientCallUnaryBase<GetTripStatusRequest, TripStatus>, RosServiceGetTripStatusCall {
+  override class var method: String { return "/RosService/GetTripStatus" }
+}
+
+internal protocol RosServiceConfirmTripCall: ClientCallUnary {}
+
+fileprivate final class RosServiceConfirmTripCallBase: ClientCallUnaryBase<ConfirmTripRequest, ConfirmTripResponse>, RosServiceConfirmTripCall {
+  override class var method: String { return "/RosService/ConfirmTrip" }
+}
+
 
 /// Instantiate RosServiceServiceClient, then call methods of this protocol to make API calls.
 internal protocol RosServiceService: ServiceClient {
@@ -74,6 +122,46 @@ internal protocol RosServiceService: ServiceClient {
   func sendMovement(_ request: MappingRequest) throws -> MappingResponse
   /// Asynchronous. Unary.
   func sendMovement(_ request: MappingRequest, completion: @escaping (MappingResponse?, CallResult) -> Void) throws -> RosServiceSendMovementCall
+
+  /// Synchronous. Unary.
+  func getMapImage(_ request: GetMapRequest) throws -> MapImage
+  /// Asynchronous. Unary.
+  func getMapImage(_ request: GetMapRequest, completion: @escaping (MapImage?, CallResult) -> Void) throws -> RosServiceGetMapImageCall
+
+  /// Synchronous. Unary.
+  func getRawMap(_ request: GetMapRequest) throws -> RawMap
+  /// Asynchronous. Unary.
+  func getRawMap(_ request: GetMapRequest, completion: @escaping (RawMap?, CallResult) -> Void) throws -> RosServiceGetRawMapCall
+
+  /// Synchronous. Unary.
+  func addWaypoint(_ request: AddWaypointRequest) throws -> AddWaypointResponse
+  /// Asynchronous. Unary.
+  func addWaypoint(_ request: AddWaypointRequest, completion: @escaping (AddWaypointResponse?, CallResult) -> Void) throws -> RosServiceAddWaypointCall
+
+  /// Synchronous. Unary.
+  func getNearbyWaypoints(_ request: GpsCoordinates) throws -> WaypointList
+  /// Asynchronous. Unary.
+  func getNearbyWaypoints(_ request: GpsCoordinates, completion: @escaping (WaypointList?, CallResult) -> Void) throws -> RosServiceGetNearbyWaypointsCall
+
+  /// Synchronous. Unary.
+  func getPose(_ request: GetPoseRequest) throws -> LocalMapPose
+  /// Asynchronous. Unary.
+  func getPose(_ request: GetPoseRequest, completion: @escaping (LocalMapPose?, CallResult) -> Void) throws -> RosServiceGetPoseCall
+
+  /// Synchronous. Unary.
+  func createTrip(_ request: CreateTripRequest) throws -> CreateTripResponse
+  /// Asynchronous. Unary.
+  func createTrip(_ request: CreateTripRequest, completion: @escaping (CreateTripResponse?, CallResult) -> Void) throws -> RosServiceCreateTripCall
+
+  /// Synchronous. Unary.
+  func getTripStatus(_ request: GetTripStatusRequest) throws -> TripStatus
+  /// Asynchronous. Unary.
+  func getTripStatus(_ request: GetTripStatusRequest, completion: @escaping (TripStatus?, CallResult) -> Void) throws -> RosServiceGetTripStatusCall
+
+  /// Synchronous. Unary.
+  func confirmTrip(_ request: ConfirmTripRequest) throws -> ConfirmTripResponse
+  /// Asynchronous. Unary.
+  func confirmTrip(_ request: ConfirmTripRequest, completion: @escaping (ConfirmTripResponse?, CallResult) -> Void) throws -> RosServiceConfirmTripCall
 
 }
 
@@ -97,6 +185,94 @@ internal final class RosServiceServiceClient: ServiceClientBase, RosServiceServi
       .start(request: request, metadata: metadata, completion: completion)
   }
 
+  /// Synchronous. Unary.
+  internal func getMapImage(_ request: GetMapRequest) throws -> MapImage {
+    return try RosServiceGetMapImageCallBase(channel)
+      .run(request: request, metadata: metadata)
+  }
+  /// Asynchronous. Unary.
+  internal func getMapImage(_ request: GetMapRequest, completion: @escaping (MapImage?, CallResult) -> Void) throws -> RosServiceGetMapImageCall {
+    return try RosServiceGetMapImageCallBase(channel)
+      .start(request: request, metadata: metadata, completion: completion)
+  }
+
+  /// Synchronous. Unary.
+  internal func getRawMap(_ request: GetMapRequest) throws -> RawMap {
+    return try RosServiceGetRawMapCallBase(channel)
+      .run(request: request, metadata: metadata)
+  }
+  /// Asynchronous. Unary.
+  internal func getRawMap(_ request: GetMapRequest, completion: @escaping (RawMap?, CallResult) -> Void) throws -> RosServiceGetRawMapCall {
+    return try RosServiceGetRawMapCallBase(channel)
+      .start(request: request, metadata: metadata, completion: completion)
+  }
+
+  /// Synchronous. Unary.
+  internal func addWaypoint(_ request: AddWaypointRequest) throws -> AddWaypointResponse {
+    return try RosServiceAddWaypointCallBase(channel)
+      .run(request: request, metadata: metadata)
+  }
+  /// Asynchronous. Unary.
+  internal func addWaypoint(_ request: AddWaypointRequest, completion: @escaping (AddWaypointResponse?, CallResult) -> Void) throws -> RosServiceAddWaypointCall {
+    return try RosServiceAddWaypointCallBase(channel)
+      .start(request: request, metadata: metadata, completion: completion)
+  }
+
+  /// Synchronous. Unary.
+  internal func getNearbyWaypoints(_ request: GpsCoordinates) throws -> WaypointList {
+    return try RosServiceGetNearbyWaypointsCallBase(channel)
+      .run(request: request, metadata: metadata)
+  }
+  /// Asynchronous. Unary.
+  internal func getNearbyWaypoints(_ request: GpsCoordinates, completion: @escaping (WaypointList?, CallResult) -> Void) throws -> RosServiceGetNearbyWaypointsCall {
+    return try RosServiceGetNearbyWaypointsCallBase(channel)
+      .start(request: request, metadata: metadata, completion: completion)
+  }
+
+  /// Synchronous. Unary.
+  internal func getPose(_ request: GetPoseRequest) throws -> LocalMapPose {
+    return try RosServiceGetPoseCallBase(channel)
+      .run(request: request, metadata: metadata)
+  }
+  /// Asynchronous. Unary.
+  internal func getPose(_ request: GetPoseRequest, completion: @escaping (LocalMapPose?, CallResult) -> Void) throws -> RosServiceGetPoseCall {
+    return try RosServiceGetPoseCallBase(channel)
+      .start(request: request, metadata: metadata, completion: completion)
+  }
+
+  /// Synchronous. Unary.
+  internal func createTrip(_ request: CreateTripRequest) throws -> CreateTripResponse {
+    return try RosServiceCreateTripCallBase(channel)
+      .run(request: request, metadata: metadata)
+  }
+  /// Asynchronous. Unary.
+  internal func createTrip(_ request: CreateTripRequest, completion: @escaping (CreateTripResponse?, CallResult) -> Void) throws -> RosServiceCreateTripCall {
+    return try RosServiceCreateTripCallBase(channel)
+      .start(request: request, metadata: metadata, completion: completion)
+  }
+
+  /// Synchronous. Unary.
+  internal func getTripStatus(_ request: GetTripStatusRequest) throws -> TripStatus {
+    return try RosServiceGetTripStatusCallBase(channel)
+      .run(request: request, metadata: metadata)
+  }
+  /// Asynchronous. Unary.
+  internal func getTripStatus(_ request: GetTripStatusRequest, completion: @escaping (TripStatus?, CallResult) -> Void) throws -> RosServiceGetTripStatusCall {
+    return try RosServiceGetTripStatusCallBase(channel)
+      .start(request: request, metadata: metadata, completion: completion)
+  }
+
+  /// Synchronous. Unary.
+  internal func confirmTrip(_ request: ConfirmTripRequest) throws -> ConfirmTripResponse {
+    return try RosServiceConfirmTripCallBase(channel)
+      .run(request: request, metadata: metadata)
+  }
+  /// Asynchronous. Unary.
+  internal func confirmTrip(_ request: ConfirmTripRequest, completion: @escaping (ConfirmTripResponse?, CallResult) -> Void) throws -> RosServiceConfirmTripCall {
+    return try RosServiceConfirmTripCallBase(channel)
+      .start(request: request, metadata: metadata, completion: completion)
+  }
+
 }
 
 /// To build a server, implement a class that conforms to this protocol.
@@ -105,6 +281,14 @@ internal final class RosServiceServiceClient: ServiceClientBase, RosServiceServi
 internal protocol RosServiceProvider: ServiceProvider {
   func communicate(session: RosServiceCommunicateSession) throws -> ServerStatus?
   func sendMovement(request: MappingRequest, session: RosServiceSendMovementSession) throws -> MappingResponse
+  func getMapImage(request: GetMapRequest, session: RosServiceGetMapImageSession) throws -> MapImage
+  func getRawMap(request: GetMapRequest, session: RosServiceGetRawMapSession) throws -> RawMap
+  func addWaypoint(request: AddWaypointRequest, session: RosServiceAddWaypointSession) throws -> AddWaypointResponse
+  func getNearbyWaypoints(request: GpsCoordinates, session: RosServiceGetNearbyWaypointsSession) throws -> WaypointList
+  func getPose(request: GetPoseRequest, session: RosServiceGetPoseSession) throws -> LocalMapPose
+  func createTrip(request: CreateTripRequest, session: RosServiceCreateTripSession) throws -> CreateTripResponse
+  func getTripStatus(request: GetTripStatusRequest, session: RosServiceGetTripStatusSession) throws -> TripStatus
+  func confirmTrip(request: ConfirmTripRequest, session: RosServiceConfirmTripSession) throws -> ConfirmTripResponse
 }
 
 extension RosServiceProvider {
@@ -123,6 +307,46 @@ extension RosServiceProvider {
       return try RosServiceSendMovementSessionBase(
         handler: handler,
         providerBlock: { try self.sendMovement(request: $0, session: $1 as! RosServiceSendMovementSessionBase) })
+          .run()
+    case "/RosService/GetMapImage":
+      return try RosServiceGetMapImageSessionBase(
+        handler: handler,
+        providerBlock: { try self.getMapImage(request: $0, session: $1 as! RosServiceGetMapImageSessionBase) })
+          .run()
+    case "/RosService/GetRawMap":
+      return try RosServiceGetRawMapSessionBase(
+        handler: handler,
+        providerBlock: { try self.getRawMap(request: $0, session: $1 as! RosServiceGetRawMapSessionBase) })
+          .run()
+    case "/RosService/AddWaypoint":
+      return try RosServiceAddWaypointSessionBase(
+        handler: handler,
+        providerBlock: { try self.addWaypoint(request: $0, session: $1 as! RosServiceAddWaypointSessionBase) })
+          .run()
+    case "/RosService/GetNearbyWaypoints":
+      return try RosServiceGetNearbyWaypointsSessionBase(
+        handler: handler,
+        providerBlock: { try self.getNearbyWaypoints(request: $0, session: $1 as! RosServiceGetNearbyWaypointsSessionBase) })
+          .run()
+    case "/RosService/GetPose":
+      return try RosServiceGetPoseSessionBase(
+        handler: handler,
+        providerBlock: { try self.getPose(request: $0, session: $1 as! RosServiceGetPoseSessionBase) })
+          .run()
+    case "/RosService/CreateTrip":
+      return try RosServiceCreateTripSessionBase(
+        handler: handler,
+        providerBlock: { try self.createTrip(request: $0, session: $1 as! RosServiceCreateTripSessionBase) })
+          .run()
+    case "/RosService/GetTripStatus":
+      return try RosServiceGetTripStatusSessionBase(
+        handler: handler,
+        providerBlock: { try self.getTripStatus(request: $0, session: $1 as! RosServiceGetTripStatusSessionBase) })
+          .run()
+    case "/RosService/ConfirmTrip":
+      return try RosServiceConfirmTripSessionBase(
+        handler: handler,
+        providerBlock: { try self.confirmTrip(request: $0, session: $1 as! RosServiceConfirmTripSessionBase) })
           .run()
     default:
       throw HandleMethodError.unknownMethod
@@ -162,4 +386,36 @@ fileprivate final class RosServiceCommunicateSessionBase: ServerSessionBidirecti
 internal protocol RosServiceSendMovementSession: ServerSessionUnary {}
 
 fileprivate final class RosServiceSendMovementSessionBase: ServerSessionUnaryBase<MappingRequest, MappingResponse>, RosServiceSendMovementSession {}
+
+internal protocol RosServiceGetMapImageSession: ServerSessionUnary {}
+
+fileprivate final class RosServiceGetMapImageSessionBase: ServerSessionUnaryBase<GetMapRequest, MapImage>, RosServiceGetMapImageSession {}
+
+internal protocol RosServiceGetRawMapSession: ServerSessionUnary {}
+
+fileprivate final class RosServiceGetRawMapSessionBase: ServerSessionUnaryBase<GetMapRequest, RawMap>, RosServiceGetRawMapSession {}
+
+internal protocol RosServiceAddWaypointSession: ServerSessionUnary {}
+
+fileprivate final class RosServiceAddWaypointSessionBase: ServerSessionUnaryBase<AddWaypointRequest, AddWaypointResponse>, RosServiceAddWaypointSession {}
+
+internal protocol RosServiceGetNearbyWaypointsSession: ServerSessionUnary {}
+
+fileprivate final class RosServiceGetNearbyWaypointsSessionBase: ServerSessionUnaryBase<GpsCoordinates, WaypointList>, RosServiceGetNearbyWaypointsSession {}
+
+internal protocol RosServiceGetPoseSession: ServerSessionUnary {}
+
+fileprivate final class RosServiceGetPoseSessionBase: ServerSessionUnaryBase<GetPoseRequest, LocalMapPose>, RosServiceGetPoseSession {}
+
+internal protocol RosServiceCreateTripSession: ServerSessionUnary {}
+
+fileprivate final class RosServiceCreateTripSessionBase: ServerSessionUnaryBase<CreateTripRequest, CreateTripResponse>, RosServiceCreateTripSession {}
+
+internal protocol RosServiceGetTripStatusSession: ServerSessionUnary {}
+
+fileprivate final class RosServiceGetTripStatusSessionBase: ServerSessionUnaryBase<GetTripStatusRequest, TripStatus>, RosServiceGetTripStatusSession {}
+
+internal protocol RosServiceConfirmTripSession: ServerSessionUnary {}
+
+fileprivate final class RosServiceConfirmTripSessionBase: ServerSessionUnaryBase<ConfirmTripRequest, ConfirmTripResponse>, RosServiceConfirmTripSession {}
 

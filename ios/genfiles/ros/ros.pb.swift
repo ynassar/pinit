@@ -19,18 +19,603 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
   typealias Version = _2
 }
 
-struct RosToServerCommunication {
+struct ConfirmTripRequest {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  /// An identifier for the ros node to send requests to.
+  var token: String = String()
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
+struct CreateTripRequest {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var startWaypoint: String = String()
+
+  var endWaypoint: String = String()
+
+  var token: String = String()
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
+struct CreateTripResponse {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
+struct GetTripStatusRequest {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var token: String = String()
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
+struct TripStatus {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var status: TripStatus.TripStatusType = .routingToPickup
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  enum TripStatusType: SwiftProtobuf.Enum {
+    typealias RawValue = Int
+    case routingToPickup // = 0
+    case awaitingConfirmation // = 1
+    case routingToDestination // = 2
+    case completed // = 3
+    case UNRECOGNIZED(Int)
+
+    init() {
+      self = .routingToPickup
+    }
+
+    init?(rawValue: Int) {
+      switch rawValue {
+      case 0: self = .routingToPickup
+      case 1: self = .awaitingConfirmation
+      case 2: self = .routingToDestination
+      case 3: self = .completed
+      default: self = .UNRECOGNIZED(rawValue)
+      }
+    }
+
+    var rawValue: Int {
+      switch self {
+      case .routingToPickup: return 0
+      case .awaitingConfirmation: return 1
+      case .routingToDestination: return 2
+      case .completed: return 3
+      case .UNRECOGNIZED(let i): return i
+      }
+    }
+
+  }
+
+  init() {}
+}
+
+#if swift(>=4.2)
+
+extension TripStatus.TripStatusType: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  static var allCases: [TripStatus.TripStatusType] = [
+    .routingToPickup,
+    .awaitingConfirmation,
+    .routingToDestination,
+    .completed,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
+struct RobotNavigationRequest {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var token: String {
+    get {return _storage._token}
+    set {_uniqueStorage()._token = newValue}
+  }
+
+  var destination: OneOf_Destination? {
+    get {return _storage._destination}
+    set {_uniqueStorage()._destination = newValue}
+  }
+
+  var coordinates: GpsCoordinates {
+    get {
+      if case .coordinates(let v)? = _storage._destination {return v}
+      return GpsCoordinates()
+    }
+    set {_uniqueStorage()._destination = .coordinates(newValue)}
+  }
+
+  var waypointName: String {
+    get {
+      if case .waypointName(let v)? = _storage._destination {return v}
+      return String()
+    }
+    set {_uniqueStorage()._destination = .waypointName(newValue)}
+  }
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  enum OneOf_Destination: Equatable {
+    case coordinates(GpsCoordinates)
+    case waypointName(String)
+
+  #if !swift(>=4.1)
+    static func ==(lhs: RobotNavigationRequest.OneOf_Destination, rhs: RobotNavigationRequest.OneOf_Destination) -> Bool {
+      switch (lhs, rhs) {
+      case (.coordinates(let l), .coordinates(let r)): return l == r
+      case (.waypointName(let l), .waypointName(let r)): return l == r
+      default: return false
+      }
+    }
+  #endif
+  }
+
+  init() {}
+
+  fileprivate var _storage = _StorageClass.defaultInstance
+}
+
+struct GetPoseRequest {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
   var robotName: String = String()
 
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   init() {}
 }
+
+struct Waypoint {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var waypointName: String = String()
+
+  var description_p: String = String()
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
+struct WaypointList {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var waypoints: [Waypoint] = []
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
+struct AddWaypointRequest {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var waypointName: String {
+    get {return _storage._waypointName}
+    set {_uniqueStorage()._waypointName = newValue}
+  }
+
+  var description_p: String {
+    get {return _storage._description_p}
+    set {_uniqueStorage()._description_p = newValue}
+  }
+
+  var token: String {
+    get {return _storage._token}
+    set {_uniqueStorage()._token = newValue}
+  }
+
+  var timestamp: SwiftProtobuf.Google_Protobuf_Timestamp {
+    get {return _storage._timestamp ?? SwiftProtobuf.Google_Protobuf_Timestamp()}
+    set {_uniqueStorage()._timestamp = newValue}
+  }
+  /// Returns true if `timestamp` has been explicitly set.
+  var hasTimestamp: Bool {return _storage._timestamp != nil}
+  /// Clears the value of `timestamp`. Subsequent reads from it will return its default value.
+  mutating func clearTimestamp() {_uniqueStorage()._timestamp = nil}
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+
+  fileprivate var _storage = _StorageClass.defaultInstance
+}
+
+struct AddWaypointResponse {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  /// Whether the robot's current location is significantly older than
+  var locationStale: Bool = false
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
+struct GpsCoordinates {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var longitude: Float = 0
+
+  var latitude: Float = 0
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
+struct LocalMapPose {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var row: Float {
+    get {return _storage._row}
+    set {_uniqueStorage()._row = newValue}
+  }
+
+  var column: Float {
+    get {return _storage._column}
+    set {_uniqueStorage()._column = newValue}
+  }
+
+  var angle: Float {
+    get {return _storage._angle}
+    set {_uniqueStorage()._angle = newValue}
+  }
+
+  var timestamp: SwiftProtobuf.Google_Protobuf_Timestamp {
+    get {return _storage._timestamp ?? SwiftProtobuf.Google_Protobuf_Timestamp()}
+    set {_uniqueStorage()._timestamp = newValue}
+  }
+  /// Returns true if `timestamp` has been explicitly set.
+  var hasTimestamp: Bool {return _storage._timestamp != nil}
+  /// Clears the value of `timestamp`. Subsequent reads from it will return its default value.
+  mutating func clearTimestamp() {_uniqueStorage()._timestamp = nil}
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+
+  fileprivate var _storage = _StorageClass.defaultInstance
+}
+
+struct ServerToRosNavigationRequest {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var destination: OneOf_Destination? {
+    get {return _storage._destination}
+    set {_uniqueStorage()._destination = newValue}
+  }
+
+  var pose: LocalMapPose {
+    get {
+      if case .pose(let v)? = _storage._destination {return v}
+      return LocalMapPose()
+    }
+    set {_uniqueStorage()._destination = .pose(newValue)}
+  }
+
+  var coordinates: GpsCoordinates {
+    get {
+      if case .coordinates(let v)? = _storage._destination {return v}
+      return GpsCoordinates()
+    }
+    set {_uniqueStorage()._destination = .coordinates(newValue)}
+  }
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  enum OneOf_Destination: Equatable {
+    case pose(LocalMapPose)
+    case coordinates(GpsCoordinates)
+
+  #if !swift(>=4.1)
+    static func ==(lhs: ServerToRosNavigationRequest.OneOf_Destination, rhs: ServerToRosNavigationRequest.OneOf_Destination) -> Bool {
+      switch (lhs, rhs) {
+      case (.pose(let l), .pose(let r)): return l == r
+      case (.coordinates(let l), .coordinates(let r)): return l == r
+      default: return false
+      }
+    }
+  #endif
+  }
+
+  init() {}
+
+  fileprivate var _storage = _StorageClass.defaultInstance
+}
+
+struct GetMapRequest {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var robotSpecification: GetMapRequest.OneOf_RobotSpecification? = nil
+
+  var robotName: String {
+    get {
+      if case .robotName(let v)? = robotSpecification {return v}
+      return String()
+    }
+    set {robotSpecification = .robotName(newValue)}
+  }
+
+  var token: String {
+    get {
+      if case .token(let v)? = robotSpecification {return v}
+      return String()
+    }
+    set {robotSpecification = .token(newValue)}
+  }
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  enum OneOf_RobotSpecification: Equatable {
+    case robotName(String)
+    case token(String)
+
+  #if !swift(>=4.1)
+    static func ==(lhs: GetMapRequest.OneOf_RobotSpecification, rhs: GetMapRequest.OneOf_RobotSpecification) -> Bool {
+      switch (lhs, rhs) {
+      case (.robotName(let l), .robotName(let r)): return l == r
+      case (.token(let l), .token(let r)): return l == r
+      default: return false
+      }
+    }
+  #endif
+  }
+
+  init() {}
+}
+
+struct MapImage {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var resolution: Float = 0
+
+  var encodedImage: String = String()
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
+struct RawMap {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var resolution: Float {
+    get {return _storage._resolution}
+    set {_uniqueStorage()._resolution = newValue}
+  }
+
+  var height: UInt32 {
+    get {return _storage._height}
+    set {_uniqueStorage()._height = newValue}
+  }
+
+  var width: UInt32 {
+    get {return _storage._width}
+    set {_uniqueStorage()._width = newValue}
+  }
+
+  /// Should contain a byte-encoded uint8 numpy array.
+  var data: Data {
+    get {return _storage._data}
+    set {_uniqueStorage()._data = newValue}
+  }
+
+  var origin: GpsCoordinates {
+    get {return _storage._origin ?? GpsCoordinates()}
+    set {_uniqueStorage()._origin = newValue}
+  }
+  /// Returns true if `origin` has been explicitly set.
+  var hasOrigin: Bool {return _storage._origin != nil}
+  /// Clears the value of `origin`. Subsequent reads from it will return its default value.
+  mutating func clearOrigin() {_uniqueStorage()._origin = nil}
+
+  var originAngleShift: Float {
+    get {return _storage._originAngleShift}
+    set {_uniqueStorage()._originAngleShift = newValue}
+  }
+
+  var shiftX: Float {
+    get {return _storage._shiftX}
+    set {_uniqueStorage()._shiftX = newValue}
+  }
+
+  var shiftY: Float {
+    get {return _storage._shiftY}
+    set {_uniqueStorage()._shiftY = newValue}
+  }
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+
+  fileprivate var _storage = _StorageClass.defaultInstance
+}
+
+struct RosToServerCommunication {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  /// An identifier for the ros node to send requests to.
+  var robotName: String {
+    get {return _storage._robotName}
+    set {_uniqueStorage()._robotName = newValue}
+  }
+
+  var communication: OneOf_Communication? {
+    get {return _storage._communication}
+    set {_uniqueStorage()._communication = newValue}
+  }
+
+  var rawMap: RawMap {
+    get {
+      if case .rawMap(let v)? = _storage._communication {return v}
+      return RawMap()
+    }
+    set {_uniqueStorage()._communication = .rawMap(newValue)}
+  }
+
+  var robotPose: LocalMapPose {
+    get {
+      if case .robotPose(let v)? = _storage._communication {return v}
+      return LocalMapPose()
+    }
+    set {_uniqueStorage()._communication = .robotPose(newValue)}
+  }
+
+  var statusUpdate: RobotStatusUpdate {
+    get {
+      if case .statusUpdate(let v)? = _storage._communication {return v}
+      return RobotStatusUpdate()
+    }
+    set {_uniqueStorage()._communication = .statusUpdate(newValue)}
+  }
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  enum OneOf_Communication: Equatable {
+    case rawMap(RawMap)
+    case robotPose(LocalMapPose)
+    case statusUpdate(RobotStatusUpdate)
+
+  #if !swift(>=4.1)
+    static func ==(lhs: RosToServerCommunication.OneOf_Communication, rhs: RosToServerCommunication.OneOf_Communication) -> Bool {
+      switch (lhs, rhs) {
+      case (.rawMap(let l), .rawMap(let r)): return l == r
+      case (.robotPose(let l), .robotPose(let r)): return l == r
+      case (.statusUpdate(let l), .statusUpdate(let r)): return l == r
+      default: return false
+      }
+    }
+  #endif
+  }
+
+  init() {}
+
+  fileprivate var _storage = _StorageClass.defaultInstance
+}
+
+struct RobotStatusUpdate {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var statusUpdate: RobotStatusUpdate.Status = .start
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  enum Status: SwiftProtobuf.Enum {
+    typealias RawValue = Int
+    case start // = 0
+    case idle // = 1
+    case mapping // = 2
+    case mappingAndMoving // = 3
+    case navigating // = 4
+    case navigatingAndIdle // = 5
+    case error // = 6
+    case UNRECOGNIZED(Int)
+
+    init() {
+      self = .start
+    }
+
+    init?(rawValue: Int) {
+      switch rawValue {
+      case 0: self = .start
+      case 1: self = .idle
+      case 2: self = .mapping
+      case 3: self = .mappingAndMoving
+      case 4: self = .navigating
+      case 5: self = .navigatingAndIdle
+      case 6: self = .error
+      default: self = .UNRECOGNIZED(rawValue)
+      }
+    }
+
+    var rawValue: Int {
+      switch self {
+      case .start: return 0
+      case .idle: return 1
+      case .mapping: return 2
+      case .mappingAndMoving: return 3
+      case .navigating: return 4
+      case .navigatingAndIdle: return 5
+      case .error: return 6
+      case .UNRECOGNIZED(let i): return i
+      }
+    }
+
+  }
+
+  init() {}
+}
+
+#if swift(>=4.2)
+
+extension RobotStatusUpdate.Status: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  static var allCases: [RobotStatusUpdate.Status] = [
+    .start,
+    .idle,
+    .mapping,
+    .mappingAndMoving,
+    .navigating,
+    .navigatingAndIdle,
+    .error,
+  ]
+}
+
+#endif  // swift(>=4.2)
 
 struct ServerToRosMappingRequest {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
@@ -81,6 +666,7 @@ struct ServerToRosMappingRequest {
     case backward // = 1
     case right // = 2
     case left // = 3
+    case stop // = 4
     case UNRECOGNIZED(Int)
 
     init() {
@@ -93,6 +679,7 @@ struct ServerToRosMappingRequest {
       case 1: self = .backward
       case 2: self = .right
       case 3: self = .left
+      case 4: self = .stop
       default: self = .UNRECOGNIZED(rawValue)
       }
     }
@@ -103,6 +690,7 @@ struct ServerToRosMappingRequest {
       case .backward: return 1
       case .right: return 2
       case .left: return 3
+      case .stop: return 4
       case .UNRECOGNIZED(let i): return i
       }
     }
@@ -130,6 +718,7 @@ extension ServerToRosMappingRequest.Direction: CaseIterable {
     .backward,
     .right,
     .left,
+    .stop,
   ]
 }
 
@@ -153,15 +742,26 @@ struct ServerToRosCommunication {
     set {_uniqueStorage()._communication = .mappingRequest(newValue)}
   }
 
+  var navigationRequest: ServerToRosNavigationRequest {
+    get {
+      if case .navigationRequest(let v)? = _storage._communication {return v}
+      return ServerToRosNavigationRequest()
+    }
+    set {_uniqueStorage()._communication = .navigationRequest(newValue)}
+  }
+
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   enum OneOf_Communication: Equatable {
     case mappingRequest(ServerToRosMappingRequest)
+    case navigationRequest(ServerToRosNavigationRequest)
 
   #if !swift(>=4.1)
     static func ==(lhs: ServerToRosCommunication.OneOf_Communication, rhs: ServerToRosCommunication.OneOf_Communication) -> Bool {
       switch (lhs, rhs) {
       case (.mappingRequest(let l), .mappingRequest(let r)): return l == r
+      case (.navigationRequest(let l), .navigationRequest(let r)): return l == r
+      default: return false
       }
     }
   #endif
@@ -179,9 +779,26 @@ struct MappingRequest {
 
   /// Describes a request for mapping to be sent to the RPC server and
   /// forwarded onto a specified ros instance.
+  var robotSpecification: OneOf_RobotSpecification? {
+    get {return _storage._robotSpecification}
+    set {_uniqueStorage()._robotSpecification = newValue}
+  }
+
+  /// An identifier for the ros node to send requests to.
   var robotName: String {
-    get {return _storage._robotName}
-    set {_uniqueStorage()._robotName = newValue}
+    get {
+      if case .robotName(let v)? = _storage._robotSpecification {return v}
+      return String()
+    }
+    set {_uniqueStorage()._robotSpecification = .robotName(newValue)}
+  }
+
+  var token: String {
+    get {
+      if case .token(let v)? = _storage._robotSpecification {return v}
+      return String()
+    }
+    set {_uniqueStorage()._robotSpecification = .token(newValue)}
   }
 
   var mappingRequest: ServerToRosMappingRequest {
@@ -194,6 +811,24 @@ struct MappingRequest {
   mutating func clearMappingRequest() {_uniqueStorage()._mappingRequest = nil}
 
   var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  /// Describes a request for mapping to be sent to the RPC server and
+  /// forwarded onto a specified ros instance.
+  enum OneOf_RobotSpecification: Equatable {
+    /// An identifier for the ros node to send requests to.
+    case robotName(String)
+    case token(String)
+
+  #if !swift(>=4.1)
+    static func ==(lhs: MappingRequest.OneOf_RobotSpecification, rhs: MappingRequest.OneOf_RobotSpecification) -> Bool {
+      switch (lhs, rhs) {
+      case (.robotName(let l), .robotName(let r)): return l == r
+      case (.token(let l), .token(let r)): return l == r
+      default: return false
+      }
+    }
+  #endif
+  }
 
   init() {}
 
@@ -210,10 +845,262 @@ struct MappingResponse {
   init() {}
 }
 
+struct ConfirmTripResponse {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-extension RosToServerCommunication: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  static let protoMessageName: String = "RosToServerCommunication"
+extension ConfirmTripRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = "ConfirmTripRequest"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "token"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.token)
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.token.isEmpty {
+      try visitor.visitSingularStringField(value: self.token, fieldNumber: 1)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: ConfirmTripRequest, rhs: ConfirmTripRequest) -> Bool {
+    if lhs.token != rhs.token {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension CreateTripRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = "CreateTripRequest"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .standard(proto: "start_waypoint"),
+    2: .standard(proto: "end_waypoint"),
+    3: .same(proto: "token"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.startWaypoint)
+      case 2: try decoder.decodeSingularStringField(value: &self.endWaypoint)
+      case 3: try decoder.decodeSingularStringField(value: &self.token)
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.startWaypoint.isEmpty {
+      try visitor.visitSingularStringField(value: self.startWaypoint, fieldNumber: 1)
+    }
+    if !self.endWaypoint.isEmpty {
+      try visitor.visitSingularStringField(value: self.endWaypoint, fieldNumber: 2)
+    }
+    if !self.token.isEmpty {
+      try visitor.visitSingularStringField(value: self.token, fieldNumber: 3)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: CreateTripRequest, rhs: CreateTripRequest) -> Bool {
+    if lhs.startWaypoint != rhs.startWaypoint {return false}
+    if lhs.endWaypoint != rhs.endWaypoint {return false}
+    if lhs.token != rhs.token {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension CreateTripResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = "CreateTripResponse"
+  static let _protobuf_nameMap = SwiftProtobuf._NameMap()
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let _ = try decoder.nextFieldNumber() {
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: CreateTripResponse, rhs: CreateTripResponse) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension GetTripStatusRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = "GetTripStatusRequest"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "token"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.token)
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.token.isEmpty {
+      try visitor.visitSingularStringField(value: self.token, fieldNumber: 1)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: GetTripStatusRequest, rhs: GetTripStatusRequest) -> Bool {
+    if lhs.token != rhs.token {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension TripStatus: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = "TripStatus"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "status"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularEnumField(value: &self.status)
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.status != .routingToPickup {
+      try visitor.visitSingularEnumField(value: self.status, fieldNumber: 1)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: TripStatus, rhs: TripStatus) -> Bool {
+    if lhs.status != rhs.status {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension TripStatus.TripStatusType: SwiftProtobuf._ProtoNameProviding {
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    0: .same(proto: "ROUTING_TO_PICKUP"),
+    1: .same(proto: "AWAITING_CONFIRMATION"),
+    2: .same(proto: "ROUTING_TO_DESTINATION"),
+    3: .same(proto: "COMPLETED"),
+  ]
+}
+
+extension RobotNavigationRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = "RobotNavigationRequest"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "token"),
+    2: .same(proto: "coordinates"),
+    3: .standard(proto: "waypoint_name"),
+  ]
+
+  fileprivate class _StorageClass {
+    var _token: String = String()
+    var _destination: RobotNavigationRequest.OneOf_Destination?
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _token = source._token
+      _destination = source._destination
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
+  }
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularStringField(value: &_storage._token)
+        case 2:
+          var v: GpsCoordinates?
+          if let current = _storage._destination {
+            try decoder.handleConflictingOneOf()
+            if case .coordinates(let m) = current {v = m}
+          }
+          try decoder.decodeSingularMessageField(value: &v)
+          if let v = v {_storage._destination = .coordinates(v)}
+        case 3:
+          if _storage._destination != nil {try decoder.handleConflictingOneOf()}
+          var v: String?
+          try decoder.decodeSingularStringField(value: &v)
+          if let v = v {_storage._destination = .waypointName(v)}
+        default: break
+        }
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if !_storage._token.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._token, fieldNumber: 1)
+      }
+      switch _storage._destination {
+      case .coordinates(let v)?:
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      case .waypointName(let v)?:
+        try visitor.visitSingularStringField(value: v, fieldNumber: 3)
+      case nil: break
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: RobotNavigationRequest, rhs: RobotNavigationRequest) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
+        let _storage = _args.0
+        let rhs_storage = _args.1
+        if _storage._token != rhs_storage._token {return false}
+        if _storage._destination != rhs_storage._destination {return false}
+        return true
+      }
+      if !storagesAreEqual {return false}
+    }
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension GetPoseRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = "GetPoseRequest"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "robot_name"),
   ]
@@ -234,11 +1121,726 @@ extension RosToServerCommunication: SwiftProtobuf.Message, SwiftProtobuf._Messag
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  static func ==(lhs: RosToServerCommunication, rhs: RosToServerCommunication) -> Bool {
+  static func ==(lhs: GetPoseRequest, rhs: GetPoseRequest) -> Bool {
     if lhs.robotName != rhs.robotName {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
+}
+
+extension Waypoint: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = "Waypoint"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .standard(proto: "waypoint_name"),
+    2: .same(proto: "description"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.waypointName)
+      case 2: try decoder.decodeSingularStringField(value: &self.description_p)
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.waypointName.isEmpty {
+      try visitor.visitSingularStringField(value: self.waypointName, fieldNumber: 1)
+    }
+    if !self.description_p.isEmpty {
+      try visitor.visitSingularStringField(value: self.description_p, fieldNumber: 2)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Waypoint, rhs: Waypoint) -> Bool {
+    if lhs.waypointName != rhs.waypointName {return false}
+    if lhs.description_p != rhs.description_p {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension WaypointList: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = "WaypointList"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "waypoints"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeRepeatedMessageField(value: &self.waypoints)
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.waypoints.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.waypoints, fieldNumber: 1)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: WaypointList, rhs: WaypointList) -> Bool {
+    if lhs.waypoints != rhs.waypoints {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension AddWaypointRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = "AddWaypointRequest"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .standard(proto: "waypoint_name"),
+    2: .same(proto: "description"),
+    3: .same(proto: "token"),
+    4: .same(proto: "timestamp"),
+  ]
+
+  fileprivate class _StorageClass {
+    var _waypointName: String = String()
+    var _description_p: String = String()
+    var _token: String = String()
+    var _timestamp: SwiftProtobuf.Google_Protobuf_Timestamp? = nil
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _waypointName = source._waypointName
+      _description_p = source._description_p
+      _token = source._token
+      _timestamp = source._timestamp
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
+  }
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularStringField(value: &_storage._waypointName)
+        case 2: try decoder.decodeSingularStringField(value: &_storage._description_p)
+        case 3: try decoder.decodeSingularStringField(value: &_storage._token)
+        case 4: try decoder.decodeSingularMessageField(value: &_storage._timestamp)
+        default: break
+        }
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if !_storage._waypointName.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._waypointName, fieldNumber: 1)
+      }
+      if !_storage._description_p.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._description_p, fieldNumber: 2)
+      }
+      if !_storage._token.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._token, fieldNumber: 3)
+      }
+      if let v = _storage._timestamp {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: AddWaypointRequest, rhs: AddWaypointRequest) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
+        let _storage = _args.0
+        let rhs_storage = _args.1
+        if _storage._waypointName != rhs_storage._waypointName {return false}
+        if _storage._description_p != rhs_storage._description_p {return false}
+        if _storage._token != rhs_storage._token {return false}
+        if _storage._timestamp != rhs_storage._timestamp {return false}
+        return true
+      }
+      if !storagesAreEqual {return false}
+    }
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension AddWaypointResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = "AddWaypointResponse"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .standard(proto: "location_stale"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularBoolField(value: &self.locationStale)
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.locationStale != false {
+      try visitor.visitSingularBoolField(value: self.locationStale, fieldNumber: 1)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: AddWaypointResponse, rhs: AddWaypointResponse) -> Bool {
+    if lhs.locationStale != rhs.locationStale {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension GpsCoordinates: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = "GpsCoordinates"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "longitude"),
+    2: .same(proto: "latitude"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularFloatField(value: &self.longitude)
+      case 2: try decoder.decodeSingularFloatField(value: &self.latitude)
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.longitude != 0 {
+      try visitor.visitSingularFloatField(value: self.longitude, fieldNumber: 1)
+    }
+    if self.latitude != 0 {
+      try visitor.visitSingularFloatField(value: self.latitude, fieldNumber: 2)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: GpsCoordinates, rhs: GpsCoordinates) -> Bool {
+    if lhs.longitude != rhs.longitude {return false}
+    if lhs.latitude != rhs.latitude {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension LocalMapPose: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = "LocalMapPose"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "row"),
+    2: .same(proto: "column"),
+    3: .same(proto: "angle"),
+    4: .same(proto: "timestamp"),
+  ]
+
+  fileprivate class _StorageClass {
+    var _row: Float = 0
+    var _column: Float = 0
+    var _angle: Float = 0
+    var _timestamp: SwiftProtobuf.Google_Protobuf_Timestamp? = nil
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _row = source._row
+      _column = source._column
+      _angle = source._angle
+      _timestamp = source._timestamp
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
+  }
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularFloatField(value: &_storage._row)
+        case 2: try decoder.decodeSingularFloatField(value: &_storage._column)
+        case 3: try decoder.decodeSingularFloatField(value: &_storage._angle)
+        case 4: try decoder.decodeSingularMessageField(value: &_storage._timestamp)
+        default: break
+        }
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if _storage._row != 0 {
+        try visitor.visitSingularFloatField(value: _storage._row, fieldNumber: 1)
+      }
+      if _storage._column != 0 {
+        try visitor.visitSingularFloatField(value: _storage._column, fieldNumber: 2)
+      }
+      if _storage._angle != 0 {
+        try visitor.visitSingularFloatField(value: _storage._angle, fieldNumber: 3)
+      }
+      if let v = _storage._timestamp {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: LocalMapPose, rhs: LocalMapPose) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
+        let _storage = _args.0
+        let rhs_storage = _args.1
+        if _storage._row != rhs_storage._row {return false}
+        if _storage._column != rhs_storage._column {return false}
+        if _storage._angle != rhs_storage._angle {return false}
+        if _storage._timestamp != rhs_storage._timestamp {return false}
+        return true
+      }
+      if !storagesAreEqual {return false}
+    }
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension ServerToRosNavigationRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = "ServerToRosNavigationRequest"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "pose"),
+    2: .same(proto: "coordinates"),
+  ]
+
+  fileprivate class _StorageClass {
+    var _destination: ServerToRosNavigationRequest.OneOf_Destination?
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _destination = source._destination
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
+  }
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1:
+          var v: LocalMapPose?
+          if let current = _storage._destination {
+            try decoder.handleConflictingOneOf()
+            if case .pose(let m) = current {v = m}
+          }
+          try decoder.decodeSingularMessageField(value: &v)
+          if let v = v {_storage._destination = .pose(v)}
+        case 2:
+          var v: GpsCoordinates?
+          if let current = _storage._destination {
+            try decoder.handleConflictingOneOf()
+            if case .coordinates(let m) = current {v = m}
+          }
+          try decoder.decodeSingularMessageField(value: &v)
+          if let v = v {_storage._destination = .coordinates(v)}
+        default: break
+        }
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      switch _storage._destination {
+      case .pose(let v)?:
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      case .coordinates(let v)?:
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      case nil: break
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: ServerToRosNavigationRequest, rhs: ServerToRosNavigationRequest) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
+        let _storage = _args.0
+        let rhs_storage = _args.1
+        if _storage._destination != rhs_storage._destination {return false}
+        return true
+      }
+      if !storagesAreEqual {return false}
+    }
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension GetMapRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = "GetMapRequest"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .standard(proto: "robot_name"),
+    2: .same(proto: "token"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1:
+        if self.robotSpecification != nil {try decoder.handleConflictingOneOf()}
+        var v: String?
+        try decoder.decodeSingularStringField(value: &v)
+        if let v = v {self.robotSpecification = .robotName(v)}
+      case 2:
+        if self.robotSpecification != nil {try decoder.handleConflictingOneOf()}
+        var v: String?
+        try decoder.decodeSingularStringField(value: &v)
+        if let v = v {self.robotSpecification = .token(v)}
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    switch self.robotSpecification {
+    case .robotName(let v)?:
+      try visitor.visitSingularStringField(value: v, fieldNumber: 1)
+    case .token(let v)?:
+      try visitor.visitSingularStringField(value: v, fieldNumber: 2)
+    case nil: break
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: GetMapRequest, rhs: GetMapRequest) -> Bool {
+    if lhs.robotSpecification != rhs.robotSpecification {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension MapImage: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = "MapImage"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "resolution"),
+    2: .standard(proto: "encoded_image"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularFloatField(value: &self.resolution)
+      case 2: try decoder.decodeSingularStringField(value: &self.encodedImage)
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.resolution != 0 {
+      try visitor.visitSingularFloatField(value: self.resolution, fieldNumber: 1)
+    }
+    if !self.encodedImage.isEmpty {
+      try visitor.visitSingularStringField(value: self.encodedImage, fieldNumber: 2)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: MapImage, rhs: MapImage) -> Bool {
+    if lhs.resolution != rhs.resolution {return false}
+    if lhs.encodedImage != rhs.encodedImage {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension RawMap: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = "RawMap"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "resolution"),
+    2: .same(proto: "height"),
+    3: .same(proto: "width"),
+    4: .same(proto: "data"),
+    5: .same(proto: "origin"),
+    6: .standard(proto: "origin_angle_shift"),
+    7: .standard(proto: "shift_x"),
+    8: .standard(proto: "shift_y"),
+  ]
+
+  fileprivate class _StorageClass {
+    var _resolution: Float = 0
+    var _height: UInt32 = 0
+    var _width: UInt32 = 0
+    var _data: Data = SwiftProtobuf.Internal.emptyData
+    var _origin: GpsCoordinates? = nil
+    var _originAngleShift: Float = 0
+    var _shiftX: Float = 0
+    var _shiftY: Float = 0
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _resolution = source._resolution
+      _height = source._height
+      _width = source._width
+      _data = source._data
+      _origin = source._origin
+      _originAngleShift = source._originAngleShift
+      _shiftX = source._shiftX
+      _shiftY = source._shiftY
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
+  }
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularFloatField(value: &_storage._resolution)
+        case 2: try decoder.decodeSingularUInt32Field(value: &_storage._height)
+        case 3: try decoder.decodeSingularUInt32Field(value: &_storage._width)
+        case 4: try decoder.decodeSingularBytesField(value: &_storage._data)
+        case 5: try decoder.decodeSingularMessageField(value: &_storage._origin)
+        case 6: try decoder.decodeSingularFloatField(value: &_storage._originAngleShift)
+        case 7: try decoder.decodeSingularFloatField(value: &_storage._shiftX)
+        case 8: try decoder.decodeSingularFloatField(value: &_storage._shiftY)
+        default: break
+        }
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if _storage._resolution != 0 {
+        try visitor.visitSingularFloatField(value: _storage._resolution, fieldNumber: 1)
+      }
+      if _storage._height != 0 {
+        try visitor.visitSingularUInt32Field(value: _storage._height, fieldNumber: 2)
+      }
+      if _storage._width != 0 {
+        try visitor.visitSingularUInt32Field(value: _storage._width, fieldNumber: 3)
+      }
+      if !_storage._data.isEmpty {
+        try visitor.visitSingularBytesField(value: _storage._data, fieldNumber: 4)
+      }
+      if let v = _storage._origin {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
+      }
+      if _storage._originAngleShift != 0 {
+        try visitor.visitSingularFloatField(value: _storage._originAngleShift, fieldNumber: 6)
+      }
+      if _storage._shiftX != 0 {
+        try visitor.visitSingularFloatField(value: _storage._shiftX, fieldNumber: 7)
+      }
+      if _storage._shiftY != 0 {
+        try visitor.visitSingularFloatField(value: _storage._shiftY, fieldNumber: 8)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: RawMap, rhs: RawMap) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
+        let _storage = _args.0
+        let rhs_storage = _args.1
+        if _storage._resolution != rhs_storage._resolution {return false}
+        if _storage._height != rhs_storage._height {return false}
+        if _storage._width != rhs_storage._width {return false}
+        if _storage._data != rhs_storage._data {return false}
+        if _storage._origin != rhs_storage._origin {return false}
+        if _storage._originAngleShift != rhs_storage._originAngleShift {return false}
+        if _storage._shiftX != rhs_storage._shiftX {return false}
+        if _storage._shiftY != rhs_storage._shiftY {return false}
+        return true
+      }
+      if !storagesAreEqual {return false}
+    }
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension RosToServerCommunication: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = "RosToServerCommunication"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .standard(proto: "robot_name"),
+    2: .standard(proto: "raw_map"),
+    3: .standard(proto: "robot_pose"),
+    4: .standard(proto: "status_update"),
+  ]
+
+  fileprivate class _StorageClass {
+    var _robotName: String = String()
+    var _communication: RosToServerCommunication.OneOf_Communication?
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _robotName = source._robotName
+      _communication = source._communication
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
+  }
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularStringField(value: &_storage._robotName)
+        case 2:
+          var v: RawMap?
+          if let current = _storage._communication {
+            try decoder.handleConflictingOneOf()
+            if case .rawMap(let m) = current {v = m}
+          }
+          try decoder.decodeSingularMessageField(value: &v)
+          if let v = v {_storage._communication = .rawMap(v)}
+        case 3:
+          var v: LocalMapPose?
+          if let current = _storage._communication {
+            try decoder.handleConflictingOneOf()
+            if case .robotPose(let m) = current {v = m}
+          }
+          try decoder.decodeSingularMessageField(value: &v)
+          if let v = v {_storage._communication = .robotPose(v)}
+        case 4:
+          var v: RobotStatusUpdate?
+          if let current = _storage._communication {
+            try decoder.handleConflictingOneOf()
+            if case .statusUpdate(let m) = current {v = m}
+          }
+          try decoder.decodeSingularMessageField(value: &v)
+          if let v = v {_storage._communication = .statusUpdate(v)}
+        default: break
+        }
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if !_storage._robotName.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._robotName, fieldNumber: 1)
+      }
+      switch _storage._communication {
+      case .rawMap(let v)?:
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      case .robotPose(let v)?:
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+      case .statusUpdate(let v)?:
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
+      case nil: break
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: RosToServerCommunication, rhs: RosToServerCommunication) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
+        let _storage = _args.0
+        let rhs_storage = _args.1
+        if _storage._robotName != rhs_storage._robotName {return false}
+        if _storage._communication != rhs_storage._communication {return false}
+        return true
+      }
+      if !storagesAreEqual {return false}
+    }
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension RobotStatusUpdate: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = "RobotStatusUpdate"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .standard(proto: "status_update"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularEnumField(value: &self.statusUpdate)
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.statusUpdate != .start {
+      try visitor.visitSingularEnumField(value: self.statusUpdate, fieldNumber: 1)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: RobotStatusUpdate, rhs: RobotStatusUpdate) -> Bool {
+    if lhs.statusUpdate != rhs.statusUpdate {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension RobotStatusUpdate.Status: SwiftProtobuf._ProtoNameProviding {
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    0: .same(proto: "START"),
+    1: .same(proto: "IDLE"),
+    2: .same(proto: "MAPPING"),
+    3: .same(proto: "MAPPING_AND_MOVING"),
+    4: .same(proto: "NAVIGATING"),
+    5: .same(proto: "NAVIGATING_AND_IDLE"),
+    6: .same(proto: "ERROR"),
+  ]
 }
 
 extension ServerToRosMappingRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
@@ -290,6 +1892,7 @@ extension ServerToRosMappingRequest.Direction: SwiftProtobuf._ProtoNameProviding
     1: .same(proto: "BACKWARD"),
     2: .same(proto: "RIGHT"),
     3: .same(proto: "LEFT"),
+    4: .same(proto: "STOP"),
   ]
 }
 
@@ -297,6 +1900,7 @@ extension ServerToRosCommunication: SwiftProtobuf.Message, SwiftProtobuf._Messag
   static let protoMessageName: String = "ServerToRosCommunication"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "mapping_request"),
+    2: .standard(proto: "navigation_request"),
   ]
 
   fileprivate class _StorageClass {
@@ -331,6 +1935,14 @@ extension ServerToRosCommunication: SwiftProtobuf.Message, SwiftProtobuf._Messag
           }
           try decoder.decodeSingularMessageField(value: &v)
           if let v = v {_storage._communication = .mappingRequest(v)}
+        case 2:
+          var v: ServerToRosNavigationRequest?
+          if let current = _storage._communication {
+            try decoder.handleConflictingOneOf()
+            if case .navigationRequest(let m) = current {v = m}
+          }
+          try decoder.decodeSingularMessageField(value: &v)
+          if let v = v {_storage._communication = .navigationRequest(v)}
         default: break
         }
       }
@@ -339,8 +1951,12 @@ extension ServerToRosCommunication: SwiftProtobuf.Message, SwiftProtobuf._Messag
 
   func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if case .mappingRequest(let v)? = _storage._communication {
+      switch _storage._communication {
+      case .mappingRequest(let v)?:
         try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      case .navigationRequest(let v)?:
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      case nil: break
       }
     }
     try unknownFields.traverse(visitor: &visitor)
@@ -365,11 +1981,12 @@ extension MappingRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplement
   static let protoMessageName: String = "MappingRequest"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "robot_name"),
+    3: .same(proto: "token"),
     2: .standard(proto: "mapping_request"),
   ]
 
   fileprivate class _StorageClass {
-    var _robotName: String = String()
+    var _robotSpecification: MappingRequest.OneOf_RobotSpecification?
     var _mappingRequest: ServerToRosMappingRequest? = nil
 
     static let defaultInstance = _StorageClass()
@@ -377,7 +1994,7 @@ extension MappingRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplement
     private init() {}
 
     init(copying source: _StorageClass) {
-      _robotName = source._robotName
+      _robotSpecification = source._robotSpecification
       _mappingRequest = source._mappingRequest
     }
   }
@@ -394,8 +2011,17 @@ extension MappingRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplement
     try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
       while let fieldNumber = try decoder.nextFieldNumber() {
         switch fieldNumber {
-        case 1: try decoder.decodeSingularStringField(value: &_storage._robotName)
+        case 1:
+          if _storage._robotSpecification != nil {try decoder.handleConflictingOneOf()}
+          var v: String?
+          try decoder.decodeSingularStringField(value: &v)
+          if let v = v {_storage._robotSpecification = .robotName(v)}
         case 2: try decoder.decodeSingularMessageField(value: &_storage._mappingRequest)
+        case 3:
+          if _storage._robotSpecification != nil {try decoder.handleConflictingOneOf()}
+          var v: String?
+          try decoder.decodeSingularStringField(value: &v)
+          if let v = v {_storage._robotSpecification = .token(v)}
         default: break
         }
       }
@@ -404,11 +2030,14 @@ extension MappingRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplement
 
   func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if !_storage._robotName.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._robotName, fieldNumber: 1)
+      if case .robotName(let v)? = _storage._robotSpecification {
+        try visitor.visitSingularStringField(value: v, fieldNumber: 1)
       }
       if let v = _storage._mappingRequest {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+      if case .token(let v)? = _storage._robotSpecification {
+        try visitor.visitSingularStringField(value: v, fieldNumber: 3)
       }
     }
     try unknownFields.traverse(visitor: &visitor)
@@ -419,7 +2048,7 @@ extension MappingRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplement
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
         let rhs_storage = _args.1
-        if _storage._robotName != rhs_storage._robotName {return false}
+        if _storage._robotSpecification != rhs_storage._robotSpecification {return false}
         if _storage._mappingRequest != rhs_storage._mappingRequest {return false}
         return true
       }
@@ -444,6 +2073,25 @@ extension MappingResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplemen
   }
 
   static func ==(lhs: MappingResponse, rhs: MappingResponse) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension ConfirmTripResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = "ConfirmTripResponse"
+  static let _protobuf_nameMap = SwiftProtobuf._NameMap()
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let _ = try decoder.nextFieldNumber() {
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: ConfirmTripResponse, rhs: ConfirmTripResponse) -> Bool {
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
