@@ -5,6 +5,7 @@ from proto.ros import ros_pb2_grpc
 from proto.ros import ros_pb2
 
 import utils
+import rospy
 
 class ServerStateStreamer():
 
@@ -22,6 +23,7 @@ class ServerStateStreamer():
         self.communication_queue = communication_queue
         self.stream_thread = utils.ros_thread.SimpleThread()
         self.stream_thread.set_loop_function(self.stream)
+        self.prev_state = None
 
 
     def start(self):
@@ -33,8 +35,26 @@ class ServerStateStreamer():
 
 
     def stream(self):
-        state = self.get_state_grpc()
-        self.communication_queue.put(state)
+        ros_state = self.get_state()
+        if self.state_changed(ros_state):
+            self.update_state(ros_state)
+            grpc_state = self.ros_state_to_grpc(ros_state)
+            rospy.loginfo("State changed")
+            self.communication_queue.put(grpc_state)
+
+    
+    def update_state(self, state):
+        self.prev_state = state
+
+
+    def state_changed(self, current_state):
+        changed = False
+        if self.prev_state is None:
+            changed = True
+        else:
+            if self.prev_state != current_state:
+                changed = True
+        return changed
 
 
     def get_state_grpc(self):
