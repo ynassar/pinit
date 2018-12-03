@@ -134,8 +134,19 @@ class RobotStateManager():
         self.robot_fsm.add_transition(self.States.NAVIGATING,
                                       self.States.NAVIGATING_AND_IDLE,
                                       self.navigating_to_navigatingidle_cb)
+        self.robot_fsm.add_transition(self.States.NAVIGATING_AND_IDLE,
+                                      self.States.MAPPING,
+                                      self.nav_and_idle_to_mapping_cb)
 
 
+
+
+    def nav_and_idle_to_mapping_cb(self, *args):
+        self.node_manager.stop_movebase()
+        self.map_publisher.stop()
+
+        self.node_manager.start_gmapping()
+        self.map_streamer.start()
 
 
     def idle_to_idle_cb(self, *args):
