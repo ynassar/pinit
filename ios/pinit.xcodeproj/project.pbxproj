@@ -41,7 +41,6 @@
 		372216C4219EFE51009C8103 /* PinitNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372216C3219EFE51009C8103 /* PinitNavigationController.swift */; };
 		372216C6219EFE63009C8103 /* PinitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372216C5219EFE63009C8103 /* PinitViewController.swift */; };
 		372216C9219EFEF3009C8103 /* PinitViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372216C8219EFEF3009C8103 /* PinitViewProtocol.swift */; };
-		372216CD219F152F009C8103 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372216CC219F152F009C8103 /* ProfileView.swift */; };
 		372216D0219F251B009C8103 /* PinitUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372216CF219F251B009C8103 /* PinitUserViewController.swift */; };
 		372216D5219F255D009C8103 /* RobotRequestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372216D4219F255D009C8103 /* RobotRequestView.swift */; };
 		372216D7219F4731009C8103 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372216D6219F4731009C8103 /* Profile.swift */; };
@@ -52,10 +51,9 @@
 		372CEF6A21A3409300791DF4 /* MappingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CEF6521A3409300791DF4 /* MappingViewController.swift */; };
 		372CEF6B21A3409300791DF4 /* MappingServerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CEF6621A3409300791DF4 /* MappingServerDelegate.swift */; };
 		372CEF6C21A3409300791DF4 /* MappingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CEF6721A3409300791DF4 /* MappingView.swift */; };
-		372CEF6E21A354EA00791DF4 /* PinitSideMenuNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CEF6D21A354EA00791DF4 /* PinitSideMenuNavigationController.swift */; };
+		372CEF6E21A354EA00791DF4 /* LogoutNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CEF6D21A354EA00791DF4 /* LogoutNavigationController.swift */; };
 		372CEF8621A48D1900791DF4 /* SideMenuShowAnimationTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CEF8521A48D1900791DF4 /* SideMenuShowAnimationTransitioning.swift */; };
 		37352738217A217F00602046 /* PinitOwnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37352736217A217F00602046 /* PinitOwnerViewController.swift */; };
-		3735273B217A218700602046 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3735273A217A218700602046 /* ProfileViewController.swift */; };
 		373639CC217248A300EBD383 /* BoringSSL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 373C1282216F9ED4003D7CBB /* BoringSSL.framework */; };
 		373639CD217248A300EBD383 /* BoringSSL.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 373C1282216F9ED4003D7CBB /* BoringSSL.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		373639D0217248A300EBD383 /* SwiftGRPC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 373C1286216F9ED4003D7CBB /* SwiftGRPC.framework */; };
@@ -209,7 +207,6 @@
 		372216C3219EFE51009C8103 /* PinitNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinitNavigationController.swift; sourceTree = "<group>"; };
 		372216C5219EFE63009C8103 /* PinitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinitViewController.swift; sourceTree = "<group>"; };
 		372216C8219EFEF3009C8103 /* PinitViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinitViewProtocol.swift; sourceTree = "<group>"; };
-		372216CC219F152F009C8103 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		372216CF219F251B009C8103 /* PinitUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinitUserViewController.swift; sourceTree = "<group>"; };
 		372216D4219F255D009C8103 /* RobotRequestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RobotRequestView.swift; sourceTree = "<group>"; };
 		372216D6219F4731009C8103 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
@@ -220,10 +217,9 @@
 		372CEF6521A3409300791DF4 /* MappingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MappingViewController.swift; sourceTree = "<group>"; };
 		372CEF6621A3409300791DF4 /* MappingServerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MappingServerDelegate.swift; sourceTree = "<group>"; };
 		372CEF6721A3409300791DF4 /* MappingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MappingView.swift; sourceTree = "<group>"; };
-		372CEF6D21A354EA00791DF4 /* PinitSideMenuNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinitSideMenuNavigationController.swift; sourceTree = "<group>"; };
+		372CEF6D21A354EA00791DF4 /* LogoutNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutNavigationController.swift; sourceTree = "<group>"; };
 		372CEF8521A48D1900791DF4 /* SideMenuShowAnimationTransitioning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuShowAnimationTransitioning.swift; sourceTree = "<group>"; };
 		37352736217A217F00602046 /* PinitOwnerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinitOwnerViewController.swift; sourceTree = "<group>"; };
-		3735273A217A218700602046 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		37363A0A21761C3300EBD383 /* UIButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
 		37363A0E21761F1100EBD383 /* RegisterServerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterServerDelegate.swift; sourceTree = "<group>"; };
 		37363A0F21761F1100EBD383 /* RegisterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
@@ -375,7 +371,7 @@
 			children = (
 				372216C3219EFE51009C8103 /* PinitNavigationController.swift */,
 				372216C5219EFE63009C8103 /* PinitViewController.swift */,
-				372CEF6D21A354EA00791DF4 /* PinitSideMenuNavigationController.swift */,
+				372CEF6D21A354EA00791DF4 /* LogoutNavigationController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -432,16 +428,6 @@
 				37352736217A217F00602046 /* PinitOwnerViewController.swift */,
 			);
 			path = PinitOwner;
-			sourceTree = "<group>";
-		};
-		37352739217A218700602046 /* Profile */ = {
-			isa = PBXGroup;
-			children = (
-				3735273A217A218700602046 /* ProfileViewController.swift */,
-				372216CC219F152F009C8103 /* ProfileView.swift */,
-				372216D6219F4731009C8103 /* Profile.swift */,
-			);
-			path = Profile;
 			sourceTree = "<group>";
 		};
 		37363A0C21761F1100EBD383 /* Authentication */ = {
@@ -503,6 +489,7 @@
 				3775A0692165012200ABEF54 /* Constraints.swift */,
 				376985B8216834DE006FF550 /* Constants.swift */,
 				3720226F2167AF5B00602B53 /* CustomTextField.swift */,
+				372216D6219F4731009C8103 /* Profile.swift */,
 				37363A0A21761C3300EBD383 /* UIButtonExtension.swift */,
 				372CEF5C21A1BCC700791DF4 /* SettingsBundleHelper.swift */,
 				3721402321A6157200A5A880 /* UserDefaultsHelper.swift */,
@@ -549,7 +536,6 @@
 				37EEA7E6215B962500BF3839 /* AppDelegate.swift */,
 				37EEA7ED215B962800BF3839 /* Assets.xcassets */,
 				37EEA7F2215B962800BF3839 /* Info.plist */,
-				37352739217A218700602046 /* Profile */,
 				37352734217A217F00602046 /* PinitOwner */,
 				372216CE219F2504009C8103 /* PinitUser */,
 				37363A0C21761F1100EBD383 /* Authentication */,
@@ -714,11 +700,10 @@
 				3775A06B21650B5D00ABEF54 /* Constraints.swift in Sources */,
 				372216C6219EFE63009C8103 /* PinitViewController.swift in Sources */,
 				37CBDD062194B92D0092C8E1 /* AddLocationViewController.swift in Sources */,
-				372216CD219F152F009C8103 /* ProfileView.swift in Sources */,
 				3721402021A6096900A5A880 /* HomepageViewController.swift in Sources */,
 				37363A1E21761F2200EBD383 /* LoginServerDelegate.swift in Sources */,
 				37363A1B21761F1100EBD383 /* LoginView.swift in Sources */,
-				372CEF6E21A354EA00791DF4 /* PinitSideMenuNavigationController.swift in Sources */,
+				372CEF6E21A354EA00791DF4 /* LogoutNavigationController.swift in Sources */,
 				372CEF6B21A3409300791DF4 /* MappingServerDelegate.swift in Sources */,
 				3721F92121B1B9FC005C9813 /* TripStatusServer.swift in Sources */,
 				3721F90521B02465005C9813 /* account_management.grpc.swift in Sources */,
@@ -765,7 +750,6 @@
 				3721F90E21B05263005C9813 /* SelectLocationServerDelegate.swift in Sources */,
 				37363A1921761F1100EBD383 /* RegisterViewController.swift in Sources */,
 				3721F8E921B010CA005C9813 /* SelectLocationSearchBarView.swift in Sources */,
-				3735273B217A218700602046 /* ProfileViewController.swift in Sources */,
 				3721F90921B02465005C9813 /* login.grpc.swift in Sources */,
 				372216D5219F255D009C8103 /* RobotRequestView.swift in Sources */,
 				3721F91821B1AE5B005C9813 /* RequestRobotServerDelegate.swift in Sources */,

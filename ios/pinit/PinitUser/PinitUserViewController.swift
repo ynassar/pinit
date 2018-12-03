@@ -6,7 +6,7 @@ fileprivate enum FieldSelected: Int {
     case None = 2
 }
 
-class PinitUserViewController: PinitSideMenuNavigationController {
+class PinitUserViewController: LogoutNavigationController {
     
     private var robotRequestView: RobotRequestView!
         
