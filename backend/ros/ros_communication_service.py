@@ -3,6 +3,7 @@ import base64
 import jwt
 import threading
 import queue
+import datetime
 
 import cv2
 import grpc
@@ -215,3 +216,24 @@ class RosService(ros_pb2_grpc.RosServiceServicer):
         ))
         trip.save()
         return ros_pb2.ConfirmTripResponse()
+
+    def GetTodaysTrips(self, request, context):
+        robot_name = request_utils.RobotNameFromToken(request.token)
+        now = datetime.datetime.now()
+        yesterday = now - datetime.timedelta(days=1)
+        trips = trip_model.Trip.objects(robot_name=robot_name, timestamp__gte=yesterday)
+        trip_protos = [
+            ros_pb2.Trip(
+                start_waypoint=t.start_waypoint,
+                end_waypoint=t.end_waypoint,
+                timestamp=t.timestamp
+            )
+            for t in trips
+        ]
+        trip_list = ros_pb2.TripList(trips=trip_protos)
+
+    def GetMostVisitedWaypoints(self, request, context):
+        robot_name = request_utils.RobotNameFromToken(request.token)
+        destination_frequencies = trip_model.Trip.objects(robot_name=robot_name).item_frequencies('end_waypoint')
+        most_frequent_destinations = sorted(destination_frequencies.keys(), key=lambda x:destination_frequencies[x], reverse=True)[:request.num_results]
+        return ros_pb2.WaypointNameList(waypoint_names=most_frequent_destinations)

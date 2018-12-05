@@ -28,6 +28,33 @@ service RosService{
     rpc GetTripStatus(GetTripStatusRequest) returns (TripStatus) {}
 
     rpc ConfirmTrip(ConfirmTripRequest) returns (ConfirmTripResponse) {}
+
+    rpc GetTodaysTrips(GetTodaysTripsRequest) returns (TripList) {}
+
+    rpc GetMostVisitedWaypoints(GetMostVisitedWaypointsRequest) returns (WaypointNameList) {}
+}
+
+message WaypointNameList{
+    repeated string waypoint_names = 1;
+}
+
+message GetMostVisitedWaypointsRequest{
+    string token = 1;
+    int32 num_results = 2;
+}
+
+message GetTodaysTripsRequest{
+    string token = 1;
+}
+
+message TripList{
+    repeated Trip trips = 1;
+}
+
+message Trip{
+    string start_waypoint = 1;
+    string end_waypoint = 2;
+    google.protobuf.Timestamp timestamp = 3;
 }
 
 message ConfirmTripRequest{

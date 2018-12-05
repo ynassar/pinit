@@ -1,3 +1,5 @@
+import datetime
+
 import mongoengine
 
 class Trip(mongoengine.Document):
@@ -6,3 +8,4 @@ class Trip(mongoengine.Document):
     end_waypoint = mongoengine.StringField()
     status = mongoengine.StringField(regex='(RoutingToPickup)|(AwaitingConfirmation)|(RoutingToDestination)|(Completed)')
     robot_name = mongoengine.StringField()
+    timestamp = mongoengine.DateTimeField(default=datetime.datetime.now)
