@@ -28,10 +28,19 @@
 		3721F90E21B05263005C9813 /* SelectLocationServerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721F90D21B05263005C9813 /* SelectLocationServerDelegate.swift */; };
 		3721F91021B053FF005C9813 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721F90F21B053FF005C9813 /* Location.swift */; };
 		3721F91221B07BE6005C9813 /* SelectLocationResultDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721F91121B07BE6005C9813 /* SelectLocationResultDelegate.swift */; };
+		3721F91621B1AE3E005C9813 /* RobotRquestServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721F91521B1AE3E005C9813 /* RobotRquestServer.swift */; };
+		3721F91821B1AE5B005C9813 /* RequestRobotServerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721F91721B1AE5B005C9813 /* RequestRobotServerDelegate.swift */; };
+		3721F91A21B1AE90005C9813 /* RobotRquest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721F91921B1AE90005C9813 /* RobotRquest.swift */; };
+		3721F91D21B1B7D1005C9813 /* TripStatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721F91C21B1B7D1005C9813 /* TripStatusViewController.swift */; };
+		3721F91F21B1B7E4005C9813 /* TripStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721F91E21B1B7E4005C9813 /* TripStatusView.swift */; };
+		3721F92121B1B9FC005C9813 /* TripStatusServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721F92021B1B9FC005C9813 /* TripStatusServer.swift */; };
+		3721F92321B1BA0C005C9813 /* TripStatusServerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721F92221B1BA0C005C9813 /* TripStatusServerDelegate.swift */; };
+		3721F92521B1CB68005C9813 /* TripInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721F92421B1CB68005C9813 /* TripInfoView.swift */; };
+		3721F92921B2393F005C9813 /* PinitTripStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721F92821B2393F005C9813 /* PinitTripStatus.swift */; };
+		3721F92B21B2AD08005C9813 /* ResetViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721F92A21B2AD08005C9813 /* ResetViewControllerProtocol.swift */; };
 		372216C4219EFE51009C8103 /* PinitNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372216C3219EFE51009C8103 /* PinitNavigationController.swift */; };
 		372216C6219EFE63009C8103 /* PinitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372216C5219EFE63009C8103 /* PinitViewController.swift */; };
 		372216C9219EFEF3009C8103 /* PinitViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372216C8219EFEF3009C8103 /* PinitViewProtocol.swift */; };
-		372216CD219F152F009C8103 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372216CC219F152F009C8103 /* ProfileView.swift */; };
 		372216D0219F251B009C8103 /* PinitUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372216CF219F251B009C8103 /* PinitUserViewController.swift */; };
 		372216D5219F255D009C8103 /* RobotRequestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372216D4219F255D009C8103 /* RobotRequestView.swift */; };
 		372216D7219F4731009C8103 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372216D6219F4731009C8103 /* Profile.swift */; };
@@ -42,10 +51,9 @@
 		372CEF6A21A3409300791DF4 /* MappingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CEF6521A3409300791DF4 /* MappingViewController.swift */; };
 		372CEF6B21A3409300791DF4 /* MappingServerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CEF6621A3409300791DF4 /* MappingServerDelegate.swift */; };
 		372CEF6C21A3409300791DF4 /* MappingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CEF6721A3409300791DF4 /* MappingView.swift */; };
-		372CEF6E21A354EA00791DF4 /* PinitSideMenuNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CEF6D21A354EA00791DF4 /* PinitSideMenuNavigationController.swift */; };
+		372CEF6E21A354EA00791DF4 /* LogoutNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CEF6D21A354EA00791DF4 /* LogoutNavigationController.swift */; };
 		372CEF8621A48D1900791DF4 /* SideMenuShowAnimationTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CEF8521A48D1900791DF4 /* SideMenuShowAnimationTransitioning.swift */; };
 		37352738217A217F00602046 /* PinitOwnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37352736217A217F00602046 /* PinitOwnerViewController.swift */; };
-		3735273B217A218700602046 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3735273A217A218700602046 /* ProfileViewController.swift */; };
 		373639CC217248A300EBD383 /* BoringSSL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 373C1282216F9ED4003D7CBB /* BoringSSL.framework */; };
 		373639CD217248A300EBD383 /* BoringSSL.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 373C1282216F9ED4003D7CBB /* BoringSSL.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		373639D0217248A300EBD383 /* SwiftGRPC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 373C1286216F9ED4003D7CBB /* SwiftGRPC.framework */; };
@@ -159,6 +167,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		37201C1B21B5F9A200193816 /* pinit.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = pinit.entitlements; sourceTree = "<group>"; };
 		3720226F2167AF5B00602B53 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		3721401A21A5A05900A5A880 /* SideMenuInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuInteractor.swift; sourceTree = "<group>"; };
 		3721401C21A5DD9000A5A880 /* SideMenuDismissAnimationTransitioning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuDismissAnimationTransitioning.swift; sourceTree = "<group>"; };
@@ -186,10 +195,19 @@
 		3721F90D21B05263005C9813 /* SelectLocationServerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLocationServerDelegate.swift; sourceTree = "<group>"; };
 		3721F90F21B053FF005C9813 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		3721F91121B07BE6005C9813 /* SelectLocationResultDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLocationResultDelegate.swift; sourceTree = "<group>"; };
+		3721F91521B1AE3E005C9813 /* RobotRquestServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RobotRquestServer.swift; sourceTree = "<group>"; };
+		3721F91721B1AE5B005C9813 /* RequestRobotServerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestRobotServerDelegate.swift; sourceTree = "<group>"; };
+		3721F91921B1AE90005C9813 /* RobotRquest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RobotRquest.swift; sourceTree = "<group>"; };
+		3721F91C21B1B7D1005C9813 /* TripStatusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripStatusViewController.swift; sourceTree = "<group>"; };
+		3721F91E21B1B7E4005C9813 /* TripStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripStatusView.swift; sourceTree = "<group>"; };
+		3721F92021B1B9FC005C9813 /* TripStatusServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripStatusServer.swift; sourceTree = "<group>"; };
+		3721F92221B1BA0C005C9813 /* TripStatusServerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripStatusServerDelegate.swift; sourceTree = "<group>"; };
+		3721F92421B1CB68005C9813 /* TripInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripInfoView.swift; sourceTree = "<group>"; };
+		3721F92821B2393F005C9813 /* PinitTripStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinitTripStatus.swift; sourceTree = "<group>"; };
+		3721F92A21B2AD08005C9813 /* ResetViewControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetViewControllerProtocol.swift; sourceTree = "<group>"; };
 		372216C3219EFE51009C8103 /* PinitNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinitNavigationController.swift; sourceTree = "<group>"; };
 		372216C5219EFE63009C8103 /* PinitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinitViewController.swift; sourceTree = "<group>"; };
 		372216C8219EFEF3009C8103 /* PinitViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinitViewProtocol.swift; sourceTree = "<group>"; };
-		372216CC219F152F009C8103 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		372216CF219F251B009C8103 /* PinitUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinitUserViewController.swift; sourceTree = "<group>"; };
 		372216D4219F255D009C8103 /* RobotRequestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RobotRequestView.swift; sourceTree = "<group>"; };
 		372216D6219F4731009C8103 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
@@ -200,10 +218,9 @@
 		372CEF6521A3409300791DF4 /* MappingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MappingViewController.swift; sourceTree = "<group>"; };
 		372CEF6621A3409300791DF4 /* MappingServerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MappingServerDelegate.swift; sourceTree = "<group>"; };
 		372CEF6721A3409300791DF4 /* MappingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MappingView.swift; sourceTree = "<group>"; };
-		372CEF6D21A354EA00791DF4 /* PinitSideMenuNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinitSideMenuNavigationController.swift; sourceTree = "<group>"; };
+		372CEF6D21A354EA00791DF4 /* LogoutNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutNavigationController.swift; sourceTree = "<group>"; };
 		372CEF8521A48D1900791DF4 /* SideMenuShowAnimationTransitioning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuShowAnimationTransitioning.swift; sourceTree = "<group>"; };
 		37352736217A217F00602046 /* PinitOwnerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinitOwnerViewController.swift; sourceTree = "<group>"; };
-		3735273A217A218700602046 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		37363A0A21761C3300EBD383 /* UIButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
 		37363A0E21761F1100EBD383 /* RegisterServerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterServerDelegate.swift; sourceTree = "<group>"; };
 		37363A0F21761F1100EBD383 /* RegisterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
@@ -337,12 +354,25 @@
 			path = login;
 			sourceTree = "<group>";
 		};
+		3721F91B21B1B7C7005C9813 /* TripStatus */ = {
+			isa = PBXGroup;
+			children = (
+				3721F91C21B1B7D1005C9813 /* TripStatusViewController.swift */,
+				3721F91E21B1B7E4005C9813 /* TripStatusView.swift */,
+				3721F92021B1B9FC005C9813 /* TripStatusServer.swift */,
+				3721F92221B1BA0C005C9813 /* TripStatusServerDelegate.swift */,
+				3721F92421B1CB68005C9813 /* TripInfoView.swift */,
+				3721F92821B2393F005C9813 /* PinitTripStatus.swift */,
+			);
+			path = TripStatus;
+			sourceTree = "<group>";
+		};
 		372216C2219EFE51009C8103 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				372216C3219EFE51009C8103 /* PinitNavigationController.swift */,
 				372216C5219EFE63009C8103 /* PinitViewController.swift */,
-				372CEF6D21A354EA00791DF4 /* PinitSideMenuNavigationController.swift */,
+				372CEF6D21A354EA00791DF4 /* LogoutNavigationController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -351,6 +381,7 @@
 			isa = PBXGroup;
 			children = (
 				372216C8219EFEF3009C8103 /* PinitViewProtocol.swift */,
+				3721F92A21B2AD08005C9813 /* ResetViewControllerProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -358,6 +389,7 @@
 		372216CE219F2504009C8103 /* PinitUser */ = {
 			isa = PBXGroup;
 			children = (
+				3721F91B21B1B7C7005C9813 /* TripStatus */,
 				3721F8DD21AEA997005C9813 /* SelectLocation */,
 				372216D1219F2548009C8103 /* RobotRequest */,
 				372216CF219F251B009C8103 /* PinitUserViewController.swift */,
@@ -369,6 +401,9 @@
 			isa = PBXGroup;
 			children = (
 				372216D4219F255D009C8103 /* RobotRequestView.swift */,
+				3721F91521B1AE3E005C9813 /* RobotRquestServer.swift */,
+				3721F91721B1AE5B005C9813 /* RequestRobotServerDelegate.swift */,
+				3721F91921B1AE90005C9813 /* RobotRquest.swift */,
 			);
 			path = RobotRequest;
 			sourceTree = "<group>";
@@ -394,16 +429,6 @@
 				37352736217A217F00602046 /* PinitOwnerViewController.swift */,
 			);
 			path = PinitOwner;
-			sourceTree = "<group>";
-		};
-		37352739217A218700602046 /* Profile */ = {
-			isa = PBXGroup;
-			children = (
-				3735273A217A218700602046 /* ProfileViewController.swift */,
-				372216CC219F152F009C8103 /* ProfileView.swift */,
-				372216D6219F4731009C8103 /* Profile.swift */,
-			);
-			path = Profile;
 			sourceTree = "<group>";
 		};
 		37363A0C21761F1100EBD383 /* Authentication */ = {
@@ -465,6 +490,7 @@
 				3775A0692165012200ABEF54 /* Constraints.swift */,
 				376985B8216834DE006FF550 /* Constants.swift */,
 				3720226F2167AF5B00602B53 /* CustomTextField.swift */,
+				372216D6219F4731009C8103 /* Profile.swift */,
 				37363A0A21761C3300EBD383 /* UIButtonExtension.swift */,
 				372CEF5C21A1BCC700791DF4 /* SettingsBundleHelper.swift */,
 				3721402321A6157200A5A880 /* UserDefaultsHelper.swift */,
@@ -508,10 +534,10 @@
 		37EEA7E5215B962500BF3839 /* pinit */ = {
 			isa = PBXGroup;
 			children = (
+				37201C1B21B5F9A200193816 /* pinit.entitlements */,
 				37EEA7E6215B962500BF3839 /* AppDelegate.swift */,
 				37EEA7ED215B962800BF3839 /* Assets.xcassets */,
 				37EEA7F2215B962800BF3839 /* Info.plist */,
-				37352739217A218700602046 /* Profile */,
 				37352734217A217F00602046 /* PinitOwner */,
 				372216CE219F2504009C8103 /* PinitUser */,
 				37363A0C21761F1100EBD383 /* Authentication */,
@@ -585,6 +611,11 @@
 				TargetAttributes = {
 					37EEA7E2215B962500BF3839 = {
 						CreatedOnToolsVersion = 9.4.1;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 0;
+							};
+						};
 					};
 					37EEA7F6215B962800BF3839 = {
 						CreatedOnToolsVersion = 9.4.1;
@@ -676,22 +707,25 @@
 				3775A06B21650B5D00ABEF54 /* Constraints.swift in Sources */,
 				372216C6219EFE63009C8103 /* PinitViewController.swift in Sources */,
 				37CBDD062194B92D0092C8E1 /* AddLocationViewController.swift in Sources */,
-				372216CD219F152F009C8103 /* ProfileView.swift in Sources */,
 				3721402021A6096900A5A880 /* HomepageViewController.swift in Sources */,
 				37363A1E21761F2200EBD383 /* LoginServerDelegate.swift in Sources */,
 				37363A1B21761F1100EBD383 /* LoginView.swift in Sources */,
-				372CEF6E21A354EA00791DF4 /* PinitSideMenuNavigationController.swift in Sources */,
+				372CEF6E21A354EA00791DF4 /* LogoutNavigationController.swift in Sources */,
 				372CEF6B21A3409300791DF4 /* MappingServerDelegate.swift in Sources */,
+				3721F92121B1B9FC005C9813 /* TripStatusServer.swift in Sources */,
 				3721F90521B02465005C9813 /* account_management.grpc.swift in Sources */,
+				3721F91621B1AE3E005C9813 /* RobotRquestServer.swift in Sources */,
 				3721F8E721AFF94D005C9813 /* SelectLocationViewController.swift in Sources */,
 				3721F90621B02465005C9813 /* account_management.pb.swift in Sources */,
 				372CEF6A21A3409300791DF4 /* MappingViewController.swift in Sources */,
 				372CEF6C21A3409300791DF4 /* MappingView.swift in Sources */,
 				3721F90A21B02465005C9813 /* login.pb.swift in Sources */,
+				3721F91F21B1B7E4005C9813 /* TripStatusView.swift in Sources */,
 				37363A1821761F1100EBD383 /* RegisterServer.swift in Sources */,
 				37363A1621761F1100EBD383 /* RegisterServerDelegate.swift in Sources */,
 				37CBDD072194B92D0092C8E1 /* AddLocationView.swift in Sources */,
 				372022702167AF5B00602B53 /* CustomTextField.swift in Sources */,
+				3721F92921B2393F005C9813 /* PinitTripStatus.swift in Sources */,
 				372CEF6921A3409300791DF4 /* MappingControlsView.swift in Sources */,
 				3721F8E521AEB75E005C9813 /* SelectLocationTableViewCell.swift in Sources */,
 				3721402421A6157200A5A880 /* UserDefaultsHelper.swift in Sources */,
@@ -699,9 +733,11 @@
 				37CBDD042194B92D0092C8E1 /* AddLocationServerDelegate.swift in Sources */,
 				3721B1D02199C01E0083C0DD /* SlideUpAnimationTransitioning.swift in Sources */,
 				37CBDD052194B92D0092C8E1 /* AddLocationServer.swift in Sources */,
+				3721F91A21B1AE90005C9813 /* RobotRquest.swift in Sources */,
 				372216D7219F4731009C8103 /* Profile.swift in Sources */,
 				372216C9219EFEF3009C8103 /* PinitViewProtocol.swift in Sources */,
 				37EEA7E7215B962500BF3839 /* AppDelegate.swift in Sources */,
+				3721F92521B1CB68005C9813 /* TripInfoView.swift in Sources */,
 				372CEF6821A3409300791DF4 /* MappingServer.swift in Sources */,
 				3721402221A6097400A5A880 /* HomepageView.swift in Sources */,
 				3721F91021B053FF005C9813 /* Location.swift in Sources */,
@@ -709,22 +745,25 @@
 				37352738217A217F00602046 /* PinitOwnerViewController.swift in Sources */,
 				3721F90821B02465005C9813 /* ros.pb.swift in Sources */,
 				3721F90721B02465005C9813 /* ros.grpc.swift in Sources */,
+				3721F91D21B1B7D1005C9813 /* TripStatusViewController.swift in Sources */,
 				3721401D21A5DD9000A5A880 /* SideMenuDismissAnimationTransitioning.swift in Sources */,
 				3721B1D22199C18C0083C0DD /* SlideDownAnimationTransitioning.swift in Sources */,
 				37363A0B21761C3300EBD383 /* UIButtonExtension.swift in Sources */,
 				37363A1A21761F1100EBD383 /* AuthenticationView.swift in Sources */,
+				3721F92321B1BA0C005C9813 /* TripStatusServerDelegate.swift in Sources */,
 				37363A1C21761F1100EBD383 /* LoginViewController.swift in Sources */,
 				372216C4219EFE51009C8103 /* PinitNavigationController.swift in Sources */,
 				3721F91221B07BE6005C9813 /* SelectLocationResultDelegate.swift in Sources */,
 				3721F90E21B05263005C9813 /* SelectLocationServerDelegate.swift in Sources */,
 				37363A1921761F1100EBD383 /* RegisterViewController.swift in Sources */,
 				3721F8E921B010CA005C9813 /* SelectLocationSearchBarView.swift in Sources */,
-				3735273B217A218700602046 /* ProfileViewController.swift in Sources */,
 				3721F90921B02465005C9813 /* login.grpc.swift in Sources */,
 				372216D5219F255D009C8103 /* RobotRequestView.swift in Sources */,
+				3721F91821B1AE5B005C9813 /* RequestRobotServerDelegate.swift in Sources */,
 				372CEF8621A48D1900791DF4 /* SideMenuShowAnimationTransitioning.swift in Sources */,
 				372216D0219F251B009C8103 /* PinitUserViewController.swift in Sources */,
 				3721F90C21B05258005C9813 /* SelectLocationServer.swift in Sources */,
+				3721F92B21B2AD08005C9813 /* ResetViewControllerProtocol.swift in Sources */,
 				3721401B21A5A05900A5A880 /* SideMenuInteractor.swift in Sources */,
 				376985B9216834DE006FF550 /* Constants.swift in Sources */,
 			);

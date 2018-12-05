@@ -1,6 +1,6 @@
 import UIKit
 
-class HomepageViewController : PinitSideMenuNavigationController {
+class HomepageViewController : LogoutNavigationController {
     
     override func viewDidLoad() {
         super.viewDidLoad()

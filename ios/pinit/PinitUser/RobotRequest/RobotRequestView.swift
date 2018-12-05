@@ -18,9 +18,7 @@ class RobotRequestView : UIView, PinitViewProtocol {
         self.addSubview(pickUpLocationTextFeild)
         self.addSubview(destinationLocationTextFiled)
         
-        pickUpLocationTextFeild.rightView = UIImageView(image: UIImage(named: "exclamationMarkIcon"))
-        destinationLocationTextFiled.rightView = UIImageView(image: UIImage(named: "exclamationMarkIcon"))
-        requestButton.setImage(UIImage(named: "requestButtonIcon"), for: .normal)
+        resetView()
 
     }
     
@@ -76,6 +74,16 @@ class RobotRequestView : UIView, PinitViewProtocol {
         requestButton.setImage(UIImage(named: "requestButtonColoredIcon"), for: .normal)
         requestButton.enableButton()
     }
+    
+    public func resetView() {
+        pickUpLocationTextFeild.rightView = UIImageView(image: UIImage(named: "exclamationMarkIcon"))
+        destinationLocationTextFiled.rightView = UIImageView(image: UIImage(named: "exclamationMarkIcon"))
+        requestButton.setImage(UIImage(named: "requestButtonIcon"), for: .normal)
+        requestButton.disableButton()
+        
+        pickUpLocationTextFeild.text = ""
+        destinationLocationTextFiled.text = ""
+    }
 }
 
 extension CustomTextField {
@@ -97,5 +105,4 @@ extension CustomTextField {
     public func markChecked() {
         self.rightView = UIImageView(image: UIImage(named: "checkIcon"))
     }
-    
 }
