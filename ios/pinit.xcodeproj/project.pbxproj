@@ -167,6 +167,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		37201C1B21B5F9A200193816 /* pinit.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = pinit.entitlements; sourceTree = "<group>"; };
 		3720226F2167AF5B00602B53 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		3721401A21A5A05900A5A880 /* SideMenuInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuInteractor.swift; sourceTree = "<group>"; };
 		3721401C21A5DD9000A5A880 /* SideMenuDismissAnimationTransitioning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuDismissAnimationTransitioning.swift; sourceTree = "<group>"; };
@@ -533,6 +534,7 @@
 		37EEA7E5215B962500BF3839 /* pinit */ = {
 			isa = PBXGroup;
 			children = (
+				37201C1B21B5F9A200193816 /* pinit.entitlements */,
 				37EEA7E6215B962500BF3839 /* AppDelegate.swift */,
 				37EEA7ED215B962800BF3839 /* Assets.xcassets */,
 				37EEA7F2215B962800BF3839 /* Info.plist */,
@@ -609,6 +611,11 @@
 				TargetAttributes = {
 					37EEA7E2215B962500BF3839 = {
 						CreatedOnToolsVersion = 9.4.1;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 0;
+							};
+						};
 					};
 					37EEA7F6215B962800BF3839 = {
 						CreatedOnToolsVersion = 9.4.1;

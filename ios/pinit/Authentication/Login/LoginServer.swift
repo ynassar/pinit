@@ -1,4 +1,6 @@
 import UIKit
+import SwiftGRPC
+import SwiftProtobuf
 
 /// The `LoginServer` is responsible for sending requests to the gRPC server related to the
 /// login feature.
@@ -22,8 +24,13 @@ public class LoginServer {
         do {
             let loginResponse = try accountClient.login(loginRequest)
             delegate?.didLoginSuccessfully(loginResponse: loginResponse)
-        } catch {
-            delegate?.didLoginErrorOccur(errorMessage: "Can't login")
+        } catch  {
+            if let grpcError = error as? RPCError {
+                delegate?.didLoginErrorOccur(errorMessage:
+                    grpcError.callResult?.statusMessage ?? " Unknown Error Occured")
+            } else {
+                delegate?.didLoginErrorOccur(errorMessage: "Unknown Error Occured")
+            }
         }
     }
 }

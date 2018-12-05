@@ -1,4 +1,6 @@
 import UIKit
+import SwiftGRPC
+import SwiftProtobuf
 
 /// The `RegisterServer` is responsible for sending requests to gRPC server related to the
 /// register feature.
@@ -28,7 +30,13 @@ public class RegisterServer {
             let registerResponse = try accountClient.register(registerRequest)
             delegate?.didRegisterSuccessfully()
         } catch {
-            delegate?.didRegisterErrorOccur(errorMessage: "SignUp Failed")
+            if let grpcError = error as? RPCError {
+                delegate?.didRegisterErrorOccur(errorMessage:
+                    grpcError.callResult?.statusMessage ?? " Unknown Error Occured")
+            } else {
+                delegate?.didRegisterErrorOccur(errorMessage: "Unknown Error Occured")
+            }
         }
+        
     }
 }
