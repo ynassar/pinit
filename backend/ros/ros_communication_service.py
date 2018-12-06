@@ -226,7 +226,8 @@ class RosService(ros_pb2_grpc.RosServiceServicer):
             ros_pb2.Trip(
                 start_waypoint=t.start_waypoint,
                 end_waypoint=t.end_waypoint,
-                timestamp=t.timestamp
+                timestamp=t.timestamp,
+                creator=t.created_by
             )
             for t in trips
         ]
@@ -236,4 +237,5 @@ class RosService(ros_pb2_grpc.RosServiceServicer):
         robot_name = request_utils.RobotNameFromToken(request.token)
         destination_frequencies = trip_model.Trip.objects(robot_name=robot_name).item_frequencies('end_waypoint')
         most_frequent_destinations = sorted(destination_frequencies.keys(), key=lambda x:destination_frequencies[x], reverse=True)[:request.num_results]
-        return ros_pb2.WaypointNameList(waypoint_names=most_frequent_destinations)
+        frequencies = [destination_frequencies[x] for x in most_frequent_destinations]
+        return ros_pb2.WaypointNameList(waypoint_names=most_frequent_destinations, frequencies=frequencies)

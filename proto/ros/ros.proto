@@ -36,6 +36,7 @@ service RosService{
 
 message WaypointNameList{
     repeated string waypoint_names = 1;
+    repeated int32 frequencies = 2;
 }
 
 message GetMostVisitedWaypointsRequest{
@@ -55,6 +56,7 @@ message Trip{
     string start_waypoint = 1;
     string end_waypoint = 2;
     google.protobuf.Timestamp timestamp = 3;
+    string creator = 4;
 }
 
 message ConfirmTripRequest{
