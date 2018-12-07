@@ -10,6 +10,8 @@ import grpc
 import numpy as np
 import mongoengine
 
+from google.protobuf import timestamp_pb2
+
 from backend import constants
 from backend.models import map as map_model
 from backend.models import waypoint as waypoint_model
@@ -223,11 +225,15 @@ class RosService(ros_pb2_grpc.RosServiceServicer):
         now = datetime.datetime.now()
         yesterday = now - datetime.timedelta(days=1)
         trips = trip_model.Trip.objects(robot_name=robot_name, timestamp__gte=yesterday)
+        def TsFromDatetime(dt):
+            ts = timestamp_pb2.Timestamp()
+            ts.FromDatetime(dt)
+            return ts
         trip_protos = [
             ros_pb2.Trip(
                 start_waypoint=t.start_waypoint,
                 end_waypoint=t.end_waypoint,
-                timestamp=t.timestamp,
+                timestamp=TsFromDatetime(t.timestamp),
                 creator=t.created_by
             )
             for t in trips
