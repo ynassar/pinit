@@ -54,6 +54,7 @@ class SelectLocationViewController : PinitViewController , SelectLocationServerD
         self.addViewsConstraints()
         
         locationsTableView.register(SelectLocationTableViewCell.self, forCellReuseIdentifier: identifier)
+        locationsTableView.register(NoResultsTableViewCell.self, forCellReuseIdentifier: noResultsIdentifier)
         
         locationsTableView.delegate = self
         locationsTableView.dataSource = self

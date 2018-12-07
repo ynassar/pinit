@@ -140,7 +140,8 @@ extension HomepageViewController : UITableViewDelegate, UITableViewDataSource {
                 let cell = tableView.dequeueReusableCell(
                     withIdentifier: frequentCellIdentifier,
                     for: indexPath) as! FrequentLocationsTableViewCell
-                cell.locationFrequency.makeLabelCircular()
+                cell.locationName.text = frequentLocations[indexPath.row].name
+                cell.locationFrequency.text = frequentLocations[indexPath.row].frequncyString
                 return cell
             } else {
                 let cell = tableView.dequeueReusableCell(
