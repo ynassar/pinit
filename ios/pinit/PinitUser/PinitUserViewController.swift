@@ -37,13 +37,13 @@ class PinitUserViewController: LogoutNavigationController {
                        action: #selector(self.showSearchController(sender:)),
                        for: .editingDidBegin)
         
-        robotRequestView.destinationLocationTextFiled
+        robotRequestView.destinationLocationTextField
             .addTarget(self,
                        action: #selector(self.showSearchController(sender:)),
                        for: .editingDidBegin)
         
         robotRequestView.pickUpLocationTextFeild.tag = FieldSelected.PickUpLocation.rawValue
-        robotRequestView.destinationLocationTextFiled.tag = FieldSelected.DestinationLocation.rawValue
+        robotRequestView.destinationLocationTextField.tag = FieldSelected.DestinationLocation.rawValue
         
         robotRequestView.requestButton.addTarget(
             self,
@@ -58,7 +58,7 @@ class PinitUserViewController: LogoutNavigationController {
             robotRequestView.pickUpLocationTextFeild.endEditing(true)
         } else if sender.tag == FieldSelected.DestinationLocation.rawValue{
             fieldSelected = .DestinationLocation
-            robotRequestView.destinationLocationTextFiled.endEditing(true)
+            robotRequestView.destinationLocationTextField.endEditing(true)
         } else {
             fieldSelected = .None
         }
@@ -74,7 +74,7 @@ class PinitUserViewController: LogoutNavigationController {
     @objc private func requestRobot() {
         let robotRequest = RobotRequest(
             pickUp: robotRequestView.pickUpLocationTextFeild.text ?? "",
-            destination: robotRequestView.destinationLocationTextFiled.text ?? "")
+            destination: robotRequestView.destinationLocationTextField.text ?? "")
         robotRequestServer.sendRequest(robotRequest: robotRequest)
     }
     
@@ -110,14 +110,14 @@ extension PinitUserViewController : SelectLocationResultDelegate {
             robotRequestView.pickUpLocationTextFeild.text = location.name
             robotRequestView.pickUpLocationTextFeild.markChecked()
         case .DestinationLocation:
-            robotRequestView.destinationLocationTextFiled.text = location.name
-            robotRequestView.destinationLocationTextFiled.markChecked()
+            robotRequestView.destinationLocationTextField.text = location.name
+            robotRequestView.destinationLocationTextField.markChecked()
         case .None:
             return
         }
         
         if robotRequestView.pickUpLocationTextFeild.hasText &&
-            robotRequestView.destinationLocationTextFiled.hasText {
+            robotRequestView.destinationLocationTextField.hasText {
             
             robotRequestView.enableRequestButton()
         }
@@ -128,6 +128,9 @@ extension PinitUserViewController: RobotRequestServerDelegate {
     
     func robotRequested() {
         let tripStatusViewController = TripStatusViewController()
+        tripStatusViewController.setLocationNames(
+            pickUpLocation: robotRequestView.pickUpLocationTextFeild.text ?? "",
+            destinationLocation: robotRequestView.destinationLocationTextField.text ?? "")
         if let navigationController = self.navigationController {
             navigationController.delegate = self
             navigationController.pushViewController(tripStatusViewController, animated: true)

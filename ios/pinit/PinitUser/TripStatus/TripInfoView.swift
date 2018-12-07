@@ -4,7 +4,11 @@ class TripInfoView: UIView, PinitViewProtocol {
     
     private var fromLabel: UILabel
     
+    public var fromLabelValue: UILabel
+    
     private var toLabel: UILabel
+    
+    public var toLabelValue: UILabel
     
     private var statusLabel: UILabel
     
@@ -14,14 +18,18 @@ class TripInfoView: UIView, PinitViewProtocol {
     
     init() {
         fromLabel = UILabel(frame: CGRect.zero)
+        fromLabelValue = UILabel(frame: CGRect.zero)
         toLabel = UILabel(frame: CGRect.zero)
+        toLabelValue = UILabel(frame: CGRect.zero)
         statusLabel = UILabel(frame: CGRect.zero)
         statusLabelValue = UILabel(frame: CGRect.zero)
         progressbar = UIProgressView(progressViewStyle: .bar)
         super.init(frame: CGRect.zero)
         
         self.addSubview(fromLabel)
+        self.addSubview(fromLabelValue)
         self.addSubview(toLabel)
+        self.addSubview(toLabelValue)
         self.addSubview(statusLabel)
         self.addSubview(statusLabelValue)
         self.addSubview(progressbar)
@@ -66,8 +74,30 @@ class TripInfoView: UIView, PinitViewProtocol {
                                        constant: 0)
         
         let labelsSpacing = self.frame.size.width * 0.05
+        fromLabelValue = fromLabelValue.customizeLabel(view: self)
+        toLabelValue = toLabelValue.customizeLabel(view: self)
         statusLabelValue = statusLabelValue.customizeLabel(view: self)
-
+        
+        fromLabelValue = fromLabelValue
+            .setConstraintWithConstant(selfAttribute: .top,
+                                       relativeView: self,
+                                       relativeAttribute: .top,
+                                       constant: topSpacing)
+            .setConstraintWithConstant(selfAttribute: .left,
+                                       relativeView: fromLabel,
+                                       relativeAttribute: .right,
+                                       constant: labelsSpacing)
+        
+        toLabelValue = toLabelValue
+            .setConstraintWithConstant(selfAttribute: .top,
+                                       relativeView: fromLabelValue,
+                                       relativeAttribute: .bottom,
+                                       constant: 0)
+            .setConstraintWithConstant(selfAttribute: .left,
+                                       relativeView: toLabel,
+                                       relativeAttribute: .right,
+                                       constant: labelsSpacing)
+        
         statusLabelValue = statusLabelValue
             .setConstraintWithConstant(selfAttribute: .top,
                                        relativeView: toLabel,
