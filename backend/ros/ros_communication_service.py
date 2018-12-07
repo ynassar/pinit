@@ -218,7 +218,7 @@ class RosService(ros_pb2_grpc.RosServiceServicer):
         return ros_pb2.ConfirmTripResponse()
 
     def GetTodaysTrips(self, request, context):
-        robot_name = request_utils.RobotNameFromToken(request.token)
+        robot_name = request_utils.RobotNameFromToken(request.token, self._rsa_key)
         now = datetime.datetime.now()
         yesterday = now - datetime.timedelta(days=1)
         trips = trip_model.Trip.objects(robot_name=robot_name, timestamp__gte=yesterday)
@@ -234,7 +234,7 @@ class RosService(ros_pb2_grpc.RosServiceServicer):
         trip_list = ros_pb2.TripList(trips=trip_protos)
 
     def GetMostVisitedWaypoints(self, request, context):
-        robot_name = request_utils.RobotNameFromToken(request.token)
+        robot_name = request_utils.RobotNameFromToken(request.token, self._rsa_key)
         destination_frequencies = trip_model.Trip.objects(robot_name=robot_name).item_frequencies('end_waypoint')
         most_frequent_destinations = sorted(destination_frequencies.keys(), key=lambda x:destination_frequencies[x], reverse=True)[:request.num_results]
         frequencies = [destination_frequencies[x] for x in most_frequent_destinations]
