@@ -7,6 +7,9 @@ class SelectLocationViewController : PinitViewController , SelectLocationServerD
     /// Identifier for choosing the `SelectLocationTableViewCell` custom view.
     private let identifier = "id"
     
+    /// Indentifier for choosing the `NoResultTableViewCell` custom view.
+    private let noResultsIdentifier = "noResultsCell"
+    
     /// THe height of a single cell in the `UITableView`.
     private let tableViewCellHeight: CGFloat = 66
     
@@ -166,20 +169,28 @@ extension SelectLocationViewController: UITableViewDelegate, UITableViewDataSour
     
     /// Function to return the number of rows in the table view. This will be number of locations.
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return locationList.count
+        return (locationList.count > 0) ? locationList.count : 1
     }
     
     /// Function to show how the data will showin in each cell. It will assin the values
     /// to the variables of each cell which is a custom `SelectLocationTableViewCell`.
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(
-            withIdentifier: self.identifier,
-            for: indexPath) as! SelectLocationTableViewCell
-        let values = locationList[indexPath.row]
-        cell.locationName.text = values.name
-        cell.locationDescription.text = (values.description == "")
-            ? "No Description Available" : values.description
-        return cell
+        if locationList.count > 0 {
+            let cell = tableView.dequeueReusableCell(
+                withIdentifier: self.identifier,
+                for: indexPath) as! SelectLocationTableViewCell
+            let values = locationList[indexPath.row]
+            cell.locationName.text = values.name
+            cell.locationDescription.text = (values.description == "")
+                ? "No Description Available" : values.description
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(
+                withIdentifier: noResultsIdentifier,
+                for: indexPath) as! NoResultsTableViewCell
+            cell.noResultsLabel.text = "No Locations Available"
+            return cell
+        }
     }
     
     /// Function to return the height of every row.

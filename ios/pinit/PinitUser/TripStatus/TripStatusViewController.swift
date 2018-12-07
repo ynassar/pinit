@@ -78,6 +78,11 @@ class TripStatusViewController: PinitViewController {
         }
     }
     
+    public func setLocationNames(pickUpLocation: String, destinationLocation: String) {
+        tripInfoView.fromLabelValue.text = pickUpLocation
+        tripInfoView.toLabelValue.text = destinationLocation
+    }
+    
     /// Function called when the view will be apppearing, and in which the navigation bar
     /// will be hidden.
     override func viewWillAppear(_ animated: Bool) {
