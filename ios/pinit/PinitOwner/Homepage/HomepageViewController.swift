@@ -2,21 +2,44 @@ import UIKit
 
 class HomepageViewController : LogoutNavigationController {
     
-//    private var todayTripsView: TodayTripsView!
-    
     private var tableView: UITableView!
     
-    private let todayTableViewCellHeight: CGFloat = 66
+    private let dailySectionTableViewCellHeight: CGFloat = 66
     
-    private let tableViewIdentifier =  "tableID"
+    private let frequentSectiontodayTableViewCellHeight: CGFloat = 44
+    
+    private let inBetweenSectionSpacing: CGFloat = 66
+    
+    private let dailyCellIdentifier =  "dailyTripCell"
+    
+    private let frequentCellIdentifier = "freqLocationCell"
+    
+    private let noResultsIdentifier = "noResultsCell"
+    
+    private var homepageServer: HomepageServer!
+    
+    private var dailyTrips: [TripInfo]!
+    
+    private var frequentLocations: [LocationInfo]!
     
     override func viewDidLoad() {
         tableView = UITableView(frame: CGRect.zero, style: .grouped)
+        homepageServer = HomepageServer()
+        dailyTrips = []
+        frequentLocations = []
         super.viewDidLoad()
         
         self.view.addSubview(tableView)
         
-        tableView.register(TodayTripsTableViewCell.self, forCellReuseIdentifier: tableViewIdentifier)
+        homepageServer.delegate = self
+        
+        homepageServer.getTodayTrips()
+        homepageServer.getFrequentocations()
+        
+        tableView.register(TodayTripsTableViewCell.self, forCellReuseIdentifier: dailyCellIdentifier)
+        tableView.register(NoResultsTableViewCell.self, forCellReuseIdentifier: noResultsIdentifier)
+        tableView.register(FrequentLocationsTableViewCell.self, forCellReuseIdentifier: frequentCellIdentifier)
+        
         tableView.tableFooterView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 0.0, height: 0.01))
         tableView.tableHeaderView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 0.0, height: 0.01))
         tableView.contentInsetAdjustmentBehavior = .never
@@ -24,6 +47,14 @@ class HomepageViewController : LogoutNavigationController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.backgroundColor = .clear
+        
+        let refreshButton = UIButton(frame: CGRect.zero)
+        refreshButton.setImage(UIImage(named: "refreshIcon"), for: .normal)
+        refreshButton.addTarget(self, action: #selector(self.refreshData), for: .touchDown)
+        
+        self.navigationController?.navigationBar.topItem?.rightBarButtonItems = [
+            UIBarButtonItem(customView: refreshButton),
+        ]
         
         self.addViewsConstraints()
     }
@@ -45,6 +76,11 @@ class HomepageViewController : LogoutNavigationController {
                                        constant: 0 - tabBarHeight)
     }
     
+    @objc private func refreshData() {
+        homepageServer.getTodayTrips()
+        homepageServer.getFrequentocations()
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.addGradiantBackground(color: PinitColors.yellow.cgColor)
@@ -63,7 +99,7 @@ extension HomepageViewController : UITableViewDelegate, UITableViewDataSource {
         case 0:
             return "Today's Trips"
         case 1:
-            return "Most Frequent Trips"
+            return "Most Frequent Destinations"
         default:
             return nil
         }
@@ -72,23 +108,62 @@ extension HomepageViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
-            return 8
+            return (dailyTrips.count > 0) ? dailyTrips.count : 1
         case 1:
-            return 10
+            return (frequentLocations.count > 0) ? frequentLocations.count : 1
         default:
             return 0
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(
-            withIdentifier: tableViewIdentifier,
-            for: indexPath)
-        return cell
+        switch indexPath.section {
+        case 0:
+            if dailyTrips.count > 0 {
+                let cell = tableView.dequeueReusableCell(
+                    withIdentifier: dailyCellIdentifier,
+                    for: indexPath) as! TodayTripsTableViewCell
+                let value = dailyTrips[indexPath.row]
+                cell.pickupLocationName.text = value.pickUpName
+                cell.destinationLocationName.text = value.destinationName
+                cell.timeLabel.text = value.time
+                return cell
+            } else {
+                let cell = tableView.dequeueReusableCell(
+                    withIdentifier: noResultsIdentifier,
+                    for: indexPath) as! NoResultsTableViewCell
+                cell.noResultsLabel.text = "No trips done today"
+                return cell
+            }
+        case 1:
+            if frequentLocations.count > 0 {
+                let cell = tableView.dequeueReusableCell(
+                    withIdentifier: frequentCellIdentifier,
+                    for: indexPath) as! FrequentLocationsTableViewCell
+                cell.locationFrequency.makeLabelCircular()
+                return cell
+            } else {
+                let cell = tableView.dequeueReusableCell(
+                    withIdentifier: noResultsIdentifier,
+                    for: indexPath) as! NoResultsTableViewCell
+                cell.noResultsLabel.text = "No Locations Available"
+                return cell
+            }
+            
+        default:
+            return UITableViewCell(frame: CGRect.zero)
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return self.todayTableViewCellHeight
+        switch indexPath.section {
+        case 0:
+            return dailySectionTableViewCellHeight
+        case 1:
+            return frequentSectiontodayTableViewCellHeight
+        default:
+            return 0
+        }
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -107,6 +182,20 @@ extension HomepageViewController : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return ( section == 0 ) ? 44 : self.todayTableViewCellHeight
+        return ( section == 0 ) ? 44 : self.inBetweenSectionSpacing
     }
+}
+
+extension HomepageViewController: HomepageServerDelegate {
+    
+    func didUpdateTodayTrips(trips: [TripInfo]) {
+        dailyTrips = trips
+        tableView.reloadData()
+    }
+    
+    func didGetFrequentLocations(locations: [LocationInfo]) {
+        frequentLocations = locations
+        tableView.reloadData()
+    }
+
 }
