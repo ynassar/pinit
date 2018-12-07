@@ -168,7 +168,8 @@ class RosService(ros_pb2_grpc.RosServiceServicer):
         trip = trip_model.Trip(created_by=username,
                                start_waypoint=request.start_waypoint,
                                end_waypoint=request.end_waypoint,
-                               status='RoutingToPickup')
+                               status='RoutingToPickup',
+                               robot_name=robot_name)
         robot.trip = trip
         trip.save()
         robot.save()
