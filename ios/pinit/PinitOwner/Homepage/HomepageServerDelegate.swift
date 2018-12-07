@@ -1,8 +1,8 @@
 //
-//  HomepageView.swift
+//  HomepageServerDelegate.swift
 //  pinit
 //
-//  Created by Farida Eid on 11/21/18.
+//  Created by Farida Eid on 12/7/18.
 //  Copyright © 2018 Farida Eid. All rights reserved.
 //
 
