@@ -232,7 +232,7 @@ class RosService(ros_pb2_grpc.RosServiceServicer):
             )
             for t in trips
         ]
-        trip_list = ros_pb2.TripList(trips=trip_protos)
+        return ros_pb2.TripList(trips=trip_protos)
 
     def GetMostVisitedWaypoints(self, request, context):
         robot_name = request_utils.RobotNameFromToken(request.token, self._rsa_key)
