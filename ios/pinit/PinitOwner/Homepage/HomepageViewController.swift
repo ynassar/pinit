@@ -97,7 +97,7 @@ extension HomepageViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case 0:
-            return "Today's Trips"
+            return "Today's Trips (\(dailyTrips.count))"
         case 1:
             return "Most Frequent Destinations"
         default:
@@ -158,13 +158,15 @@ extension HomepageViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.section {
-        case 1:
+        case 0:
             let alert = UIAlertController(
                 title: "Username",
                 message: dailyTrips[indexPath.row].username,
                 preferredStyle: UIAlertController.Style.alert)
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
+            self.present(alert, animated: true, completion: {
+                tableView.deselectRow(at: indexPath, animated: true)
+            })
         default:
             return
         }
