@@ -4,13 +4,12 @@ class TripStatusViewController: PinitViewController {
     
     private var tripStatusView: TripStatusView!
     
-    private var tripInfoView: TripInfoView!
+    private var tripInfoView = TripInfoView()
     
     private var tripStatusServer: TripStatusServer!
-    
+        
     override func viewDidLoad() {
         tripStatusView = TripStatusView()
-        tripInfoView = TripInfoView()
         tripStatusServer = TripStatusServer()
         self.controllerViews.append(tripStatusView)
         self.controllerViews.append(tripInfoView)
@@ -76,6 +75,11 @@ class TripStatusViewController: PinitViewController {
             }
             navigationController.popViewController(animated: true)
         }
+    }
+    
+    public func setLocationNames(pickUpLocation: String, destinationLocation: String) {
+        tripInfoView.fromLabelValue.text = pickUpLocation
+        tripInfoView.toLabelValue.text = destinationLocation
     }
     
     /// Function called when the view will be apppearing, and in which the navigation bar

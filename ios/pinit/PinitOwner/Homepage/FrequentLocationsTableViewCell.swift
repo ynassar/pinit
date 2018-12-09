@@ -36,10 +36,7 @@ class FrequentLocationsTableViewCell: UITableViewCell {
         
         locationFrequency.font = UIFont(name: "Avenir", size: 14.0)
         locationName.font = UIFont(name: "Avenir", size: 14.0)
-        
-        locationFrequency.text = "3"
-        locationName.text = "Location Name"
-        
+                
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -31,6 +31,7 @@ class MappingViewController: PinitNavigationController, MappingServerDelegate, U
         self.view.addSubview(mappingView)
         
         mappingServer.delegate = self
+        mappingView.scrollImage.delegate = self
         
         let startMappingButton = UIButton(frame: CGRect.zero)
         startMappingButton.setImage(UIImage(named: "startMapping"), for: .normal)
@@ -56,7 +57,7 @@ class MappingViewController: PinitNavigationController, MappingServerDelegate, U
         ]
         
         mappingControlsView.disableControls()
-        mappingView.disableMapView()
+//        mappingView.disableMapView()
         saveMappingButtonItem.disableButton()
         addLocationButtonItem.disableButton()
         
@@ -219,6 +220,13 @@ class MappingViewController: PinitNavigationController, MappingServerDelegate, U
         to toVC: UIViewController
     ) -> UIViewControllerAnimatedTransitioning? {
         return SlideUpAnimationTransitioning(operation: operation)
+    }
+}
+
+extension MappingViewController : UIScrollViewDelegate {
+    
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        return mappingView.mapImage
     }
 }
 

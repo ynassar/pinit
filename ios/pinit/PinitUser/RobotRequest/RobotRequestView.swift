@@ -4,19 +4,19 @@ class RobotRequestView : UIView, PinitViewProtocol {
     
     public var pickUpLocationTextFeild: CustomTextField
     
-    public var destinationLocationTextFiled: CustomTextField
+    public var destinationLocationTextField: CustomTextField
 
     public var requestButton: UIButton
     
     init() {
         requestButton = UIButton(frame: CGRect.zero)
         pickUpLocationTextFeild = CustomTextField()
-        destinationLocationTextFiled = CustomTextField()
+        destinationLocationTextField = CustomTextField()
         super.init(frame: CGRect.zero)
         
         self.addSubview(requestButton)
         self.addSubview(pickUpLocationTextFeild)
-        self.addSubview(destinationLocationTextFiled)
+        self.addSubview(destinationLocationTextField)
         
         resetView()
 
@@ -29,13 +29,13 @@ class RobotRequestView : UIView, PinitViewProtocol {
     func updateView() {
         
         pickUpLocationTextFeild.placeholder = "Enter your pick up location"
-        destinationLocationTextFiled.placeholder = "Enter your destination"
+        destinationLocationTextField.placeholder = "Enter your destination"
         
         pickUpLocationTextFeild.customizeTextField()
-        destinationLocationTextFiled.customizeTextField()
+        destinationLocationTextField.customizeTextField()
         
         pickUpLocationTextFeild.rightViewMode = .always
-        destinationLocationTextFiled.rightViewMode = .always
+        destinationLocationTextField.rightViewMode = .always
         
         let spacing = self.bounds.height * 0.15
         
@@ -49,7 +49,7 @@ class RobotRequestView : UIView, PinitViewProtocol {
                                        constant: 0)
         
         
-        destinationLocationTextFiled = destinationLocationTextFiled
+        destinationLocationTextField = destinationLocationTextField
             .addCenterXConstraint(relativeView: self)
             .addWidthConstraint(relativeView: self, multipler: 0.8)
             .addHeightConstraint(relativeView: self, multipler: 0.15)
@@ -65,7 +65,7 @@ class RobotRequestView : UIView, PinitViewProtocol {
                                 relativeView: requestButton,
                                 relativeAttribute: .height)
             .setConstraintWithConstant(selfAttribute: .top,
-                                       relativeView: destinationLocationTextFiled,
+                                       relativeView: destinationLocationTextField,
                                        relativeAttribute: .bottom,
                                        constant: spacing)
     }
@@ -77,12 +77,12 @@ class RobotRequestView : UIView, PinitViewProtocol {
     
     public func resetView() {
         pickUpLocationTextFeild.rightView = UIImageView(image: UIImage(named: "exclamationMarkIcon"))
-        destinationLocationTextFiled.rightView = UIImageView(image: UIImage(named: "exclamationMarkIcon"))
+        destinationLocationTextField.rightView = UIImageView(image: UIImage(named: "exclamationMarkIcon"))
         requestButton.setImage(UIImage(named: "requestButtonIcon"), for: .normal)
         requestButton.disableButton()
         
         pickUpLocationTextFeild.text = ""
-        destinationLocationTextFiled.text = ""
+        destinationLocationTextField.text = ""
     }
 }
 
