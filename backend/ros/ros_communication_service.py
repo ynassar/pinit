@@ -198,7 +198,7 @@ class RosService(ros_pb2_grpc.RosServiceServicer):
 
     def ConfirmTrip(self, request, context):
         username = request_utils.UsernameFromToken(request.token, self._rsa_key)
-        trip = trip_model.Trip.objects.get(created_by=username, status__ne='Completed')
+        trip = trip_model.Trip.objects(created_by=username).order_by('-id').first()
         if trip.status != 'AwaitingConfirmation':
             context.set_code(grpc.StatusCode.NOT_FOUND)
             raise NotAwaitingConfirmation()
